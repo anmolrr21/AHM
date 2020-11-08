@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Organization SignUp</title>
+        <link rel="stylesheet" href="org2_style.css">
+        <script src="org2.js"></script>
+    </head>
+    <body>
+        <div class="headings">
+        <h1>SiteName</h1>
+        <h2>For Organizations</h2>
+        <p>Find people,connect and help society develop</p>
+    </div>
+        <div id="details2-form" class="details2-form">
+            <form class="form" method="POST">
+                <div class="form-item">
+                    <div class="first-form-item">
+                        <label for="need">Do you need?</label>
+                            <select name="need" id="need">
+                                <option value="v">Volunteers</option>
+                                <option value="d">Donors</option>
+                                <option value="vd">Both</option>
+                            </select>
+            </div>
+        </div>
+            <div class="form-item">
+                <div class="second-form-item">
+                <label for="domain">Domain You work on:</label>
+                <select id="domain" multiple onchange='whichDomain(domain)'>
+                  
+                        <option selected value="e">Education</option>
+                        <option value="w">Women Safety</option>
+                        <option value="c">Cleaning</option>
+                        <option value="f">Provide Food</option>
+                        <option value="p">For physically disabled</option>
+                        <option value="o">Others</option>
+                       
+              
+                </select>
+                <input type="text" id="other_domain" placeholder="Other Domain" style="display:none"></input>
+           <p>(Hold down the <b>Ctrl (windows) or Command (Mac)</b> button to select multiple options.)</p> 
+        </div>
+        </div>
+
+       
+        <a href="#" class="button" id="submit_btn" onclick="submit()">Submit</a>
+
+            </form>
+        </div>
+
+    </body>
+</html>
