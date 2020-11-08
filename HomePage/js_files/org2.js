@@ -8,7 +8,7 @@ function whichDomain(domain) {
     var selectedValue = domain.value;
     console.log("Selected Text: " + selectedText + " Value: " + selectedValue);
     if(selectedText=="Others"){
-      document.getElementById('details2-form').style.height = "520px"
+      document.getElementById('details2-form').style.height = "650px"
       // document.getElementById('submit_btn').style.height = "520px"
         console.log("hi");
         document.getElementById('other_domain').style.display='block';
