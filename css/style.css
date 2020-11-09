@@ -49,9 +49,23 @@ ul.topnav li.right a{
     padding: 9px;
     margin-top: 25px;
 }
+.bottomButton{
+    border: 2px solid #fff;
+    border-radius: 9px;
+    padding: 9px;
+    margin-top: 25px;
+}
+.bottomButton:hover{
+    background-color: #fff;
+    color: #0e76a8;
+}
 ul.topnav li.right a:hover{
     background-color: #fff;
     color: #0e76a8;
+}
+.new{
+    margin-top: -5px;
+    margin-bottom: 4px;
 }
 @media screen and (max-width: 600px) {
     ul.topnav li.right, 
@@ -59,7 +73,6 @@ ul.topnav li.right a:hover{
         float: none;
     }
 }
-
 .headerText{
     max-width: 400px;
     margin-top: 70px;
@@ -80,7 +93,7 @@ h1{
     background: #0e76a8;
     margin: 15px 0;
 }
-.commonBtn{
+.commonBtn {
     padding: 18px 40px;
     background: transparent;
     outline: none;
@@ -132,6 +145,10 @@ p{
     align-items: center;
     display: flex;
     flex-wrap: wrap;
+    
+}
+#about{
+    background-color:  #fae9b0;
 }
 .aboutLeftColumn{
     flex-basis: 50%;
@@ -166,6 +183,7 @@ p{
     padding-top: 50px;
     padding-bottom: 90px;
     overflow-x: hidden;
+    background-color: #ccee95;
 }
 .featureHeading{
     display: flex;
@@ -259,17 +277,20 @@ form input{
 *********************************************************************************/
 #footer{
     padding: 50px 0 30px;
+    margin-top: -30px;
 }
 hr{
     width: 100%;
     border: 0;
-    border-top: 1px solid #0e76a8;
+    border-top: 1px solid #000;
 }
 .footerRow{
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    background-color: #0e76a8;
+    margin-bottom: -29px;
 }
 .footerLeftColumn{
     flex-basis: 50%;
@@ -285,12 +306,12 @@ hr{
     flex-wrap: wrap;
 }
 .linkTitle h4{
-    color: #0e76a8;
+    color: #fff;
     margin-bottom: 20px;
 }
 .linkTitle small{
     font-size: 13px;
-    color: #777;
+    color: #000;
 }
 .footerInfo{
     display: flex;
