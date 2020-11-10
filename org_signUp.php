@@ -31,7 +31,7 @@
 
                
        
-        <a href="org2.html" class="button" id="submit_btn" onclick="submit()">Submit</a>
+        <a href="org2.php" class="button" id="submit_btn" onclick="submit()">Submit</a>
 
             </form>
         </div>

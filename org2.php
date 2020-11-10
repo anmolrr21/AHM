@@ -2,10 +2,13 @@
 <html>
     <head>
         <title>Organization SignUp</title>
-        <link rel="stylesheet" href="css/org2.css">
-        <script src="js_files/org2.js"></script>
+        <link rel="stylesheet" href="css/org2.css?v=<?php echo time(); ?>">
+        <script src="js_files/org2.php"></script>
     </head>
     <body>
+        <?php
+         include 'common/_dbconnect.php';
+        ?>
         <div class="headings">
         <h1>ConnecTTogether</h1>
         <h2>For Organizations</h2>
@@ -33,13 +36,15 @@
                 <div class="second-form-item">
                 <label for="domain">Domain You work on:</label>
                 <select id="domain" multiple onchange='whichDomain(domain)'>
+                <?php 
+                    $sql1="select domain from domains_available";
+                    $result1=mysqli_query($conn,$sql1);
+                    while($row1=mysqli_fetch_assoc($result1)){
+                        $domain_value = $row1['domain'];
+                        echo '<option value=' . $domain_value . '>'. $domain_value .'</option>';
+                    }
+                ?>
                   
-                        <option selected value="e">Education</option>
-                        <option value="w">Women Safety</option>
-                        <option value="c">Cleaning</option>
-                        <option value="f">Provide Food</option>
-                        <option value="p">For physically disabled</option>
-                        <option value="o">Others</option>
                        
               
                 </select>

@@ -72,13 +72,24 @@ label{
    background-color: #ffffff;
   }
 
-select {
+select{
    margin-top: 5px;
    width: 100%;
    padding: 16px 20px;
    border-radius: 4px;
    font-size: 15px;
    background-color: #ffffff;
+ }
+
+ #domainoptions{
+   margin-top: 5px;
+   width: 92%;
+   padding: 10px 15px;
+   border-radius: 4px;
+   font-size: 15px;
+   background-color: #ffffff;
+   /* border-color:#000000; */
+
  }
 
 #domain *{
@@ -141,5 +152,6 @@ select {
    font-family: sans-serif;
    font-weight: 100;
    border-radius: 5px;
+   
   
  }
