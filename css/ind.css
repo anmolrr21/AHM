@@ -124,11 +124,23 @@ select {
    margin-bottom: 30px;
 
 }
+.form .form-item{
+   background: #ffffff;
+}
 
 .form .form-item .first-form-item{
   margin-bottom: 15px;
   background-color: #ffffff;
 } 
+#domain_of_interest{
+   background-color: #ffffff;
+
+}
+.details2-form .form .form-item .second-form-item{
+   background: #ffffff;
+
+}
+
 
 .form .form-item .desc{
    background-color: #ffffff;

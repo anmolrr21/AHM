@@ -28,7 +28,7 @@
 
                 <div class="form-item">
                     <div class="first-form-item">
-                        <label for="need">Serve as?</label>
+                        <label for="need">Serve as!</label>
                             <select name="need" id="need">
                                 <option value="v">Volunteers</option>
                                 <option value="d">Donors</option>
@@ -38,7 +38,7 @@
              </div>
        
             <div class="form-item">
-                <div class="second-form-item">
+                <div class="second-form-item" id="domain_of_interest" style="background-color:#ffffff">
                 <label for="domain">Domain of Interest:</label>
                 <select id="domain" multiple onchange='whichDomain(domain)'>
                   
