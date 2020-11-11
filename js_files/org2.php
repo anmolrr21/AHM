@@ -25,11 +25,9 @@ function submit() {
         
 }
 
-</script>
-<?php
-  
 
-?>
+</script>
+
 
 
 
