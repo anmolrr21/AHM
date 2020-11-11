@@ -8,12 +8,17 @@
 *********************************************************************************/
 /*                      Navbar         */
 
+.topnav{
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
 ul.topnav{
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #0e76a8;
+    background: linear-gradient(to right,#2385e6,#1c86ee);
     height: 85px;
 }
 ul.topnav li{
@@ -57,11 +62,11 @@ ul.topnav li.right a{
 }
 .bottomButton:hover{
     background-color: #fff;
-    color: #0e76a8;
+    color: #1c86ee;
 }
 ul.topnav li.right a:hover{
     background-color: #fff;
-    color: #0e76a8;
+    color: #1c86ee;
 }
 .new{
     margin-top: -5px;
@@ -75,7 +80,7 @@ ul.topnav li.right a:hover{
 }
 .headerText{
     max-width: 400px;
-    margin-top: 70px;
+    margin-top: 150px;
     margin-left: 20px;
 }
 .mainImage{
@@ -90,19 +95,19 @@ h1{
     height: 12px;
     width: 12px;
     display: inline-block;
-    background: #0e76a8;
+    background: #2385e6;
     margin: 15px 0;
 }
 .commonBtn {
     padding: 18px 40px;
     background: transparent;
     outline: none;
-    border: 2px solid #0e76a8;
+    border: 2px solid #1c86ee;
     cursor: pointer;
     font-weight: bold;
 }
 .commonBtn:hover{
-    background-color: #0e76a8;
+    background-color: #1c86ee;
     color: #fff;
 }
 p{
@@ -120,19 +125,19 @@ p{
 .line1{
     width: 15px;
     height: 15px;
-    background: #0e76a8;
+    background: #2385e6;
     display: inline-block;
 }
 .line2{
     width: 80px;
     height: 1px;
-    background: #0e76a8;
+    background: #2385e6;
     display: inline-block;
 }
 .line3{
     width: 60px;
     height: 1px;
-    background: #0e76a8;
+    background: #2385e6;
     display: inline-block;
 }
 
@@ -141,14 +146,15 @@ p{
                                 AboutUsPage
 *********************************************************************************/
 #about, #offer{
-    padding: 100px 0;
+    padding: 120px 0;
     align-items: center;
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 80px;
     
 }
 #about{
-    background-color:  #fae9b0;
+    background: #ebf8fa;
 }
 .aboutLeftColumn{
     flex-basis: 50%;
@@ -180,10 +186,9 @@ p{
                                 WhyUs?Page
 *********************************************************************************/
 #features{
-    padding-top: 50px;
+    padding-top: 100px;
     padding-bottom: 90px;
     overflow-x: hidden;
-    background-color: #ccee95;
 }
 .featureHeading{
     display: flex;
@@ -230,6 +235,9 @@ p{
 /**********************************************************************************
                                 ContactUsPage
 *********************************************************************************/
+#contact{
+    background-color: #ebf8fa;
+}
 .contactRow{
     display: flex;
     align-items: center;
@@ -277,20 +285,21 @@ form input{
 *********************************************************************************/
 #footer{
     padding: 50px 0 30px;
-    margin-top: -30px;
+    margin-top: -52px;
 }
 hr{
     width: 100%;
     border: 0;
-    border-top: 1px solid #000;
+    border-top: 1px solid #fff;
 }
 .footerRow{
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    background-color: #0e76a8;
-    margin-bottom: -29px;
+    background: linear-gradient(to right,#2385e6,#1c86ee);
+    padding-bottom: 30px;
+    margin-bottom: -30px;
 }
 .footerLeftColumn{
     flex-basis: 50%;
