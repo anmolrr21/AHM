@@ -3,7 +3,7 @@
     <head>
         <title>Organization SignUp</title>
         <link rel="stylesheet" href="css/org2.css?v=<?php echo time(); ?>">
-        <script src="js_files/org2.php"></script>
+        <script src="js_files/org2.js"></script>
     </head>
     <body>
         <?php
@@ -15,7 +15,7 @@
         <p>Find people,connect and help society develop</p>
     </div>
         <div id="details2-form" class="details2-form">
-            <form class="form" method="POST">
+            <form class="form" method="POST" action="after_org_signup.php">
                 <div class="form-item">
                     <div class="first-form-item">
                         <label for="need">Do you need?</label>
@@ -35,8 +35,9 @@
             <div class="form-item">
                 <div class="second-form-item">
                 <label for="domain">Domain You work on:</label>
-                <select id="domain" multiple onchange='whichDomain(domain)'>
+                <select id="domain" name="select_domain" multiple onchange='whichDomain(domain)'>
                 <?php 
+                    
                     $sql1="select domain from domains_available";
                     $result1=mysqli_query($conn,$sql1);
                     while($row1=mysqli_fetch_assoc($result1)){
@@ -44,18 +45,14 @@
                         echo '<option value=' . $domain_value . '>'. $domain_value .'</option>';
                     }
                 ?>
-                  
-                       
-              
+                
                 </select>
-                <input type="text" id="other_domain" placeholder="Other Domain" style="display:none"></input>
+                <input type="text" name="other_domain" id="other_domain" placeholder="Other Domain" style="display:none"></input>
            <p>(Hold down the <b>Ctrl (windows) or Command (Mac)</b> button to select multiple options.)</p> 
         </div>
         </div>
 
-       
-        <a href="#" class="button" id="submit_btn" onclick="submit()">Submit</a>
-
+       <input type="submit" id="submit_btn" class="button">
             </form>
         </div>
 
