@@ -5,20 +5,33 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     
     $org_need=$_POST['need'];
     $org_desc=$_POST['textarea_desc'];
-    $org_domain = $_SESSION['select_domain'];
-    // $org_other_domain = $_SESSION['other_domain'];
     echo $org_need . $org_desc. '<br>';
-    echo $org_domain;
-    // $sql = "SELECT * FROM `users` where name='$name'";
-    // $result = mysqli_query($conn,$sql);
-    // $row=mysqli_fetch_assoc($result);
-    // $uid = $row['user_id'];
-    // $sql1 = "SELECT * FROM `hospitals` where hospital_name='$hosp_name'";
-    // $result1 = mysqli_query($conn,$sql1);
-    // $row1=mysqli_fetch_assoc($result1);
-    // $hospid = $row1['hospital_id'];
-    // $sql2="INSERT INTO `user_complaints` (`ComplaintId`, `uid`, `hid`, `Complaint`, `date`) VALUES (NULL, $uid, $hospid, '$complaint', $date)";
-    // $result2 = mysqli_query($conn,$sql2);
-    // header("location:/CoronaBedProject/complain.php");
+    $other_domain= $_POST['other_domain'];
+   
+    foreach ($_POST['select_domain'] as $selectedOption)
+        echo $selectedOption.'<br>';
+    
+    if($other_domain!=""){
+        echo $other_domain;
+        $sql1="SELECT * FROM domains_available ORDER BY sno DESC LIMIT 1";
+        $result1 = mysqli_query($conn,$sql1);
+        $row1=mysqli_fetch_assoc($result1);
+        $others_sno=$row1['sno'];
+        $sno=$others_sno;
+        echo $sno;
+        $sql2="DELETE FROM `domains_available` WHERE `domain` = 'Others' ";
+        $result2 = mysqli_query($conn,$sql2);
+
+        $sql3="INSERT INTO `domains_available` (`sno`, `domain`) VALUES ($sno, '$other_domain')";
+        $result3 = mysqli_query($conn,$sql3);
+        echo var_dump($result3);
+
+        $sql4="INSERT INTO `domains_available` (`sno`, `domain`) VALUES ($sno+1, 'Others')";
+        $result4 = mysqli_query($conn,$sql4);
+        echo var_dump($result4);
+        
+    }    
+    
+      
  }
 ?>

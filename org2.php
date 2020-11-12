@@ -15,7 +15,7 @@
         <p>Find people,connect and help society develop</p>
     </div>
         <div id="details2-form" class="details2-form">
-            <form class="form" method="POST" action="after_org_signup.php">
+            <form class="form" method="post" action="after_org_signup.php">
                 <div class="form-item">
                     <div class="first-form-item">
                         <label for="need">Do you need?</label>
@@ -35,7 +35,7 @@
             <div class="form-item">
                 <div class="second-form-item">
                 <label for="domain">Domain You work on:</label>
-                <select id="domain" name="select_domain" multiple onchange='whichDomain(domain)'>
+                <select id="domain" name="select_domain[]" multiple onchange='whichDomain(domain)'>
                 <?php 
                     
                     $sql1="select domain from domains_available";
