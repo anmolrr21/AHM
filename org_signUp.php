@@ -27,12 +27,7 @@
                         <input type="submit" value="submit" class="button" id="submit_btn"  >
     
                     </div>
-
                 </div>
-
-               
-       
-        
 
             </form>
         </div>
