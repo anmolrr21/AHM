@@ -7,6 +7,10 @@
     <title>Home | ConnecTTogether</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://use.fontawesome.com/0cf079388a.js"></script>
+    <style>
+        <?php include 'css/home.css'?>;
+    </style>
 </head>
 
 <body>
@@ -24,6 +28,35 @@
 
         </ul>
     </div>
+    
+    <?php
+        $i=0;
+        while($i<5){
+            echo'<div class="share">
+            <div class="topNamePic">
+                <img src="images/user.png">
+                <div class="nameDetail">
+                    <h5>Hitesh Dhameja</h5>
+                    <p>Volunteer | Fund Raiser | Mind Blowing</p>
+                    <p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
+                </div>
+            </div>
+            <div class="postImage">
+                <img src="https://images.freeimages.com/images/small-previews/5c6/sunset-jungle-1383333.jpg">
+            </div>
+            <div class="countL">
+                <h6><i class="fa fa-thumbs-up" aria-hidden="true"></i> 30Likes</h6>
+                <h6><i class="fa fa-comments" aria-hidden="true"></i> 3 comments</h6>
+            </div>
+            <hr>
+            <div class="likeButton">
+                <a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Like</a>
+                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>Comment</a>
+            </div>
+        </div>';
+        $i = $i + 1;
+        }
+    ?>
 </body>
 
 </html>
