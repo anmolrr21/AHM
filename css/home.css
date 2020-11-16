@@ -138,7 +138,10 @@ a.active{
 .nameDetail h5{
     font-size: 15px;
 }
-.nameDetail p{
+.nameDetail p:nth-child(2){
+    margin-top: -23px;
+}
+.nameDetail p:nth-child(3){
     margin-top: -15px;
 }
 .postImage{
