@@ -24,7 +24,7 @@
                         <input type="text" name="desc" placeholder="Location"><br>
                         <label for="myfile">Add a proof of your organization:</label><br>
                         <input type="file"  name="file"><br><br>
-                        <input type="submit" value="submit" class="button" id="submit_btn"  >
+                        <input type="submit" value="submit" name="submitt" class="button" id="submit_btn"  >
     
                     </div>
                 </div>
