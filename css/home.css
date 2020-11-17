@@ -97,7 +97,7 @@ a.active{
     border-radius: 10px;
 }
 .onlyBox2{
-    margin-top: 65px; 
+    margin-top: 100px; 
 }
 .onlyPost{
     margin-top: 25px;
@@ -128,11 +128,90 @@ a.active{
 .share ul li i{
     padding-right: 5px;
 }
+.leftCorner{
+    width: 350px;
+    border: 1px solid #000;
+    margin-left: 30px;
+    margin-top: 100px;
+    border-radius: 10px;
+    position: fixed;
+    top: 0;
+    display: block;
+}
+.leftCorner .emptyFree{
+    height: 100px;
+    background-color: #0e76a8;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+}
+.leftCorner img{
+    border: 1px solid #000;
+    border-radius: 50%;
+    width: 110px;
+    height: 100px; 
+    margin-left: 100px;
+    margin-top: -50px;
+}
+.leftCorner h5{
+    font-size: 16px;
+    margin-left: 100px;
+    margin-top: -1px;
+}
+.leftCorner p{
+    margin-left: 50px;
+    margin-top: -8px;
+}
+.leftCorner .that{
+    margin-left: 130px;
+}
+.leftCorner .these{
+    margin-left: 150px;
+    margin-top: -15px;
+}
+.leftCorner a{
+    margin-left: 120px;
+    padding-bottom: 10px;
+}
+.leftBottom{
+    width: 350px;
+    border: 1px solid #000;
+    margin-left: 30px;
+    margin-top: 500px;
+    border-radius: 10px;
+    position: fixed;
+    top: 0;
+    
+}
+.footer{
+    display: flex;
+    justify-content: space-evenly;
+}
+.leftBottom .linkTitle h4{
+    color: #0e76a8;
+    
+}
+.leftBottom .linkTitle small{
+    font-size: 14px;
+    color: #000;
+    padding-top: -16px;
+}
+.leftBottom .copyrightText{
+    display: flex;
+    margin-left: 35px;
+}
+.leftBottom .copyrightText img{
+    width: 40px;
+}
+.leftBottom .copyrightText small{
+    text-align: center;
+    padding-top: 12px;
+    margin-left: 5px;
+}
 .topNamePic{
     padding: 5px;
     display: flex;
 }
-.topNamePic img,.perComment img{
+.topNamePic img,.perComment img,.area img{
     border: 1px solid #000;
     border-radius: 50%;
     width: 50px;
@@ -184,6 +263,34 @@ a.active{
 .secComment{
     display: none;
 }
+.area{
+    display: flex;
+}
+.area img{
+    margin-top: 15px;
+}
+.area form input[type=text]{
+    width: 340px;
+    border-radius: 15px;
+    height: 40px;
+    margin-top: 12px;
+    margin-left: 5px;
+    margin-right: 8px;
+}
+.area form input[type=text]:focus{
+    outline: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.area button{
+    background: none;
+    border: none;
+    margin-top: 18px;
+   
+}
+.area button:focus{
+    border: none;
+    outline: none;
+}
 .commentSection{
     margin-top: 15px;
     margin-bottom: 5px;
@@ -227,4 +334,5 @@ a.active{
     color: #0e76a8;
     cursor: pointer;
 }
+
 

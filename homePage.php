@@ -18,6 +18,44 @@
         include 'commonNavbar.php';
     ?>
 
+    <div class="leftCorner">
+        <div class="emptyFree"></div>
+        <img src="images/user.png">
+        <h5>Hitesh Dhameja</h5>
+        <p>Volunteer | Fund Raiser | Mind Blowing</p>
+        <hr>
+        <h5 class="that">Following</h5>
+        <p class="these">45</p>
+        <h5 class="that">Followers</h5>
+        <p class="these">99</p>
+        <hr>
+        <a>View Profile</a>
+    </div>
+    <div class="leftBottom">
+        <div class="footer">
+            <div class="linkTitle">
+                <h4>About Us</h4>
+                <small>Request Demo</small><br>
+                <small>FAQs</small>
+            </div>
+            <div class="linkTitle">
+                <h4>Support</h4>
+                <small>Features</small><br>
+                <small>Contact Us</small>
+            </div>
+            <div class="linkTitle">
+                <h4>Explore</h4>
+                <small>Find a nonprofit</small><br>
+                <small>Corporate solution</small>
+            </div>
+        </div>
+        <div class="copyrightText">
+            <img src="images/logo.png">
+            <small>Copyright &#169; 2020 ConnecTTogether</small>
+        </div>
+    </div>
+
+
     <div class="share onlyBox2">
         <h4 id="share"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> Share an article, photo, video or
             idea</h4>
@@ -56,6 +94,13 @@
                         <hr>
                     </div>
                     <div id="'.$i.'" class="secComment">
+                        <div class="area">
+                            <img src="images/user.png">
+                            <form>  
+                                <input type="text" placeholder="  Leave your thoughts...">
+                            </form>
+                            <button><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i><br>POST</button>
+                        </div>
                         <div class="commentSection">
                             <h4>Comments</h4>
                             <div class="perComment">
@@ -104,9 +149,9 @@
 
     <script>
     function myFunction(y) {
-        if(document.getElementById(y).style.display == "none"){
+        if (document.getElementById(y).style.display == "none") {
             document.getElementById(y).style.display = "block";
-        }else{
+        } else {
             document.getElementById(y).style.display = "none";
         }
     }
