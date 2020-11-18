@@ -1,0 +1,119 @@
+.topnav{
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+}
+ul.topnav{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(to right,#2385e6,#1c86ee);
+    height: 85px;
+}
+ul.topnav li{
+    float: left;
+}
+ul.topnav li:nth-child(3){
+    margin-left: 15px;
+}
+ul.topnav li a {
+    display: block;
+    color: white;
+    margin-top: 35px;
+    margin-right: 35px;
+    text-align: center;
+    text-decoration: none;
+}
+ul.topnav li a:hover:not(.active) {
+    border-bottom: 2px solid #fff;
+    transition: .1s all ease-out;
+}
+ul.topnav li:nth-child(2) a:hover:not(.active){
+    border-bottom:none;
+}
+ul.topnav li a.active{
+    border-bottom: 2px solid #fff;
+}
+ul.topnav li.right {
+    float: right;
+}
+ul.topnav li.right a{
+    border: 2px solid #fff;
+    border-radius: 9px;
+    padding: 9px;
+    margin-top: 25px;
+}
+.parts{
+    display:inline-flex;
+    width:100%
+}
+.left-part{
+    width:20%;
+    height: 80vh;
+    background-color: #c2dde0;
+    margin-top:85px;
+    
+}
+.left-part ul{
+    padding-top:10px;
+    list-style: none;
+    
+}
+.left-part ul li{
+    margin-top:10px;
+    text-decoration: none;
+}
+
+.right-part{
+    width:60%;
+    height: 60vh;
+    background-color: #c2dde0;
+    margin-top:145px;
+    margin-left:150px;
+    margin-right:-20px;
+}
+.right-part h1{
+    text-align: center;
+    font-size: 35px;
+    color: blue;
+}
+.row{
+    margin-left:80px;
+    
+}
+
+.card {
+    width:200px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+    box-sizing: border-box;
+    margin-top: 30%; 
+    margin-left: 10px; 
+    border-radius: 2px;
+    
+  }
+  
+
+  .column {
+    float: left;
+    width: 25%;
+    padding: 0 10px;
+  }
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive columns */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }}
