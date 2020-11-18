@@ -17,7 +17,7 @@
     <?php
         include 'commonNavbar.php';
     ?>
-
+    
     <div class="leftCorner">
         <div class="emptyFree"></div>
         <img src="images/user.png">
@@ -55,18 +55,43 @@
         </div>
     </div>
 
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Create a post</h2>
+            </div>
+            <div class="modal-body">
+                <div class="nameFrame">
+                    <img src="images/user.png">
+                    <h5>Hitesh Dhameja</h5>
+                </div>
+                <textarea id="w3review" name="w3review" rows="4" cols="60" placeholder="What's in your mind?"
+                    autofocus></textarea>
+                <hr>
+                <div class="bottomSec">
+                    <a><i class="fa fa-picture-o fa-lg" aria-hidden="true"></i></a>
+                    <a><i class="fa fa-video-camera fa-lg" aria-hidden="true"></i></a>
+                    <a><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>
+                    <button>POST</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="share onlyBox2">
         <h4 id="share"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> Share an article, photo, video or
             idea</h4>
         <ul>
-            <li><i class="fa fa-picture-o" aria-hidden="true" style="color:green"></i><a href="#">Photo</a></li>
-            <li><i class="fa fa-video-camera" aria-hidden="true"></i><a href="#">Video</a></li>
-            <li><i class="fa fa-pencil" aria-hidden="true" style="color:orange"></i><a href="#">Article</a></li>
-            <li><i class="fa fa-file-text" aria-hidden="true" style="color:lightblue"></i><a href="#">Document</a></li>
+            <li><i class="fa fa-picture-o" aria-hidden="true" style="color:green"></i><button onclick="modalDisplay()">Picture</button></li>
+            <li><i class="fa fa-video-camera" aria-hidden="true"></i><button onclick="modalDisplay()">Video</button></li>
+            <li><i class="fa fa-pencil" aria-hidden="true" style="color:orange"></i><button onclick="modalDisplay()">Article</button></li>
+            <li><i class="fa fa-file-text" aria-hidden="true" style="color:lightblue"></i><button onclick="modalDisplay()">Document</button></li>
 
         </ul>
     </div>
+
+    
 
     <?php
         $i=0;
@@ -90,7 +115,7 @@
                     <hr>
                     <div class="likeButton">
                         <a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Like</a>
-                        <a type="button" onclick="myFunction('.$i.')"><i class="fa fa-comments-o" aria-hidden="true"></i>Comment</a>
+                        <a type="button" onclick="myFunc('.$i.')"><i class="fa fa-comments-o" aria-hidden="true"></i>Comment</a>
                         <hr>
                     </div>
                     <div id="'.$i.'" class="secComment">
@@ -146,13 +171,29 @@
         $i = $i + 1;
         }
     ?>
-
+    
     <script>
-    function myFunction(y) {
+    function myFunc(y) {
         if (document.getElementById(y).style.display == "none") {
             document.getElementById(y).style.display = "block";
         } else {
             document.getElementById(y).style.display = "none";
+        }
+    }
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+    var span = document.getElementsByClassName("close")[0];
+    function modalDisplay() {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
         }
     }
     </script>

@@ -5,11 +5,11 @@
         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
     </form>
     <ul id="top">
-        <li><i class="fa fa-home fa-lg" aria-hidden="true"></i><a href="#" class="nav1 active">Home</a></li>
-        <li><i class="fa fa-users fa-lg" aria-hidden="true"></i><a href="#" class="nav1">My Connections</a></li>
-        <li><i class="fa fa-lightbulb-o fa-lg" aria-hidden="true"></i><a href="#" class="nav1">Recommendations</a>
+        <li><i class="fa fa-home fa-lg" aria-hidden="true" style="color:white"></i><a href="#" class="nav1 active">Home</a></li>
+        <li><i class="fa fa-users fa-lg" aria-hidden="true" style="color:white"></i><a href="#" class="nav1">My Connections</a></li>
+        <li><i class="fa fa-lightbulb-o fa-lg" aria-hidden="true" style="color:white"></i><a href="#" class="nav1">Recommendations</a>
         </li>
-        <li><i class="fa fa-bell fa-lg" aria-hidden="true"></i><a href="#" class="nav1">Notifications</a></li>
+        <li><i class="fa fa-bell fa-lg" aria-hidden="true" style="color:white"></i><a href="#" class="nav1">Notifications</a></li>
         <li><img src="images/user.png" width="30px" height="20px"><a href="#" class="nav1">Me</a></li>
     </ul>
     <div class="dropdown">
@@ -28,7 +28,7 @@
 <script>
 //For dropdown menu
 function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
+    document.getElementById('myDropdown').classList.toggle("show");
 }
 window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {

@@ -8,7 +8,7 @@ a{
     color: #000000;
 }
 a.active{
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid #fff;
 }
 .homeNav{
     background: #0e76a8;
@@ -45,6 +45,9 @@ a.active{
     list-style: none;
     padding-left: 35px;
 }
+.homeNav ul li a{
+    color: #fff;
+}
 .homeNav ul li i,.homeNav ul li img{
     display: flex;
     flex-flow: row wrap;
@@ -54,7 +57,7 @@ a.active{
 }
 .homeNav ul li img{
     border-radius: 50%;
-    border: 1px solid #000;
+    border: 2px solid #fff;
     margin-top: -5px;
 }
 .dropbtn {
@@ -117,8 +120,11 @@ a.active{
 .share ul{
     margin-top: -5px;
 }
+.share ul li{
+    display: flex;
+}
 .share ul li:nth-child(1){
-    margin-left: -40px;
+    margin-left: -65px;
 }
 .share ul li:nth-child(2),
 .share ul li:nth-child(3),
@@ -126,7 +132,12 @@ a.active{
     padding-left: 50px;
 }
 .share ul li i{
-    padding-right: 5px;
+    padding-right: 3px;
+}
+.share ul li button{
+    border: none;
+    outline: none;
+    background-color: #fff;
 }
 .leftCorner{
     width: 350px;
@@ -333,6 +344,124 @@ a.active{
     margin-left: 25px;
     color: #0e76a8;
     cursor: pointer;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 20px;
+    padding-left: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 80%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    margin-top: 20px;
+    padding: 0;
+    border: 1px solid #888;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+@-webkit-keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #0e76a8;
+    color: white;
+}
+
+.modal-body {
+    padding: 2px 16px;
+}
+
+.modal-body .nameFrame {
+    display: flex;
+}
+
+.modal-body .nameFrame img {
+    border: 1px solid #000;
+    border-radius: 50%;
+    width: 50px;
+    height: 40px;
+}
+
+.modal-body .nameFrame h5 {
+    margin-top: 7px;
+    margin-left: 5px;
+}
+
+.modal-body textarea {
+    margin-top: 10px;
+    width: 480px;
+    height: 250px;
+    outline: none;
+    border: none;
+}
+
+.modal-body .bottomSec {
+    display: flex;
+}
+
+.modal-body .bottomSec a i {
+    margin-right: 10px;
+}
+
+.modal-body .bottomSec button {
+    margin-left: 370px;
+    background: #0e76a8;
+    width: 100px;
+    border-radius: 20px;
+    height: 40px;
+    outline: none;
 }
 
 
