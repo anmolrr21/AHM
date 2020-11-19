@@ -46,7 +46,7 @@
            <ul>
             <li><a id="dash_link" href="#dashboard" onclick="func_dash();">DashBoard</a></li>
             <li><a id="ad_link"  href="#ad-sect" onclick="func_ad();">Approve/Decline Organizations</a><li>
-            <li><a id="delete_link" href="#delete-user" onclick="func_deleteUser();">Delete user</a><li>
+            <li><a id="delete_link" href="#delete-user" onclick="deleteUser();">Delete user</a><li>
             <li><a id="view_link" href="#view-comp" onclick="func_viewComp();">View Complaints</a><li>
             <li><a id="add_domain" href="#add-domain" onclick="func_addDomain();">Add Domain</a><li>
             <!-- <li><a id="del_domain" href="#ad-sect">Delete Domain</a><li> -->
@@ -55,7 +55,8 @@
         </div>
 
         
-         <!-- <div class="dashboard" id="dashboard">
+       <div class="dashboard" id="dashboard">
+           
                     <h1>Welcome to admin dashboard</h1>
                     <div class="row">
                         <div class="column">
@@ -78,11 +79,10 @@
                             <p>80</p>  
                         </div>
                     </div>
-                </div> -->
-               
-    
-    <!----approve/decline sec----------->
-    <div class="ad-sect" id="ad-sect">
+        </div>
+
+
+        <div class="ad-sect" id="ad-sect">
         <div class="top-box">
             <h1>APPROVE/DECLINE ORGANIZATIONS</h1>
         </div>
@@ -97,48 +97,16 @@
                 echo '<div class="name-btn">
                 <p>' .$row['name'] . '</p>
                 <button>View</button>
-            </div>';
+            </div><br>';
 
             }}}
         ?>
             
-            <!-- <div class="name-btn">
-                <p>Muskurahat Foundation</p>
-                <button>View</button>
-            </div>
-            <div class="name-btn">
-                <p>Muskurahat Foundation</p>
-                <button>View</button>
-            </div>
-            <div class="name-btn">
-                <p>Muskurahat Foundation</p>
-                <button>View</button>
-            </div>
-            <div class="name-btn">
-                <p>Muskurahat Foundation</p>
-                <button>View</button>
-            </div>
-            <div class="name-btn">
-                <p>Muskurahat Foundation</p>
-                <button>View</button>
-            </div>
-            <div class="name-btn">
-                <p>Muskurahat Foundation</p>
-                <button>View</button>
-            </div>
-            <div class="name-btn">
-                <p>Muskurahat Foundation</p>
-                <button>View</button>
-            </div> -->
-            
         </div>
-  
-   
-
     </div>
-
     
-     <!-- <div class="delete-user" id="delete-user">
+     <div class="delete-user" id="delete-user">
+         <?php echo "hj"; ?>
         <div class="top-box">
             <h1>DELETE USER</h1>
         </div>
@@ -157,9 +125,41 @@
             </form>
         </div>
     </div> 
-     -->
+    
 
     <div class="view-comp" id="view-comp">
+    <div class="top-box">
+        <h1>COMPLAINT SECTION</h1>
+    </div>
+
+    <?php
+     include 'common/_dbconnect.php';
+            $sql1 = "SELECT * FROM complaint" ;
+            if($result1 = mysqli_query($conn, $sql1)){
+                if(mysqli_num_rows($result1) > 0){
+                    echo "<table id='complaint'>";
+                        echo "<tr>";
+                            echo "<th>Complaint Id</th>";
+                            echo "<th>User Name</th>";
+                            echo "<th>Complaint</th>";
+                        echo "</tr>";
+                    while($row1 = mysqli_fetch_array($result1)){
+                        $user_id=$row1['user_id'];
+                        $sql2="SELECT * FROM users where user_id=$user_id ";
+                        $result2 = mysqli_query($conn, $sql2);
+                        $row2 = mysqli_fetch_array($result2);
+                        $user_name=$row2['name'];
+                        echo "<tr>";
+                            echo "<td>" . $row1['complaint_id'] . "</td>";
+                            echo "<td>" . $user_name . "</td>";
+                            echo "<td>" . $row1['complaint'] . "</td>";
+                            echo "</tr>";
+                        }
+                        echo "</table>";
+                    }} 
+        ?>
+
+        
   
    
 
