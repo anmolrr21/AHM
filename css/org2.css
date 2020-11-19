@@ -151,7 +151,5 @@ select{
    cursor: pointer;
    font-family: sans-serif;
    font-weight: 100;
-   border-radius: 5px;
-   
-  
+   border-radius: 5px; 
  }

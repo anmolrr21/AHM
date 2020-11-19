@@ -11,7 +11,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $pname = $_FILES['file']['tmp_name'];
     
 
-    $sqll = "INSERT INTO users (name,email,password,phone,location) VALUES ('$name','$email','$password','$phone','$location')";
+    $sqll = "INSERT INTO users (name,email,password,phone,location,type) VALUES ('$name','$email','$password','$phone','$location','Organization')";
     $resultt = mysqli_query($conn,$sqll);
     
     if (isset($_POST["submitt"]))

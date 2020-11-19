@@ -8,7 +8,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $password = $_POST['password'];
     $phone = $_POST['phone'];
     $location = $_POST['location'];
-    $sql1 = "INSERT INTO users (name,email,password,phone,location) VALUES ('$name','$email','$password','$phone','$location')";
+    $sql1 = "INSERT INTO users (name,email,password,phone,location,type) VALUES ('$name','$email','$password','$phone','$location','Individual')";
     $result1 = mysqli_query($conn,$sql1);
 
     $sql2 = "SELECT user_id FROM `users` WHERE email='$email' ";
