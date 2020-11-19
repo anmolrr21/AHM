@@ -9,7 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://use.fontawesome.com/0cf079388a.js"></script>
     <style>
-    <?php include 'css/home.css'?>;
+    <?php include 'css/home.css';
+          include 'css/navbar.css';
+    ?>
     </style>
 </head>
 
@@ -171,6 +173,37 @@
         $i = $i + 1;
         }
     ?>
+
+    <div class="rightCorner">
+        <div class="rightFirst">
+            <h5>Add to your Feed</h5>
+            <p><i class="fa fa-lightbulb-o fa-lg" aria-hidden="true" style="color:black"></i></p>
+        </div>
+        <hr>
+        <?php
+            $m=0;
+            while($m<3){
+                echo'<div class="rightSuggest">
+                        <img src="images/user.png">
+                        <div class="part">
+                            <h5>Hitesh Dhameja</h5>
+                            <p>Volunteer | Fund Raiser | Mind Blowing</p>
+                            <button>View Profile</button>
+                            <button>Connect</button>
+                        </div>
+                        
+                    </div>';
+            $m = $m + 1;
+            }
+        ?>
+        <a href="#">View More</a> 
+    </div>
+    <div class="rightBottom">
+        <h5>Raise Funds</h5>
+        <p><em>"Having something extra is always great because you are with the opportuinity to grab the blessings by donating."</em></p>
+        <button>DONATE <i class="fa fa-check-circle" aria-hidden="true"></i></button>
+        <h6>Donate for cause, donate for change</h6>
+    </div>
     
     <script>
     function myFunc(y) {
