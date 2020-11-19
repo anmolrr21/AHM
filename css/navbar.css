@@ -36,7 +36,7 @@ a.active{
     margin-left: -8px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    background-color: #e0ffff;
+    background-color: #f3f3f3;
 }
 .homeNav ul, .share ul{
     display: flex;
@@ -92,4 +92,93 @@ a.active{
 }
 .show {
     display: block;
+}
+.homeNavBottom{
+    display: none;
+}
+@media screen and (max-width: 768px) {
+    a{
+        text-decoration: none;
+        color: #000000;
+    }
+    a.active{
+        border-bottom: 2px solid #fff;
+    }
+    .homeNav img{
+        width: 40px;
+    }
+    .homeNav form{
+        display: flex;
+    }
+    .homeNav form input[type=text]{
+        width: 170px;
+    }
+    .homeNav form button{
+        margin-top: -1px;
+    }
+    .homeNav ul{
+        margin-top: 20px;
+        margin-left: -50px;
+        font-size: 12px;
+    }
+    .homeNav ul li img{
+        margin-top: -10px;
+    }
+    .dropdown-content{
+        margin-left: -130px;
+    }
+}
+@media screen and (max-width: 500px) {
+    a{
+        text-decoration: none;
+        color: #000000;
+    }
+    a.active{
+        border-bottom: 2px solid #fff;
+    }
+    .homeNav img{
+        width: 60px;
+    }
+    .homeNav form input[type=text]{
+        width: 280px;
+    }
+    .decide{
+        display: none;
+    }
+    .homeNav ul li img{
+        width: 40px;
+        margin-top: -3px;
+    }
+    .homeNav ul li a{
+        margin-left: 12px;
+        font-size: 14px;
+    }
+    .homeNavBottom{
+        background: #0e76a8;
+        display: flex;
+        width: 100%;
+        height: 40px;
+        bottom: 0;
+        font-family: 'Bree Serif', serif;
+        position: fixed;
+    }
+    .homeNavBottom ul {
+        display: flex;
+    }
+    .homeNavBottom ul li{
+        list-style: none;
+        margin-top: -7px;
+    }
+    .homeNavBottom ul li:nth-child(1){
+        margin-left: -10px; 
+    }
+    .homeNavBottom ul li:nth-child(2),
+    .homeNavBottom ul li:nth-child(3),
+    .homeNavBottom ul li:nth-child(4){
+       margin-left: 105px; 
+    }
+    .homeNavBottom ul li i{
+        width: 40px;
+        height: 40px;
+    }
 }
