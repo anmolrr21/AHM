@@ -11,7 +11,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $pname = $_FILES['file']['tmp_name'];
     
 
-    $sqll = "INSERT INTO users (name,email,password,phone,location,type) VALUES ('$name','$email','$password','$phone','$location','Organization')";
+    $sqll = "INSERT INTO users (name,email,password,phone,location,proof) VALUES 
+    ('$name','$email','$password','$phone','$location','11000')";
     $resultt = mysqli_query($conn,$sqll);
     
     if (isset($_POST["submitt"]))
@@ -22,7 +23,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     echo $target_file;
     move_uploaded_file($pname,$target_file);
     $blob = fopen($target_file, "rb");
-    $sql = "INSERT INTO users (proof) VALUES ($blob) where user_id =(select user_id from users where 'name' = $name) ";
+    echo $blob;
+    $sql = "UPDATE users set proof='$blob' where name='$name' ";
     echo $sql;
     $resullt = mysqli_query($conn,$sql);
     
