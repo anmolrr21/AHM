@@ -279,7 +279,6 @@ ul.topnav li.right a{
             top:50%;
             transform: translateY(70%)
         }
-
         .ad-sect .requests .name-btn{
             display: inline-flex;
         }
@@ -287,10 +286,10 @@ ul.topnav li.right a{
             float: left;
             font-size: 19px;
             margin-left: 12px;
+            white-space: nowrap;
         }
-
-        .ad-sect .requests .name-btn button{
-            position: fixed;
+        .ad-sect .requests .name-btn p span button{
+            /* position: initial;  */
             height:40px;
             border: 1px solid #0275d8;
             background: #0275d8;
@@ -304,7 +303,8 @@ ul.topnav li.right a{
             font-family: sans-serif;
             font-weight: 100;
             border-radius: 5px; 
-            margin-left: 690px;   
+            /* margin-left: 200px;    */
+            
         }
 
         .view-comp{
@@ -374,6 +374,9 @@ ul.topnav li.right a{
     }}
 
 
+    
+
+   
     
 
    
