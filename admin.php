@@ -13,7 +13,7 @@
         <script src="https://use.fontawesome.com/0cf079388a.js"></script> -->
 </head>
 
-<body>
+<body onload="func_dash()">
     <!----------------------HomePage-------------------------------------------->
     <section id="header">
         <ul id="top" class="topnav">
@@ -42,8 +42,8 @@
     </section>
 
     <div class="parts">
-
-        <!------------------left----------------------->
+    
+     <!------------------left----------------------->
         <div class="left-part">
             <ul>
                 <li><a id="dash_link" onclick="func_dash()">DashBoard</a></li>
@@ -62,6 +62,7 @@
 
 
         <div class="dashboard" id="dashboard">
+          <div class="top-box">
 
             <h1>Welcome to admin dashboard</h1>
             <div class="row">
@@ -87,6 +88,7 @@
                 </div>
             </div>
         </div>
+        </div>
 
         <div class="ad-sect" id="ad-sect">
             <div class="top-box">
@@ -101,7 +103,8 @@
                         if(mysqli_num_rows($result) > 0){
                             while($row = mysqli_fetch_array($result)){
                                 echo '<div class="name-btn">
-                                        <p>' .$row['name'] . '<span><button>View</button></span></p>
+                                        <p>' .$row['name'] . 
+                                        '<span><button>View</button></span></p>
                                         
                                     </div><br>';
 

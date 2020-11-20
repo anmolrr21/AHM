@@ -76,14 +76,23 @@ ul.topnav li.right a{
     display: none;
     
 }
+.dashboard .top-box{
+    width:100%;
+    height:10vh;
+    margin-top:-5%;
+    margin-left:0;
+    margin-right:0;
+    background-color: #008B8B;
 
- 
-.dashboard h1{
-    text-align: center;
-    font-size: 35px;
-    color: blue;
-    
 }
+
+.dashboard .top-box h1{
+    text-align: center;
+    color: white;
+    top:50%;
+    transform: translateY(40%)
+}
+
 .row{
     margin-left:80px;
     
@@ -96,7 +105,7 @@ ul.topnav li.right a{
     text-align: center;
     background-color: #f1f1f1;
     box-sizing: border-box;
-    margin-top: 30%; 
+    margin-top: 50%; 
     margin-left: 10px; 
     border-radius: 2px;
     
@@ -304,6 +313,7 @@ ul.topnav li.right a{
             font-family: sans-serif;
             font-weight: 100;
             border-radius: 5px; 
+            margin-left: 20px;
             /* margin-left: 200px;    */
             
         }
