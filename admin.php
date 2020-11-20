@@ -51,11 +51,11 @@
                 <li>
                 <li><a id="delete_link" onclick="deleteUser()">Delete user</a>
                 <li>
-                <li><a id="view_link" onclick="func_viewComp()">View Complaints</a>
+                <li><a id="view_link" onclick="viewComp()">View Complaints</a>
                 <li>
-                <li><a id="add_domain" onclick="func_addDomain()">Add Domain</a>
+                <li><a id="add_domain" onclick="addDomain()">Add Domain</a>
                 <li>
-                    <!-- <li><a id="del_domain" href="#ad-sect">Delete Domain</a><li> -->
+                
 
             </ul>
         </div>
@@ -114,7 +114,7 @@
         </div>
 
         <div class="delete-user" id="delete-user">
-            <?php echo "hj"; ?>
+           
             <div class="top-box">
                 <h1>DELETE USER</h1>
             </div>
@@ -168,26 +168,22 @@
                     }} 
         ?>
 
-
-
-
-
         </div>
 
-        <!-- <div class="add-domain" id="add-domain">
-    <div class="top-box">
+    <div class="add-domain" id="add-domain">
+        <div class="top-box">
             <h1>ADD DOMAIN</h1>
         </div>
         <div class="detail-domain">
-        <form method="post" action="add-domain.php">  
-            <div class="detail-domain">
-            <label for="text">Domain to be added:</label>
-            <input type="text" id="add_domain" name="add_domain"></div>
-            <input type="submit" id="submit_btn" class="button-domain">
+            <form method="post" action="add-domain.php">  
+                <div class="detail-domain">
+                <label for="text">Domain to be added:</label>
+                <input type="text" id="add_domain" name="add_domain"></div>
+                <input type="submit" id="submit_btn" class="button-domain">
             </form>
         </div>
   
-    </div> -->
+    </div>
 
 
     </div>

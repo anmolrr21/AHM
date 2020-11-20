@@ -34,8 +34,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
    
     
 
-    $sqll = "INSERT INTO users (name,email,password,phone,location,proof) VALUES 
-    ('$name','$email','$password','$phone','$location','11000')";
+    $sqll = "INSERT INTO users (name,email,password,phone,location,proof,type) VALUES 
+    ('$name','$email','$password','$phone','$location','11000','Organization')";
     $resultt = mysqli_query($conn,$sqll);
     
     if (isset($_POST["submitt"]))
