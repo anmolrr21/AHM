@@ -25,20 +25,30 @@
     </div>
 </nav>
 
-<nav class="homeNavBottom">
-    <ul id="top">
-        <li><i class="fa fa-home fa-lg nav1 active" aria-hidden="true" style="color:white"></i></li>
-        <li><i class="fa fa-users fa-lg nav1" aria-hidden="true" style="color:white"></i><a href="#" class="nav1"></a></li>
-        <li><i class="fa fa-lightbulb-o fa-lg nav1" aria-hidden="true" style="color:white"></i><a href="#" class="nav1"></a>
-        </li>
-        <li><i class="fa fa-bell fa-lg nav1" aria-hidden="true" style="color:white"></i><a href="#" class="nav1"></a></li>
-    </ul>
-</nav>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#"><i class="fa fa-eye fa-lg" aria-hidden="true"></i>Profile</a>
+  <a href="#"><i class="fa fa-home fa-lg" aria-hidden="true"></i>Home</a>
+  <a href="#"><i class="fa fa-users fa-lg" aria-hidden="true"></i>Connections</a>
+  <a href="#"><i class="fa fa-lightbulb-o fa-lg" aria-hidden="true"></i>Recommendations</a>
+  <a href="#"><i class="fa fa-bell fa-lg" aria-hidden="true"></i>Raise Funds</a>
+  <a href="#"><i class="fa fa-cogs fa-lg" aria-hidden="true"></i>Settings</a>
+  <a href="#"><i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>Help</a>
+  <a href="#"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>Logout</a>
+</div>
 
 <script>
 //For dropdown menu
 function myFunction() {
-    document.getElementById('myDropdown').classList.toggle("show");
+    if(window.innerWidth>500){
+        console.log(screen.width)
+        document.getElementById('myDropdown').classList.toggle("show");
+    }
+    else{
+        openNav() ; 
+    }
+    
 }
 window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
@@ -62,4 +72,14 @@ for (var i = 0; i < aTags.length; i++) {
         this.className += " active";
     });
 }
+
+//For sidenav on small screens
+function openNav() {
+  document.getElementById("mySidenav").style.width = "100%";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
 </script>
+
