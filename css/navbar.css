@@ -129,12 +129,12 @@ a.active{
     }
 }
 @media screen and (max-width: 500px) {
-    a{
+    .homeNavBottom ul li a{
         text-decoration: none;
         color: #000000;
     }
     a.active{
-        border-bottom: 2px solid #fff;
+        border-bottom: 2px solid #000;
     }
     .homeNav img{
         width: 60px;
@@ -153,32 +153,43 @@ a.active{
         margin-left: 12px;
         font-size: 14px;
     }
-    .homeNavBottom{
-        background: #0e76a8;
-        display: flex;
-        width: 100%;
-        height: 40px;
-        bottom: 0;
-        font-family: 'Bree Serif', serif;
+    .sidenav {
+        height: 100%;
+        width: 0;
         position: fixed;
-    }
-    .homeNavBottom ul {
-        display: flex;
-    }
-    .homeNavBottom ul li{
-        list-style: none;
-        margin-top: -7px;
-    }
-    .homeNavBottom ul li:nth-child(1){
-        margin-left: -10px; 
-    }
-    .homeNavBottom ul li:nth-child(2),
-    .homeNavBottom ul li:nth-child(3),
-    .homeNavBottom ul li:nth-child(4){
-       margin-left: 105px; 
-    }
-    .homeNavBottom ul li i{
-        width: 40px;
-        height: 40px;
-    }
+        margin-top: -48px;
+        z-index: 1;
+        top: 1;
+        left: 0;
+        background-color: #fff;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+        text-align:left;
+      }
+      
+      .sidenav a {
+        padding: 8px 8px 25px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #0e76a8;
+        display: block;
+        transition: 0.3s;
+      
+      }
+      .sidenav a i{
+          padding-right: 10px;
+      }
+      
+      .sidenav a:hover{
+        color: #000;
+      }
+      
+      .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+      }
 }
