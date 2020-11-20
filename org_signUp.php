@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Individual's SignUp</title>
+        <title>Organization's SignUp</title>
         <link rel="stylesheet" href="css/org.css">
         <script src="js_files/org2.js"></script>
     </head>

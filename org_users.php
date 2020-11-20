@@ -2,6 +2,8 @@
 session_start();
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     include 'common/_dbconnect.php';
+    require_once 'System.php';
+   var_dump(class_exists('System', false));
     
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -9,6 +11,27 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $phone = $_POST['phone'];
     $location = $_POST['location'];
     $pname = $_FILES['file']['tmp_name'];
+
+    require_once 'VerifyEmail.class.php'; 
+    $mail = new VerifyEmail();
+    $mail->setStreamTimeoutWait(20);
+    $mail->Debug= TRUE; 
+    $mail->Debugoutput= 'html'; 
+    $mail->setEmailFrom('2018.megha.shahri@ves.ac.in');
+    
+    
+ 
+    
+    // Check if email is valid and exist
+    if($mail->check($email)){ 
+        echo 'Email &lt;'.$email.'&gt; is exist!'; 
+    }elseif(verifyEmail::validate($email)){ 
+        echo 'Email &lt;'.$email.'&gt; is valid, but not exist!'; 
+    }else{ 
+        echo 'Email &lt;'.$email.'&gt; is not valid and not exist!'; 
+    } 
+    
+   
     
 
     $sqll = "INSERT INTO users (name,email,password,phone,location,proof) VALUES 
@@ -30,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     
  }
 
- header("refresh:0;url = org2.php");
+ header("location:/AHM/org2.php");
  
 }
 ?>
