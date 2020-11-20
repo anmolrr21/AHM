@@ -42,7 +42,6 @@
 //For dropdown menu
 function myFunction() {
     if(window.innerWidth>500){
-        console.log(screen.width)
         document.getElementById('myDropdown').classList.toggle("show");
     }
     else{
