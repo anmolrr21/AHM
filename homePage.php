@@ -196,7 +196,7 @@
             $m = $m + 1;
             }
         ?>
-        <a href="#">View More</a> 
+        <a href="/AHM/recommendation.php">View More</a> 
     </div>
     <div class="rightBottom">
         <h5>Raise Funds</h5>

@@ -5,11 +5,11 @@
         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
     </form>
     <ul id="top">
-        <li class="decide"><i class="fa fa-home fa-lg" aria-hidden="true" style="color:white"></i><a href="#" class="nav1 active">Home</a></li>
-        <li class="decide"><i class="fa fa-users fa-lg" aria-hidden="true" style="color:white"></i><a href="#" class="nav1">Connections</a></li>
-        <li class="decide"><i class="fa fa-lightbulb-o fa-lg" aria-hidden="true" style="color:white"></i><a href="#" class="nav1">Recommendations</a>
+        <li class="decide"><i class="fa fa-home fa-lg" aria-hidden="true" style="color:white"></i><a href="/AHM/homePage.php" class="nav1 active">Home</a></li>
+        <li class="decide"><i class="fa fa-users fa-lg" aria-hidden="true" style="color:white"></i><a href="/AHM/connections.php" class="nav1">Connections</a></li>
+        <li class="decide"><i class="fa fa-lightbulb-o fa-lg" aria-hidden="true" style="color:white"></i><a href="/AHM/recommendation.php" class="nav1">Recommendations</a>
         </li>
-        <li class="decide"><i class="fa fa-bell fa-lg" aria-hidden="true" style="color:white"></i><a href="#" class="nav1">Notifications</a></li>
+        <li class="decide"><i class="fa fa-bell fa-lg" aria-hidden="true" style="color:white"></i><a href="/AHM/notification.php" class="nav1">Notifications</a></li>
         <li><img src="images/user.png" width="30px" height="20px"><a href="#" class="nav1">Me</a></li>
     </ul>
     <div class="dropdown">
