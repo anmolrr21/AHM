@@ -2,15 +2,36 @@
 <html>
     <head>
         <title>Organization's SignUp</title>
-        <link rel="stylesheet" href="css/org.css">
+        <link rel="stylesheet" href="css/org.css?v=<?php echo time(); ?>">
         <script src="js_files/org2.js"></script>
+        
+        
     </head>
     <body>
+    <?php $status=$_GET['status'];
+    
+        if($status=='empty'){
+           echo' <div class="msg msg-empty">
+            <b>Failed!</b> All Fields are required.
+          </div>';
+        }
+        else if($status=='password'){
+            echo' <div class="msg msg-empty">
+            <b>Failed!</b> Passwords do not match.
+          </div>';
+        }
+        else if($status=='email'){
+            echo' <div class="msg msg-empty">
+            <b>Failed!</b> Please enter correct email account.
+          </div>';
+        }
+    ?>
         <div class="headings">
         <h1>ConnecTTogether</h1>
         <h2>For Ngos/organizations</h2>
         <p>Find citizens,connect with them to make earth a better place !</p>
     </div>
+    
         <div id="details2-form" class="details2-form">
             <form action="org_users.php" class="form" method="POST" enctype="multipart/form-data">
                 <div class="form-item">
@@ -21,7 +42,6 @@
                         <input type="password" name="c_password" placeholder="Confirm Password">
                         <input type="text" name="location" placeholder="Location">
                         <input type="tel" name="phone" placeholder="Contact">
-                        <input type="text" name="desc" placeholder="Location"><br>
                         <label for="myfile">Add a proof of your organization:</label><br>
                         <input type="file"  name="file"><br><br>
                         <input type="submit" value="submit" name="submitt" class="button" id="submit_btn"  >

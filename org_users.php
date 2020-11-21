@@ -8,52 +8,72 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $cpassword = $_POST['c_password'];
     $phone = $_POST['phone'];
     $location = $_POST['location'];
     $pname = $_FILES['file']['tmp_name'];
 
-    require_once 'VerifyEmail.class.php'; 
-    $mail = new VerifyEmail();
-    $mail->setStreamTimeoutWait(20);
-    $mail->Debug= TRUE; 
-    $mail->Debugoutput= 'html'; 
-    $mail->setEmailFrom('2018.megha.shahri@ves.ac.in');
+    //proof ka empty check nahi kiya h
+
+    if(empty($name) || empty($email) || empty($password) || empty($cpassword) || empty($phone) || empty($location))
+  {
+    
+    header("location:/AHM/org_signUp.php?status=empty");
+ }
+    else if($password != $cpassword){
+        header("location:/AHM/org_signUp.php?status=password");
+        
+    }
+    else{
+
+        require_once 'VerifyEmail.class.php'; 
+        $mail = new VerifyEmail();
+        $mail->setStreamTimeoutWait(20);
+        $mail->Debug= TRUE; 
+        $mail->Debugoutput= 'html'; 
+        $mail->setEmailFrom('2018.megha.shahri@ves.ac.in');
     
     
  
-    
-    // Check if email is valid and exist
     if($mail->check($email)){ 
         echo 'Email &lt;'.$email.'&gt; is exist!'; 
-    }elseif(verifyEmail::validate($email)){ 
-        echo 'Email &lt;'.$email.'&gt; is valid, but not exist!'; 
-    }else{ 
-        echo 'Email &lt;'.$email.'&gt; is not valid and not exist!'; 
-    } 
-    
-   
-    
+            
+        $sqll = "INSERT INTO users (name,email,password,phone,location,proof,type) VALUES 
+        ('$name','$email','$password','$phone','$location','11000','Organization')";
+        $resultt = mysqli_query($conn,$sqll);
 
-    $sqll = "INSERT INTO users (name,email,password,phone,location,proof,type) VALUES 
-    ('$name','$email','$password','$phone','$location','11000','Organization')";
-    $resultt = mysqli_query($conn,$sqll);
+        $query1="SELECT * FROM `users` where email='$email' and type='Organization'";
+        $result1 = mysqli_query($conn,$query1);
+        $row=mysqli_fetch_assoc($result1);
     
-    if (isset($_POST["submitt"]))
- {
-    $target_dir = 'images/';
-    echo $target_dir;
-    $target_file = $target_dir . basename($_FILES["file"]["name"]);
-    echo $target_file;
-    move_uploaded_file($pname,$target_file);
-    $blob = fopen($target_file, "rb");
-    echo $blob;
-    $sql = "UPDATE users set proof='$blob' where name='$name' ";
-    echo $sql;
-    $resullt = mysqli_query($conn,$sql);
-    
- }
+        $current_user_id= $row['user_id'];
 
- header("location:/AHM/org2.php");
- 
+        $query2 = "INSERT INTO org_users (Org_uid,status) VALUES ($current_user_id,null)";
+        $result2 = mysqli_query($conn,$query2);
+        var_dump ($result2);
+
+        if (isset($_POST["submitt"]))
+        {
+            $target_dir = 'images/';
+            echo $target_dir;
+            $target_file = $target_dir . basename($_FILES["file"]["name"]);
+            echo $target_file;
+            move_uploaded_file($pname,$target_file);
+            $blob = fopen($target_file, "rb");
+            echo $blob;
+            $sql = "UPDATE org_users set proof='$blob' where Org_uid=$current_user_id ";
+            echo $sql;
+            $resullt = mysqli_query($conn,$sql);
+        
+        }
+        header("location:/AHM/message.php?verify=true");
+
+        }elseif(verifyEmail::validate($email)){ 
+            
+            header("location:/AHM/org_signUp.php?status=email");
+        }else{ 
+            header("location:/AHM/org_signUp.php?status=email");
+        } 
+    }
 }
 ?>

@@ -6,8 +6,8 @@ function func_dash() {
  var id_deluser=document.getElementById("delete-user");
  var id_vc=document.getElementById("view-comp");
  var id_domain=document.getElementById("add-domain");
- console.log(id_dash.style.display);
- if((id_dash.style.display=="")|| (id_dash.style.display=="none")){
+
+ if((id_dash.style.display=="")|| (id_dash.style.display=="none")|| (id_dash.style.display==null)){
      id_dash.style.display="block";
      id_ad.style.display="none";
      id_deluser.style.display="none";
@@ -23,10 +23,8 @@ function func_ad() {
     var id_deluser=document.getElementById("delete-user");
     var id_vc=document.getElementById("view-comp");
     var id_domain=document.getElementById("add-domain");
-    console.log(id_ad.style.display);
-    console.log("deluserkk");
-    console.log(id_deluser.style.display);
-    if((id_ad.style.display=="") || (id_ad.style.display=="none") ){
+    
+    if((id_ad.style.display=="") || (id_ad.style.display=="none") || (id_ad.style.display==null) ){
         id_dash.style.display="none";  
         id_deluser.style.display="none";  
         id_vc.style.display="none"; 
@@ -77,7 +75,6 @@ function func_ad() {
     var id_deluser=document.getElementById("delete-user");
     var id_vc=document.getElementById("view-comp");
     var id_domain=document.getElementById("add-domain");
-    
     
     if((id_domain.style.display=="")|| (id_domain.style.display=="none")){ 
         id_dash.style.display="none";

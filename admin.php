@@ -7,13 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ConnecTTogether</title>
     <link rel="stylesheet" href="css/admin.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="js_files/admin.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
     <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
         <script src="https://use.fontawesome.com/0cf079388a.js"></script> -->
 </head>
 
 <body onload="func_dash()">
+    <?php include 'common/_dbconnect.php';?>
     <!----------------------HomePage-------------------------------------------->
     <section id="header">
         <ul id="top" class="topnav">
@@ -69,21 +71,41 @@
                 <div class="column">
                     <div class="card">
                         <h3>Total Users</h3>
-                        <p>150</p>
+                       <?php 
+                       $sql_count1="SELECT COUNT(*) as count_total from users";
+                       $result_c1=mysqli_query($conn, $sql_count1);
+                       $row_c1 = mysqli_fetch_array($result_c1);
+                       $total_users=$row_c1['count_total'];
+                       echo ' <p> '.$total_users . '</p>';
+                         ?>
                     </div>
                 </div>
 
                 <div class="column">
                     <div class="card">
                         <h3>Total Organizations</h3>
-                        <p>70</p>
+                        <?php 
+                            $sql_count2="SELECT COUNT(*) as count_org from users where type='Organization'";
+                            $result_c2=mysqli_query($conn, $sql_count2);
+                            $row_c2 = mysqli_fetch_array($result_c2);
+                            $total_org_users=$row_c2['count_org'];
+                            echo ' <p> '.$total_org_users . '</p>';
+                         ?>
+                        
                     </div>
                 </div>
 
                 <div class="column">
                     <div class="card">
                         <h3>Total Individuals</h3>
-                        <p>80</p>
+                        <?php 
+                            $sql_count3="SELECT COUNT(*) as count_ind from users where type='Individual'";
+                            $result_c3=mysqli_query($conn, $sql_count3);
+                            $row_c3 = mysqli_fetch_array($result_c3);
+                            $total_ind_users=$row_c3['count_ind'];
+                            echo ' <p> '.$total_ind_users . '</p>';
+                         ?>
+                       
                     </div>
                 </div>
             </div>
@@ -97,16 +119,20 @@
 
             <div class="requests">
                 <?php 
-                    include 'common/_dbconnect.php';
+                    
                     $sql1 = "SELECT * FROM users where type='Organization' " ;
+                    $sql = "SELECT proof FROM org_users";
+                    $sth = $db->query($sql);
+                    $resultsql=mysqli_fetch_array($sth);
+                    
                     if($result = mysqli_query($conn, $sql1)){
                         if(mysqli_num_rows($result) > 0){
                             while($row = mysqli_fetch_array($result)){
                                 echo '<div class="name-btn">
                                         <p>' .$row['name'] . 
                                         '<span><button>View</button></span></p>
-                                        
-                                    </div><br>';
+                                        <img src="data:image/jpeg;base64,'.base64_encode( $resultsql['proof'] ).        
+                                    '</div><br>';
 
                             }
                         }
