@@ -159,26 +159,25 @@ a.active{
 .rightCorner .rightFirst p{
     margin-left: 200px;
 }
-.rightCorner .rightSuggest{
+.rightSuggest{
     display: flex;
-    
 }
-.rightCorner .rightSuggest img{
+.rightSuggest img{
     border-radius: 50%;
     border: 2px solid #000;
     width: 50px;
     height: 40px;
     margin-left: 10px;
 }
-.rightCorner .rightSuggest .part{
+.rightSuggest .part{
     margin-top: -15px;
     margin-left: 10px;
 }
-.rightCorner .rightSuggest .part p{
+.rightSuggest .part p{
     margin-top: -13px;
     font-size: 13px;
 }
-.rightCorner .rightSuggest .part button{
+.rightSuggest .part button{
     background-color: #0e76a8;
     margin-left: 10px;
     width: 100px;
@@ -491,8 +490,41 @@ a.active{
         width: 98%;
     }
 }
-
-
+/********************************************************************************
+                                Notification.php
+**********************************************************************************/
+.notifyBox{
+    width: 470px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: #fff;
+    margin-left: 400px;
+    margin-top: 80px;
+    min-height: 100px;
+}
+.belowBox{
+    margin-top: 10px;
+}
+.notifyBox .notifyHeading{
+    display: flex;
+    justify-content: space-between;
+}
+.notifyBox .notifyHeading h5{
+    margin-left: 10px;
+}
+.notifyBox .notifyHeading p{
+    margin-right: 12px;
+}
+.notifyBox .noNotify i{
+    margin-top: 10px;
+    margin-left: 200px;
+}
+.notifyBox .noNotify h4{
+    margin-left: 150px;
+}
+.notifyBox .noNotify p{
+    margin-left: 95px;
+}
 
 
 
