@@ -317,6 +317,55 @@ ul.topnav li.right a{
             /* margin-left: 200px;    */
             
         }
+        .img_org{
+            width:90%;
+            height:400px;
+            margin-top: 20px;
+            margin-left:20px;
+            display: none;
+        }
+        .btns{
+            display: inline-flex;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-bottom: 0;
+            font-weight: 400;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            background-image: none;
+            border: 1px solid transparent;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            border-radius: 4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            display: none;
+        }
+       
+        .btn-success {
+            color: #fff;
+            background-color: #5cb85c;
+            border-color: #4cae4c;
+            margin-left:40px;
+        }
+
+        .btn-danger {
+            color: #fff;
+            background-color: #d9534f;
+            border-color: #d43f3a;
+            margin-left:30px;
+        }
+       
 
         .view-comp{
             width:70%;

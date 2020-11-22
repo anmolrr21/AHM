@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
 
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ConnecTTogether</title>
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/admin.css?v=<?php echo time(); ?>">
     <script src="js_files/admin.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+ 
     
     <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
         <script src="https://use.fontawesome.com/0cf079388a.js"></script> -->
@@ -48,14 +50,14 @@
      <!------------------left----------------------->
         <div class="left-part">
             <ul>
-                <li><a id="dash_link" onclick="func_dash()">DashBoard</a></li>
-                <li><a id="ad_link" onclick="func_ad()">Approve/Decline Organizations</a>
+                <li><a id="dash_link" href="#dashboard" onclick="func_dash()">DashBoard</a></li>
+                <li><a id="ad_link" href="#ad-sect" onclick="func_ad()">Approve/Decline Organizations</a>
                 <li>
-                <li><a id="delete_link" onclick="deleteUser()">Delete user</a>
+                <li><a id="delete_link" href="#delete-user" onclick="deleteUser()">Delete user</a>
                 <li>
-                <li><a id="view_link" onclick="viewComp()">View Complaints</a>
+                <li><a id="view_link" href="#view-comp" onclick="viewComp()">View Complaints</a>
                 <li>
-                <li><a id="add_domain" onclick="addDomain()">Add Domain</a>
+                <li><a id="add_domain" href="#add-domain" onclick="addDomain()">Add Domain</a>
                 <li>
                 
 
@@ -121,18 +123,31 @@
                 <?php 
                     
                     $sql1 = "SELECT * FROM users where type='Organization' " ;
-                    $sql = "SELECT proof FROM org_users";
-                    $sth = $db->query($sql);
-                    $resultsql=mysqli_fetch_array($sth);
-                    
+
                     if($result = mysqli_query($conn, $sql1)){
                         if(mysqli_num_rows($result) > 0){
+                            $count=0;
                             while($row = mysqli_fetch_array($result)){
+                                $count=$count+1;
+                                $uid=$row['user_id'];
+                                $sql = "SELECT proof FROM org_users where Org_uid=$uid";
+                                $result_sql = mysqli_query($conn, $sql);
+                                $row_sql = mysqli_fetch_array($result_sql);
+                                $image=$row_sql['proof'];
+                                $image_id= $count;
+                                
                                 echo '<div class="name-btn">
                                         <p>' .$row['name'] . 
-                                        '<span><button>View</button></span></p>
-                                        <img src="data:image/jpeg;base64,'.base64_encode( $resultsql['proof'] ).        
-                                    '</div><br>';
+                                        '<span><button onclick=display_certi('.$image_id.')>View</button></span>
+                                        <span><button onclick=close_certi('.$image_id.')>Close</button></span>';
+                                        echo '<br>' .'<img id='.$image_id.' class="img_org" src="data:image/jpeg;base64,'.base64_encode($image).'"/>';
+                                               
+                                    echo '</div>
+                                    <div class="btns">
+                                    
+                                    <button type="button" class="btn btn-success" id="approve">Approve</button>
+                                    <button type="button" class="btn btn-danger" id="decline">Decline</button>
+                                    </div></p>';
 
                             }
                         }
