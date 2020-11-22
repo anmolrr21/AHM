@@ -32,7 +32,7 @@ a.active{
 .homeNav form input[type=text]{
     border: 1px solid #000000;
     height: 35px;
-    width: clamp(170px, 26vw, 300px);
+    width: clamp(100px, 34vw, 300px);
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
@@ -43,16 +43,21 @@ a.active{
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     background-color: #f3f3f3;
+    margin-top: -1px;
+}
+#thisOne a{
+    margin-left: 5px;
 }
 .homeNav ul, .share ul{
     display: flex;
+    justify-content: space-evenly;
 }
 .homeNav ul li a{
     font-size: clamp(10px, 1vw, 34px);
 }
 .homeNav ul li, .share ul li{
     list-style: none;
-    padding-left: 35px;
+    padding-left: clamp(10px, 1vw, 40px);
     
 }
 .homeNav ul li a{
@@ -68,7 +73,7 @@ a.active{
 .homeNav ul li img{
     border-radius: 50%;
     border: 2px solid #fff;
-    margin-top: -5px;
+    margin-top: -7px;
     width: clamp(20px, 4vw, 30px);
     height: clamp(15px, 4vw, 20px);
 }
@@ -140,7 +145,7 @@ a.active{
     }
 } */
 @media screen and (max-width: 500px) {
-    .homeNavBottom ul li a{
+    /* .homeNavBottom ul li a{
         text-decoration: none;
         color: #000000;
     }
@@ -149,10 +154,10 @@ a.active{
     }
     .homeNav img{
         width: 60px;
-    }
-    .homeNav form input[type=text]{
+    } */
+    /* .homeNav form input[type=text]{
         width: 280px;
-    }
+    } */
     .decide{
         display: none;
     }
