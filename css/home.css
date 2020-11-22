@@ -12,14 +12,19 @@ a.active{
     border-bottom: 2px solid #fff;
 }
 .share{
-    margin-left: 400px;
+    margin-left: clamp(270px,31vw,400px);
     border: 2px solid rgb(167, 167, 167);
-    margin-right: 400px;
+    margin-right: clamp(200px,31vw,450px);
     border-radius: 10px;
     background-color: #fff;
 }
 .onlyBox2{
-    margin-top: 100px; 
+    margin-top: 85px; 
+    margin-left: clamp(270px,31vw,400px);
+    border: 2px solid rgb(167, 167, 167);
+    margin-right: clamp(200px,31vw,450px);
+    border-radius: 10px;
+    background-color: #fff;
 }
 .onlyPost{
     margin-top: 25px;
@@ -34,29 +39,35 @@ a.active{
     padding-left: 15px;
     padding-top: 15px;
     margin-left: 5px;
-    margin-right: 5px;   
+    margin-right: 5px; 
+    font-size: clamp(10px,1vw,40px);  
 }
-.share ul{
+.onlyBox2 ul{
     margin-top: -5px;
-}
-.share ul li{
     display: flex;
+    justify-content: space-evenly;
 }
-.share ul li:nth-child(1){
-    margin-left: -65px;
+.onlyBox2 ul li{
+    display: flex;
+    justify-content: space-between;
+    font-size: clamp(10px,1vw,40px);
 }
-.share ul li:nth-child(2),
-.share ul li:nth-child(3),
-.share ul li:nth-child(4){
+ .onlyBox2 ul li:nth-child(1){
+    margin-left: -20px;
+}/*
+.onlyBox2 ul li:nth-child(2),
+.onlyBox2 ul li:nth-child(3),
+.onlyBox2 ul li:nth-child(4){
     padding-left: 50px;
-}
-.share ul li i{
+} */
+.onlyBox2 ul li i{
     padding-right: 3px;
 }
-.share ul li button{
+.onlyBox2 ul li button{
     border: none;
     outline: none;
     background-color: #fff;
+    font-size: clamp(10px,1vw,40px);
 }
 .leftCorner{
     width: clamp(100px,27vw,350px);
@@ -89,26 +100,26 @@ a.active{
     margin-top: -1px;
 }
 .leftCorner p{
-    margin-left: clamp(5px,4vw,50px);
+    margin-left: clamp(3px,4vw,50px);
     margin-top: -8px;
 }
 .leftCorner .that{
-    margin-left: 130px;
+    margin-left: clamp(55px,10vw,130px);
 }
 .leftCorner .these{
-    margin-left: 150px;
+    margin-left: clamp(75px,12vw,150px);
     margin-top: -15px;
 }
 .leftCorner a{
-    margin-left: 120px;
+    margin-left: clamp(65px,9vw,120px);
     padding-bottom: 10px;
 }
 .leftBottom{
-    width: 350px;
+    width: clamp(100px,27vw,350px);
     display: block;
     border: 1px solid #000;
     margin-left: 30px;
-    margin-top: 500px;
+    margin-top: 510px;
     border-radius: 10px;
     position: fixed;
     top: 0;
@@ -116,7 +127,7 @@ a.active{
 }
 .footer{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 .leftBottom .linkTitle h4{
     color: #0e76a8;
@@ -129,20 +140,19 @@ a.active{
 }
 .leftBottom .copyrightText{
     display: flex;
-    margin-left: 35px;
+    margin-left: clamp(2px,3vw,35px);
 }
 .leftBottom .copyrightText img{
     width: 40px;
 }
 .leftBottom .copyrightText small{
-    text-align: center;
     padding-top: 12px;
-    margin-left: 5px;
+    margin-left: -1px;
 }
 .rightCorner{
-    width: 350px;
+    width: clamp(100px,27vw,350px);
     border: 1px solid #000;
-    margin-left: 890px;
+    margin-left: clamp(350px,70vw,890px);
     margin-top: 100px;
     border-radius: 10px;
     position: fixed;
@@ -153,11 +163,12 @@ a.active{
 }
 .rightCorner .rightFirst{
     display: flex;
+    justify-content: space-around;
     margin-left: 20px;
     margin-bottom: -10px;
 }
 .rightCorner .rightFirst p{
-    margin-left: 200px;
+    margin-left: 100px;
 }
 .rightSuggest{
     display: flex;
@@ -177,9 +188,12 @@ a.active{
     margin-top: -13px;
     font-size: 13px;
 }
+.rightSuggest .part .rightButtons{
+    display: flex;
+    justify-content: space-between;
+}
 .rightSuggest .part button{
     background-color: #0e76a8;
-    margin-left: 10px;
     width: 100px;
     height: 35px;
     color: #fff;
@@ -192,10 +206,10 @@ a.active{
     margin-bottom: 60px;
 }
 .rightBottom{
-    width: 350px;
+    width: clamp(100px,27vw,350px);
     border: 1px solid #000;
-    margin-left: 890px;
-    margin-top: 500px;
+    margin-left: clamp(350px,70vw,890px);
+    margin-top: 540px;
     border-radius: 10px;
     position: fixed;
     top: 0;
@@ -204,12 +218,13 @@ a.active{
 }
 .rightBottom h5{
     margin-left: 110px;
-    font-size: 15px;
+    font-size: clamp(12px,1vw,15px);
     margin-top: 1px;
 }
 .rightBottom p{
     margin-left: 10px;
     margin-top: -5px;
+    font-size: clamp(9px,1vw,15px);
 }
 .rightBottom button{
     background-color: #0e76a8;
@@ -249,10 +264,11 @@ a.active{
     margin-top: -15px;
 }
 .postImage{
-    margin-left: 5px;
+    margin-left: 10px;
+    margin-right: -50px;
 }
-.postImage img{
-    width: 450px;
+.onlyPost .postImage img{
+    width: clamp(250px,85%,650px); 
 }
 .countL{
     display: flex;
@@ -269,7 +285,7 @@ a.active{
     margin-bottom: 6px;
 }
 .likeButton a{
-    margin-left: 95px;
+    margin-left: clamp(10px,7vw,95px);
 }
 .likeButton hr{
     margin-top: 15px;
@@ -525,6 +541,9 @@ a.active{
 .notifyBox .noNotify p{
     margin-left: 95px;
 }
+
+
+
 
 
 
