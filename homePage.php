@@ -31,7 +31,7 @@
         <h5 class="that">Followers</h5>
         <p class="these">99</p>
         <hr>
-        <a>View Profile</a>
+        <a href="#">View Profile</a>
     </div>
     <div class="leftBottom">
         <div class="footer">
@@ -81,7 +81,7 @@
         </div>
     </div>
 
-    <div class="share onlyBox2">
+    <div class="onlyBox2">
         <h4 id="share"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> Share an article, photo, video or
             idea</h4>
         <ul>
@@ -89,7 +89,6 @@
             <li><i class="fa fa-video-camera" aria-hidden="true"></i><button onclick="modalDisplay()">Video</button></li>
             <li><i class="fa fa-pencil" aria-hidden="true" style="color:orange"></i><button onclick="modalDisplay()">Article</button></li>
             <li><i class="fa fa-file-text" aria-hidden="true" style="color:lightblue"></i><button onclick="modalDisplay()">Document</button></li>
-
         </ul>
     </div>
 
@@ -108,7 +107,7 @@
                         </div>
                     </div>
                     <div class="postImage">
-                        <img src="https://images.freeimages.com/images/small-previews/5c6/sunset-jungle-1383333.jpg">
+                        <img src="https://d1kvkzjpuym02z.cloudfront.net/5a67a03ee4b066cbce1a8ec9.jpg?Expires=2004105968&Signature=Xxv3R1KpOruccbInecmwbvFsPegNnh13REICJvZHItdPjqfKqVs~TH1wUtLrIWfRqVVrbMqmhgH72W7zhkaRWc6kySxYDdQLklWMv4R566rsnzyNsajLsoEaBxD5xVb67HCqUL8AfCkcPZYgpATX-0SsHM2UEsjYjGcvyHCqkdo_&Key-Pair-Id=APKAJXYWFXCDTRLR3EFA">
                     </div>
                     <div class="countL">
                         <h6><i class="fa fa-thumbs-up" aria-hidden="true"></i> 30Likes</h6>
@@ -188,8 +187,10 @@
                         <div class="part">
                             <h5>Hitesh Dhameja</h5>
                             <p>Volunteer | Fund Raiser | Mind Blowing</p>
-                            <button>View Profile</button>
-                            <button>Connect</button>
+                            <div class="rightButtons">
+                                <button>View Profile</button>
+                                <button>Connect</button>
+                            </div>
                         </div>
                         
                     </div>';
@@ -233,3 +234,4 @@
 </body>
 
 </html>
+
