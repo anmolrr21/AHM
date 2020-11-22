@@ -89,8 +89,8 @@ function func_ad() {
        console.log("display");
        console.log(count);
        var img=document.getElementById(count);
-       var ap_btn=document.getElementById("approve");
-       var dec_btn=document.getElementById("decline");
+       var ap_btn=document.getElementById("ap"+count);
+       var dec_btn=document.getElementById("dec"+count); 
        img.style.display="block";
        ap_btn.style.display="block";
        dec_btn.style.display="block";    
@@ -99,8 +99,8 @@ function func_ad() {
    function close_certi(count) {
     console.log(count);
     var img=document.getElementById(count);
-    var ap_btn=document.getElementById("approve");
-    var dec_btn=document.getElementById("decline");
+    var ap_btn=document.getElementById("ap"+count);
+    var dec_btn=document.getElementById("dec"+count);
     img.style.display="none";
     ap_btn.style.display="none";
     dec_btn.style.display="none";    

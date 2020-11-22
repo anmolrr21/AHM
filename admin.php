@@ -144,9 +144,10 @@
                                                
                                     echo '</div>
                                     <div class="btns">
+                                   
                                     
-                                    <button type="button" class="btn btn-success" id="approve">Approve</button>
-                                    <button type="button" class="btn btn-danger" id="decline">Decline</button>
+                                    <a  href="verify_org.php?ap=true&orgid=' .$uid .'"><button type="button" class="btn btn-success" id=ap'.$image_id.'>Approve</button></a>
+                                    <a href="verify_org.php?ap=false&orgid=' .$uid .'"><button type="button" class="btn btn-danger" id=dec'.$image_id.'>Decline</button></a>
                                     </div></p>';
 
                             }
