@@ -10,7 +10,7 @@
         <li class="decide"><i class="fa fa-lightbulb-o fa-lg" aria-hidden="true" style="color:white"></i><a href="/AHM/recommendation.php" class="nav1">Recommendations</a>
         </li>
         <li class="decide"><i class="fa fa-bell fa-lg" aria-hidden="true" style="color:white"></i><a href="/AHM/notification.php" class="nav1">Notifications</a></li>
-        <li id="thisOne"><img src="images/user.png"><a href="#" onclick="myFunction()" oncliclass="nav1">Me</a></li>
+        <li id="thisOne"><img src="images/user.png"><a href="#" onclick="myFunction()" class="nav1">Me</a></li>
     </ul>
     <div class="dropdown">
         <!-- <button  class="dropbtn"><i class="fa fa-caret-down" aria-hidden="true"></i></button> -->
