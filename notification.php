@@ -26,12 +26,12 @@
         <h5>Hitesh Dhameja</h5>
         <p>Volunteer | Fund Raiser | Mind Blowing</p>
         <hr>
-        <h5 class="that">Following</h5>
+        <h5 class="that">Your Connections</h5>
         <p class="these">45</p>
-        <h5 class="that">Followers</h5>
-        <p class="these">99</p>
+        <!-- <h5 class="that">Followers</h5>
+        <p class="these">99</p> -->
         <hr>
-        <a>View Profile</a>
+        <a href="#">View Profile</a>
     </div>
     <div class="leftBottom">
         <div class="footer">
@@ -104,6 +104,20 @@
                 <p>accepted your connection request</p>
                 <button>View Profile</button>
                 <button>Say, Hello!</button>
+            </div>
+        </div>
+        <div class="rightSuggest">
+            <img src="images/user.png">
+            <div class="part">
+                <h5>Hitesh Dhameja</h5>
+                <p>liked your post.</p>
+            </div>
+        </div>
+        <div class="rightSuggest">
+            <img src="images/user.png">
+            <div class="part">
+                <h5>Hitesh Dhameja</h5>
+                <p>commented on your post.</p>
             </div>
         </div>
     </div>
