@@ -40,7 +40,7 @@
                 <span class="square"></span>
                 <p> <b>Welcome to the world of ConnecTTogether ! </b><br>Are you are an Organization and want to enhance the society? here you can focus on dedicated public. or Are you willing to inculcate your help? Join Us at @ConnecTTogether </p>
                <a href="org_signUp.php?status=false"><button class="commonBtn">For NGO's</button></a> 
-                <a href="individual_signup.php"><button class="commonBtn">For Users</button></a>
+                <a href="individual_signup.php?status=false"><button class="commonBtn">For Users</button></a>
                 <h3 class="new">Join US!</h3>
                 <div class="line">
                     <span class="line1"></span><br>

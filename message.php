@@ -13,12 +13,18 @@
 
     <?php 
         $verify=$_GET['verify'];
+        
         echo '
         <div class="message-box">'; 
-        if($verify==true){
+        if($verify=='process'){
           echo " 
             <h1>Verification under process!</h1>
             <p>Your organization is under verification.You'll receive a mail for the same.<br>Till then Please wait.</p>";
+        }else if($verify=='decline'){
+            echo "
+            <h1>Verification Done!</h1>
+            <p>Your organization is has not been approved.You cannot move further.</p>";
+
         }
         echo '</div>';
     ?>

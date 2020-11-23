@@ -40,8 +40,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     if($mail->check($email)){ 
         echo 'Email &lt;'.$email.'&gt; is exist!'; 
             
-        $sqll = "INSERT INTO users (name,email,password,phone,location,proof,type) VALUES 
-        ('$name','$email','$password','$phone','$location','11000','Organization')";
+        $sqll = "INSERT INTO users (name,email,password,phone,location,type) VALUES 
+        ('$name','$email','$password','$phone','$location','Organization')";
         $resultt = mysqli_query($conn,$sqll);
 
         $query1="SELECT * FROM `users` where email='$email' and type='Organization'";
@@ -68,7 +68,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             $resullt = mysqli_query($conn,$sql);
         
         }
-        header("location:/AHM/message.php?verify=true");
+        header("location:/AHM/message.php?verify=process");
 
         }elseif(verifyEmail::validate($email)){ 
             

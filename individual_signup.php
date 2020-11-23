@@ -2,10 +2,28 @@
 <html>
     <head>
         <title>Individual's SignUp</title>
-        <link rel="stylesheet" href="css/ind.css">
+        <link rel="stylesheet" href="css/ind.css?v=<?php echo time(); ?>">
         <!-- <script src="js_files/org2.js"></script> -->
     </head>
     <body>
+    <?php $status=$_GET['status'];
+    
+    if($status=='empty'){
+       echo' <div class="msg msg-empty">
+        <b>Failed!</b> All Fields are required.
+      </div>';
+    }
+    else if($status=='password'){
+        echo' <div class="msg msg-empty">
+        <b>Failed!</b> Passwords do not match.
+      </div>';
+    }
+    else if($status=='email'){
+        echo' <div class="msg msg-empty">
+        <b>Failed!</b> Please enter correct email account.
+      </div>';
+    }
+?>
     <?php
          include 'common/_dbconnect.php';?>
         <div class="headings">
