@@ -16,5 +16,60 @@ body{
 
 .card{
     width: 550px;
-    height:300px;
+    height:600px;
+    background-color: white;
+    transform-style: preserve-3d;
+    position: relative;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    border-radius: 15px;
+    transition: transform 1s;
+
 }
+.image{
+    margin: auto;
+    margin-left: 190px;
+}
+h1{
+    margin-left:180px;
+
+}
+p{
+    margin-left:170px;
+    font-size: 18px;
+}
+h{
+    margin-left:160px;
+    font-size: 18px;
+}
+label {
+    
+    margin-left: 20px;
+}
+.bio{
+    margin-top: 20px;
+    font-size: 20px;
+}
+.posts{
+    border: 2px solid lightgrey;
+    padding: 22px;
+    margin:30px;
+}
+.p{
+    margin-bottom: 0px;
+    margin-left: 140px;
+}
+button {
+    border: none;
+    color: white;
+    padding: 12px 50px;
+    text-align: center;
+    text-decoration: none;
+    
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  .b1 {background-color: #008CBA;
+    margin-left: 50px;}
+  .b2 {background-color: #008CBA;}
+
