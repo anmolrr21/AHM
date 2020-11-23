@@ -26,10 +26,10 @@
         <h5>Hitesh Dhameja</h5>
         <p>Volunteer | Fund Raiser | Mind Blowing</p>
         <hr>
-        <h5 class="that">Following</h5>
+        <h5 class="that">Your Connections</h5>
         <p class="these">45</p>
-        <h5 class="that">Followers</h5>
-        <p class="these">99</p>
+        <!-- <h5 class="that">Followers</h5>
+        <p class="these">99</p> -->
         <hr>
         <a href="#">View Profile</a>
     </div>
@@ -119,7 +119,7 @@
                         <a type="button" onclick="myFunc('.$i.')"><i class="fa fa-comments-o" aria-hidden="true"></i>Comment</a>
                         <hr>
                     </div>
-                    <div id="'.$i.'" class="secComment">
+                    <div id="'.$i.'" class="secComment" style="display: none;">
                         <div class="area">
                             <img src="images/user.png">
                             <form>  
@@ -234,4 +234,6 @@
 </body>
 
 </html>
+
+
 
