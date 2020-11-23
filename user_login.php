@@ -15,10 +15,10 @@
             $_SESSION["type"] = $row['type'];
 
             if($_SESSION['type'] == 'Organization'){
-               header("location:/AHM/organization.php");
+               header("location:/AHM/homePage.php");
             }
             else if($_SESSION['type'] == 'Individual'){
-               header("location:/AHM/individual.php");
+               header("location:/AHM/homePage.php");
             }
             else {
                header("location:/AHM/error.php");
