@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My Connections | ConnecTTogether</title>
+    <title>Recommendations | ConnecTTogether</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://use.fontawesome.com/0cf079388a.js"></script>
@@ -93,7 +93,8 @@
             <div class="part">
                 <h5>Hitesh Dhameja</h5>
                 <p>Volunteer | Fund Raiser | Mind Blowing</p>
-                <button>View Profile</button>
+                <button>Accept</button>
+                <button>Reject</button>
             </div>
         </div>
         <div class="rightSuggest">
@@ -101,7 +102,8 @@
             <div class="part">
                 <h5>Hitesh Dhameja</h5>
                 <p>Volunteer | Fund Raiser | Mind Blowing</p>
-                <button>View Profile</button>
+                <button>Accept</button>
+                <button>Reject</button>
             </div>
         </div>
     </div>
@@ -117,7 +119,8 @@
             <div class="part">
                 <h5>Mahima- Mahila Jyoti Foundation</h5>
                 <p>Volunteer | Women Empowerment | Mind Blowing</p>
-                <button>View Profile</button>
+                <button>Accept</button>
+                <button>Reject</button>
             </div>
         </div>
         <div class="rightSuggest">
@@ -125,7 +128,8 @@
             <div class="part">
                 <h5>Mahima- Mahila Jyoti Foundation</h5>
                 <p>Volunteer | Women Empowerment | Mind Blowing</p>
-                <button>Profile</button>
+                <button>Accept</button>
+                <button>Reject</button>
             </div>
         </div>
     </div>
