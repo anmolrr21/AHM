@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     include 'common/_dbconnect.php';
     require_once 'System.php';
@@ -75,5 +77,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             header("location:/AHM/org_signUp.php?status=email");
         } 
     }
+    
 }
 ?>
