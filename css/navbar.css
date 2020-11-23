@@ -24,6 +24,10 @@ a.active{
     width: clamp(60px, 6vw, 90px);
     height: 60px;
 }
+.homeNav h3{
+    color: honeydew;
+    margin-right: 15px;
+}
 .homeNav form{
     padding-top: 13px; 
     display: flex;
@@ -31,8 +35,9 @@ a.active{
 }
 .homeNav form input[type=text]{
     border: 1px solid #000000;
+    border-right: none;
     height: 35px;
-    width: clamp(100px, 34vw, 300px);
+    width: 350px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
@@ -44,6 +49,9 @@ a.active{
     border-bottom-right-radius: 5px;
     background-color: #f3f3f3;
     margin-top: -1px;
+    border-left: none;
+    cursor: pointer;
+    outline: none;
 }
 #thisOne a{
     margin-left: 5px;
@@ -53,11 +61,15 @@ a.active{
     justify-content: space-evenly;
 }
 .homeNav ul li a{
-    font-size: clamp(10px, 1vw, 34px);
+    font-size: 16px;
+}
+.homeNav ul li a:hover:not(.active) {
+    border-bottom: 2px solid #fff;
+    transition: .1s all ease-out;
 }
 .homeNav ul li, .share ul li{
     list-style: none;
-    padding-left: clamp(10px, 1vw, 40px);
+    padding-left: 30px;
     
 }
 .homeNav ul li a{
@@ -89,6 +101,8 @@ a.active{
     border: none;
 }
 .dropdown {
+    margin-top: 60px;
+    margin-left: -80px;
     position: relative;
     display: inline-block;
 }
@@ -209,3 +223,4 @@ a.active{
         margin-left: 50px;
       }
 }
+

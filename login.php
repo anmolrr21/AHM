@@ -17,10 +17,10 @@
     </div>
 
     <!-- Login Form -->
-    <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="E-mail">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
+    <form class="formm" action="user_login.php" method="POST">
+      <input type="text" id="login" class="fadeIn second" name="login1" placeholder="E-mail">
+      <input type="text" id="password" class="fadeIn third" name="login2" placeholder="password">
+      <input type="submit" name="login" class="fadeIn fourth" value="Log In">
     </form>
 
     <!-- Remind Passowrd -->
