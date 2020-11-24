@@ -24,17 +24,35 @@
     <?php
         include 'commonNavbar.php';
     ?>
-
+    <!-- <?php
+            include 'common/_dbconnect.php';
+            $sql = "SELECT * FROM `posts`where `post_id`=19";
+            
+            $result = mysqli_query($conn,$sql);
+            $row = mysqli_fetch_assoc($result);
+            $url = "videos/"
+            ?>
+            <video width="320" height="240" style="margin-left: 400px;" controls>
+                <source src="videos/<?php echo $row['video_posted']; ?>" type="video/mp4">
+                
+                Your browser does not support the video tag.
+            </video> -->
+            
     <div class="leftCorner">
         <div class="emptyFree"></div>
         <img src="images/user.png">
         <h5>Hitesh Dhameja</h5>
+        <!-- <h4>
+            <?php
+                echo $_SESSION["username"];
+            ?>
+        </h4> -->
         <p>Volunteer | Fund Raiser | Mind Blowing</p>
         <hr>
         <h5 class="that">Your Connections</h5>
         <p class="these">45</p>
         <hr>
-        <a href="#">View Profile</a>
+        <a href="/AHM/myprofile.php">View Profile</a>
     </div>
     <div class="leftBottom">
         <div class="footer">
@@ -43,6 +61,7 @@
                 <small>Request Demo</small><br>
                 <small>FAQs</small>
             </div>
+            
             <div class="linkTitle">
                 <h4>Support</h4>
                 <small>Features</small><br>
@@ -68,19 +87,23 @@
                 <h2>Create a post</h2>
             </div>
             <div class="modal-body">
-                <div class="nameFrame">
-                    <img src="images/user.png">
-                    <h5>Hitesh Dhameja</h5>
-                </div>
-                <textarea id="w3review" name="w3review" rows="4" cols="60" placeholder="What's in your mind?"
-                    autofocus></textarea>
-                <hr>
-                <div class="bottomSec">
-                    <!-- <a><i class="fa fa-picture-o fa-lg" aria-hidden="true"></i></a>
+                <form action="/AHM/addPost.php?onlyContent=true" method="POST">
+                    <div class="nameFrame">
+                        <img src="images/user.png">
+                        <h5>Hitesh Dhameja</h5>
+                    </div>
+                    <textarea id="w3review" name="w3review" rows="4" cols="60" placeholder="What's in your mind?"
+                        autofocus></textarea>
+                    <hr>
+                    <div class="bottomSec">
+                        <!-- <a><i class="fa fa-picture-o fa-lg" aria-hidden="true"></i></a>
                     <a><i class="fa fa-video-camera fa-lg" aria-hidden="true"></i></a>
                     <a><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a> -->
-                    <button>POST</button>
-                </div>
+
+                        <button type="submit">POST</button>
+
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -92,20 +115,21 @@
                 <h2>Create a post</h2>
             </div>
             <div class="modal-body">
-                <div class="nameFrame">
-                    <img src="images/user.png">
-                    <h5>Hitesh Dhameja</h5>
-                </div>
-                <textarea id="w3review" name="w3review" rows="4" cols="60" placeholder="What's in your mind?"
-                    autofocus></textarea>
-                <hr>
-                <div class="bottomSec">
-                    <form action="/action_page.php">
+                <form action="/AHM/addPost.php?imageContent=true" method="POST" enctype="multipart/form-data">
+                    <div class="nameFrame">
+                        <img src="images/user.png">
+                        <h5>Hitesh Dhameja</h5>
+                    </div>
+                    <textarea id="w3review" name="w3review" rows="4" cols="60" placeholder="What's in your mind?"
+                        autofocus></textarea>
+                    <hr>
+                    <div class="bottomSec">
                         <label for="img">Select image:</label>
                         <input type="file" id="img" name="img" accept="image/*">
+
                         <button>POST</button>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -118,26 +142,27 @@
                 <h2>Create a post</h2>
             </div>
             <div class="modal-body">
-                <div class="nameFrame">
-                    <img src="images/user.png">
-                    <h5>Hitesh Dhameja</h5>
-                </div>
-                <textarea id="w3review" name="w3review" rows="4" cols="60" placeholder="What's in your mind?"
-                    autofocus></textarea>
-                <hr>
-                <div class="bottomSec">
-                    <form action="/action_page.php">
+                <form action="/AHM/addPost.php?videoContent=true" method="POST" enctype="multipart/form-data">
+                    <div class="nameFrame">
+                        <img src="images/user.png">
+                        <h5>Hitesh Dhameja</h5>
+                    </div>
+                    <textarea id="w3review" name="w3review" rows="4" cols="60" placeholder="What's in your mind?"
+                        autofocus></textarea>
+                    <hr>
+                    <div class="bottomSec">
+
                         <label for="img">Select video:</label>
-                        <input type="file" id="img" name="img" accept="video/*">
+                        <input type="file" id="img" name="video" accept="video/*">
+
                         <button>POST</button>
-                    </form>
-                    <button>POST</button>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
-    <!-- pop up for posting an file -->
+    <!-- pop up for posting an file
     <div id="myModal3" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -162,7 +187,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="onlyBox2">
         <h4 id="share"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> Share an article, photo, video or
@@ -174,8 +199,8 @@
             </li>
             <li><i class="fa fa-pencil" aria-hidden="true" style="color:orange"></i><button
                     onclick="modalDisplay()">Article</button></li>
-            <li><i class="fa fa-file-text" aria-hidden="true" style="color:lightblue"></i><button
-                    onclick="modalDisplay4()">Document</button></li>
+            <!-- <li><i class="fa fa-file-text" aria-hidden="true" style="color:lightblue"></i><button
+                    onclick="modalDisplay4()">Document</button></li> -->
         </ul>
     </div>
 
@@ -295,89 +320,89 @@
     </div>
 
     <script>
-        function myFunc(y) {
-            if (document.getElementById(y).style.display == "none") {
-                document.getElementById(y).style.display = "block";
-            } else {
-                document.getElementById(y).style.display = "none";
-            }
+    function myFunc(y) {
+        if (document.getElementById(y).style.display == "none") {
+            document.getElementById(y).style.display = "block";
+        } else {
+            document.getElementById(y).style.display = "none";
         }
-        //Modals
-        //Modal1-General Modal
-        var modal = document.getElementById("myModal");
+    }
+    //Modals
+    //Modal1-General Modal
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+    var span = document.getElementsByClassName("close")[0];
+
+    function modalDisplay() {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
         modal.style.display = "none";
-        var span = document.getElementsByClassName("close")[0];
+    }
 
-        function modalDisplay() {
-            modal.style.display = "block";
-        }
-
-        span.onclick = function() {
+    window.onclick = function(event) {
+        if (event.target == modal) {
             modal.style.display = "none";
         }
+    }
 
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
+    //Modal2-Image+content
+    var modal2 = document.getElementById("myModal1");
+    modal2.style.display = "none";
+    var span = document.getElementsByClassName("close1")[0];
 
-        //Modal2-Image+content
-        var modal2 = document.getElementById("myModal1");
+    function modalDisplay2() {
+        modal2.style.display = "block";
+    }
+
+    span.onclick = function() {
         modal2.style.display = "none";
-        var span = document.getElementsByClassName("close1")[0];
+    }
 
-        function modalDisplay2() {
-            modal2.style.display = "block";
-        }
-
-        span.onclick = function() {
+    window.onclick = function(event) {
+        if (event.target == modal) {
             modal2.style.display = "none";
         }
+    }
 
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal2.style.display = "none";
-            }
-        }
+    //Modal3-Video+content
+    var modal3 = document.getElementById("myModal2");
+    modal3.style.display = "none";
+    var span = document.getElementsByClassName("close2")[0];
 
-        //Modal3-Video+content
-        var modal3 = document.getElementById("myModal2");
+    function modalDisplay3() {
+        modal3.style.display = "block";
+    }
+
+    span.onclick = function() {
         modal3.style.display = "none";
-        var span = document.getElementsByClassName("close2")[0];
+    }
 
-        function modalDisplay3() {
-            modal3.style.display = "block";
-        }
-
-        span.onclick = function() {
+    window.onclick = function(event) {
+        if (event.target == modal) {
             modal3.style.display = "none";
         }
+    }
 
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal3.style.display = "none";
-            }
-        }
+    // //Modal4-Doc file+content
+    // var modal4 = document.getElementById("myModal3");
+    // modal4.style.display = "none";
+    // var span = document.getElementsByClassName("close3")[0];
 
-        //Modal4-Doc file+content
-        var modal4 = document.getElementById("myModal3");
-        modal4.style.display = "none";
-        var span = document.getElementsByClassName("close3")[0];
+    // function modalDisplay4() {
+    //     modal4.style.display = "block";
+    // }
 
-        function modalDisplay4() {
-            modal4.style.display = "block";
-        }
+    // span.onclick = function() {
+    //     modal4.style.display = "none";
+    // }
 
-        span.onclick = function() {
-            modal4.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal4.style.display = "none";
-            }
-        }
+    // window.onclick = function(event) {
+    //     if (event.target == modal) {
+    //         modal4.style.display = "none";
+    //     }
+    // }
     </script>
 </body>
 

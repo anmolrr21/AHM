@@ -448,6 +448,7 @@ a.active{
     padding: 2px 16px;
     background-color: #0e76a8;
     color: white;
+    overflow: hidden;
 }
 
 .modal-body {
@@ -493,6 +494,7 @@ a.active{
     border-radius: 20px;
     height: 40px;
     outline: none;
+    color: #fff;
 }
 
 @media screen and (max-width: 500px) {
