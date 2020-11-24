@@ -1,3 +1,8 @@
+<?php
+    if(!isset($_SESSION)){ 
+        session_start(); 
+    }
+?>
 <!DOCTYPE html>
 <html>
 
@@ -10,7 +15,7 @@
     <script src="https://use.fontawesome.com/0cf079388a.js"></script>
     <style>
     <?php include 'css/home.css';
-          include 'css/navbar.css';
+    include 'css/navbar.css';
     ?>
     </style>
 </head>
@@ -19,7 +24,7 @@
     <?php
         include 'commonNavbar.php';
     ?>
-    
+
     <div class="leftCorner">
         <div class="emptyFree"></div>
         <img src="images/user.png">
@@ -28,8 +33,6 @@
         <hr>
         <h5 class="that">Your Connections</h5>
         <p class="these">45</p>
-        <!-- <h5 class="that">Followers</h5>
-        <p class="these">99</p> -->
         <hr>
         <a href="#">View Profile</a>
     </div>
@@ -57,6 +60,7 @@
         </div>
     </div>
 
+    <!-- Ingeneral popup for post -->
     <div id="myModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -72,9 +76,88 @@
                     autofocus></textarea>
                 <hr>
                 <div class="bottomSec">
-                    <a><i class="fa fa-picture-o fa-lg" aria-hidden="true"></i></a>
+                    <!-- <a><i class="fa fa-picture-o fa-lg" aria-hidden="true"></i></a>
                     <a><i class="fa fa-video-camera fa-lg" aria-hidden="true"></i></a>
-                    <a><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>
+                    <a><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a> -->
+                    <button>POST</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- pop up for posting an image + written content -->
+    <div id="myModal1" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close close1">&times;</span>
+                <h2>Create a post</h2>
+            </div>
+            <div class="modal-body">
+                <div class="nameFrame">
+                    <img src="images/user.png">
+                    <h5>Hitesh Dhameja</h5>
+                </div>
+                <textarea id="w3review" name="w3review" rows="4" cols="60" placeholder="What's in your mind?"
+                    autofocus></textarea>
+                <hr>
+                <div class="bottomSec">
+                    <form action="/action_page.php">
+                        <label for="img">Select image:</label>
+                        <input type="file" id="img" name="img" accept="image/*">
+                        <button>POST</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- pop up for posting an video+written content -->
+    <div id="myModal2" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close close2">&times;</span>
+                <h2>Create a post</h2>
+            </div>
+            <div class="modal-body">
+                <div class="nameFrame">
+                    <img src="images/user.png">
+                    <h5>Hitesh Dhameja</h5>
+                </div>
+                <textarea id="w3review" name="w3review" rows="4" cols="60" placeholder="What's in your mind?"
+                    autofocus></textarea>
+                <hr>
+                <div class="bottomSec">
+                    <form action="/action_page.php">
+                        <label for="img">Select video:</label>
+                        <input type="file" id="img" name="img" accept="video/*">
+                        <button>POST</button>
+                    </form>
+                    <button>POST</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- pop up for posting an file -->
+    <div id="myModal3" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close close3">&times;</span>
+                <h2>Create a post</h2>
+            </div>
+            <div class="modal-body">
+                <div class="nameFrame">
+                    <img src="images/user.png">
+                    <h5>Hitesh Dhameja</h5>
+                </div>
+                <textarea id="w3review" name="w3review" rows="4" cols="60" placeholder="What's in your mind?"
+                    autofocus></textarea>
+                <hr>
+                <div class="bottomSec">
+                    <form action="/action_page.php">
+                        <label for="img">Select document:</label>
+                        <input type="file" id="img">
+                        <button>POST</button>
+                    </form>
                     <button>POST</button>
                 </div>
             </div>
@@ -85,14 +168,18 @@
         <h4 id="share"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> Share an article, photo, video or
             idea</h4>
         <ul>
-            <li><i class="fa fa-picture-o" aria-hidden="true" style="color:green"></i><button onclick="modalDisplay()">Picture</button></li>
-            <li><i class="fa fa-video-camera" aria-hidden="true"></i><button onclick="modalDisplay()">Video</button></li>
-            <li><i class="fa fa-pencil" aria-hidden="true" style="color:orange"></i><button onclick="modalDisplay()">Article</button></li>
-            <li><i class="fa fa-file-text" aria-hidden="true" style="color:lightblue"></i><button onclick="modalDisplay()">Document</button></li>
+            <li><i class="fa fa-picture-o" aria-hidden="true" style="color:green"></i><button
+                    onclick="modalDisplay2()">Picture</button></li>
+            <li><i class="fa fa-video-camera" aria-hidden="true"></i><button onclick="modalDisplay3()">Video</button>
+            </li>
+            <li><i class="fa fa-pencil" aria-hidden="true" style="color:orange"></i><button
+                    onclick="modalDisplay()">Article</button></li>
+            <li><i class="fa fa-file-text" aria-hidden="true" style="color:lightblue"></i><button
+                    onclick="modalDisplay4()">Document</button></li>
         </ul>
     </div>
 
-    
+
 
     <?php
         $i=0;
@@ -197,43 +284,101 @@
             $m = $m + 1;
             }
         ?>
-        <a href="/AHM/recommendation.php">View More</a> 
+        <a href="/AHM/recommendation.php">View More</a>
     </div>
     <div class="rightBottom">
         <h5>Raise Funds</h5>
-        <p><em>"Having something extra is always great because you are with the opportuinity to grab the blessings by donating."</em></p>
+        <p><em>"Having something extra is always great because you are with the opportuinity to grab the blessings by
+                donating."</em></p>
         <button>DONATE <i class="fa fa-check-circle" aria-hidden="true"></i></button>
         <h6>Donate for cause, donate for change</h6>
     </div>
-    
+
     <script>
-    function myFunc(y) {
-        if (document.getElementById(y).style.display == "none") {
-            document.getElementById(y).style.display = "block";
-        } else {
-            document.getElementById(y).style.display = "none";
+        function myFunc(y) {
+            if (document.getElementById(y).style.display == "none") {
+                document.getElementById(y).style.display = "block";
+            } else {
+                document.getElementById(y).style.display = "none";
+            }
         }
-    }
-    var modal = document.getElementById("myModal");
-    modal.style.display = "none";
-    var span = document.getElementsByClassName("close")[0];
-    function modalDisplay() {
-        modal.style.display = "block";
-    }
-
-    span.onclick = function() {
+        //Modals
+        //Modal1-General Modal
+        var modal = document.getElementById("myModal");
         modal.style.display = "none";
-    }
+        var span = document.getElementsByClassName("close")[0];
 
-    window.onclick = function(event) {
-        if (event.target == modal) {
+        function modalDisplay() {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function() {
             modal.style.display = "none";
         }
-    }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        //Modal2-Image+content
+        var modal2 = document.getElementById("myModal1");
+        modal2.style.display = "none";
+        var span = document.getElementsByClassName("close1")[0];
+
+        function modalDisplay2() {
+            modal2.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal2.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal2.style.display = "none";
+            }
+        }
+
+        //Modal3-Video+content
+        var modal3 = document.getElementById("myModal2");
+        modal3.style.display = "none";
+        var span = document.getElementsByClassName("close2")[0];
+
+        function modalDisplay3() {
+            modal3.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal3.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal3.style.display = "none";
+            }
+        }
+
+        //Modal4-Doc file+content
+        var modal4 = document.getElementById("myModal3");
+        modal4.style.display = "none";
+        var span = document.getElementsByClassName("close3")[0];
+
+        function modalDisplay4() {
+            modal4.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal4.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal4.style.display = "none";
+            }
+        }
     </script>
 </body>
 
 </html>
-
-
-
