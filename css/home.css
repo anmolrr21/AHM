@@ -28,6 +28,7 @@ a.active{
 }
 .onlyPost{
     margin-top: 25px;
+    margin-bottom: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 #share{
@@ -102,7 +103,7 @@ a.active{
     margin-top: -1px;
 }
 .leftCorner p{
-    margin-left: 10%;
+    margin-left: 17%;
     margin-top: -8px;
 }
 .leftCorner .that{
@@ -488,7 +489,7 @@ a.active{
 }
 
 .modal-body .bottomSec button {
-    margin-left: 480px;
+    margin-left: 150px;
     background: #0e76a8;
     width: 100px;
     border-radius: 20px;
@@ -496,7 +497,9 @@ a.active{
     outline: none;
     color: #fff;
 }
-
+#contentButton{
+    margin-left: 450px;
+}
 @media screen and (max-width: 500px) {
     .leftCorner{
         display: none;

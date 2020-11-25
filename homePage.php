@@ -1,3 +1,4 @@
+
 <?php
     if(!isset($_SESSION)){ 
         session_start(); 
@@ -23,34 +24,58 @@
 <body>
     <?php
         include 'commonNavbar.php';
+        include 'common/_dbconnect.php';
     ?>
     <!-- <?php
-            include 'common/_dbconnect.php';
-            $sql = "SELECT * FROM `posts`where `post_id`=19";
             
+            $sql = "SELECT * FROM `posts`where `post_id`=12";
             $result = mysqli_query($conn,$sql);
             $row = mysqli_fetch_assoc($result);
-            $url = "videos/"
-            ?>
-            <video width="320" height="240" style="margin-left: 400px;" controls>
-                <source src="videos/<?php echo $row['video_posted']; ?>" type="video/mp4">
+            $video = $row['video_posted'];
+            $exten = $row['videoExt'];
+            $final = $video.$exten;?>
+            
+            <video id="myVideo" width="320" height="240" style="margin-left: 400px;" controls>
+                    <source src="videos/<?php echo $video; ?>" type="video/<?php echo $exten; ?>">
                 
                 Your browser does not support the video tag.
-            </video> -->
-            
+            </video>  -->
     <div class="leftCorner">
         <div class="emptyFree"></div>
         <img src="images/user.png">
-        <h5>Hitesh Dhameja</h5>
-        <!-- <h4>
-            <?php
-                echo $_SESSION["username"];
-            ?>
-        </h4> -->
-        <p>Volunteer | Fund Raiser | Mind Blowing</p>
+        <h5><?php echo $_SESSION["username"];?></h5>
+        <p><?php
+                $nameOfUser = $_SESSION["username"];
+                $sql = "SELECT `user_id` FROM `users` where `name`='$nameOfUser'";
+                $result = mysqli_query($conn,$sql);
+                $row = mysqli_fetch_assoc($result);
+                $id = $row['user_id'];
+                $sql1 = "SELECT `bio` FROM `user_profile` where `userid`='$id'";
+                $result1 = mysqli_query($conn,$sql1);
+                $row1 = mysqli_fetch_assoc($result1);
+                echo $row1['bio']; 
+        ?></p>
         <hr>
         <h5 class="that">Your Connections</h5>
-        <p class="these">45</p>
+        <p class="these">
+            <?php
+                $nameOfUser = $_SESSION["username"];
+                $sql = "SELECT `user_id` FROM `users` where `name`='$nameOfUser'";
+                $result = mysqli_query($conn,$sql);
+                $row = mysqli_fetch_assoc($result);
+                $id = $row['user_id'];
+                $sql1 = "SELECT * FROM `connections` where `userid`='$id'";
+                $result1 = mysqli_query($conn,$sql1);
+                $num = mysqli_fetch_row($result1);
+                if($num==null){
+                    echo '0';
+                }
+                else{
+                    echo $num;
+                }
+                
+            ?>
+        </p>
         <hr>
         <a href="/AHM/myprofile.php">View Profile</a>
     </div>
@@ -90,18 +115,13 @@
                 <form action="/AHM/addPost.php?onlyContent=true" method="POST">
                     <div class="nameFrame">
                         <img src="images/user.png">
-                        <h5>Hitesh Dhameja</h5>
+                        <h5><?php echo $_SESSION["username"];?></h5>
                     </div>
                     <textarea id="w3review" name="w3review" rows="4" cols="60" placeholder="What's in your mind?"
                         autofocus></textarea>
                     <hr>
                     <div class="bottomSec">
-                        <!-- <a><i class="fa fa-picture-o fa-lg" aria-hidden="true"></i></a>
-                    <a><i class="fa fa-video-camera fa-lg" aria-hidden="true"></i></a>
-                    <a><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a> -->
-
-                        <button type="submit">POST</button>
-
+                        <button id="contentButton" type="submit">POST</button>
                     </div>
                 </form>
             </div>
@@ -118,7 +138,7 @@
                 <form action="/AHM/addPost.php?imageContent=true" method="POST" enctype="multipart/form-data">
                     <div class="nameFrame">
                         <img src="images/user.png">
-                        <h5>Hitesh Dhameja</h5>
+                        <h5><?php echo $_SESSION["username"];?></h5>
                     </div>
                     <textarea id="w3review" name="w3review" rows="4" cols="60" placeholder="What's in your mind?"
                         autofocus></textarea>
@@ -126,7 +146,6 @@
                     <div class="bottomSec">
                         <label for="img">Select image:</label>
                         <input type="file" id="img" name="img" accept="image/*">
-
                         <button>POST</button>
                     </div>
                 </form>
@@ -145,49 +164,20 @@
                 <form action="/AHM/addPost.php?videoContent=true" method="POST" enctype="multipart/form-data">
                     <div class="nameFrame">
                         <img src="images/user.png">
-                        <h5>Hitesh Dhameja</h5>
+                        <h5><?php echo $_SESSION["username"];?></h5>
                     </div>
                     <textarea id="w3review" name="w3review" rows="4" cols="60" placeholder="What's in your mind?"
                         autofocus></textarea>
                     <hr>
                     <div class="bottomSec">
-
                         <label for="img">Select video:</label>
                         <input type="file" id="img" name="video" accept="video/*">
-
                         <button>POST</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
-    <!-- pop up for posting an file
-    <div id="myModal3" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close close3">&times;</span>
-                <h2>Create a post</h2>
-            </div>
-            <div class="modal-body">
-                <div class="nameFrame">
-                    <img src="images/user.png">
-                    <h5>Hitesh Dhameja</h5>
-                </div>
-                <textarea id="w3review" name="w3review" rows="4" cols="60" placeholder="What's in your mind?"
-                    autofocus></textarea>
-                <hr>
-                <div class="bottomSec">
-                    <form action="/action_page.php">
-                        <label for="img">Select document:</label>
-                        <input type="file" id="img">
-                        <button>POST</button>
-                    </form>
-                    <button>POST</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
     <div class="onlyBox2">
         <h4 id="share"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> Share an article, photo, video or
@@ -199,8 +189,6 @@
             </li>
             <li><i class="fa fa-pencil" aria-hidden="true" style="color:orange"></i><button
                     onclick="modalDisplay()">Article</button></li>
-            <!-- <li><i class="fa fa-file-text" aria-hidden="true" style="color:lightblue"></i><button
-                    onclick="modalDisplay4()">Document</button></li> -->
         </ul>
     </div>
 
@@ -208,13 +196,22 @@
 
     <?php
         $i=0;
-        while($i<5){
+        $sql = "SELECT * FROM `posts`";
+        $result = mysqli_query($conn,$sql);
+        while($row = mysqli_fetch_assoc($result)){
+            $id = $row['user_id'];
+            $sql1 = "SELECT * FROM `users` where `user_id`='$id'";
+            $result1 = mysqli_query($conn,$sql1);
+            $row1 = mysqli_fetch_assoc($result1);
+            $sql2 = "SELECT `bio` FROM `user_profile` where `userid`='$id'";
+            $result2 = mysqli_query($conn,$sql2);
+            $row2 = mysqli_fetch_assoc($result2); 
             echo'<div class="share onlyPost">
                     <div class="topNamePic">
                         <img src="images/user.png">
                         <div class="nameDetail">
-                            <h5>Hitesh Dhameja</h5>
-                            <p>Volunteer | Fund Raiser | Mind Blowing</p>
+                            <h5>'.$row1['name'].'</h5>
+                            <p>'.$row2['bio'].'</p>
                             <p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
                         </div>
                     </div>
@@ -222,8 +219,8 @@
                         <img src="https://d1kvkzjpuym02z.cloudfront.net/5a67a03ee4b066cbce1a8ec9.jpg?Expires=2004105968&Signature=Xxv3R1KpOruccbInecmwbvFsPegNnh13REICJvZHItdPjqfKqVs~TH1wUtLrIWfRqVVrbMqmhgH72W7zhkaRWc6kySxYDdQLklWMv4R566rsnzyNsajLsoEaBxD5xVb67HCqUL8AfCkcPZYgpATX-0SsHM2UEsjYjGcvyHCqkdo_&Key-Pair-Id=APKAJXYWFXCDTRLR3EFA">
                     </div>
                     <div class="countL">
-                        <h6><i class="fa fa-thumbs-up" aria-hidden="true"></i> 30Likes</h6>
-                        <h6><i class="fa fa-comments" aria-hidden="true"></i> 3 comments</h6>
+                        <h6><i class="fa fa-thumbs-up" aria-hidden="true"></i> '.$row['likes_count'].'Likes</h6>
+                        <h6><i class="fa fa-comments" aria-hidden="true"></i> '.$row['comments_count'].' comments</h6>
                     </div>
                     <hr>
                     <div class="likeButton">
@@ -320,6 +317,8 @@
     </div>
 
     <script>
+        //document.getElementById("myVideo").controls = true;
+
     function myFunc(y) {
         if (document.getElementById(y).style.display == "none") {
             document.getElementById(y).style.display = "block";
