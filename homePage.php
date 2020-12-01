@@ -14,6 +14,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://use.fontawesome.com/0cf079388a.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <style>
     <?php include 'css/home.css';
     include 'css/navbar.css';
@@ -203,10 +204,16 @@
             $sql1 = "SELECT * FROM `users` where `user_id`='$id'";
             $result1 = mysqli_query($conn,$sql1);
             $row1 = mysqli_fetch_assoc($result1);
-            $sql2 = "SELECT `bio` FROM `user_profile` where `userid`='$id'";
+            $sql2 = "SELECT * FROM `user_profile` where `userid`='$id'";
             $result2 = mysqli_query($conn,$sql2);
-            $row2 = mysqli_fetch_assoc($result2); 
-            echo'<div class="share onlyPost">
+            $row2 = mysqli_fetch_assoc($result2);
+            $sql3 = "SELECT * FROM `posts`";
+            $result3 = mysqli_query($conn,$sql3);
+            $row3 = mysqli_fetch_assoc($result3);
+            $sql4 = "SELECT * FROM `comments`";
+            $result4 = mysqli_query($conn,$sql4);
+            
+            echo'<div id="'.$row3['post_id'].'" class="share onlyPost">
                     <div class="topNamePic">
                         <img src="images/user.png">
                         <div class="nameDetail">
@@ -231,51 +238,51 @@
                     <div id="'.$i.'" class="secComment" style="display: none;">
                         <div class="area">
                             <img src="images/user.png">
-                            <form>  
-                                <input type="text" placeholder="  Leave your thoughts...">
+                            <form method="POST" id="commentForm">  
+                                <input type="text" id="comment" name="comment" placeholder="  Leave your thoughts...">
+                                <button id="commentSubmit" type="submit"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i><br>POST</button>
                             </form>
-                            <button><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i><br>POST</button>
+                            
                         </div>
+                        
                         <div class="commentSection">
-                            <h4>Comments</h4>
-                            <div class="perComment">
-                                <img src="images/user.png">
-                                <div class="contentComment">
-                                    <h5>Hitesh Dhameja</h5>
-                                    <p>Volunteer | Fund Raiser | Mind Blowing</p>
-                                    <p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil asperiores sint debitis quis
-                                        quia
-                                        dolores temporibus similique sunt odit reiciendis. Aut aperiam architecto exercitationem
-                                        eaque
-                                        autem ab beatae velit iusto.</p>
-                                    <div class="likes">
-                                        <a href="#">Like</a>
-                                        <a href="#">Comment</a>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="commentSection">
-                        <div class="perComment">
-                            <img src="images/user.png">
-                            <div class="contentComment">
-                                <h5>Hitesh Dhameja</h5>
-                                <p>Volunteer | Fund Raiser | Mind Blowing</p>
-                                <p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil asperiores sint debitis quis
-                                    quia
-                                    dolores temporibus similique sunt odit reiciendis. Aut aperiam architecto exercitationem
-                                    eaque
-                                    autem ab beatae velit iusto.
-                                    </p>
-                                <div class="likes">
-                                    <a href="#">Like</a>
-                                    <a href="#">Comment</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                            <h4>Comments</h4>';
+                            while($row4 = mysqli_fetch_assoc($result4)){
+                                    echo'<div class="perComment">
+                                            <img src="images/user.png">
+                                            <div class="contentComment">
+                                                <h5>Hitesh Dhameja</h5>
+                                                <p>Volunteer | Fund Raiser | Mind Blowing</p>
+                                                <p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
+                                                <p>'.$row4['comment'].'</p>
+                                                <div class="likes">
+                                                    <a href="#">Like</a>
+                                                    <a href="#">Comment</a>
+                                                </div>
+                                            </div>
+                                        </div>';}
+                            
+                    // <div class="commentSection">
+                    //     <div class="perComment">
+                    //         <img src="images/user.png">
+                    //         <div class="contentComment">
+                    //             <h5>Hitesh Dhameja</h5>
+                    //             <p>Volunteer | Fund Raiser | Mind Blowing</p>
+                    //             <p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
+                    //             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil asperiores sint debitis quis
+                    //                 quia
+                    //                 dolores temporibus similique sunt odit reiciendis. Aut aperiam architecto exercitationem
+                    //                 eaque
+                    //                 autem ab beatae velit iusto.
+                    //                 </p>
+                    //             <div class="likes">
+                    //                 <a href="#">Like</a>
+                    //                 <a href="#">Comment</a>
+                    //             </div>
+                    //         </div>
+                    //     </div>
+                    // </div>
+                echo'</div>
                 </div>
             </div>';
         $i = $i + 1;
@@ -326,6 +333,7 @@
             document.getElementById(y).style.display = "none";
         }
     }
+
     //Modals
     //Modal1-General Modal
     var modal = document.getElementById("myModal");
@@ -384,24 +392,29 @@
         }
     }
 
-    // //Modal4-Doc file+content
-    // var modal4 = document.getElementById("myModal3");
-    // modal4.style.display = "none";
-    // var span = document.getElementsByClassName("close3")[0];
-
-    // function modalDisplay4() {
-    //     modal4.style.display = "block";
-    // }
-
-    // span.onclick = function() {
-    //     modal4.style.display = "none";
-    // }
-
-    // window.onclick = function(event) {
-    //     if (event.target == modal) {
-    //         modal4.style.display = "none";
-    //     }
-    // }
+    //Putting comments to db
+    $('#commentForm').on('submit',function(event){
+        event.preventDefault();
+        var comment = $(this).children('#comment').val();
+        var id = $(this).parents()[2].id;
+        console.log(id);
+        $.ajax({
+            url:"addComment.php",
+            method:"POST",
+            data: {comment:comment,
+            id:id},
+            dataType: "JSON",
+            success: function(data){
+                $(this).children('#comment').val()="";
+                if(data.error != '')
+                {
+                    $('#commentForm').reset();
+                    $('#comment').html(data.error);
+                }
+            }
+        });
+    
+    });
     </script>
 </body>
 
