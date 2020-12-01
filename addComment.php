@@ -13,4 +13,11 @@ $row = mysqli_fetch_assoc($result);
 $id = $row['user_id'];
 $sql1 = "INSERT INTO `comments` (`comment_id`, `post_id`, `user_commented_id`, `comment`, `reply_status`) VALUES (NULL, '$postid', '$id', '$comment', '0')";
 $result1 = mysqli_query($conn,$sql1);
+
+$sql2 = "SELECT * FROM `comments` where `post_id`='$postid'";
+$result2 = mysqli_query($conn,$sql2);
+$count = mysqli_num_rows($result2);
+$count = $count + 1;
+$sql3 = "UPDATE `posts` SET `comments_count` = '$count' WHERE `posts`.`post_id` = $postid";
+$result3 = mysqli_query($conn,$sql3);
 ?>

@@ -346,6 +346,7 @@ a.active{
     margin-left: 2px;
     margin-right: 3px;
     margin-top: 20px;
+    
 }
 .contentComment{
     border: 1px solid #cecdcd;
@@ -354,6 +355,11 @@ a.active{
     border-bottom-right-radius: 15px;
     margin-left: 3px;
     margin-top: -10px;
+    min-width: 390px;
+    min-height: 100px;
+}
+.noComment .contentComment h5{
+    margin-top: 10px;
 }
 .contentComment h5{
     margin-left: 5px;
@@ -365,7 +371,7 @@ a.active{
     margin-left: 5px;
 }
 .contentComment p:nth-child(3){
-    margin-top: -15px;
+    margin-top: 10px;
     font-size: 15px;
     margin-left: 5px;
 }

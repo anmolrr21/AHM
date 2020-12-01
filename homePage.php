@@ -209,84 +209,106 @@
             $row2 = mysqli_fetch_assoc($result2);
             $sql3 = "SELECT * FROM `posts`";
             $result3 = mysqli_query($conn,$sql3);
-            $row3 = mysqli_fetch_assoc($result3);
-            $sql4 = "SELECT * FROM `comments`";
-            $result4 = mysqli_query($conn,$sql4);
-            
-            echo'<div id="'.$row3['post_id'].'" class="share onlyPost">
-                    <div class="topNamePic">
-                        <img src="images/user.png">
-                        <div class="nameDetail">
-                            <h5>'.$row1['name'].'</h5>
-                            <p>'.$row2['bio'].'</p>
-                            <p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
-                        </div>
-                    </div>
-                    <div class="postImage">
-                        <img src="https://d1kvkzjpuym02z.cloudfront.net/5a67a03ee4b066cbce1a8ec9.jpg?Expires=2004105968&Signature=Xxv3R1KpOruccbInecmwbvFsPegNnh13REICJvZHItdPjqfKqVs~TH1wUtLrIWfRqVVrbMqmhgH72W7zhkaRWc6kySxYDdQLklWMv4R566rsnzyNsajLsoEaBxD5xVb67HCqUL8AfCkcPZYgpATX-0SsHM2UEsjYjGcvyHCqkdo_&Key-Pair-Id=APKAJXYWFXCDTRLR3EFA">
-                    </div>
-                    <div class="countL">
-                        <h6><i class="fa fa-thumbs-up" aria-hidden="true"></i> '.$row['likes_count'].'Likes</h6>
-                        <h6><i class="fa fa-comments" aria-hidden="true"></i> '.$row['comments_count'].' comments</h6>
-                    </div>
-                    <hr>
-                    <div class="likeButton">
-                        <a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Like</a>
-                        <a type="button" onclick="myFunc('.$i.')"><i class="fa fa-comments-o" aria-hidden="true"></i>Comment</a>
-                        <hr>
-                    </div>
-                    <div id="'.$i.'" class="secComment" style="display: none;">
-                        <div class="area">
-                            <img src="images/user.png">
-                            <form method="POST" id="commentForm">  
-                                <input type="text" id="comment" name="comment" placeholder="  Leave your thoughts...">
-                                <button id="commentSubmit" type="submit"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i><br>POST</button>
-                            </form>
-                            
-                        </div>
-                        
-                        <div class="commentSection">
-                            <h4>Comments</h4>';
-                            while($row4 = mysqli_fetch_assoc($result4)){
-                                    echo'<div class="perComment">
+            if(mysqli_num_rows($result3)>0){
+                while($row3 = mysqli_fetch_assoc($result3)){
+                    $sql4 = "SELECT * FROM `comments`";
+                    $result4 = mysqli_query($conn,$sql4);
+                    $num = mysqli_num_rows($result4);
+                    echo'<div id="'.$row3['post_id'].'" class="share onlyPost">
+                            <div class="topNamePic">
+                                <img src="images/user.png">
+                                <div class="nameDetail">
+                                    <h5>'.$row1['name'].'</h5>
+                                    <p>'.$row2['bio'].'</p>
+                                    <p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
+                                </div>
+                            </div>';
+                            if($row3['image_posted']!=NULL){
+                            echo'<div class="postImage">
+                                <img src="https://d1kvkzjpuym02z.cloudfront.net/5a67a03ee4b066cbce1a8ec9.jpg?Expires=2004105968&Signature=Xxv3R1KpOruccbInecmwbvFsPegNnh13REICJvZHItdPjqfKqVs~TH1wUtLrIWfRqVVrbMqmhgH72W7zhkaRWc6kySxYDdQLklWMv4R566rsnzyNsajLsoEaBxD5xVb67HCqUL8AfCkcPZYgpATX-0SsHM2UEsjYjGcvyHCqkdo_&Key-Pair-Id=APKAJXYWFXCDTRLR3EFA">
+                            </div>';}
+                            if($row3['video_posted']!=NULL){
+                            echo'<div class="postImage">
+                                <video id="myVideo" width="320" height="240" style="margin-left: 400px;" controls>
+                                    <source src="videos/'.$row3['video_posted'].'" type="video/'.$row3['videoExt'].'">
+                                        Your browser does not support the video tag.
+                                </video>
+                            </div>';}
+                            echo'<div class="countL">
+                                <h6 id="count"><i class="fa fa-thumbs-up" aria-hidden="true"></i> '.$row['likes_count'].' Likes</h6>
+                                <h6><i class="fa fa-comments" aria-hidden="true"></i> '.$row['comments_count'].' comments</h6>
+                            </div>
+                            <hr>
+                            <div class="likeButton">
+                                <a id="like" href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Like</a>
+                                <a type="button" onclick="myFunc('.$i.')"><i class="fa fa-comments-o" aria-hidden="true"></i>Comment</a>
+                                <hr>
+                            </div>
+                            <div id="'.$i.'" class="secComment" style="display: none;">
+                                <div class="area">
+                                    <img src="images/user.png">
+                                    <form method="POST" id="commentForm">  
+                                        <input type="text" id="comment" name="comment" placeholder="  Leave your thoughts...">
+                                        <button id="commentSubmit" type="submit"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i><br>POST</button>
+                                    </form>
+                                    
+                                </div>
+                                
+                                <div class="commentSection">
+                                    <h4>Comments</h4>';
+                                    if($num>0){
+                                        while($row4 = mysqli_fetch_assoc($result4)){
+                                            echo'<div class="perComment">
+                                                    <img src="images/user.png">
+                                                    <div class="contentComment">
+                                                        <h5>Hitesh Dhameja</h5>
+                                                        <p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
+                                                        <p>'.$row4['comment'].'</p>
+                                                        <div class="likes">
+                                                            <a href="#">Like</a>
+                                                            <a href="#">Comment</a>
+                                                        </div>
+                                                    </div>
+                                                </div>';
+                                        }
+                                    }
+                                    
+                                    else{
+                                        echo'<div id="noComment" class="perComment">
+                                                <div class="contentComment">
+                                                    <h5>No Comments Yet! Be the first to comment</h5>
+                                                </div>
+                                            </div>';
+                                    }
+                                    echo'<div id="perComment" class="perComment" style="display:none;">
                                             <img src="images/user.png">
                                             <div class="contentComment">
                                                 <h5>Hitesh Dhameja</h5>
-                                                <p>Volunteer | Fund Raiser | Mind Blowing</p>
-                                                <p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
-                                                <p>'.$row4['comment'].'</p>
+                                                <p>1m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
+                                                <p id="newcomment"></p>
                                                 <div class="likes">
                                                     <a href="#">Like</a>
                                                     <a href="#">Comment</a>
                                                 </div>
                                             </div>
-                                        </div>';}
-                            
-                    // <div class="commentSection">
-                    //     <div class="perComment">
-                    //         <img src="images/user.png">
-                    //         <div class="contentComment">
-                    //             <h5>Hitesh Dhameja</h5>
-                    //             <p>Volunteer | Fund Raiser | Mind Blowing</p>
-                    //             <p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
-                    //             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil asperiores sint debitis quis
-                    //                 quia
-                    //                 dolores temporibus similique sunt odit reiciendis. Aut aperiam architecto exercitationem
-                    //                 eaque
-                    //                 autem ab beatae velit iusto.
-                    //                 </p>
-                    //             <div class="likes">
-                    //                 <a href="#">Like</a>
-                    //                 <a href="#">Comment</a>
-                    //             </div>
-                    //         </div>
-                    //     </div>
-                    // </div>
-                echo'</div>
-                </div>
-            </div>';
-        $i = $i + 1;
+                                        </div>
+                                </div>
+                            </div>
+                        </div>';
+                }
+            }
+            else{
+                echo'<div class="notifyBox belowBox">
+                        <div class="noNotify">
+                            <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color:green"></i>
+                            <h4>You caught all Posts!</h4>
+                            <p>You will be notified when new posts arrives...</p>
+                        </div>
+                    </div>';
+            }
+            $i = $i + 1;
         }
+        
     ?>
 
     <div class="rightCorner">
@@ -397,7 +419,6 @@
         event.preventDefault();
         var comment = $(this).children('#comment').val();
         var id = $(this).parents()[2].id;
-        console.log(id);
         $.ajax({
             url:"addComment.php",
             method:"POST",
@@ -413,8 +434,45 @@
                 }
             }
         });
+        loadComment();
+        function loadComment(){
+            document.getElementById('perComment').style.display="flex";
+            document.getElementById('newcomment').innerHTML = document.getElementById('comment').value;
+            document.getElementById('comment').value="";
+            if(document.getElementById('noComment')!=null){
+                document.getElementById('noComment').style.display="none";
+            }
+        }
+            
     
     });
+    $('#like').on('click',function(event){
+        event.preventDefault();
+        var id = $(this).parents()[1].id;
+        $.ajax({
+            url:"likeUpdate.php",
+            method:"POST",
+            data: {id:id},
+            dataType: "JSON",
+            success: function(data){
+                $(this).children('#comment').val()="";
+                if(data.error != '')
+                {
+                    $('#commentForm').reset();
+                    $('#comment').html(data.error);
+                }
+            }
+        });
+        updateLike();
+        function updateLike(){
+            var count = document.getElementById('count').innerHTML
+            var numCount = count.substring(51,53);
+            var sym = count.substring(0,51);
+            var nextCount = Number(numCount) + 1;
+            document.getElementById('count').innerHTML = sym+nextCount+" Likes";
+        }
+    });
+
     </script>
 </body>
 
