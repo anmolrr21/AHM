@@ -22,6 +22,7 @@
                 $target_dir = 'images/';
                 $target_file = $target_dir . basename($_FILES["img"]["name"]);
                 move_uploaded_file($pname,$target_file);
+                $img_path=$_FILES['img']['name'];
                 $blob = fopen($target_file, "rb");
                 $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
                 $nameOfUser = $_SESSION["username"];
@@ -29,7 +30,7 @@
                 $result = mysqli_query($conn,$sql);
                 $row = mysqli_fetch_assoc($result);
                 $id = $row['user_id'];
-                $sql1 = "INSERT INTO `posts` (`post_id`, `user_id`, `image_posted`, `imgExt`, `video_posted`, `videoExt`, `article`, `likes_count`, `comments_count`) VALUES (NULL, '$id','$blob', '$fileType', NULL, NULL, NULL, '0', '0')"; 
+                $sql1 = "INSERT INTO `posts` (`post_id`, `user_id`, `image_posted`, `imgExt`, `video_posted`, `videoExt`, `article`, `likes_count`, `comments_count`) VALUES (NULL, '$id','$img_path', '$fileType', NULL, NULL, NULL, '0', '0')"; 
                 $result1 = mysqli_query($conn,$sql1);
                 header("location:/AHM/homePage.php?success=true");
             }
