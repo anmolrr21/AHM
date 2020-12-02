@@ -28,6 +28,8 @@ a.active{
 }
 .onlyPost{
     margin-top: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 #share{
     border: 2px solid rgb(167, 167, 167);
@@ -59,12 +61,7 @@ a.active{
 }
  .onlyBox2 ul li:nth-child(1){
     margin-left: -20px;
-}/*
-.onlyBox2 ul li:nth-child(2),
-.onlyBox2 ul li:nth-child(3),
-.onlyBox2 ul li:nth-child(4){
-    padding-left: 50px;
-} */
+}
 .onlyBox2 ul li i{
     padding-right: 3px;
 }
@@ -77,6 +74,7 @@ a.active{
 .leftCorner{
     width: 27%;
     border: 1px solid #000;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-left: 2%;
     margin-top: 8%;
     border-radius: 10px;
@@ -105,7 +103,7 @@ a.active{
     margin-top: -1px;
 }
 .leftCorner p{
-    margin-left: 10%;
+    margin-left: 17%;
     margin-top: -8px;
 }
 .leftCorner .that{
@@ -123,6 +121,7 @@ a.active{
     width: 27%;
     display: block;
     border: 1px solid #000;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-left: 2%;
     margin-top: 35%;
     border-radius: 10px;
@@ -157,6 +156,7 @@ a.active{
 .rightCorner{
     width: 27%;
     border: 1px solid #000;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-left: 70%;
     margin-top: 8%;
     border-radius: 10px;
@@ -213,6 +213,7 @@ a.active{
 .rightBottom{
     width: 27%;
     border: 1px solid #000;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-left: 70%;
     margin-top: 40%;
     border-radius: 10px;
@@ -274,7 +275,8 @@ a.active{
     margin-right: -50px;
 }
 .onlyPost .postImage img{
-    width: 89%; 
+    width: 80%; 
+    height: 10%;
 }
 .countL{
     display: flex;
@@ -346,6 +348,7 @@ a.active{
     margin-left: 2px;
     margin-right: 3px;
     margin-top: 20px;
+    
 }
 .contentComment{
     border: 1px solid #cecdcd;
@@ -354,6 +357,11 @@ a.active{
     border-bottom-right-radius: 15px;
     margin-left: 3px;
     margin-top: -10px;
+    min-width: 390px;
+    min-height: 100px;
+}
+.noComment .contentComment h5{
+    margin-top: 10px;
 }
 .contentComment h5{
     margin-left: 5px;
@@ -365,7 +373,7 @@ a.active{
     margin-left: 5px;
 }
 .contentComment p:nth-child(3){
-    margin-top: -15px;
+    margin-top: 10px;
     font-size: 15px;
     margin-left: 5px;
 }
@@ -449,6 +457,7 @@ a.active{
     padding: 2px 16px;
     background-color: #0e76a8;
     color: white;
+    overflow: hidden;
 }
 
 .modal-body {
@@ -488,14 +497,17 @@ a.active{
 }
 
 .modal-body .bottomSec button {
-    margin-left: 370px;
+    margin-left: 150px;
     background: #0e76a8;
     width: 100px;
     border-radius: 20px;
     height: 40px;
     outline: none;
+    color: #fff;
 }
-
+#contentButton{
+    margin-left: 450px;
+}
 @media screen and (max-width: 500px) {
     .leftCorner{
         display: none;
