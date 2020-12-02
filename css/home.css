@@ -274,8 +274,8 @@ a.active{
     margin-right: -50px;
 }
 .onlyPost .postImage img{
-    width: 89%; 
-    height: 40%;
+    width: 80%; 
+    height: 10%;
 }
 .countL{
     display: flex;

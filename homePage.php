@@ -23,24 +23,16 @@
 </head>
 
 <body>
+    <!-- Including common files -->
+
     <?php
         include 'commonNavbar.php';
         include 'common/_dbconnect.php';
     ?>
-    <!-- <?php
-            
-            $sql = "SELECT * FROM `posts`where `post_id`=12";
-            $result = mysqli_query($conn,$sql);
-            $row = mysqli_fetch_assoc($result);
-            $video = $row['video_posted'];
-            $exten = $row['videoExt'];
-            $final = $video.$exten;?>
-            
-            <video id="myVideo" width="320" height="240" style="margin-left: 400px;" controls>
-                    <source src="videos/<?php echo $video; ?>" type="video/<?php echo $exten; ?>">
-                
-                Your browser does not support the video tag.
-            </video>  -->
+
+
+    <!-- Left Section Of home -->
+
     <div class="leftCorner">
         <div class="emptyFree"></div>
         <img src="images/user.png">
@@ -106,6 +98,7 @@
     </div>
 
     <!-- Ingeneral popup for post -->
+
     <div id="myModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -129,6 +122,7 @@
         </div>
     </div>
     <!-- pop up for posting an image + written content -->
+
     <div id="myModal1" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -155,6 +149,7 @@
     </div>
 
     <!-- pop up for posting an video+written content -->
+
     <div id="myModal2" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -180,6 +175,8 @@
         </div>
     </div>
 
+    <!-- Middle Section of home -->
+
     <div class="onlyBox2">
         <h4 id="share"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> Share an article, photo, video or
             idea</h4>
@@ -197,6 +194,8 @@
 
     <?php
         $i=0;
+        $j=111111;
+        $k= "#commentForm".strval($i);
         $sql = "SELECT * FROM `posts`";
         $result = mysqli_query($conn,$sql);
         while($row = mysqli_fetch_assoc($result)){
@@ -219,34 +218,38 @@
                             <p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
                         </div>
                     </div>';
+                    if($row['article']!=NULL){
+                        echo'<div class="postImage">
+                        <h4>'.$row['article'].'</h4>
+                    </div>';
+                    }
                     if($row['image_posted']!=NULL){
-                        
                     echo'<div class="postImage">
-                        <img src="images/'.$row['image_posted'].'" />
+                        <img src="images/'.$row['image_posted'].'"/>
                     </div>';}
                     if($row['video_posted']!=NULL){
-                    echo'<div class="postImage">
-                        <video id="myVideo" width="320" height="240" style="margin-left: 400px;" controls>
+                    echo'<div class="postImage" style="margin-left:-380px">
+                        <video id="myVideo" width="440" height="240" style="margin-left: 400px;" controls>
                             <source src="videos/'.$row['video_posted'].'" type="video/'.$row['videoExt'].'">
                                 Your browser does not support the video tag.
                         </video>
                     </div>';}
                     echo'<div class="countL">
-                        <h6 id="count"><i class="fa fa-thumbs-up" aria-hidden="true"></i> '.$row['likes_count'].' Likes</h6>
+                        <h6 id="'.$j.'"><i class="fa fa-thumbs-up" aria-hidden="true"></i> '.$row['likes_count'].' Likes</h6>
                         <h6><i class="fa fa-comments" aria-hidden="true"></i> '.$row['comments_count'].' comments</h6>
                     </div>
                     <hr>
                     <div class="likeButton">
-                        <a id="like" href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Like</a>
+                        <a class="like" onclick="updateLike('.$j.')"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Like</a>
                         <a type="button" onclick="myFunc('.$i.')"><i class="fa fa-comments-o" aria-hidden="true"></i>Comment</a>
                         <hr>
                     </div>
                     <div id="'.$i.'" class="secComment" style="display: none;">
                         <div class="area">
                             <img src="images/user.png">
-                            <form method="POST" id="commentForm">  
+                            <form method="POST" id="'.$k.'">  
                                 <input type="text" id="comment" name="comment" placeholder="  Leave your thoughts...">
-                                <button id="commentSubmit" type="submit"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i><br>POST</button>
+                                <button id="commentSubmit" onclick="commentFormId(this)" type="submit"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i><br>POST</button>
                             </form>
                             
                         </div>
@@ -294,9 +297,12 @@
                 </div>';
                 
             $i = $i + 1;
+            $j = $j + 1;
         }
         
     ?>
+
+    <!-- Right section of home -->
 
     <div class="rightCorner">
         <div class="rightFirst">
@@ -332,9 +338,10 @@
         <h6>Donate for cause, donate for change</h6>
     </div>
 
+    <!-- Javascript -->
     <script>
-        //document.getElementById("myVideo").controls = true;
-
+        
+    // Displaying comment section 
     function myFunc(y) {
         if (document.getElementById(y).style.display == "none") {
             document.getElementById(y).style.display = "block";
@@ -400,12 +407,16 @@
             modal3.style.display = "none";
         }
     }
-
+    function commentFormId(obj){
+        var id = $(obj).parent()[0].id;
+        console.log(id)
+        actualComment(id);
+    }
     //Putting comments to db
-    $('#commentForm').on('submit',function(event){
-        event.preventDefault();
-        var comment = $(this).children('#comment').val();
-        var id = $(this).parents()[2].id;
+    function actualComment(id1){
+    
+        var comment = $(id1).children("input").val();
+        var id = $(id1).parents()[2].id;
         $.ajax({
             url:"addComment.php",
             method:"POST",
@@ -413,7 +424,7 @@
             id:id},
             dataType: "JSON",
             success: function(data){
-                $(this).children('#comment').val()="";
+                $(this).children('input').val()="";
                 if(data.error != '')
                 {
                     $('#commentForm').reset();
@@ -432,8 +443,10 @@
         }
             
     
-    });
-    $('#like').on('click',function(event){
+    }
+
+    //Putting likes into db
+    $('.like').on('click',function(event){
         event.preventDefault();
         var id = $(this).parents()[1].id;
         $.ajax({
@@ -450,15 +463,17 @@
                 }
             }
         });
-        updateLike();
-        function updateLike(){
-            var count = document.getElementById('count').innerHTML
+        
+    });
+
+    //Updating likes on post
+    function updateLike(z){
+            var count = document.getElementById(z).innerHTML
             var numCount = count.substring(51,53);
             var sym = count.substring(0,51);
             var nextCount = Number(numCount) + 1;
-            document.getElementById('count').innerHTML = sym+nextCount+" Likes";
+            document.getElementById(z).innerHTML = sym+nextCount+" Likes";
         }
-    });
 
     </script>
 </body>
