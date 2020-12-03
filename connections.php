@@ -111,6 +111,14 @@
         </div>
     </div>
 
+    <div class="notifyBox belowBox">
+        <div class="noNotify">
+            <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color:green"></i>
+            <h4>No new Requests!</h4>
+            <p>You will be notified when new requests arrives...</p>
+        </div>
+    </div>
+
     <!-- People you want to connect with section -->
     <div class="notifyBox belowBox">
         <div class="notifyHeading">

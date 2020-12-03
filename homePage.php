@@ -313,6 +313,7 @@
         </div>
         <hr>
         <?php
+            $name = $_SESSION["username"];
             $sql2 = "SELECT * FROM `users` where `name`<>'$name' ORDER BY RAND() LIMIT 3";
             $result2 = mysqli_query($conn,$sql2);
             while($row = mysqli_fetch_assoc($result2)){
