@@ -34,13 +34,41 @@
     <div class="leftCorner">
         <div class="emptyFree"></div>
         <img src="images/user.png">
-        <h5>Hitesh Dhameja</h5>
-        <p>Volunteer | Fund Raiser | Mind Blowing</p>
+        <h5><?php echo $_SESSION["username"];?></h5>
+        <p><?php
+                $nameOfUser = $_SESSION["username"];
+                $sql = "SELECT `user_id` FROM `users` where `name`='$nameOfUser'";
+                $result = mysqli_query($conn,$sql);
+                $row = mysqli_fetch_assoc($result);
+                $id = $row['user_id'];
+                $sql1 = "SELECT `bio` FROM `user_profile` where `userid`='$id'";
+                $result1 = mysqli_query($conn,$sql1);
+                $row1 = mysqli_fetch_assoc($result1);
+                echo $row1['bio']; 
+        ?></p>
         <hr>
         <h5 class="that">Your Connections</h5>
-        <p class="these">45</p>
+        <p class="these">
+            <?php
+                $nameOfUser = $_SESSION["username"];
+                $sql = "SELECT `user_id` FROM `users` where `name`='$nameOfUser'";
+                $result = mysqli_query($conn,$sql);
+                $row = mysqli_fetch_assoc($result);
+                $id = $row['user_id'];
+                $sql1 = "SELECT * FROM `connections` where `userid`='$id'";
+                $result1 = mysqli_query($conn,$sql1);
+                $num = mysqli_fetch_row($result1);
+                if($num==null){
+                    echo '0';
+                }
+                else{
+                    echo $num;
+                }
+                
+            ?>
+        </p>
         <hr>
-        <a href="#">View Profile</a>
+        <a href="/AHM/myprofile.php">View Profile</a>
     </div>
     <div class="leftBottom">
         <div class="footer">
@@ -49,6 +77,7 @@
                 <small>Request Demo</small><br>
                 <small>FAQs</small>
             </div>
+            
             <div class="linkTitle">
                 <h4>Support</h4>
                 <small>Features</small><br>
@@ -171,32 +200,6 @@
         <h6>Donate for cause, donate for change</h6>
     </div>
 
-    <script>
-    function myFunc(y) {
-        if (document.getElementById(y).style.display == "none") {
-            document.getElementById(y).style.display = "block";
-        } else {
-            document.getElementById(y).style.display = "none";
-        }
-    }
-    var modal = document.getElementById("myModal");
-    modal.style.display = "none";
-    var span = document.getElementsByClassName("close")[0];
-
-    function modalDisplay() {
-        modal.style.display = "block";
-    }
-
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-    </script>
 </body>
 
 </html>

@@ -11,10 +11,10 @@
         <li class="decide"><i class="fa fa-lightbulb-o fa-lg" aria-hidden="true" style="color:white"></i><a href="/AHM/recommendation.php" id="this3" class="nav1">Recommendations</a>
         </li>
         <li class="decide"><i class="fa fa-bell fa-lg" aria-hidden="true" style="color:white"></i><a href="/AHM/notification.php" id="this4" class="nav1">Notifications</a></li>
-        <li id="thisOnee"><img src="images/user.png"><a href="#" onclick="myFunction()" class="nav1">Me</a></li>
+        <li id="thisOnee"><img src="images/user.png"><a href="#" class="nav1">Me</a></li>
     </ul>
     <div class="dropdown">
-        <!-- <button  class="dropbtn"><i class="fa fa-caret-down" aria-hidden="true"></i></button> -->
+        <button  class="dropbtn"><i class="fa fa-caret-down" aria-hidden="true"></i></button>
         <div id="myDropdown" class="dropdown-content">
             <a href="myprofile.php">View Profile</a>
             <a href="#">Raise Fund</a>
@@ -79,17 +79,6 @@
         document.getElementById('thisOnee').style.marginLeft="-40px";
     }
     
-//For dropdown menu
-function myFunction() {
-    if(window.innerWidth>500){
-        document.getElementById('myDropdown').classList.toggle("show");
-    }
-    else{
-        openNav() ; 
-
-    }
-    
-}
 window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
