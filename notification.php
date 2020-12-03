@@ -1,3 +1,8 @@
+<?php
+    if(!isset($_SESSION)){ 
+        session_start(); 
+    }
+?>
 <!DOCTYPE html>
 <html>
 
@@ -16,9 +21,15 @@
 </head>
 
 <body>
+    <!-- Including common files -->
+
     <?php
         include 'commonNavbar.php';
+        include 'common/_dbconnect.php';
     ?>
+
+
+    <!-- Left Section Of home -->
 
     <div class="leftCorner">
         <div class="emptyFree"></div>
@@ -28,8 +39,6 @@
         <hr>
         <h5 class="that">Your Connections</h5>
         <p class="these">45</p>
-        <!-- <h5 class="that">Followers</h5>
-        <p class="these">99</p> -->
         <hr>
         <a href="#">View Profile</a>
     </div>
@@ -156,6 +165,8 @@
         </div>
     </div>
 
+    <!-- Right section of home -->
+
     <div class="rightCorner">
         <div class="rightFirst">
             <h5>Add to your Feed</h5>
@@ -163,23 +174,33 @@
         </div>
         <hr>
         <?php
-            $m=0;
-            while($m<3){
+            $name = $_SESSION["username"];
+            $sql2 = "SELECT * FROM `users` where `name`<>'$name' ORDER BY RAND() LIMIT 3";
+            $result2 = mysqli_query($conn,$sql2);
+            while($row = mysqli_fetch_assoc($result2)){
+                $id = $row['user_id'];
+                $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
+                $result1 = mysqli_query($conn,$sql1);
+                $row1 = mysqli_fetch_assoc($result1);
+                $bio = $row1['bio'];
+                if($bio==""){
+                    $bio = $row['type'];
+                }
                 echo'<div class="rightSuggest">
                         <img src="images/user.png">
                         <div class="part">
-                            <h5>Hitesh Dhameja</h5>
-                            <p>Volunteer | Fund Raiser | Mind Blowing</p>
+                            <h5>'.$row['name'].'</h5>
+                            <p>'.$bio.'</p>
                             <button>View Profile</button>
                             <button>Connect</button>
                         </div>
                         
                     </div>';
-            $m = $m + 1;
             }
         ?>
         <a href="/AHM/recommendation.php">View More</a>
     </div>
+
     <div class="rightBottom">
         <h5>Raise Funds</h5>
         <p><em>"Having something extra is always great because you are with the opportuinity to grab the blessings

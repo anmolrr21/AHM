@@ -1,10 +1,15 @@
+<?php
+    if(!isset($_SESSION)){ 
+        session_start(); 
+    }
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My Connections | ConnecTTogether</title>
+    <title>Recommendations | ConnecTTogether</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://use.fontawesome.com/0cf079388a.js"></script>
@@ -16,9 +21,15 @@
 </head>
 
 <body>
+    <!-- Including common files -->
+
     <?php
         include 'commonNavbar.php';
+        include 'common/_dbconnect.php';
     ?>
+
+
+    <!-- Left Section Of home -->
 
     <div class="leftCorner">
         <div class="emptyFree"></div>
@@ -28,8 +39,6 @@
         <hr>
         <h5 class="that">Your Connections</h5>
         <p class="these">45</p>
-        <!-- <h5 class="that">Followers</h5>
-        <p class="these">99</p> -->
         <hr>
         <a href="#">View Profile</a>
     </div>
@@ -57,78 +66,69 @@
         </div>
     </div>
 
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close">&times;</span>
-                <h2>Create a post</h2>
-            </div>
-            <div class="modal-body">
-                <div class="nameFrame">
-                    <img src="images/user.png">
-                    <h5>Hitesh Dhameja</h5>
-                </div>
-                <textarea id="w3review" name="w3review" rows="4" cols="60" placeholder="What's in your mind?"
-                    autofocus></textarea>
-                <hr>
-                <div class="bottomSec">
-                    <a><i class="fa fa-picture-o fa-lg" aria-hidden="true"></i></a>
-                    <a><i class="fa fa-video-camera fa-lg" aria-hidden="true"></i></a>
-                    <a><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>
-                    <button>POST</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <div class="notifyBox">
         <div class="notifyHeading">
             <h5>Public</h5>
             <p><i class="fa fa-bookmark fa-lg" aria-hidden="true" style="color:black"></i></p>
         </div>
         <hr>
-        <div class="rightSuggest">
-            <img src="images/user.png">
-            <div class="part">
-                <h5>Hitesh Dhameja</h5>
-                <p>Volunteer | Fund Raiser | Mind Blowing</p>
-                <button>View Profile</button>
-            </div>
-        </div>
-        <div class="rightSuggest">
-            <img src="images/user.png">
-            <div class="part">
-                <h5>Hitesh Dhameja</h5>
-                <p>Volunteer | Fund Raiser | Mind Blowing</p>
-                <button>View Profile</button>
-            </div>
-        </div>
+        <?php
+        $name = $_SESSION["username"];
+        $sql = "SELECT * FROM `users` where `name`<>'$name' and `type`='Individual'";
+        $result = mysqli_query($conn,$sql);
+        while($row = mysqli_fetch_assoc($result)){
+            $id = $row['user_id'];
+            $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
+            $result1 = mysqli_query($conn,$sql1);
+            $row1 = mysqli_fetch_assoc($result1);
+            $bio = $row1['bio'];
+            if($bio==""){
+                $bio = $row['type'];
+            }
+            echo'<div class="rightSuggest">
+                    <img src="images/user.png">
+                    <div class="part">
+                        <h5>'.$row['name'].'</h5>
+                        <p>'.$bio.'</p>
+                        <button>View Profile</button>
+                    </div>
+                </div>';
+        }
+        ?>
     </div>
 
     <div class="notifyBox belowBox">
         <div class="notifyHeading">
             <h5>NGO</h5>
-            <p><i class="fa fa-calendar fa-lg" aria-hidden="true" style="color:black"></i></p>
+            <p><i class="fa fa-bookmark fa-lg" aria-hidden="true" style="color:black"></i></p>
         </div>
         <hr>
-        <div class="rightSuggest">
-            <img src="images/user.png">
-            <div class="part">
-                <h5>Mahima- Mahila Jyoti Foundation</h5>
-                <p>Volunteer | Women Empowerment | Mind Blowing</p>
-                <button>View Profile</button>
-            </div>
-        </div>
-        <div class="rightSuggest">
-            <img src="images/user.png">
-            <div class="part">
-                <h5>Mahima- Mahila Jyoti Foundation</h5>
-                <p>Volunteer | Women Empowerment | Mind Blowing</p>
-                <button>Profile</button>
-            </div>
-        </div>
+        <?php
+        $name = $_SESSION["username"];
+        $sql = "SELECT * FROM `users` where `name`<>'$name' and `type`='Organization'";
+        $result = mysqli_query($conn,$sql);
+        while($row = mysqli_fetch_assoc($result)){
+            $id = $row['user_id'];
+            $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
+            $result1 = mysqli_query($conn,$sql1);
+            $row1 = mysqli_fetch_assoc($result1);
+            $bio = $row1['bio'];
+            if($bio==""){
+                $bio = $row['type'];
+            }
+            echo'<div class="rightSuggest">
+                    <img src="images/user.png">
+                    <div class="part">
+                        <h5>'.$row['name'].'</h5>
+                        <p>'.$bio.'</p>
+                        <button>View Profile</button>
+                    </div>
+                </div>';
+        }
+        ?>
     </div>
+
+    <!-- Right section of home -->
 
     <div class="rightCorner">
         <div class="rightFirst">
@@ -137,23 +137,32 @@
         </div>
         <hr>
         <?php
-            $m=0;
-            while($m<3){
+            $sql2 = "SELECT * FROM `users` where `name`<>'$name' ORDER BY RAND() LIMIT 3";
+            $result2 = mysqli_query($conn,$sql2);
+            while($row = mysqli_fetch_assoc($result2)){
+                $id = $row['user_id'];
+                $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
+                $result1 = mysqli_query($conn,$sql1);
+                $row1 = mysqli_fetch_assoc($result1);
+                $bio = $row1['bio'];
+                if($bio==""){
+                    $bio = $row['type'];
+                }
                 echo'<div class="rightSuggest">
                         <img src="images/user.png">
                         <div class="part">
-                            <h5>Hitesh Dhameja</h5>
-                            <p>Volunteer | Fund Raiser | Mind Blowing</p>
+                            <h5>'.$row['name'].'</h5>
+                            <p>'.$bio.'</p>
                             <button>View Profile</button>
                             <button>Connect</button>
                         </div>
                         
                     </div>';
-            $m = $m + 1;
             }
         ?>
         <a href="/AHM/recommendation.php">View More</a>
     </div>
+    
     <div class="rightBottom">
         <h5>Raise Funds</h5>
         <p><em>"Having something extra is always great because you are with the opportuinity to grab the blessings
