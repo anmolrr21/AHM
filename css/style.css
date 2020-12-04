@@ -12,13 +12,15 @@
     position: fixed;
     top: 0;
     width: 100%;
+    background-color: #0e76a8 ;
 }
+
 ul.topnav{
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background: linear-gradient(to right,#2385e6,#1c86ee);
+    background: linear-gradient(to right,#0e76a8,#0e76a8);
     height: 85px;
 }
 ul.topnav li{
@@ -62,11 +64,11 @@ ul.topnav li.right a{
 }
 .bottomButton:hover{
     background-color: #fff;
-    color: #1c86ee;
+    color: #0e76a8;
 }
 ul.topnav li.right a:hover{
     background-color: #fff;
-    color: #1c86ee;
+    color: #0e76a8;
 }
 .new{
     margin-top: -5px;
@@ -92,19 +94,19 @@ h1{
     height: 12px;
     width: 12px;
     display: inline-block;
-    background: #2385e6;
+    background:#0e76a8;
     margin: 15px 0;
 }
 .commonBtn {
     padding: 18px 40px;
     background: transparent;
     outline: none;
-    border: 2px solid #1c86ee;
+    border: 2px solid #0e76a8;
     cursor: pointer;
     font-weight: bold;
 }
 .commonBtn:hover{
-    background-color: #1c86ee;
+    background-color: #0e76a8;
     color: #fff;
 }
 p{
@@ -122,19 +124,19 @@ p{
 .line1{
     width: 15px;
     height: 15px;
-    background: #2385e6;
+    background: #0e76a8;
     display: inline-block;
 }
 .line2{
     width: 80px;
     height: 1px;
-    background: #2385e6;
+    background:#0e76a8;
     display: inline-block;
 }
 .line3{
     width: 60px;
     height: 1px;
-    background: #2385e6;
+    background: #0e76a8;
     display: inline-block;
 }
 .smallS{
@@ -288,7 +290,7 @@ form input{
     outline: none;
     box-shadow: none;
     box-sizing: border-box;
-    border: 2px solid #1c86ee;
+    border: 2px solid #0e76a8;
 }
 .btnBox{
     width: 100%;
@@ -300,7 +302,7 @@ form input{
     padding: 18px 0;
 }
 .btnBox button:hover{
-    background-color: #1c86ee;
+    background-color: #0e76a8;
     color: #fff;
 }
 .btnBox button i:hover{
@@ -324,7 +326,7 @@ hr{
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    background: linear-gradient(to right,#2385e6,#1c86ee);
+    background: linear-gradient(to right,#0e76a8,#0e76a8);
     padding-bottom: 30px;
     margin-bottom: -30px;
 }
@@ -467,7 +469,7 @@ hr{
         display: none;
         margin-top: 85px;
         text-align: center;
-        background: #1c86ee;
+        background: #0e76a8;
     }
     .smallS ul li:nth-child(1){
         padding-top: 20px;

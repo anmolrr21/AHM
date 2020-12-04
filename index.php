@@ -14,7 +14,7 @@
         <section id="header">
             <ul id="top" class="topnav">
                 <li><img src="images/logo.png" width="90px"></li>
-                <li><a href="index.html">ConnecTTogether</a></li>
+                <li style="font-size:24px;"><a href="index.html"><b>ConnecTTogether<b></a></li>
                 <li><a class="nav1 active" href="#" >HOME</a></li>
                 <li><a class="nav1" href="#about">ABOUT US</a></li>
                 <li><a class="nav1" href="#features">WHY US?</a></li>
