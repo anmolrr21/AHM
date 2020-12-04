@@ -1,4 +1,4 @@
-* {   
+body {   
     
     background: #f3f7f7;
 }
@@ -21,6 +21,17 @@
    color: #721c24;
    background-color: #f8d7da;
 
+}
+.header{
+   background-color: #1a75ff;
+   margin:-10px;
+   
+   height:90px;
+
+}
+.logo{
+   margin-top:-70px;
+   
 }
 .headings{
    margin-top: 70px;

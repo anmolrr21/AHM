@@ -9,6 +9,7 @@
         <?php
          include 'common/_dbconnect.php';
         ?>
+        
         <div class="headings">
         <h1>ConnecTTogether</h1>
         <h2>For Organizations</h2>
