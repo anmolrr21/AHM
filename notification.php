@@ -241,8 +241,7 @@
                 $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
                 $result1 = mysqli_query($conn,$sql1);
                 $row1 = mysqli_fetch_assoc($result1);
-                $bio = $row1['bio'];
-                if($bio==""){
+                if($row1==null){
                     $bio = $row['type'];
                 }
                 echo'<div class="rightSuggest">

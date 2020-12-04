@@ -42,8 +42,8 @@ a.active{
     padding-top: 15px;
     margin-left: 5px;
     margin-right: 5px; 
-    font-size: 15px;  
-    padding-bottom: 4px;
+    font-size: 19px;  
+    padding-bottom: 8px;
 }
 .onlyBox2 ul{
     margin-top: -5px;
@@ -98,24 +98,27 @@ a.active{
     margin-top: -15%;
 }
 .leftCorner h5{
-    font-size: 16px;
-    margin-left: 30%;
+    font-size: 19px;
+    margin-left: 35%;
     margin-top: -1px;
 }
 .leftCorner p{
-    margin-left: 17%;
+    margin-left: 25%;
     margin-top: -8px;
+    font-size: 18px;
 }
 .leftCorner .that{
     margin-left: 30%;
+    font-size: 19px;
 }
 .leftCorner .these{
     margin-left: 42%;
     margin-top: -15px;
 }
 .leftCorner a{
-    margin-left: clamp(65px,9vw,120px);
-    padding-bottom: 10px;
+    margin-left: clamp(69px,10vw,155px);
+    padding-bottom: 2%;
+    font-size: 19px;
 }
 .leftBottom{
     width: 27%;
@@ -128,6 +131,7 @@ a.active{
     position: fixed;
     top: 0;
     background-color: #fff;
+    padding: 10px;
 }
 .footer{
     display: flex;
@@ -135,6 +139,7 @@ a.active{
 }
 .leftBottom .linkTitle h4{
     color: #0e76a8;
+    font-size: 19px;
     
 }
 .leftBottom .linkTitle small{
@@ -175,6 +180,9 @@ a.active{
 .rightCorner .rightFirst p{
     margin-left: 100px;
 }
+.rightCorner .rightFirst h5{
+    font-size: 18px;
+}
 .rightSuggest{
     display: flex;
 }
@@ -191,7 +199,11 @@ a.active{
 }
 .rightSuggest .part p{
     margin-top: -13px;
-    font-size: 13px;
+    font-size: 17px;
+}
+.rightSuggest .part h5{
+    
+    font-size: 19px;
 }
 .rightSuggest .part .rightButtons{
     display: flex;
@@ -205,10 +217,14 @@ a.active{
     border: 2px solid;
     border-radius: 5px;
     outline: none;
+    font-size: 15px;
 }
 .rightCorner a{
     margin-left: 130px;
-    margin-bottom: 60px;
+    margin-bottom: 65px;
+    padding:10px;
+    margin-top: 15px;
+    font-size: 20px;
 }
 .rightBottom{
     width: 27%;
@@ -222,16 +238,17 @@ a.active{
     display: block;
     background-color: #fff;
    
+   
 }
 .rightBottom h5{
     margin-left: 110px;
-    font-size: clamp(12px,1vw,15px);
+    font-size: clamp(17px,1vw,17px);
     margin-top: 1px;
 }
 .rightBottom p{
     margin-left: 10px;
     margin-top: -5px;
-    font-size: clamp(9px,1vw,15px);
+    font-size: clamp(17px,1vw,17px);
 }
 .rightBottom button{
     background-color: #0e76a8;
@@ -242,6 +259,7 @@ a.active{
     border: 2px solid;
     border-radius: 5px;
     outline: none;
+    
 }
 .rightBottom h6{
     margin-left: 75px;
@@ -262,7 +280,10 @@ a.active{
     padding-left: 5px;
 }
 .nameDetail h5{
-    font-size: 15px;
+    font-size: 19px;
+}
+.nameDetail p{
+    font-size: 17px;
 }
 .nameDetail p:nth-child(2){
     margin-top: -23px;
@@ -285,6 +306,7 @@ a.active{
 }
 .countL h6{
     padding-right: 5px;
+    font-size: 17px;
 }
 .share hr{
     margin-top: -8px;
@@ -294,6 +316,7 @@ a.active{
 }
 .likeButton a{
     margin-left: 27%;
+    
 }
 .likeButton a:hover{
     cursor: pointer;
@@ -304,6 +327,10 @@ a.active{
 .likeButton a i{
     padding-right: 5px;
     color:  #0e76a8;
+    
+}
+.fa{
+    font-size: 22px;
 }
 .secComment{
     display: none;
@@ -342,12 +369,14 @@ a.active{
 }
 .commentSection h4{
     padding-left: 5px;
+    font-size: 17px;
 }
 .perComment{
     display: flex;
     margin-left: 2px;
     margin-right: 3px;
     margin-top: 20px;
+    font-size: 17px;
     
 }
 .contentComment{
@@ -362,10 +391,12 @@ a.active{
 }
 .noComment .contentComment h5{
     margin-top: 10px;
+    
 }
 .contentComment h5{
     margin-left: 5px;
     margin-top: -1px;
+    font-size: 18px;
 }
 .contentComment p:nth-child(2){
     margin-top: -20px;
@@ -374,11 +405,13 @@ a.active{
 }
 .contentComment p:nth-child(3){
     margin-top: 10px;
-    font-size: 15px;
+   
     margin-left: 5px;
+    font-size: 17px;
 }
 .contentComment p:nth-child(4){
     margin-left: 5px;
+    font-size: 17px;
 }
 .contentComment .likes a{
     margin-left: 25px;
@@ -531,11 +564,11 @@ a.active{
                                 Notification.php
 **********************************************************************************/
 .notifyBox{
-    width: 470px;
+    width: 570px;
     border: 1px solid #000;
     border-radius: 10px;
     background-color: #fff;
-    margin-left: 450px;      /*  changed from 400-450 */
+    margin-left: 550px;      /*  changed from 400-450 */
     margin-top: 80px;
     min-height: 100px;
 }
