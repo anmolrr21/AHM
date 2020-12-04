@@ -61,9 +61,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             $target_file = $target_dir . basename($_FILES["file"]["name"]);
             echo $target_file;
             move_uploaded_file($pname,$target_file);
+            $img_path=$_FILES['file']['name'];
             $blob = fopen($target_file, "rb");
             echo $blob;
-            $sql = "UPDATE org_users set proof='$blob' where Org_uid=$current_user_id ";
+            $sql = "UPDATE org_users set proof='$img_path' where Org_uid=$current_user_id ";
             echo $sql;
             $resullt = mysqli_query($conn,$sql);
         
