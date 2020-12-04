@@ -581,6 +581,7 @@ a.active{
 }
 .notifyBox .notifyHeading h5{
     margin-left: 10px;
+    font-size: 18px;
 }
 .notifyBox .notifyHeading p{
     margin-right: 12px;
