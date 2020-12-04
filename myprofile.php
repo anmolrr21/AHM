@@ -12,10 +12,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://use.fontawesome.com/0cf079388a.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <style>
+      .header{
+      background-color:  #0e76a8;
+      margin:-10px;
+      margin-left:-10px;
+      height:90px;
 
+      }
+      .logo{
+      margin-top:-70px;
+   
+    }
+    </style>
     <title>My profile</title>
     </head>
     <body>
+    <div class="header" >
+    </div>
+    <div class="logo">
+    <img src="images/logo.png" style="margin-left:10px;margin-top:40px;margin:-10px;"width="90px">
+    </div>
+    <div class="head">
+        <p style="margin-left:80px;margin-top:-60px;font-size:25px;color:white;"><b>ConnecTTogether<b></p>
+    </div>
    
     <div class="name">
       <div class="sub-name">
