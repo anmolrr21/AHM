@@ -6,6 +6,14 @@
         <!-- <script src="js_files/org2.js"></script> -->
     </head>
     <body>
+    <div class="header">
+    </div>
+    <div class="logo">
+    <img src="images/logo.png" style="margin-left:-10px;margin-top:40px;margin:-10px;"width="90px">
+    </div>
+    <div class="head">
+        <p style="margin-left:80px;margin-top:-60px;font-size:25px;color:white;"><b>ConnecTTogether<b></p>
+    </div>
     <?php $status=$_GET['status'];
     
     if($status=='empty'){
