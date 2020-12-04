@@ -46,7 +46,10 @@
                 $sql1 = "SELECT `bio` FROM `user_profile` where `userid`='$id'";
                 $result1 = mysqli_query($conn,$sql1);
                 $row1 = mysqli_fetch_assoc($result1);
-                echo $row1['bio']; 
+                if($row1 !=Null){
+                    echo $row1['bio'];
+                }
+                
         ?></p>
         <hr>
         <h5 class="that">Your Connections</h5>
@@ -214,9 +217,11 @@
                     <div class="topNamePic">
                         <img src="images/user.png">
                         <div class="nameDetail">
-                            <h5>'.$row1['name'].'</h5>
-                            <p>'.$row2['bio'].'</p>
-                            <p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
+                            <h5>'.$row1['name'].'</h5>';
+                            if($row2!=Null){
+                            echo '<p>'.$row2['bio'].'</p>';
+                        }
+                            echo '<p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
                         </div>
                     </div>';
                     if($row['article']!=NULL){
@@ -321,10 +326,10 @@
                 $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
                 $result1 = mysqli_query($conn,$sql1);
                 $row1 = mysqli_fetch_assoc($result1);
-                $bio = $row1['bio'];
-                if($bio==""){
+                if($row1==null){
                     $bio = $row['type'];
                 }
+                
                 echo'<div class="rightSuggest">
                         <img src="images/user.png">
                         <div class="part">
