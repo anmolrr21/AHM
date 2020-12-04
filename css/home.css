@@ -221,6 +221,7 @@ a.active{
     top: 0;
     display: block;
     background-color: #fff;
+   
 }
 .rightBottom h5{
     margin-left: 110px;
@@ -534,7 +535,7 @@ a.active{
     border: 1px solid #000;
     border-radius: 10px;
     background-color: #fff;
-    margin-left: 400px;
+    margin-left: 450px;      /*  changed from 400-450 */
     margin-top: 80px;
     min-height: 100px;
 }

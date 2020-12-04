@@ -206,7 +206,8 @@
             $sql2 = "SELECT * FROM `user_profile` where `userid`='$id'";
             $result2 = mysqli_query($conn,$sql2);
             $row2 = mysqli_fetch_assoc($result2);
-            $sql4 = "SELECT * FROM `comments`";
+            $nextid = $row['post_id'];
+            $sql4 = "SELECT * FROM `comments` where `post_id`='$nextid'";
             $result4 = mysqli_query($conn,$sql4);
             $num = mysqli_num_rows($result4);
             echo'<div id="'.$row['post_id'].'" class="share onlyPost">
@@ -247,9 +248,9 @@
                     <div id="'.$i.'" class="secComment" style="display: none;">
                         <div class="area">
                             <img src="images/user.png">
-                            <form method="POST" id="'.$k.'">  
+                            <form method="POST" id="'.$k.'" class="comment">  
                                 <input type="text" id="comment" name="comment" placeholder="  Leave your thoughts...">
-                                <button id="commentSubmit" onclick="commentFormId(this)" type="submit"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i><br>POST</button>
+                                <button id="commentSubmit" type="submit"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i><br>POST</button>
                             </form>
                             
                         </div>
@@ -280,7 +281,7 @@
                                         </div>
                                     </div>';
                             }
-                            echo'<div id="perComment" class="perComment" style="display:none;">
+                            echo'<div id="'.$k.'" class="perComment" style="display:none;">
                                     <img src="images/user.png">
                                     <div class="contentComment">
                                         <h5>Hitesh Dhameja</h5>
@@ -298,6 +299,7 @@
                 
             $i = $i + 1;
             $j = $j + 1;
+            $k= "commentForm".strval($i); 
         }
         
     ?>
@@ -311,25 +313,33 @@
         </div>
         <hr>
         <?php
-            $m=0;
-            while($m<3){
+            $name = $_SESSION["username"];
+            $sql2 = "SELECT * FROM `users` where `name`<>'$name' ORDER BY RAND() LIMIT 3";
+            $result2 = mysqli_query($conn,$sql2);
+            while($row = mysqli_fetch_assoc($result2)){
+                $id = $row['user_id'];
+                $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
+                $result1 = mysqli_query($conn,$sql1);
+                $row1 = mysqli_fetch_assoc($result1);
+                $bio = $row1['bio'];
+                if($bio==""){
+                    $bio = $row['type'];
+                }
                 echo'<div class="rightSuggest">
                         <img src="images/user.png">
                         <div class="part">
-                            <h5>Hitesh Dhameja</h5>
-                            <p>Volunteer | Fund Raiser | Mind Blowing</p>
-                            <div class="rightButtons">
-                                <button>View Profile</button>
-                                <button>Connect</button>
-                            </div>
+                            <h5>'.$row['name'].'</h5>
+                            <p>'.$bio.'</p>
+                            <button>View Profile</button>
+                            <button>Connect</button>
                         </div>
                         
                     </div>';
-            $m = $m + 1;
             }
         ?>
         <a href="/AHM/recommendation.php">View More</a>
     </div>
+    
     <div class="rightBottom">
         <h5>Raise Funds</h5>
         <p><em>"Having something extra is always great because you are with the opportuinity to grab the blessings by
@@ -407,16 +417,13 @@
             modal3.style.display = "none";
         }
     }
-    function commentFormId(obj){
-        var id = $(obj).parent()[0].id;
-        console.log(id)
-        actualComment(id);
-    }
-    //Putting comments to db
-    function actualComment(id1){
-    
-        var comment = $(id1).children("input").val();
-        var id = $(id1).parents()[2].id;
+    $('.comment').on('submit',function(event){
+        event.preventDefault();
+        var comment = $(this).children('#comment').val();
+        // var id12 = $(this).parents()[1]['childNodes'];
+        // id12 = id12[3]['childNodes'][-3];
+        // console.log(id12)
+        var id = $(this).parents()[2].id;
         $.ajax({
             url:"addComment.php",
             method:"POST",
@@ -424,27 +431,24 @@
             id:id},
             dataType: "JSON",
             success: function(data){
-                $(this).children('input').val()="";
                 if(data.error != '')
                 {
-                    $('#commentForm').reset();
-                    $('#comment').html(data.error);
+                    $('.comment').reset();
+                    $('.comment').html(data.error);
                 }
             }
         });
-        loadComment();
-        function loadComment(){
+        $(this).children('#comment').val('');
+        loadComment(comment);
+        function loadComment(x){
             document.getElementById('perComment').style.display="flex";
-            document.getElementById('newcomment').innerHTML = document.getElementById('comment').value;
-            document.getElementById('comment').value="";
-            if(document.getElementById('noComment')!=null){
-                document.getElementById('noComment').style.display="none";
-            }
+            document.getElementById('newcomment').innerHTML = x;
+        //     if(next12!=null){
+        //         next12.visibility="hidden";
+        //    }
         }
-            
+    });
     
-    }
-
     //Putting likes into db
     $('.like').on('click',function(event){
         event.preventDefault();
