@@ -393,7 +393,10 @@ hr{
 /**********************************************************************************
                                 Responsive
 *********************************************************************************/
-@media only screen and (max-width: 768px){
+@media screen and (max-width: 768px){
+    ul.topnav{
+        width:768px;
+    }
     #header{
         background-image: none;
     }
