@@ -17,11 +17,8 @@
         <button  class="dropbtn"><i class="fa fa-caret-down" aria-hidden="true"></i></button>
         <div id="myDropdown" class="dropdown-content">
             <a href="myprofile.php">View Profile</a>
-            <a href="#">Raise Fund</a>
-            <a href="#">Settings</a>
-            <a href="#">Contact</a>
-            <a href="#">Help</a>
-            <a href="#">Logout</a>
+            <a href="contact.php">Contact/queries</a>
+            <a href="index.php">Logout</a>
         </div>
     </div>
 </nav>
