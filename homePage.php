@@ -199,6 +199,7 @@
         $i=0;
         $j=111111;
         $k= "#commentForm".strval($i);
+        $l = "hideTobe".strval($j);
         $sql = "SELECT * FROM `posts`";
         $result = mysqli_query($conn,$sql);
         while($row = mysqli_fetch_assoc($result)){
@@ -253,7 +254,7 @@
                     <div id="'.$i.'" class="secComment" style="display: none;">
                         <div class="area">
                             <img src="images/user.png">
-                            <form method="POST" id="'.$k.'" class="comment">  
+                            <form method="POST" class="comment">  
                                 <input type="text" id="comment" name="comment" placeholder="  Leave your thoughts...">
                                 <button id="commentSubmit" type="submit"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i><br>POST</button>
                             </form>
@@ -279,19 +280,19 @@
                                 }
                             }
                             
-                            else{
-                                echo'<div id="noComment" class="perComment">
-                                        <div class="contentComment">
-                                            <h5>No Comments Yet! Be the first to comment</h5>
-                                        </div>
-                                    </div>';
-                            }
+                            // else{
+                            //     echo'<div id="noComment" class="perComment '.$l.'">
+                            //             <div class="contentComment">
+                            //                 <h5>No Comments Yet! Be the first to comment</h5>
+                            //             </div>
+                            //         </div>';
+                            // }
                             echo'<div id="'.$k.'" class="perComment" style="display:none;">
                                     <img src="images/user.png">
                                     <div class="contentComment">
                                         <h5>Hitesh Dhameja</h5>
                                         <p>1m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
-                                        <p id="newcomment"></p>
+                                        <p class="'.$k.'">blank</p>
                                         <div class="likes">
                                             <a href="#">Like</a>
                                             <a href="#">Comment</a>
@@ -305,6 +306,7 @@
             $i = $i + 1;
             $j = $j + 1;
             $k= "commentForm".strval($i); 
+            $l = "hideTobe".strval($j);
         }
         
     ?>
@@ -425,9 +427,10 @@
     $('.comment').on('submit',function(event){
         event.preventDefault();
         var comment = $(this).children('#comment').val();
-        // var id12 = $(this).parents()[1]['childNodes'];
-        // id12 = id12[3]['childNodes'][-3];
-        // console.log(id12)
+        var comment1 = comment;
+        var id12 = $(this).parents()[1]['childNodes'];
+        id12 = id12[3]['children'];
+        id12 = id12[id12.length-1].id;
         var id = $(this).parents()[2].id;
         $.ajax({
             url:"addComment.php",
@@ -444,10 +447,11 @@
             }
         });
         $(this).children('#comment').val('');
-        loadComment(comment);
-        function loadComment(x){
-            document.getElementById('perComment').style.display="flex";
-            document.getElementById('newcomment').innerHTML = x;
+        loadComment(id12,comment1);
+        function loadComment(x,y){
+            document.getElementById(x).style.display="flex";
+            document.getElementById(x).childNodes[3].children[2].innerHTML = y;
+            console.log(document.getElementById(x).childNodes[3].children[2].innerHTML)
         //     if(next12!=null){
         //         next12.visibility="hidden";
         //    }
