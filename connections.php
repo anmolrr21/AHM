@@ -103,51 +103,59 @@
             <p><i class="fa fa-bookmark fa-lg" aria-hidden="true" style="color:black"></i></p>
         </div>
         <hr>
-        <div class="rightSuggest">
-            <img src="images/user.png">
-            <div class="part">
-                <h5>Hitesh Dhameja</h5>
-                <p>Volunteer | Fund Raiser | Mind Blowing</p>
-                <button>Accept</button>
-                <button>Reject</button>
-            </div>
-        </div>
-        <div class="rightSuggest">
-            <img src="images/user.png">
-            <div class="part">
-                <h5>Hitesh Dhameja</h5>
-                <p>Volunteer | Fund Raiser | Mind Blowing</p>
-                <button>Accept</button>
-                <button>Reject</button>
-            </div>
-        </div>
-        <div class="rightSuggest">
-            <img src="images/user.png">
-            <div class="part">
-                <h5>Mahima- Mahila Jyoti Foundation</h5>
-                <p>Volunteer | Women Empowerment | Mind Blowing</p>
-                <button>Accept</button>
-                <button>Reject</button>
-            </div>
-        </div>
-        <div class="rightSuggest">
-            <img src="images/user.png">
-            <div class="part">
-                <h5>Mahima- Mahila Jyoti Foundation</h5>
-                <p>Volunteer | Women Empowerment | Mind Blowing</p>
-                <button>Accept</button>
-                <button>Reject</button>
-            </div>
-        </div>
+        <?php
+            $nameOfUser = $_SESSION["username"];
+            $sql = "SELECT `user_id` FROM `users` where `name`='$nameOfUser'";
+            $result = mysqli_query($conn,$sql);
+            $row = mysqli_fetch_assoc($result);
+            $id = $row['user_id'];
+            $sql1 = "SELECT * FROM `connections` where `connection_id`='$id";
+            $result1 = mysqli_query($conn,$sql1);
+            echo $result1;
+            $num1=0;
+            if($result!=boolval(True)){
+                $num1 = mysqli_num_rows($result1);}
+            
+            if($result!=null && $num1>0){
+                while($row1 = mysqli_fetch_assoc($result1)){
+                    $otherid = $row1['userid'];
+                    $sql2 = "SELECT * FROM `users` where `user_id`='$otherid'";
+                    $result2 = mysqli_query($conn,$sql2);
+                    $row2 = mysqli_fetch_assoc($result2);
+                    echo'<div class="rightSuggest">
+                        <img src="images/user.png">
+                        <div class="part">
+                            <h5>'.$row2['name'].'</h5>
+                            <p>Volunteer | Fund Raiser | Mind Blowing</p>
+                            <button>Accept</button>
+                            <button>Reject</button>
+                        </div>
+                    </div>';
+                }
+            }
+        ?>
     </div>
-
-    <div class="notifyBox belowBox">
-        <div class="noNotify">
-            <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color:green"></i>
-            <h4>No new Requests!</h4>
-            <p>You will be notified when new requests arrives...</p>
-        </div>
-    </div>
+    <?php
+        $nameOfUser = $_SESSION["username"];
+        $sql = "SELECT `user_id` FROM `users` where `name`='$nameOfUser'";
+        $result = mysqli_query($conn,$sql);
+        $row = mysqli_fetch_assoc($result);
+        $id = $row['user_id'];
+        $sql1 = "SELECT * FROM `connections` where `connection_id`='$id";
+        $result1 = mysqli_query($conn,$sql1);
+        $num1=0;
+        if($result1!=boolval(True)){
+            $num1 = mysqli_num_rows($result1);}
+        if($num1<1){
+            echo'<div class="notifyBox belowBox">
+                <div class="noNotify">
+                    <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color:green"></i>
+                    <h4>No new Requests!</h4>
+                    <p>You will be notified when new requests arrives...</p>
+                </div>
+            </div>';
+        }
+    ?>
 
     <!-- People you want to connect with section -->
     <div class="notifyBox belowBox">
@@ -160,16 +168,25 @@
         $name = $_SESSION["username"];
         $sql = "SELECT * FROM `users` where `name`<>'$name'";
         $result = mysqli_query($conn,$sql);
+        $i = 0;
+        $j = "pending".strval($i) ;
         while($row = mysqli_fetch_assoc($result)){
             echo'<div class="rightSuggest">
                     <img src="images/user.png">
                     <div class="part">
                         <h5>'.$row['name'].'</h5>
                         <p>'.$row['type'].'</p>
-                        <button>View Profile</button>
-                    </div>
+                        <form method="POST" class="connect">
+                            <button>View Profile</button>
+                            <input type="submit" id="'.$row['user_id'].'">
+                        </form>
+                        <input type="submit" value="Pending..." id="'.$j.'" style="display:none;">
+                        </div>
                 </div>';
+            $i = $i + 1;
+            $j = "pending".strval($i) ;
         }
+         
         ?>
     </div>
 
@@ -214,7 +231,29 @@
         <button>DONATE <i class="fa fa-check-circle" aria-hidden="true"></i></button>
         <h6>Donate for cause, donate for change</h6>
     </div>
-
+    
+    <script>
+        $('.connect').on('submit',function(event){
+            event.preventDefault();
+            var id = $(this)[0].children[1].id;
+            var classthat = $(this).siblings()[2].id;
+            $.ajax({
+                url:"sendRequest.php",
+                method:"POST",
+                data: {id:id},
+                dataType: "JSON",
+                success: function(data){
+                    if(data.error != '')
+                    {
+                        $('.comment').reset();
+                        $('.comment').html(data.error);
+                    }
+                }
+            });
+            $(this).hide();
+            document.getElementById(classthat).style.display="block";
+        });
+    </script>
 </body>
 
 </html>
