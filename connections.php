@@ -178,7 +178,7 @@
                         <p>'.$row['type'].'</p>
                         <form method="POST" class="connect">
                             <button>View Profile</button>
-                            <input type="submit" id="'.$row['user_id'].'">
+                            <input type="submit" id="'.$row['user_id'].'" value="Connect">
                         </form>
                         <input type="submit" value="Pending..." id="'.$j.'" style="display:none;">
                         </div>

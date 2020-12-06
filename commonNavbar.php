@@ -18,7 +18,7 @@
         <div id="myDropdown" class="dropdown-content">
             <a href="myprofile.php">View Profile</a>
             <a href="contact.php">Contact/queries</a>
-            <a href="index.php">Logout</a>
+            <a href="logout.php">Logout</a>
         </div>
     </div>
 </nav>
