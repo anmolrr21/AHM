@@ -132,7 +132,7 @@
                         </div>';
                 }
             }
-            $sql2 = "SELECT * FROM `connections` where `userid`=$currentUserId and `acceptedNoti`=1";
+            $sql2 = "SELECT * FROM `connections` where `userid`=$currentUserId and `requestStatus`=1 and `acceptedNoti`=1";
             $result2 = mysqli_query($conn,$sql2);
             $num2=0;
             if(!$result2){

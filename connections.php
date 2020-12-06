@@ -111,7 +111,7 @@
             $result = mysqli_query($conn,$sql);
             $row = mysqli_fetch_assoc($result);
             $id = $row['user_id'];
-            $sql1 = "SELECT * FROM `connections` where `connection_id`='$id'";
+            $sql1 = "SELECT * FROM `connections` where `connection_id`='$id' and `requestStatus`=0";
             $result1 = mysqli_query($conn,$sql1);
             if(!$result1){
                 $num1 = 0;}
@@ -128,8 +128,11 @@
                         <div class="part">
                             <h5>'.$row2['name'].'</h5>
                             <p>Volunteer | Fund Raiser | Mind Blowing</p>
-                            <button>Accept</button>
-                            <button>Reject</button>
+                            <form method="POST" action="/AHM/updateRequest.php">
+                                <input type="text" value="'.$otherid.'" name="done" style="display:none">
+                                <input type="submit" name="accept" value="Accept">
+                                <input type="submit" name="reject" value="Reject"> 
+                            </form>
                         </div>
                     </div>';
                 }
@@ -146,8 +149,11 @@
         $result12 = mysqli_query($conn,$sql12);
         echo $result12;
         $num12=0;
-        if($result12==1){
+        if($result12){
             $num12 = mysqli_num_rows($result12);}
+        else{
+            $num12=0;
+        }
         if($num12<1){
             echo'<div class="notifyBox belowBox">
                 <div class="noNotify">
