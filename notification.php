@@ -94,32 +94,65 @@
             <small>Copyright &#169; 2020 ConnecTTogether</small>
         </div>
     </div>
-
-
+        
     <div class="notifyBox">
         <div class="notifyHeading">
             <h5>Recent</h5>
             <p><i class="fa fa-bookmark fa-lg" aria-hidden="true" style="color:black"></i></p>
         </div>
         <hr>
-        <div class="rightSuggest">
-            <img src="images/user.png">
-            <div class="part">
-                <h5>Hitesh Dhameja</h5>
-                <p>Volunteer | Fund Raiser | Mind Blowing</p>
-                <button>Accept</button>
-                <button>Reject</button>
-            </div>
-        </div>
-        <div class="rightSuggest">
-            <img src="images/user.png">
-            <div class="part">
-                <h5>Hitesh Dhameja</h5>
-                <p>accepted your connection request</p>
-                <button>View Profile</button>
-                <button>Say, Hello!</button>
-            </div>
-        </div>
+        <?php 
+            $name = $_SESSION["username"];
+            $sql = "SELECT * FROM `users` where `name`='$name'";
+            $result = mysqli_query($conn,$sql);
+            $row = mysqli_fetch_assoc($result); 
+            $currentUserId = $row['user_id'];
+            $sql1 = "SELECT * FROM `connections` where `connection_id`='$currentUserId'";
+            $result1 = mysqli_query($conn,$sql1);
+            $num1=0;
+            if(!$result1){
+                $num1 = 0;}
+            else{$num1 = mysqli_num_rows($result1);}
+                
+            if($result1 && $num1>0){
+                while($row1 = mysqli_fetch_assoc($result1)){
+                    $otherid = $row1['userid'];
+                    $sql2 = "SELECT * FROM `users` where `user_id`='$otherid'";
+                    $result2 = mysqli_query($conn,$sql2);
+                    $row2 = mysqli_fetch_assoc($result2);
+                    echo'<div class="rightSuggest">
+                            <img src="images/user.png">
+                            <div class="part">
+                                <h5>'.$row2['name'].'</h5>
+                                <p>Volunteer | Fund Raiser | Mind Blowing</p>
+                                <p>sent you a connection request.</p>
+                            </div>
+                        </div>';
+                }
+            }
+            $sql2 = "SELECT * FROM `connections` where `userid`=$currentUserId and `acceptedNoti`=1";
+            $result2 = mysqli_query($conn,$sql2);
+            $num2=0;
+            if(!$result2){
+                $num2 = 0;}
+            else{$num2 = mysqli_num_rows($result2);}
+            if($result2 && $num2>0){
+                while($row2 = mysqli_fetch_assoc($result2)){
+                    $otherid = $row2['connection_id'];
+                    $sql3 = "SELECT * FROM `users` where `user_id`='$otherid'";
+                    $result3 = mysqli_query($conn,$sql3);
+                    $row3 = mysqli_fetch_assoc($result3);
+                    echo'<div class="rightSuggest">
+                            <img src="images/user.png">
+                            <div class="part">
+                                <h5>'.$row3['name'].'</h5>
+                                <p>Volunteer | Fund Raiser | Mind Blowing</p>
+                                <p>accepted your connection request.</p>
+                            </div>
+                        </div>';
+                }
+            }
+        ?>
 
         <?php
             $name = $_SESSION["username"];

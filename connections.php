@@ -109,14 +109,13 @@
             $result = mysqli_query($conn,$sql);
             $row = mysqli_fetch_assoc($result);
             $id = $row['user_id'];
-            $sql1 = "SELECT * FROM `connections` where `connection_id`='$id";
+            $sql1 = "SELECT * FROM `connections` where `connection_id`='$id'";
             $result1 = mysqli_query($conn,$sql1);
-            echo $result1;
-            $num1=0;
-            if($result!=boolval(True)){
-                $num1 = mysqli_num_rows($result1);}
+            if(!$result1){
+                $num1 = 0;}
+            else{$num1 = mysqli_num_rows($result1);}
             
-            if($result!=null && $num1>0){
+            if($result1 && $num1>0){
                 while($row1 = mysqli_fetch_assoc($result1)){
                     $otherid = $row1['userid'];
                     $sql2 = "SELECT * FROM `users` where `user_id`='$otherid'";
@@ -141,12 +140,13 @@
         $result = mysqli_query($conn,$sql);
         $row = mysqli_fetch_assoc($result);
         $id = $row['user_id'];
-        $sql1 = "SELECT * FROM `connections` where `connection_id`='$id";
-        $result1 = mysqli_query($conn,$sql1);
-        $num1=0;
-        if($result1!=boolval(True)){
-            $num1 = mysqli_num_rows($result1);}
-        if($num1<1){
+        $sql12 = "SELECT * FROM `connections` where `connection_id`='$id";
+        $result12 = mysqli_query($conn,$sql12);
+        echo $result12;
+        $num12=0;
+        if($result12==1){
+            $num12 = mysqli_num_rows($result12);}
+        if($num12<1){
             echo'<div class="notifyBox belowBox">
                 <div class="noNotify">
                     <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color:green"></i>
