@@ -29,6 +29,16 @@
         margin-top: -70px;
 
     }
+    .intro{
+        height:125px;
+        width:800px;
+        margin-top:15px;
+        margin-left: 150px;
+        background-color: white;
+        border-radius:10px;
+        box-shadow: 0 3px 3px rgba(0,0,0,0.3);
+        }
+
     </style>
     <title>My profile</title>
 </head>
@@ -62,7 +72,7 @@
               else{
                 $total = $num;
               }
-              echo'<p style="font-size:26px;margin-left:230px;"><b>'.$row['location'].', Maharashtra-India<b></p><br><br>
+              echo'<p style="font-size:26px;margin-left:230px;"><b>'.$row['location'].'<b></p><br><br>
                 <p style="color:blue;font-size:24px;margin-left:295px;">'.$total.' connections</p>';
             ?>
         </div>
@@ -78,7 +88,7 @@
             enthusiast"
             </p>
     </div>
-
+    
     <!-- Ingeneral popup for post -->
 
     <div id="myModal" class="modal">
@@ -180,10 +190,15 @@
             december</p><br><br>
 
     </div>
-
-    <div class="about">
-        <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">Your Posts
+    <div class="intro" >
+        <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">Intro
             </p>
+        <p style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;">"your intro"</p>
+    </div>
+
+    <!-- <div class="about">
+        <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">Your Posts
+            </p> -->
     </div>
     <!-- <?php
         $i=0;
@@ -305,7 +320,7 @@
         <p style="font-size:21px;width:100%;margin-left:30px;margin-top:35px;">Want to edit your profile?</p>
         <a href="editmyprofile.php">
             <button
-                style="background-color:lightskyblue;color:black;padding:15px;width:80px; border-radius:10px;margin-top:75px;margin-left:110px;border:0px;">Edit<button>
+                style="background-color:lightskyblue;color:black;padding:15px;width:80px; border-radius:10px;margin-top:75px;margin-left:110px;border:0px;">Edit</button>
     </div>
     <div class="slider">
         <div class="slides">

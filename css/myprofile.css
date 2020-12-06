@@ -1,20 +1,7 @@
 
 body{
-  background-color:  #f3f7f7;
+  background-color: aliceblue;
 }
-
-.header{
-  background-color:  #0e76a8;
-  margin:-10px;
-  height:90px;
-
-}
-.logo{
-  margin-top:-70px;
-  
-}
-
-
 .name{
   height:250px;
   width:800px;
@@ -26,7 +13,7 @@ body{
   
 }
 .sub-name{
-  background-color: #0e76a8;
+  background-color:  #0e76a8;
   height:130px;
   
 }
@@ -46,7 +33,7 @@ p{
   font-size: 40px;
 }
 .about{
-  height:100px;
+  height:120px;
   width:800px;
   margin-top:240px;
   margin-left: 150px;
@@ -101,6 +88,7 @@ font-size: clamp(10px,1vw,40px);
   border-radius:10px;
   box-shadow: 0 3px 3px rgba(0,0,0,0.3);
 }
+
 .edit{
   width:310px;
   height:140px;
