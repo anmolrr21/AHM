@@ -130,7 +130,7 @@ a.active{
 .homeNavBottom{
     display: none;
 }
-/* @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
     a{
         text-decoration: none;
         color: #000000;
@@ -161,9 +161,9 @@ a.active{
     .dropdown-content{
         margin-left: -130px;
     }
-} */
+} 
 @media screen and (max-width: 500px) {
-    /* .homeNavBottom ul li a{
+     .homeNavBottom ul li a{
         text-decoration: none;
         color: #000000;
     }
@@ -172,10 +172,10 @@ a.active{
     }
     .homeNav img{
         width: 60px;
-    } */
-    /* .homeNav form input[type=text]{
-        width: 280px;
-    } */
+    } 
+     .homeNav form input[type=text]{
+        width: 180px;
+    } 
     .decide{
         display: none;
     }

@@ -1,7 +1,7 @@
 <nav class="homeNav">
     <img src="images/logo.png">
     <h3>ConnecTTogether</h3>
-    <form action="#">
+    <form method="POST" action="/AHM/searchResults.php">
         <input type="text" placeholder="Search.." name="search">
         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
     </form>
@@ -11,14 +11,14 @@
         <li class="decide"><i class="fa fa-lightbulb-o fa-lg" aria-hidden="true" style="color:white"></i><a href="/AHM/recommendation.php" id="this3" class="nav1">Recommendations</a>
         </li>
         <li class="decide"><i class="fa fa-bell fa-lg" aria-hidden="true" style="color:white"></i><a href="/AHM/notification.php" id="this4" class="nav1">Notifications</a></li>
-        <li id="thisOnee"><img src="images/user.png"><a href="#" class="nav1">Me</a></li>
+        <li id="thisOnee"><img src="images/user.png"><a href="#" class="nav1" onclick="openNav()">Me</a></li>
     </ul>
     <div class="dropdown">
         <button  class="dropbtn"><i class="fa fa-caret-down" aria-hidden="true"></i></button>
         <div id="myDropdown" class="dropdown-content">
             <a href="myprofile.php">View Profile</a>
             <a href="contact.php">Contact/queries</a>
-            <a href="index.php">Logout</a>
+            <a href="logout.php">Logout</a>
         </div>
     </div>
 </nav>

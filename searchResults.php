@@ -9,10 +9,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Recommendations | ConnecTTogether</title>
+    <title>Search | ConnecTTogether</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://use.fontawesome.com/0cf079388a.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <style>
     <?php include 'css/home.css';
     include 'css/navbar.css';
@@ -22,13 +23,11 @@
 
 <body>
     <!-- Including common files -->
-
+    <!-- alter table users add FULLTEXT(`name`) -->
     <?php
         include 'commonNavbar.php';
         include 'common/_dbconnect.php';
     ?>
-
-
     <!-- Left Section Of home -->
 
     <div class="leftCorner">
@@ -44,30 +43,29 @@
                 $sql1 = "SELECT `bio` FROM `user_profile` where `userid`='$id'";
                 $result1 = mysqli_query($conn,$sql1);
                 $row1 = mysqli_fetch_assoc($result1);
-                if($row1 !=Null){
-                    echo $row1['bio'];
-                }
-                
+                echo $row1['bio']; 
         ?></p>
         <hr>
         <h5 class="that">Your Connections</h5>
-        <?php
-            $nameOfUser = $_SESSION["username"];
-            $sql = "SELECT `user_id` FROM `users` where `name`='$nameOfUser'";
-            $result = mysqli_query($conn,$sql);
-            $row = mysqli_fetch_assoc($result);
-            $id = $row['user_id'];
-            $sql1 = "SELECT * FROM `connections` where `userid`='$id' and `requestStatus`=1";
-            $result1 = mysqli_query($conn,$sql1);
-            $num = mysqli_num_rows($result1);
-            if(!$num){
-                echo'<p class="these">0</p>';
-            }
-            else{
-                echo'<p class="these">'.$num.'</p>';
-            }
-            
-        ?>
+        <p class="these">
+            <?php
+                $nameOfUser = $_SESSION["username"];
+                $sql = "SELECT `user_id` FROM `users` where `name`='$nameOfUser'";
+                $result = mysqli_query($conn,$sql);
+                $row = mysqli_fetch_assoc($result);
+                $id = $row['user_id'];
+                $sql1 = "SELECT * FROM `connections` where `userid`='$id'";
+                $result1 = mysqli_query($conn,$sql1);
+                $num = mysqli_fetch_row($result1);
+                if($num==null){
+                    echo '0';
+                }
+                else{
+                    echo $num;
+                }
+                
+            ?>
+        </p>
         <hr>
         <a href="/AHM/myprofile.php">View Profile</a>
     </div>
@@ -98,64 +96,44 @@
 
     <div class="notifyBox">
         <div class="notifyHeading">
-            <h5>Public</h5>
+            <h5>Search Results</h5>
             <p><i class="fa fa-bookmark fa-lg" aria-hidden="true" style="color:black"></i></p>
         </div>
         <hr>
         <?php
-        $name = $_SESSION["username"];
-        $sql = "SELECT * FROM `users` where `name`<>'$name' and `type`='Individual'";
+        $nameFound = $_POST['search'];
+        $sql = "SELECT * from `users` where MATCH (name) against ('$nameFound')";
         $result = mysqli_query($conn,$sql);
-        while($row = mysqli_fetch_assoc($result)){
-            $id = $row['user_id'];
-            $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
-            $result1 = mysqli_query($conn,$sql1);
-            $row1 = mysqli_num_rows($result1);
-            $bio = '';
-            if($row1==0){
-                $bio = $row['type'];
-            }
-            echo'<div class="rightSuggest">
+        if($result){
+            $num = mysqli_num_rows($result);
+        }
+        else{
+            $num=0;
+        }
+        if($num>0){
+            while($row=mysqli_fetch_assoc($result)){
+                echo'<div class="rightSuggest">
                     <img src="images/user.png">
                     <div class="part">
                         <h5>'.$row['name'].'</h5>
-                        <p>'.$bio.'</p>
+                        <p>'.$row['type'].'<p>
                         <button>View Profile</button>
+                    </div>
+                </div>';
+            }
+        }
+        else{
+            echo'<div class="notifyBox belowBox">
+                    <div class="noNotify">
+                        <i class="fa fa-exclamation-triangle fa-4x" aria-hidden="true" style="color:red"></i>
+                        <h4>No Results Found!</h4>
                     </div>
                 </div>';
         }
         ?>
     </div>
 
-    <div class="notifyBox belowBox">
-        <div class="notifyHeading">
-            <h5>NGO</h5>
-            <p><i class="fa fa-bookmark fa-lg" aria-hidden="true" style="color:black"></i></p>
-        </div>
-        <hr>
-        <?php
-        $name = $_SESSION["username"];
-        $sql = "SELECT * FROM `users` where `name`<>'$name' and `type`='Organization'";
-        $result = mysqli_query($conn,$sql);
-        while($row = mysqli_fetch_assoc($result)){
-            $id = $row['user_id'];
-            $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
-            $result1 = mysqli_query($conn,$sql1);
-            $row1 = mysqli_fetch_assoc($result1);
-            if($row1==null){
-                $bio = $row['type'];
-            }
-            echo'<div class="rightSuggest">
-                    <img src="images/user.png">
-                    <div class="part">
-                        <h5>'.$row['name'].'</h5>
-                        <p>'.$bio.'</p>
-                        <button>View Profile</button>
-                    </div>
-                </div>';
-        }
-        ?>
-    </div>
+    
 
     <!-- Right section of home -->
 
@@ -198,7 +176,5 @@
         <button>DONATE <i class="fa fa-check-circle" aria-hidden="true"></i></button>
         <h6>Donate for cause, donate for change</h6>
     </div>
-
 </body>
-
 </html>

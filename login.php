@@ -18,8 +18,8 @@
 
     <!-- Login Form -->
     <form class="formm" action="user_login.php" method="POST">
-      <input type="text" id="login" class="fadeIn second" name="login1" placeholder="E-mail">
-      <input type="text" id="password" class="fadeIn third" name="login2" placeholder="password">
+      <input type="email" id="login" class="fadeIn second" name="login1" placeholder="E-mail">
+      <input type="password" id="password" class="fadeIn third" name="login2" placeholder="password">
       <input type="submit" name="login" class="fadeIn fourth" value="Log In">
     </form>
 
