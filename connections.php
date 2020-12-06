@@ -58,7 +58,7 @@
             $result = mysqli_query($conn,$sql);
             $row = mysqli_fetch_assoc($result);
             $id = $row['user_id'];
-            $sql1 = "SELECT * FROM `connections` where `userid`='$id' and `requestStatus`=1";
+            $sql1 = "SELECT * FROM `connections` where `userid`='$id' or `connection_id`='$id' and `requestStatus`=1";
             $result1 = mysqli_query($conn,$sql1);
             $num = mysqli_num_rows($result1);
             if(!$num){
@@ -179,18 +179,24 @@
         $i = 0;
         $j = "pending".strval($i) ;
         while($row = mysqli_fetch_assoc($result)){
-            echo'<div class="rightSuggest">
-                    <img src="images/user.png">
-                    <div class="part">
-                        <h5>'.$row['name'].'</h5>
-                        <p>'.$row['type'].'</p>
-                        <form method="POST" class="connect">
-                            <button>View Profile</button>
-                            <input type="submit" id="'.$row['user_id'].'" value="Connect">
-                        </form>
-                        <input type="submit" value="Pending..." id="'.$j.'" style="display:none;">
-                        </div>
-                </div>';
+            $id = $row['user_id'];
+            $sql2 = "SELECT * FROM `connections` where `userid`='$id' or `connection_id`='$id' and `requestStatus`=1";
+            $result2 = mysqli_query($conn,$sql2);
+            $num2 = mysqli_num_rows($result2);
+            if(!$num2){ 
+                echo'<div class="rightSuggest">
+                        <img src="images/user.png">
+                        <div class="part">
+                            <h5>'.$row['name'].'</h5>
+                            <p>'.$row['type'].'</p>
+                            <form method="POST" class="connect">
+                                <button>View Profile</button>
+                                <input type="submit" id="'.$row['user_id'].'" value="Connect">
+                            </form>
+                            <input type="submit" value="Pending..." id="'.$j.'" style="display:none;">
+                            </div>
+                    </div>';
+            }
             $i = $i + 1;
             $j = "pending".strval($i) ;
         }

@@ -130,7 +130,7 @@ a.active{
 .homeNavBottom{
     display: none;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 768px) and (max-width: 1024px) {
     a{
         text-decoration: none;
         color: #000000;
@@ -140,6 +140,9 @@ a.active{
     }
     .homeNav img{
         width: 40px;
+    }
+    .homeNav h3{
+        font-size:90%;
     }
     .homeNav form{
         display: flex;

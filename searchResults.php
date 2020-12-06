@@ -43,29 +43,30 @@
                 $sql1 = "SELECT `bio` FROM `user_profile` where `userid`='$id'";
                 $result1 = mysqli_query($conn,$sql1);
                 $row1 = mysqli_fetch_assoc($result1);
-                echo $row1['bio']; 
+                if($row1 !=Null){
+                    echo $row1['bio'];
+                }
+                
         ?></p>
         <hr>
         <h5 class="that">Your Connections</h5>
-        <p class="these">
-            <?php
-                $nameOfUser = $_SESSION["username"];
-                $sql = "SELECT `user_id` FROM `users` where `name`='$nameOfUser'";
-                $result = mysqli_query($conn,$sql);
-                $row = mysqli_fetch_assoc($result);
-                $id = $row['user_id'];
-                $sql1 = "SELECT * FROM `connections` where `userid`='$id'";
-                $result1 = mysqli_query($conn,$sql1);
-                $num = mysqli_fetch_row($result1);
-                if($num==null){
-                    echo '0';
-                }
-                else{
-                    echo $num;
-                }
-                
-            ?>
-        </p>
+        <?php
+            $nameOfUser = $_SESSION["username"];
+            $sql = "SELECT `user_id` FROM `users` where `name`='$nameOfUser'";
+            $result = mysqli_query($conn,$sql);
+            $row = mysqli_fetch_assoc($result);
+            $id = $row['user_id'];
+            $sql1 = "SELECT * FROM `connections` where `userid`='$id' or `connection_id`='$id' and `requestStatus`=1";
+            $result1 = mysqli_query($conn,$sql1);
+            $num = mysqli_num_rows($result1);
+            if(!$num){
+                echo'<p class="these">0</p>';
+            }
+            else{
+                echo'<p class="these">'.$num.'</p>';
+            }
+            
+        ?>
         <hr>
         <a href="/AHM/myprofile.php">View Profile</a>
     </div>

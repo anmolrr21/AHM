@@ -57,7 +57,7 @@
             $result = mysqli_query($conn,$sql);
             $row = mysqli_fetch_assoc($result);
             $id = $row['user_id'];
-            $sql1 = "SELECT * FROM `connections` where `userid`='$id' and `requestStatus`=1";
+            $sql1 = "SELECT * FROM `connections` where `userid`='$id' or `connection_id`='$id' and `requestStatus`=1";
             $result1 = mysqli_query($conn,$sql1);
             $num = mysqli_num_rows($result1);
             if(!$num){
@@ -108,21 +108,26 @@
         $result = mysqli_query($conn,$sql);
         while($row = mysqli_fetch_assoc($result)){
             $id = $row['user_id'];
-            $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
-            $result1 = mysqli_query($conn,$sql1);
-            $row1 = mysqli_num_rows($result1);
-            $bio = '';
-            if($row1==0){
-                $bio = $row['type'];
+            $sql2 = "SELECT * FROM `connections` where `userid`='$id' or `connection_id`='$id' and `requestStatus`=1";
+            $result2 = mysqli_query($conn,$sql2);
+            $num2 = mysqli_num_rows($result2);
+            if(!$num2){ 
+                $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
+                $result1 = mysqli_query($conn,$sql1);
+                $row1 = mysqli_num_rows($result1);
+                $bio = '';
+                if($row1==0){
+                    $bio = $row['type'];
+                }
+                echo'<div class="rightSuggest">
+                        <img src="images/user.png">
+                        <div class="part">
+                            <h5>'.$row['name'].'</h5>
+                            <p>'.$bio.'</p>
+                            <button>View Profile</button>
+                        </div>
+                    </div>';
             }
-            echo'<div class="rightSuggest">
-                    <img src="images/user.png">
-                    <div class="part">
-                        <h5>'.$row['name'].'</h5>
-                        <p>'.$bio.'</p>
-                        <button>View Profile</button>
-                    </div>
-                </div>';
         }
         ?>
     </div>
@@ -139,20 +144,25 @@
         $result = mysqli_query($conn,$sql);
         while($row = mysqli_fetch_assoc($result)){
             $id = $row['user_id'];
-            $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
-            $result1 = mysqli_query($conn,$sql1);
-            $row1 = mysqli_fetch_assoc($result1);
-            if($row1==null){
-                $bio = $row['type'];
+            $sql2 = "SELECT * FROM `connections` where `userid`='$id' or `connection_id`='$id' and `requestStatus`=1";
+            $result2 = mysqli_query($conn,$sql2);
+            $num2 = mysqli_num_rows($result2);
+            if(!$num2){ 
+                $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
+                $result1 = mysqli_query($conn,$sql1);
+                $row1 = mysqli_fetch_assoc($result1);
+                if($row1==null){
+                    $bio = $row['type'];
+                }
+                echo'<div class="rightSuggest">
+                        <img src="images/user.png">
+                        <div class="part">
+                            <h5>'.$row['name'].'</h5>
+                            <p>'.$bio.'</p>
+                            <button>View Profile</button>
+                        </div>
+                    </div>';
             }
-            echo'<div class="rightSuggest">
-                    <img src="images/user.png">
-                    <div class="part">
-                        <h5>'.$row['name'].'</h5>
-                        <p>'.$bio.'</p>
-                        <button>View Profile</button>
-                    </div>
-                </div>';
         }
         ?>
     </div>

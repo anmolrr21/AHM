@@ -63,10 +63,10 @@
               $result = mysqli_query($conn,$sql);
               $row = mysqli_fetch_assoc($result);
               $id = $row['user_id'];
-              $sql1 = "SELECT * FROM `connections` where `userid`='$id'";
+              $sql1 = "SELECT * FROM `connections` where `userid`='$id' or `connection_id`='$id' and `requestStatus`=1";
               $result1 = mysqli_query($conn,$sql1);
-              $num = mysqli_fetch_row($result1);
-              if($num==null){
+              $num = mysqli_num_rows($result1);
+              if(!$num){
                 $total = 0;
               }
               else{
