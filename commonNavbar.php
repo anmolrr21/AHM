@@ -1,7 +1,7 @@
 <nav class="homeNav">
     <img src="images/logo.png">
     <h3>ConnecTTogether</h3>
-    <form action="#">
+    <form method="POST" action="/AHM/searchResults.php">
         <input type="text" placeholder="Search.." name="search">
         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
     </form>
