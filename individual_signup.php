@@ -4,9 +4,22 @@
         <title>Individual's SignUp</title>
         <link rel="stylesheet" href="css/ind.css?v=<?php echo time(); ?>">
         <!-- <script src="js_files/org2.js"></script> -->
+    <style>
+        .header{
+      background-color:  #0e76a8;
+      margin:-10px;
+      margin-left:-10px;
+      height:90px;
+
+      }
+      .logo{
+      margin-top:-70px;
+   
+    }
+    </style>
     </head>
     <body>
-    <div class="header">
+    <div class="header" style="background-color:#0e76a8">
     </div>
     <div class="logo">
     <img src="images/logo.png" style="margin-left:-10px;margin-top:40px;margin:-10px;"width="90px">
