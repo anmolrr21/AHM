@@ -8,7 +8,7 @@
       $result = mysqli_query($conn, $sql);
       $row = mysqli_fetch_assoc($result);
       if($row !=null){
-        header("location:/AHM/admin.php");
+        header("location:/AHM/adminPanel.php");
       }
       else {
         echo "Not a valid user or password or username does not match";
