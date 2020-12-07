@@ -66,7 +66,12 @@
                 echo'<p class="these">0</p>';
             }
             else{
-                echo'<p class="these">'.$num.'</p>';
+                if($num<10){
+                    echo'<p class="these">0'.$num.'</p>';
+                }
+                else{
+                    echo'<p class="these">'.$num.'</p>';
+                }
             }
             
         ?>

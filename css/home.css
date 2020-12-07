@@ -99,11 +99,11 @@ a.active{
 }
 .leftCorner h5{
     font-size: 19px;
-    margin-left: 35%;
+    margin-left: 27%;
     margin-top: -1px;
 }
 .leftCorner p{
-    margin-left: 25%;
+    margin-left: 21%;
     margin-top: -8px;
     font-size: 18px;
 }
@@ -276,7 +276,7 @@ a.active{
     margin-top: -1px;
 }
 .topNamePic{
-    padding: 5px;
+    padding: 6px;
     display: flex;
 }
 .topNamePic img,.perComment img,.area img{
@@ -286,7 +286,7 @@ a.active{
     height: 40px;
 }
 .nameDetail{
-    margin-top: -18px;
+    margin-top: -22px;
     padding-left: 5px;
 }
 .nameDetail h5{
@@ -605,6 +605,36 @@ a.active{
 }
 .notifyBox .noNotify p{
     margin-left: 95px;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .leftCorner{
+        width: 34%;
+    }
+    .leftCorner p{
+        margin-left: 13%;
+        /* font-size: 16px; */
+    }
+    .leftCorner .that{
+        margin-left: 29%;
+    }
+    .leftCorner a{
+        margin-left: 29%;
+    }
+    .leftBottom{
+        margin-top: 50%;
+        width: 32%;
+    }
+    .onlyBox2,.share{
+        margin-right: 1%;
+        margin-left: 40%;
+    }
+    .rightBottom,.rightCorner{
+        display: none;
+    }
+    .notifyBox{
+        margin-right: 1%;
+        margin-left: 39%;
+    }
 }
 
 
