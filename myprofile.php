@@ -15,8 +15,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <style>
-    /* <?php include 'css/home.css';
-    ?> */
+     <?php include 'css/home.css';
+             include 'css/navbar.css';
+    ?> 
     .header {
         background-color: #0e76a8;
         margin: 10px;
@@ -44,15 +45,18 @@
 </head>
 
 <body>
-    <?php include 'common/_dbconnect.php' ?>
-    <div class="header">
+    <?php include 'common/_dbconnect.php';
+          include 'commonNavbar.php';
+    ?>
+
+    <!-- <div class="header">
     </div>
     <div class="logo">
         <img src="images/logo.png" style="margin-left:10px;margin-top:40px;margin:-10px;" width="90px">
     </div>
     <div class="head">
         <p style="margin-left:80px;margin-top:60px;font-size:25px;color:white;"><b>ConnecTTogether<b></p>
-    </div>
+    </div> -->
 
     <div class="name">
         <div class="sub-name">
@@ -80,14 +84,44 @@
     <div class="user">
         <image src=images/user.png height="170px">
     </div>
+    
+    <?php
+        $nameOfUser = $_SESSION["username"];
 
-    <div class="about">
-        <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">About
-            </p>
-        <p style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;">"Social welfare
-            enthusiast"
-            </p>
-    </div>
+        if( $_SESSION["type"] == "Individual"){
+            $sql = "SELECT * FROM `individual_users` where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+            $result = mysqli_query($conn,$sql);
+            $row = mysqli_fetch_assoc($result);
+
+            echo '
+            <div class="about">
+            <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">About
+               </p>
+            <p style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;">"'.$row["about"].'"
+               </p>
+            </div>
+           ';
+
+        } else {
+            $sql = "SELECT * FROM `org_users` where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+            $result = mysqli_query($conn,$sql);
+            $row = mysqli_fetch_assoc($result);
+
+            echo '
+            <div class="about">
+            <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">About
+               </p>
+            <p style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;">"'.$row["description"].'"
+               </p>
+            </div>
+           ';
+
+        }
+
+       
+
+    ?>
+
     
     <!-- Ingeneral popup for post -->
 
@@ -178,23 +212,61 @@
                     onclick="modalDisplay()">Article</button></li>
         </ul>
     </div>
+    <?php
+        // echo $_SESSION["username"];
+
+        if( $_SESSION["type"] == "Individual"){
+            $nameOfUser = $_SESSION["username"];
+            $sql = "SELECT * FROM `individual_users` where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+            $result = mysqli_query($conn,$sql);
+            $row = mysqli_fetch_assoc($result);
+        }else{
+            $nameOfUser = $_SESSION["username"];
+            $sql = "SELECT * FROM `org_users` where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+            $result = mysqli_query($conn,$sql);
+            $row = mysqli_fetch_assoc($result);
+        }
+
+        echo '
     <div class="exp">
         <p style="margin-left:15px;font-size:24px;margin-top:10px;">Past Experiences</p><br><br>
-        <p style="margin-left:45px;font-size:21px;margin-top:30px;color:#333333;">Volunteer for swachh bharat abhiyan
+        <p style="margin-left:45px;font-size:21px;margin-top:30px;color:#333333;"> '.$row["exp1"].'
         </p><br><br>
-        <p style="margin-left:65px;font-size:19px;margin-top:30px;color:#595959;"> * At muskan foundation on 21st august
-        </p><br><br>
+        <!-- <p style="margin-left:65px;font-size:19px;margin-top:30px;color:#595959;"> * At muskan foundation on 21st august
+        </p><br><br> -->
         <hr style="margin-left:40px; margin-top:30px; color:lightgrey;"><br><br>
-        <p style="margin-left:45px;font-size:21px;margin-top:-30px;color:#333333;">Donater for an orphanage</p><br><br>
-        <p style="margin-left:65px;font-size:19px;margin-top:-30px;color:#595959;" onlick="/#"> * At milaap NGO on 1st
-            december</p><br><br>
+        <p style="margin-left:45px;font-size:21px;margin-top:-30px;color:#333333;">'.$row["exp2"].'</p><br><br>
+        <!-- <p style="margin-left:65px;font-size:19px;margin-top:-30px;color:#595959;" onlick="/#"> * At milaap NGO on 1st
+           december</p><br><br> -->
+            '
+    ?>
+
 
     </div>
+    <?php
+        // echo $_SESSION["username"];
+
+        if( $_SESSION["type"] == "Individual"){
+            $nameOfUser = $_SESSION["username"];
+            $sql = "SELECT * FROM `individual_users` where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+            $result = mysqli_query($conn,$sql);
+            $row = mysqli_fetch_assoc($result);
+        } else {
+            $nameOfUser = $_SESSION["username"];
+            $sql = "SELECT * FROM `org_users` where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+            $result = mysqli_query($conn,$sql);
+            $row = mysqli_fetch_assoc($result);
+        }
+      
+
+        echo '
     <div class="intro" >
         <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">Intro
             </p>
-        <p style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;">"your intro"</p>
-    </div>
+        <p style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;">"'.$row["intro"].'"</p>
+        '
+        ?>
+        </div>
 
     <!-- <div class="about">
         <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">Your Posts

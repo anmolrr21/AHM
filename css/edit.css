@@ -80,15 +80,7 @@ p{
   background-color: #fff;
   font-size: clamp(10px,1vw,40px);
 }
-.exp{
-    height:250px;
-    width:800px;
-    margin-top:15px;
-    margin-left: 150px;
-    background-color: white;
-    border-radius:10px;
-    box-shadow: 0 3px 3px rgba(0,0,0,0.3);
-}
+
 .edit{
     width:310px;
     height:140px;
