@@ -19,14 +19,14 @@
     ?> */
     .header {
         background-color: #0e76a8;
-        margin: -10px;
-        margin-left: -10px;
+        margin: 10px;
+        margin-left: 10px;
         height: 90px;
 
     }
 
     .logo {
-        margin-top: -70px;
+        margin-top: 70px;
 
     }
     .intro{
@@ -51,7 +51,7 @@
         <img src="images/logo.png" style="margin-left:10px;margin-top:40px;margin:-10px;" width="90px">
     </div>
     <div class="head">
-        <p style="margin-left:80px;margin-top:-60px;font-size:25px;color:white;"><b>ConnecTTogether<b></p>
+        <p style="margin-left:80px;margin-top:60px;font-size:25px;color:white;"><b>ConnecTTogether<b></p>
     </div>
 
     <div class="name">
@@ -72,7 +72,7 @@
               else{
                 $total = $num;
               }
-              echo'<p style="font-size:26px;margin-left:230px;"><b>'.$row['location'].'<b></p><br><br>
+              echo'<p style="font-size:26px;margin-left:330px;"><b>'.$row['location'].'<b></p><br><br>
                 <p style="color:blue;font-size:24px;margin-left:295px;">'.$total.' connections</p>';
             ?>
         </div>

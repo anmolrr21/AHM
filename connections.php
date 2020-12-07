@@ -101,7 +101,7 @@
     <!-- Connection Requests Sections -->
     <div class="notifyBox">
         <div class="notifyHeading">
-            <h5>Accept/Reject</h5>
+            <h5>Connection Requests</h5>
             <p><i class="fa fa-bookmark fa-lg" aria-hidden="true" style="color:black"></i></p>
         </div>
         <hr>
@@ -168,7 +168,7 @@
     <!-- People you want to connect with section -->
     <div class="notifyBox belowBox">
         <div class="notifyHeading">
-            <h5>People you may Know...</h5>
+            <h5>You can connect with..</h5>
             <p><i class="fa fa-bookmark fa-lg" aria-hidden="true" style="color:black"></i></p>
         </div>
         <hr>
@@ -208,7 +208,7 @@
 
     <div class="rightCorner">
         <div class="rightFirst">
-            <h5>Add to your Feed</h5>
+            <h5>Recommendations</h5>
             <p><i class="fa fa-lightbulb-o fa-lg" aria-hidden="true" style="color:black"></i></p>
         </div>
         <hr>
@@ -238,14 +238,14 @@
         <a href="/AHM/recommendation.php">View More</a>
     </div>
     
-    <div class="rightBottom">
+    <!-- <div class="rightBottom">
         <h5>Raise Funds</h5>
         <p><em>"Having something extra is always great because you are with the opportuinity to grab the blessings
                 by donating."</em></p>
         <button>DONATE <i class="fa fa-check-circle" aria-hidden="true"></i></button>
         <h6>Donate for cause, donate for change</h6>
     </div>
-    
+     -->
     <script>
         $('.connect').on('submit',function(event){
             event.preventDefault();
