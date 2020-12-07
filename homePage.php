@@ -290,7 +290,7 @@
                             echo'<div id="'.$k.'" class="perComment" style="display:none;">
                                     <img src="images/user.png">
                                     <div class="contentComment">
-                                        <h5>Hitesh Dhameja</h5>
+                                        <h5>'.$_SESSION["username"] .'</h5>
                                         <p>1m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
                                         <p class="'.$k.'">blank</p>
                                         <div class="likes">
