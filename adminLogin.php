@@ -24,6 +24,12 @@
                 <b>Failed!</b> Wrong credentials.
             </div>';
             }
+            elseif($error=='login'){
+                echo' <div class="msg msg-empty">
+                <b>Failed!</b>Please Login First.
+            </div>';
+
+            }
             ?>
         
         <div class="headings">

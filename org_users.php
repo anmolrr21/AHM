@@ -56,20 +56,32 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
         if (isset($_POST["submitt"]))
         {
-            $target_dir = 'images/';
-            echo $target_dir;
-            $target_file = $target_dir . basename($_FILES["file"]["name"]);
-            echo $target_file;
-            move_uploaded_file($pname,$target_file);
-            $img_path=$_FILES['file']['name'];
-            $blob = fopen($target_file, "rb");
-            echo $blob;
-            $sql = "UPDATE org_users set proof='$img_path' where Org_uid=$current_user_id ";
-            echo $sql;
+            $fileName = basename($_FILES["file"]["name"]); 
+            $fileType = pathinfo($fileName, PATHINFO_EXTENSION); 
+         
+        // Allow certain file formats 
+        $allowTypes = array('jpg','png','jpeg','gif'); 
+        if(in_array($fileType, $allowTypes)){ 
+            $image = $_FILES['file']['tmp_name']; 
+            $imgContent = addslashes(file_get_contents($image)); 
+            // $target_dir = 'images/';
+            // echo $target_dir;
+            // $target_file = $target_dir . basename($_FILES["file"]["name"]);
+            // echo $target_file;
+            // move_uploaded_file($pname,$target_file);
+            // $img_path=$_FILES['file']['name'];
+            // $blob = fopen($target_file, "rb");
+            // echo $blob;
+            // $encoded_image = base64_encode(file_get_contents($_FILES['file']['name']));
+            // $encoded_image = 'data:image/jpeg;base64,' . $encoded_image;
+            $sql = "UPDATE org_users set proof='$imgContent' where Org_uid=$current_user_id ";
             $resullt = mysqli_query($conn,$sql);
-        
+            header("location:/AHM/message.php?verify=process");
         }
-        header("location:/AHM/message.php?verify=process");
+        
+        
+       
+        }
 
         }elseif(verifyEmail::validate($email)){ 
             

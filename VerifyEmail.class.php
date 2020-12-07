@@ -21,13 +21,13 @@ class VerifyEmail {
      * The connection timeout, in seconds. 
      * @var int 
      */ 
-    protected $max_connection_timeout = 3; 
+    protected $max_connection_timeout = 5; 
 
     /** 
      * Timeout value on stream, in seconds. 
      * @var int 
      */ 
-    protected $stream_timeout = 1; 
+    protected $stream_timeout = 5; 
 
     /** 
      * Wait timeout on stream, in seconds. 

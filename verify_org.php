@@ -57,7 +57,7 @@
         
         
     }
-    header("location:/AHM/admin.php#ad-sect")
+    header("location:/AHM/adminPanel.php#ad-sect")
 
 
 ?>

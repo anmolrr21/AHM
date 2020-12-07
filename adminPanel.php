@@ -1,3 +1,15 @@
+
+<?php
+    if(!isset($_SESSION)){ 
+        session_start(); 
+    }?>
+
+<?php
+    if(!isset($_SESSION["logged_in_email"])){ 
+        header("location:/AHM/adminLogin.php?error=login");
+       
+    }?>
+
 <!DOCTYPE html>
 <html>
 
@@ -23,8 +35,8 @@
         <ul id="top" class="topnav">
             <li><img src="images/logo.png" width="90px"></li>
             <li><a href="index.html">ConnecTTogether</a></li>
-            <li><a class="nav1 active" href="#">Preview Website</a></li>
-            <li><a class="nav1" href="#about">Log Out</a></li>
+            
+            <li><a class="nav1" href="adminLogout.php">Log Out</a></li>
 
             <div class="menuIcon" onclick="display()">
                 <div class="bar1"></div>
@@ -132,7 +144,8 @@
                                 $uid=$row['user_id'];
                                 $sql = "SELECT proof FROM org_users where Org_uid=$uid";
                                 $result_sql = mysqli_query($conn, $sql);
-                                $row_sql = mysqli_fetch_array($result_sql);
+                                $row_sql = mysqli_fetch_assoc($result_sql);
+                               
                                 $image=$row_sql['proof'];
                                 $image_id= $count;
                                 
@@ -140,8 +153,14 @@
                                         <p>' .$row['name'] . 
                                         '<span><button onclick=display_certi('.$image_id.')>View</button></span>
                                         <span><button onclick=close_certi('.$image_id.')>Close</button></span>';
-                                        echo '<br>' .'<img id='.$image_id.' class="img_org" src="data:image/jpeg;base64,'.base64_encode($image).'"/>';
-                                               
+                                //         echo'
+                                //         <img id='.$image_id.' class="img_org" src="images/'.$row_sql['proof'].'"/>
+                                //    ';
+                                //echo '<img id='.$image_id.' class="img_org" src="'.$row_sql['proof'].'">';
+                                //echo '<br>' .'<img id='.$image_id.' class="img_org" src="'.$row_sql['proof'].'"/>';
+                                echo '<br>'.'<img id='.$image_id.' class="img_org" src="data:image/jpg;charset=utf8;base64,'.base64_encode($row_sql['proof']).'" />'; 
+                                       
+                                              
                                     echo '</div>
                                     <div class="btns">
                                    
@@ -231,8 +250,5 @@
     </div>
 
 
-    </div>
-    
- 
+    </div>';
 
-        

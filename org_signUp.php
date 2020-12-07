@@ -54,7 +54,7 @@
                         <input type="text" name="location" placeholder="Location">
                         <input type="tel" name="phone" placeholder="Contact">
                         <label for="myfile">Add a proof of your organization:</label><br>
-                        <input type="file"  name="file"><br><br>
+                        <input type="file"  name="file" accept="image/*" ><br><br>
                         <input type="submit" value="submit" name="submitt" class="button" id="submit_btn"  >
     
                     </div>
