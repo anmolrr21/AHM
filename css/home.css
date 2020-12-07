@@ -14,6 +14,7 @@ a.active{
 .share{
     margin-left: 31%;
     border: 2px solid rgb(167, 167, 167);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-right: 31%;
     border-radius: 10px;
     background-color: #fff;
@@ -127,7 +128,7 @@ a.active{
     /* border: 1px solid #000; */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-left: 2%;
-    margin-top: 35%;
+    margin-top: 38%;
     border-radius: 10px;
     position: fixed;
     top: 0;
@@ -285,6 +286,9 @@ a.active{
     border-radius: 50%;
     width: 50px;
     height: 40px;
+}
+.videoPosted video{
+    width: 85%;
 }
 .nameDetail{
     margin-top: -22px;
@@ -557,13 +561,15 @@ a.active{
                                 Notification.php
 **********************************************************************************/
 .notifyBox{
-    width: 510px;
-    border: 1px solid #000;
+    /* width: 510px; */
+    /* border: 1px solid #000; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
     background-color: #fff;
-    margin-left: 410px;      /*  changed from 400-450 */
-    margin-top: 80px;
+    margin-left: 400px;      /*  changed from 400-450 */
+    margin-top: 90px;
     min-height: 100px;
+    margin-right: 31%;
 }
 .belowBox{
     margin-top: 10px;

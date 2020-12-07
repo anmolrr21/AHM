@@ -229,7 +229,6 @@
                             <h5>'.$row['name'].'</h5>
                             <p>'.$bio.'</p>
                             <button>View Profile</button>
-                            <button>Connect</button>
                         </div>
                         
                     </div>';
