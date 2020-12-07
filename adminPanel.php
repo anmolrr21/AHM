@@ -212,19 +212,27 @@
                 if(mysqli_num_rows($result1) > 0){
                     echo "<table id='complaint'>";
                         echo "<tr>";
-                            echo "<th>Complaint Id</th>";
-                            echo "<th>User Name</th>";
+                            echo "<th>Complaint By</th>";
+                            echo "<th>Complaint For</th>";
                             echo "<th>Complaint</th>";
                         echo "</tr>";
                     while($row1 = mysqli_fetch_array($result1)){
-                        $user_id=$row1['user_id'];
-                        $sql2="SELECT * FROM users where user_id=$user_id ";
+                        $complaint_by=$row1['user_id'];
+                        $complaint_for=$row1['complaint_for_userid'];
+                        $sql2="SELECT * FROM users where user_id=$complaint_by ";
                         $result2 = mysqli_query($conn, $sql2);
+                        
+                        $sql3="SELECT * FROM users where user_id=$complaint_for ";
+                        $result3 = mysqli_query($conn, $sql3);
+                        
                         $row2 = mysqli_fetch_array($result2);
-                        $user_name=$row2['name'];
+                        $row3 = mysqli_fetch_array($result3);
+                        
+                        $by_user_name=$row2['name'];
+                        $for_user_name=$row3['name'];
                         echo "<tr>";
-                            echo "<td>" . $row1['complaint_id'] . "</td>";
-                            echo "<td>" . $user_name . "</td>";
+                            echo "<td>" . $by_user_name. "</td>";
+                            echo "<td>" . $for_user_name . "</td>";
                             echo "<td>" . $row1['complaint'] . "</td>";
                             echo "</tr>";
                         }
