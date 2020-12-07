@@ -17,6 +17,7 @@ a.active{
     margin-right: 31%;
     border-radius: 10px;
     background-color: #fff;
+    overflow: hidden;
 }
 .onlyBox2{
     margin-top: 7%; 
