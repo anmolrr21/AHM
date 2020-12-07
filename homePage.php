@@ -53,25 +53,28 @@
         ?></p>
         <hr>
         <h5 class="that">Your Connections</h5>
-        <p class="these">
-            <?php
-                $nameOfUser = $_SESSION["username"];
-                $sql = "SELECT `user_id` FROM `users` where `name`='$nameOfUser'";
-                $result = mysqli_query($conn,$sql);
-                $row = mysqli_fetch_assoc($result);
-                $id = $row['user_id'];
-                $sql1 = "SELECT * FROM `connections` where `userid`='$id'";
-                $result1 = mysqli_query($conn,$sql1);
-                $num = mysqli_fetch_row($result1);
-                if($num==null){
-                    echo '0';
+        <?php
+            $nameOfUser = $_SESSION["username"];
+            $sql = "SELECT `user_id` FROM `users` where `name`='$nameOfUser'";
+            $result = mysqli_query($conn,$sql);
+            $row = mysqli_fetch_assoc($result);
+            $id = $row['user_id'];
+            $sql1 = "SELECT * FROM `connections` where `userid`='$id' or `connection_id`='$id' and `requestStatus`=1";
+            $result1 = mysqli_query($conn,$sql1);
+            $num = mysqli_num_rows($result1);
+            if(!$num){
+                echo'<p class="these">0</p>';
+            }
+            else{
+                if($num<10){
+                    echo'<p class="these">0'.$num.'</p>';
                 }
                 else{
-                    echo $num;
+                    echo'<p class="these">'.$num.'</p>';
                 }
-                
-            ?>
-        </p>
+            }
+            
+        ?>
         <hr>
         <a href="/AHM/myprofile.php">View Profile</a>
     </div>
@@ -235,8 +238,8 @@
                         <img src="images/'.$row['image_posted'].'"/>
                     </div>';}
                     if($row['video_posted']!=NULL){
-                    echo'<div class="postImage" style="margin-left:-380px">
-                        <video id="myVideo" width="440" height="240" style="margin-left: 400px;" controls>
+                    echo'<div class="postImage videoPosted">
+                        <video id="myVideo" controls>
                             <source src="videos/'.$row['video_posted'].'" type="video/'.$row['videoExt'].'">
                                 Your browser does not support the video tag.
                         </video>
@@ -315,7 +318,7 @@
 
     <div class="rightCorner">
         <div class="rightFirst">
-            <h5>Add to your Feed</h5>
+            <h5>Recommendations</h5>
             <p><i class="fa fa-lightbulb-o fa-lg" aria-hidden="true" style="color:black"></i></p>
         </div>
         <hr>
@@ -346,13 +349,13 @@
         <a href="/AHM/recommendation.php">View More</a>
     </div>
     
-    <div class="rightBottom">
+    <!-- <div class="rightBottom">
         <h5>Raise Funds</h5>
         <p><em>"Having something extra is always great because you are with the opportuinity to grab the blessings by
                 donating."</em></p>
         <button>DONATE <i class="fa fa-check-circle" aria-hidden="true"></i></button>
         <h6>Donate for cause, donate for change</h6>
-    </div>
+    </div> -->
 
     <!-- Javascript -->
     <script>

@@ -45,29 +45,30 @@
                 $sql1 = "SELECT `bio` FROM `user_profile` where `userid`='$id'";
                 $result1 = mysqli_query($conn,$sql1);
                 $row1 = mysqli_fetch_assoc($result1);
-                echo $row1['bio']; 
+                if($row1 !=Null){
+                    echo $row1['bio'];
+                }
+                
         ?></p>
         <hr>
         <h5 class="that">Your Connections</h5>
-        <p class="these">
-            <?php
-                $nameOfUser = $_SESSION["username"];
-                $sql = "SELECT `user_id` FROM `users` where `name`='$nameOfUser'";
-                $result = mysqli_query($conn,$sql);
-                $row = mysqli_fetch_assoc($result);
-                $id = $row['user_id'];
-                $sql1 = "SELECT * FROM `connections` where `userid`='$id'";
-                $result1 = mysqli_query($conn,$sql1);
-                $num = mysqli_fetch_row($result1);
-                if($num==null){
-                    echo '0';
-                }
-                else{
-                    echo $num;
-                }
-                
-            ?>
-        </p>
+        <?php
+            $nameOfUser = $_SESSION["username"];
+            $sql = "SELECT `user_id` FROM `users` where `name`='$nameOfUser'";
+            $result = mysqli_query($conn,$sql);
+            $row = mysqli_fetch_assoc($result);
+            $id = $row['user_id'];
+            $sql1 = "SELECT * FROM `connections` where `userid`='$id' or `connection_id`='$id' and `requestStatus`=1";
+            $result1 = mysqli_query($conn,$sql1);
+            $num = mysqli_num_rows($result1);
+            if(!$num){
+                echo'<p class="these">0</p>';
+            }
+            else{
+                echo'<p class="these">'.$num.'</p>';
+            }
+            
+        ?>
         <hr>
         <a href="/AHM/myprofile.php">View Profile</a>
     </div>
@@ -96,63 +97,78 @@
         </div>
     </div>
 
+
     <!-- Connection Requests Sections -->
     <div class="notifyBox">
         <div class="notifyHeading">
-            <h5>Accept/Reject</h5>
+            <h5>Connection Requests</h5>
             <p><i class="fa fa-bookmark fa-lg" aria-hidden="true" style="color:black"></i></p>
         </div>
         <hr>
-        <div class="rightSuggest">
-            <img src="images/user.png">
-            <div class="part">
-                <h5>Hitesh Dhameja</h5>
-                <p>Volunteer | Fund Raiser | Mind Blowing</p>
-                <button>Accept</button>
-                <button>Reject</button>
-            </div>
-        </div>
-        <div class="rightSuggest">
-            <img src="images/user.png">
-            <div class="part">
-                <h5>Hitesh Dhameja</h5>
-                <p>Volunteer | Fund Raiser | Mind Blowing</p>
-                <button>Accept</button>
-                <button>Reject</button>
-            </div>
-        </div>
-        <div class="rightSuggest">
-            <img src="images/user.png">
-            <div class="part">
-                <h5>Mahima- Mahila Jyoti Foundation</h5>
-                <p>Volunteer | Women Empowerment | Mind Blowing</p>
-                <button>Accept</button>
-                <button>Reject</button>
-            </div>
-        </div>
-        <div class="rightSuggest">
-            <img src="images/user.png">
-            <div class="part">
-                <h5>Mahima- Mahila Jyoti Foundation</h5>
-                <p>Volunteer | Women Empowerment | Mind Blowing</p>
-                <button>Accept</button>
-                <button>Reject</button>
-            </div>
-        </div>
+        <?php
+            $nameOfUser = $_SESSION["username"];
+            $sql = "SELECT `user_id` FROM `users` where `name`='$nameOfUser'";
+            $result = mysqli_query($conn,$sql);
+            $row = mysqli_fetch_assoc($result);
+            $id = $row['user_id'];
+            $sql1 = "SELECT * FROM `connections` where `connection_id`='$id' and `requestStatus`=0";
+            $result1 = mysqli_query($conn,$sql1);
+            if(!$result1){
+                $num1 = 0;}
+            else{$num1 = mysqli_num_rows($result1);}
+            
+            if($result1 && $num1>0){
+                while($row1 = mysqli_fetch_assoc($result1)){
+                    $otherid = $row1['userid'];
+                    $sql2 = "SELECT * FROM `users` where `user_id`='$otherid'";
+                    $result2 = mysqli_query($conn,$sql2);
+                    $row2 = mysqli_fetch_assoc($result2);
+                    echo'<div class="rightSuggest">
+                        <img src="images/user.png">
+                        <div class="part">
+                            <h5>'.$row2['name'].'</h5>
+                            <p>Volunteer | Fund Raiser | Mind Blowing</p>
+                            <form method="POST" action="/AHM/updateRequest.php">
+                                <input type="text" value="'.$otherid.'" name="done" style="display:none">
+                                <input type="submit" name="accept" value="Accept">
+                                <input type="submit" name="reject" value="Reject"> 
+                            </form>
+                        </div>
+                    </div>';
+                }
+            }
+        ?>
     </div>
-
-    <div class="notifyBox belowBox">
-        <div class="noNotify">
-            <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color:green"></i>
-            <h4>No new Requests!</h4>
-            <p>You will be notified when new requests arrives...</p>
-        </div>
-    </div>
+    <?php
+        $nameOfUser = $_SESSION["username"];
+        $sql = "SELECT `user_id` FROM `users` where `name`='$nameOfUser'";
+        $result = mysqli_query($conn,$sql);
+        $row = mysqli_fetch_assoc($result);
+        $id = $row['user_id'];
+        $sql12 = "SELECT * FROM `connections` where `connection_id`='$id";
+        $result12 = mysqli_query($conn,$sql12);
+        echo $result12;
+        $num12=0;
+        if($result12){
+            $num12 = mysqli_num_rows($result12);}
+        else{
+            $num12=0;
+        }
+        if($num12<1){
+            echo'<div class="notifyBox belowBox">
+                <div class="noNotify">
+                    <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color:green"></i>
+                    <h4>No new Requests!</h4>
+                    <p>You will be notified when new requests arrives...</p>
+                </div>
+            </div>';
+        }
+    ?>
 
     <!-- People you want to connect with section -->
     <div class="notifyBox belowBox">
         <div class="notifyHeading">
-            <h5>People you may Know...</h5>
+            <h5>You can connect with..</h5>
             <p><i class="fa fa-bookmark fa-lg" aria-hidden="true" style="color:black"></i></p>
         </div>
         <hr>
@@ -160,16 +176,31 @@
         $name = $_SESSION["username"];
         $sql = "SELECT * FROM `users` where `name`<>'$name'";
         $result = mysqli_query($conn,$sql);
+        $i = 0;
+        $j = "pending".strval($i) ;
         while($row = mysqli_fetch_assoc($result)){
-            echo'<div class="rightSuggest">
-                    <img src="images/user.png">
-                    <div class="part">
-                        <h5>'.$row['name'].'</h5>
-                        <p>'.$row['type'].'</p>
-                        <button>View Profile</button>
-                    </div>
-                </div>';
+            $id = $row['user_id'];
+            $sql2 = "SELECT * FROM `connections` where `userid`='$id' or `connection_id`='$id' and `requestStatus`=1";
+            $result2 = mysqli_query($conn,$sql2);
+            $num2 = mysqli_num_rows($result2);
+            if(!$num2){ 
+                echo'<div class="rightSuggest">
+                        <img src="images/user.png">
+                        <div class="part">
+                            <h5>'.$row['name'].'</h5>
+                            <p>'.$row['type'].'</p>
+                            <form method="POST" class="connect">
+                                <button>View Profile</button>
+                                <input type="submit" id="'.$row['user_id'].'" value="Connect">
+                            </form>
+                            <input type="submit" value="Pending..." id="'.$j.'" style="display:none;">
+                            </div>
+                    </div>';
+            }
+            $i = $i + 1;
+            $j = "pending".strval($i) ;
         }
+         
         ?>
     </div>
 
@@ -177,7 +208,7 @@
 
     <div class="rightCorner">
         <div class="rightFirst">
-            <h5>Add to your Feed</h5>
+            <h5>Recommendations</h5>
             <p><i class="fa fa-lightbulb-o fa-lg" aria-hidden="true" style="color:black"></i></p>
         </div>
         <hr>
@@ -198,7 +229,6 @@
                             <h5>'.$row['name'].'</h5>
                             <p>'.$bio.'</p>
                             <button>View Profile</button>
-                            <button>Connect</button>
                         </div>
                         
                     </div>';
@@ -207,14 +237,36 @@
         <a href="/AHM/recommendation.php">View More</a>
     </div>
     
-    <div class="rightBottom">
+    <!-- <div class="rightBottom">
         <h5>Raise Funds</h5>
         <p><em>"Having something extra is always great because you are with the opportuinity to grab the blessings
                 by donating."</em></p>
         <button>DONATE <i class="fa fa-check-circle" aria-hidden="true"></i></button>
         <h6>Donate for cause, donate for change</h6>
     </div>
-
+     -->
+    <script>
+        $('.connect').on('submit',function(event){
+            event.preventDefault();
+            var id = $(this)[0].children[1].id;
+            var classthat = $(this).siblings()[2].id;
+            $.ajax({
+                url:"sendRequest.php",
+                method:"POST",
+                data: {id:id},
+                dataType: "JSON",
+                success: function(data){
+                    if(data.error != '')
+                    {
+                        $('.comment').reset();
+                        $('.comment').html(data.error);
+                    }
+                }
+            });
+            $(this).hide();
+            document.getElementById(classthat).style.display="block";
+        });
+    </script>
 </body>
 
 </html>

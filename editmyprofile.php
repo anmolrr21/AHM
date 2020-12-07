@@ -24,10 +24,30 @@
       margin-top:-70px;
    
     }
+    .intro{
+        height:125px;
+        width:800px;
+        margin-top:15px;
+        margin-left: 150px;
+        background-color: white;
+        border-radius:10px;
+        box-shadow: 0 3px 3px rgba(0,0,0,0.3);
+        }
+
     </style>
     <title>My profile</title>
     </head>
     <body>
+    <?php include 'common/_dbconnect.php' ?>
+    <?php
+       if(isset($_POST["submit"])) {
+          $name = $_REQUEST['location'];
+          $nameOfUser = $_SESSION["username"];
+          $sql = "UPDATE `users`  SET location='$name' where `name`='$nameOfUser'";
+          $result = mysqli_query($conn,$sql);
+          // header("Location: ./myprofile.php");
+      }
+    ?>
     <div class="header" >
     </div>
     <div class="logo">
@@ -39,8 +59,23 @@
    
     <div class="name">
       <div class="sub-name">
-        <p> <?php echo $_SESSION["username"];?> </p><br><br><br>
-        <input type="text" style="margin-top:130px;margin-left:280px;"placeholder="Enter location"><br><br>
+        <p> 
+         <?php
+          echo $_SESSION["username"];
+          $nameOfUser = $_SESSION["username"];
+          $sql = "SELECT * FROM `users` where `name`='$nameOfUser'";
+          $result = mysqli_query($conn,$sql);
+          $row = mysqli_fetch_assoc($result);
+
+          echo '
+          </p><br><br><br>
+          <form method="post">
+          <input type="text" name="location" style="margin-top:130px;margin-left:280px;"placeholder="Enter location" value="'.$row["location"].'">
+          <input type="submit" name="submit" value="Save">
+          </form>
+         ';
+         ?>
+<br><br>
         <p style="color:blue;font-size:24px;margin-left:295px;margin-top:-10px; position:relative;">200 connections</p>
       </div>
     </div>
@@ -75,6 +110,12 @@
       <p style="margin-left:65px;font-size:19px;margin-top:-30px;color:#595959;" onlick="/#"> * At milaap NGO on 1st december</p><br><br> -->
 
     </div>
+    <div class="intro" >
+        <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">Intro
+            </p>
+        <input type="text" maxlength="20" style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;"></p>
+    </div>
+
     <div class="edit">
       
       <button style="background-color:lightskyblue;color:black;padding:15px;width:100px; border-radius:10px;margin-top:50px;margin-left:110px;border:0px;">Update<button>
