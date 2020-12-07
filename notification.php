@@ -59,12 +59,16 @@
             $id = $row['user_id'];
             $sql1 = "SELECT * FROM `connections` where `userid`='$id' or `connection_id`='$id' and `requestStatus`=1";
             $result1 = mysqli_query($conn,$sql1);
-            $num = mysqli_num_rows($result1);
-            if(!$num){
-                echo'<p class="these">0</p>';
-            }
+            if(!$result1){
+                echo'<p class="these">0</p>';}
             else{
-                echo'<p class="these">'.$num.'</p>';
+                $num = mysqli_num_rows($result1);
+                if($num<10){
+                    echo'<p class="these">0'.$num.'</p>';
+                }
+                else{
+                    echo'<p class="these">'.$num.'</p>';
+                }
             }
             
         ?>
