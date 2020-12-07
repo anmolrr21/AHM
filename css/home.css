@@ -99,11 +99,11 @@ a.active{
 }
 .leftCorner h5{
     font-size: 19px;
-    margin-left: 35%;
+    margin-left: 27%;
     margin-top: -1px;
 }
 .leftCorner p{
-    margin-left: 25%;
+    margin-left: 21%;
     margin-top: -8px;
     font-size: 18px;
 }
@@ -276,7 +276,7 @@ a.active{
     margin-top: -1px;
 }
 .topNamePic{
-    padding: 5px;
+    padding: 6px;
     display: flex;
 }
 .topNamePic img,.perComment img,.area img{
@@ -286,7 +286,7 @@ a.active{
     height: 40px;
 }
 .nameDetail{
-    margin-top: -18px;
+    margin-top: -22px;
     padding-left: 5px;
 }
 .nameDetail h5{
@@ -551,25 +551,7 @@ a.active{
 #contentButton{
     margin-left: 450px;
 }
-@media screen and (max-width: 500px) {
-    .leftCorner{
-        display: none;
-    }
-    .leftBottom{
-        display: none;
-    }
-    .share{
-        margin-left: 20px;
-        width: 70%;
-    }
-    .share ul li{
-        margin-left: -10px;
-    }
-    .share .postImage img{
-        margin-left: 3px;
-        width: 98%;
-    }
-}
+
 /********************************************************************************
                                 Notification.php
 **********************************************************************************/
@@ -605,6 +587,75 @@ a.active{
 }
 .notifyBox .noNotify p{
     margin-left: 95px;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .leftCorner{
+        width: 34%;
+    }
+    .leftCorner p{
+        margin-left: 13%;
+        /* font-size: 16px; */
+    }
+    .leftCorner .that{
+        margin-left: 29%;
+    }
+    .leftCorner a{
+        margin-left: 29%;
+    }
+    .leftBottom{
+        margin-top: 50%;
+        width: 32%;
+    }
+    .onlyBox2,.share{
+        margin-right: 1%;
+        margin-left: 40%;
+    }
+    .rightBottom,.rightCorner{
+        display: none;
+    }
+    .notifyBox{
+        margin-right: 1%;
+        margin-left: 39%;
+    }
+}
+@media screen and (max-width: 500px) {
+    .leftCorner,.rightCorner,.rightBottom,.leftBottom{
+        display: none;
+    }
+    
+    .share ul li{
+        margin-left: -10px;
+    }
+    .share .postImage img{
+        margin-left: 3px;
+        width: 98%;
+    }
+    .onlyBox2{
+        margin-left: 7%;
+        margin-right: 7%;
+        margin-top: 60px;
+    }
+    .onlyPost{
+        margin-left: 6%;
+        margin-right: 6%;
+    }
+    .onlyPost .postImage{
+        width: 80%;
+    }
+    .onlyPost .videoPosted video{
+        width: 110%;
+    }
+    .notifyBox{
+        margin-left: 4%;
+        margin-right: 1%;
+        width: 90%;
+    }
+    .noNotify{
+        margin-left: -18%;
+    }
+    .connect{
+        margin-left: -12%;
+    }
 }
 
 

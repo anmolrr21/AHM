@@ -66,7 +66,12 @@
                 echo'<p class="these">0</p>';
             }
             else{
-                echo'<p class="these">'.$num.'</p>';
+                if($num<10){
+                    echo'<p class="these">0'.$num.'</p>';
+                }
+                else{
+                    echo'<p class="these">'.$num.'</p>';
+                }
             }
             
         ?>
@@ -233,8 +238,8 @@
                         <img src="images/'.$row['image_posted'].'"/>
                     </div>';}
                     if($row['video_posted']!=NULL){
-                    echo'<div class="postImage" style="margin-left:-380px">
-                        <video id="myVideo" width="440" height="240" style="margin-left: 400px;" controls>
+                    echo'<div class="postImage videoPosted">
+                        <video id="myVideo" controls>
                             <source src="videos/'.$row['video_posted'].'" type="video/'.$row['videoExt'].'">
                                 Your browser does not support the video tag.
                         </video>

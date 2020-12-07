@@ -13,7 +13,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://use.fontawesome.com/0cf079388a.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <style>
     <?php include 'css/home.css';
     include 'css/navbar.css';
@@ -77,7 +78,7 @@
                 <small>Request Demo</small><br>
                 <small>FAQs</small>
             </div>
-            
+
             <div class="linkTitle">
                 <h4>Support</h4>
                 <small>Features</small><br>
@@ -134,7 +135,7 @@
         ?>
     </div>
 
-    
+
 
     <!-- Right section of home -->
 
@@ -169,7 +170,7 @@
         ?>
         <a href="/AHM/recommendation.php">View More</a>
     </div>
-    
+
     <div class="rightBottom">
         <h5>Raise Funds</h5>
         <p><em>"Having something extra is always great because you are with the opportuinity to grab the blessings
@@ -178,4 +179,5 @@
         <h6>Donate for cause, donate for change</h6>
     </div>
 </body>
+
 </html>

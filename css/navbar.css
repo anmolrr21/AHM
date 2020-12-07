@@ -139,10 +139,11 @@ a.active{
         border-bottom: 2px solid #fff;
     }
     .homeNav img{
-        width: 40px;
+        width: 7%;
     }
     .homeNav h3{
-        font-size:90%;
+        margin-top: 16px;
+        font-size: 18px;
     }
     .homeNav form{
         display: flex;
@@ -155,8 +156,11 @@ a.active{
     }
     .homeNav ul{
         margin-top: 20px;
-        margin-left: -50px;
-        font-size: 12px;
+        margin-left: -30px;
+    }
+    .homeNav ul li a{
+        font-size: 1.4vw;
+        margin-right: -4px;
     }
     .homeNav ul li img{
         margin-top: -10px;
@@ -166,18 +170,25 @@ a.active{
     }
 } 
 @media screen and (max-width: 500px) {
-     .homeNavBottom ul li a{
+    .homeNavBottom ul li a{
         text-decoration: none;
         color: #000000;
     }
     a.active{
         border-bottom: 2px solid #000;
     }
+    .homeNav{
+        display: flex;
+        /* justify-content: space-evenly; */
+    }
     .homeNav img{
-        width: 60px;
+        width: 11%;
     } 
-     .homeNav form input[type=text]{
-        width: 180px;
+    .homeNav h3{
+        display: none;
+    }
+    .homeNav form input[type=text]{
+        width: 65vw;
     } 
     .decide{
         display: none;
@@ -189,6 +200,12 @@ a.active{
     .homeNav ul li a{
         margin-left: 12px;
         font-size: 14px;
+    }
+    .dropbtn{
+        display: none;
+    }
+    .closebtn{
+        margin-top: 10px;
     }
     .sidenav {
         height: 100%;
@@ -204,7 +221,15 @@ a.active{
         padding-top: 60px;
         text-align:left;
       }
-      
+      .smallMobile{
+          display: flex;
+      }
+      .smallMobile img{
+          width: 18%;
+      }
+      .smallMobile h3{
+          font-size: 30px;
+      }
       .sidenav a {
         padding: 8px 8px 25px 32px;
         text-decoration: none;
