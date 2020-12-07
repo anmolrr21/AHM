@@ -179,7 +179,7 @@ a.active{
     }
     .homeNav{
         display: flex;
-        /* justify-content: space-evenly; */
+        justify-content: space-evenly; 
     }
     .homeNav img{
         width: 11%;

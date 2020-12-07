@@ -59,12 +59,16 @@
             $id = $row['user_id'];
             $sql1 = "SELECT * FROM `connections` where `userid`='$id' or `connection_id`='$id' and `requestStatus`=1";
             $result1 = mysqli_query($conn,$sql1);
-            $num = mysqli_num_rows($result1);
-            if(!$num){
-                echo'<p class="these">0</p>';
-            }
+            if(!$result1){
+                echo'<p class="these">0</p>';}
             else{
-                echo'<p class="these">'.$num.'</p>';
+                $num = mysqli_num_rows($result1);
+                if($num<10){
+                    echo'<p class="these">0'.$num.'</p>';
+                }
+                else{
+                    echo'<p class="these">'.$num.'</p>';
+                }
             }
             
         ?>
@@ -225,40 +229,6 @@
         ?>
     </div>
 
-    <!-- <div class="notifyBox belowBox">
-        <div class="notifyHeading">
-            <h5>Events</h5>
-            <p><i class="fa fa-calendar fa-lg" aria-hidden="true" style="color:black"></i></p>
-        </div>
-        <hr>
-        <div class="rightSuggest">
-            <img src="images/user.png">
-            <div class="part">
-                <h5>Mahima- Mahila Jyoti Foundation</h5>
-                <p>Invited you to volunteer the event.</p>
-                <button>Accept</button>
-                <button>Reject</button>
-            </div>
-        </div>
-        <div class="rightSuggest">
-            <img src="images/user.png">
-            <div class="part">
-                <h5>Meljhol- Water Cleanliness Ngo</h5>
-                <p>Need Funds</p>
-                <button>Raise Funds</button>
-                <button>Reject</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="notifyBox belowBox">
-        <div class="noNotify">
-            <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color:green"></i>
-            <h4>No new Notifications!</h4>
-            <p>You will be notified when new notifications arrives...</p>
-        </div>
-    </div> -->
-
     <!-- Right section of home -->
 
     <div class="rightCorner">
@@ -285,7 +255,6 @@
                             <h5>'.$row['name'].'</h5>
                             <p>'.$bio.'</p>
                             <button>View Profile</button>
-                            <button>Connect</button>
                         </div>
                         
                     </div>';
