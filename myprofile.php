@@ -106,13 +106,7 @@
                     }
                 }
                 if($check==0){
-                    echo'<div class="notifyBox">
-                            <div class="noNotify">
-                                <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color:green"></i>
-                                <h4>No new Requests!</h4>
-                                <p>You will be notified when new requests arrives...</p>
-                            </div>
-                        </div>';
+                    echo'<h4>No Connections Yet...</h4>';
                 }
             ?>
             </div>
