@@ -80,7 +80,7 @@
                                 <div class="part">
                                     <h5>'.$row4['name'].'</h5>
                                     <p>'.$row4['type'].'</p>
-                                    <form method="post" action="/AHM/viewProfile.php?forName='.$newId1.'">
+                                    <form method="post" action="/AHM/viewProfile.php?forName='.$newId.'">
                                         <button type="submit">View Profile</button>
                                     </form>
                                 </div>
@@ -88,7 +88,7 @@
                         }
                         if($id==$newId1){
                             $check=1;
-                            $sql4 = "SELECT * FROM `users` where `user_id`='$newId'";
+                            $sql4 = "SELECT * FROM `users` where `user_id`='$newId1'";
                             $result4 = mysqli_query($conn,$sql4);
                             $row4 = mysqli_fetch_assoc($result4);
                             echo'<div class="rightSuggest">
