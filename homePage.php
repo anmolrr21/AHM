@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    <!-- Including common files -->
+<!---------------------- Including common files ----------------------------------->
 
     <?php
         include 'commonNavbar.php';
@@ -30,7 +30,7 @@
     ?>
 
 
-    <!-- Left Section Of home -->
+<!--------------------- Left Section Of home--------------------------------------->
 
     <div class="leftCorner">
         <div class="emptyFree"></div>

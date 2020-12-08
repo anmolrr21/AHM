@@ -123,7 +123,9 @@
                     <div class="part">
                         <h5>'.$row['name'].'</h5>
                         <p>'.$row['type'].'<p>
-                        <button>View Profile</button>
+                        <form method="post" action="/AHM/viewProfile.php?forName='.$row['user_id'].'">
+                                <input type="submit" value="View Profile">
+                        </form>
                     </div>
                 </div>';
             }
