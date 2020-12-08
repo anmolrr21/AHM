@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <!-- Including common files -->
+    <!---------------------- Including common files ----------------------------------->
 
     <?php
         include 'commonNavbar.php';
@@ -29,7 +29,7 @@
     ?>
 
 
-    <!-- Left Section Of home -->
+    <!--------------------- Left Section Of home--------------------------------------->
 
     <div class="leftCorner">
         <div class="emptyFree"></div>
@@ -61,6 +61,7 @@
             $result1 = mysqli_query($conn,$sql1);
             if(!$result1){
                 echo'<p class="these">0</p>';}
+            
             else{
                 $num = mysqli_num_rows($result1);
                 if($num<10){
@@ -75,6 +76,7 @@
         <hr>
         <a href="/AHM/myprofile.php">View Profile</a>
     </div>
+
     <div class="leftBottom">
         <div class="footer">
             <div class="linkTitle">
@@ -82,7 +84,7 @@
                 <small>Request Demo</small><br>
                 <small>FAQs</small>
             </div>
-            
+
             <div class="linkTitle">
                 <h4>Support</h4>
                 <small>Features</small><br>
@@ -100,6 +102,7 @@
         </div>
     </div>
 
+    <!-------------------------Notification area---------------------------------->
         
     <div class="notifyBox">
         <div class="notifyHeading">
@@ -117,9 +120,11 @@
             $result1 = mysqli_query($conn,$sql1);
             $num1=0;
             if(!$result1){
-                $num1 = 0;}
-            else{$num1 = mysqli_num_rows($result1);}
-                
+                $num1 = 0;
+            }
+            else{
+                $num1 = mysqli_num_rows($result1);
+            }  
             if($result1 && $num1>0){
                 while($row1 = mysqli_fetch_assoc($result1)){
                     $otherid = $row1['userid'];
@@ -140,8 +145,11 @@
             $result2 = mysqli_query($conn,$sql2);
             $num2=0;
             if(!$result2){
-                $num2 = 0;}
-            else{$num2 = mysqli_num_rows($result2);}
+                $num2 = 0;
+            }
+            else{
+                $num2 = mysqli_num_rows($result2);
+            }
             if($result2 && $num2>0){
                 while($row2 = mysqli_fetch_assoc($result2)){
                     $otherid = $row2['connection_id'];
@@ -229,7 +237,7 @@
         ?>
     </div>
 
-    <!-- Right section of home -->
+    <!--------------------Right section of home ----------------------------------->
 
     <div class="rightCorner">
         <div class="rightFirst">
@@ -249,20 +257,19 @@
                 if($row1==null){
                     $bio = $row['type'];
                 }
-                
                 echo'<div class="rightSuggest">
                         <img src="images/user.png">
                         <div class="part">
                             <h5>'.$row['name'].'</h5>
                             <p>'.$row['type'].'</p>
-                            <form method="get" action="/AHM/viewProfile.php?forName='.$id.'">
-                                <input id="'.$id.'" type="submit" value="View Profile">
+                            <form method="post" action="/AHM/viewProfile.php?forName='.$row['user_id'].'">
+                                <input id="'.$row['user_id'].'" type="submit" value="View Profile">
                             </form>
                             </div>
                     </div>';
             }
         ?>
-        <a href="/AHM/recommendation.php" target="_self">View More</a>
+        <a href="/AHM/recommendation.php" target="_self" style="margin-left:150px">View More</a>
     </div>
 
     <!-- <div class="rightBottom">

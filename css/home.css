@@ -231,6 +231,10 @@ a.active{
     outline: none;
     font-size: 15px;
 }
+.rightSuggest .part .connect{
+    margin-left: 110px;
+    margin-top: -35px;
+}
 /* .rightCorner a{
     margin-left: 130px;
     margin-bottom: 65px;
