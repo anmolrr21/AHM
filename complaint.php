@@ -56,11 +56,6 @@
         <div id="details2-form" class="details2-form">
             <form class="form" method="post" action="complaint_insertion.php">
                 <div class="form-item">
-                        <label for="from_email">Enter your email:</label>
-                        <input type="email" name="from_email" placeholder="Email Id">
-                </div>
-
-                <div class="form-item">
                         <label for="to_email">Complaint For:</label>
                         <input type="email" name="to_email" placeholder="Enter their Email Id">
                 </div>

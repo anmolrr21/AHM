@@ -6,12 +6,12 @@
        
     }
     if($_SERVER["REQUEST_METHOD"]=="POST"){
-        $complaint_by=$_POST['from_email'];
+        $name = $_SESSION["username"];
         $complaint_for=$_POST['to_email'];
         $complaint=$_POST['complaint'];
 
-        $sql1 = "SELECT * FROM users WHERE email='$complaint_by' ";
-        $result1 = mysqli_query($conn, $sql1);
+        $sql1 = "SELECT * FROM `users` where `name`='$name'";
+        $result1 = mysqli_query($conn,$sql1);
         $row1 = mysqli_fetch_assoc($result1);
         $complaint_by=$row1['user_id'];
 
