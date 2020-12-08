@@ -339,14 +339,14 @@
                         <div class="part">
                             <h5>'.$row['name'].'</h5>
                             <p>'.$row['type'].'</p>
-                            <form method="POST" >
-                                <a href="#" class="profile2" id="'.$row['user_id'].'" style="z-index:1000;">View Profile</a>
+                            <form method="get" action="/AHM/">
+                                <input type="submit" value="View">
                             </form>
                             </div>
                     </div>';
             }
         ?>
-        <a href="/AHM/recommendation.php">View More</a>
+        <a href="/AHM/recommendation.php" target="_self">View More</a>
     </div>
     
     <!-- <div class="rightBottom">
@@ -382,12 +382,6 @@
         modal.style.display = "none";
     }
 
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-
     //Modal2-Image+content
     var modal2 = document.getElementById("myModal1");
     modal2.style.display = "none";
@@ -401,11 +395,6 @@
         modal2.style.display = "none";
     }
 
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal2.style.display = "none";
-        }
-    }
 
     //Modal3-Video+content
     var modal3 = document.getElementById("myModal2");
@@ -420,11 +409,6 @@
         modal3.style.display = "none";
     }
 
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal3.style.display = "none";
-        }
-    }
     $('.comment').on('submit',function(event){
         event.preventDefault();
         var comment = $(this).children('#comment').val();
@@ -458,12 +442,6 @@
         //    }
         }
     });
-    
-    $('profile2').on('click',function(event){
-        $(this).$(location).attr('href','http://www.goggle.com')
-        window.location.replace("http://stackoverflow.com");
-    })
-
     //Putting likes into db
     $('.like').on('click',function(event){
         event.preventDefault();
