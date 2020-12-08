@@ -57,7 +57,7 @@
             $result = mysqli_query($conn,$sql);
             $row = mysqli_fetch_assoc($result);
             $id = $row['user_id'];
-            $sql1 = "SELECT * FROM `connections` where `userid`='$id' or `connection_id`='$id' and `requestStatus`=1";
+            $sql1 = "SELECT * FROM `connections` where (`userid`='$id' or `connection_id`='$id') and `requestStatus`=1";
             $result1 = mysqli_query($conn,$sql1);
             if(!$result1){
                 echo'<p class="these">0</p>';}
@@ -255,7 +255,7 @@
                         <div class="part">
                             <h5>'.$row['name'].'</h5>
                             <p>'.$row['type'].'</p>
-                            <form method="get" action="/AHM/viewProfile.php?id='.$id.'">
+                            <form method="get" action="/AHM/viewProfile.php?forName='.$id.'">
                                 <input id="'.$id.'" type="submit" value="View Profile">
                             </form>
                             </div>

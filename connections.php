@@ -58,7 +58,7 @@
             $result = mysqli_query($conn,$sql);
             $row = mysqli_fetch_assoc($result);
             $id = $row['user_id'];
-            $sql1 = "SELECT * FROM `connections` where `userid`='$id' or `connection_id`='$id' and `requestStatus`=1";
+            $sql1 = "SELECT * FROM `connections` where (`userid`='$id' or `connection_id`='$id') and `requestStatus`=1";
             $result1 = mysqli_query($conn,$sql1);
             if(!$result1){
                 echo'<p class="these">0</p>';}
@@ -193,11 +193,14 @@
                         <div class="part">
                             <h5>'.$row['name'].'</h5>
                             <p>'.$row['type'].'</p>
+                            <form method="post" action="/AHM/viewProfile.php?forName='.$id.'">
+                                <input type="submit" value="View Profile">
+                            </form>
                             <form method="get" class="connect">
-                                <button>View Profile</button>
                                 <input type="submit" id="'.$row['user_id'].'" value="Connect">
                             </form>
-                            <input type="submit" value="Pending..." id="'.$j.'" style="display:none;">
+                            <input type="button" value="Pending..." id="'.$j.'" style="display:none;">
+                            
                             </div>
                     </div>';
             }
@@ -234,7 +237,7 @@
                         <div class="part">
                             <h5>'.$row['name'].'</h5>
                             <p>'.$row['type'].'</p>
-                            <form method="get" action="/AHM/viewProfile.php?id='.$id.'">
+                            <form method="get" action="/AHM/viewProfile.php?forName='.$id.'">
                                 <input id="'.$id.'" type="submit" value="View Profile">
                             </form>
                             </div>
@@ -255,8 +258,7 @@
     <script>
         $('.connect').on('submit',function(event){
             event.preventDefault();
-            var id = $(this)[0].children[1].id;
-            var classthat = $(this).siblings()[2].id;
+            var id = $(this)[0].children[0].id;
             $.ajax({
                 url:"sendRequest.php",
                 method:"POST",
@@ -270,8 +272,7 @@
                     }
                 }
             });
-            $(this).hide();
-            document.getElementById(classthat).style.display="block";
+            $(this[0]).attr('value','Pending...');
         });
     </script>
 </body>

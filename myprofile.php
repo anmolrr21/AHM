@@ -49,6 +49,76 @@
           include 'commonNavbar.php';
     ?>
 
+<div id="myModal8" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close close8">&times;</span>
+                <h2>Your Connections</h2>
+            </div>
+            <div class="modal-body" style="overflow-y: scroll;">
+            <?php
+                $name = $_SESSION["username"];
+                $sql = "SELECT * FROM `users` where `name`<>'$name'";
+                $result = mysqli_query($conn,$sql);
+                $check=0;
+                while($row = mysqli_fetch_assoc($result)){
+                    $id = $row['user_id'];
+                    $sql2 = "SELECT * FROM `connections` where (`userid`='$id' or `connection_id`='$id') and `requestStatus`=1";
+                    $result2 = mysqli_query($conn,$sql2);
+                    if($result2){
+                        
+                        $row1 = mysqli_fetch_assoc($result2);
+                        $newId = $row1['userid'];
+                        $newId1 = $row1['connection_id'];
+                        if($id==$newId){
+                            $check=1;
+                            $sql4 = "SELECT * FROM `users` where `user_id`='$newId1'";
+                            $result4 = mysqli_query($conn,$sql4);
+                            $row4 = mysqli_fetch_assoc($result4);
+                            echo'<div class="rightSuggest">
+                                <img src="images/user.png">
+                                <div class="part">
+                                    <h5>'.$row4['name'].'</h5>
+                                    <p>'.$row4['type'].'</p>
+                                    <form method="post" action="/AHM/viewProfile.php?forName='.$newId1.'">
+                                        <button type="submit">View Profile</button>
+                                    </form>
+                                </div>
+                            </div>';
+                        }
+                        if($id==$newId1){
+                            $check=1;
+                            $sql4 = "SELECT * FROM `users` where `user_id`='$newId'";
+                            $result4 = mysqli_query($conn,$sql4);
+                            $row4 = mysqli_fetch_assoc($result4);
+                            echo'<div class="rightSuggest">
+                                <img src="images/user.png">
+                                <div class="part">
+                                    <h5>'.$row4['name'].'</h5>
+                                    <p>'.$row4['type'].'</p>
+                                    <form method="post" action="/AHM/viewProfile.php?forName='.$newId.'">
+                                        <button type="submit">View Profile</button>
+                                    </form>
+                                </div>
+                            </div>';
+                        }
+                        
+                    }
+                }
+                if($check==0){
+                    echo'<div class="notifyBox">
+                            <div class="noNotify">
+                                <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color:green"></i>
+                                <h4>No new Requests!</h4>
+                                <p>You will be notified when new requests arrives...</p>
+                            </div>
+                        </div>';
+                }
+            ?>
+            </div>
+        </div>
+    </div>
+
     <!-- <div class="header">
     </div>
     <div class="logo">
@@ -67,7 +137,7 @@
               $result = mysqli_query($conn,$sql);
               $row = mysqli_fetch_assoc($result);
               $id = $row['user_id'];
-              $sql1 = "SELECT * FROM `connections` where `userid`='$id' or `connection_id`='$id' and `requestStatus`=1";
+              $sql1 = "SELECT * FROM `connections` where (`userid`='$id' or `connection_id`='$id') and `requestStatus`=1";
               $result1 = mysqli_query($conn,$sql1);
               $num = mysqli_num_rows($result1);
               if(!$num){
@@ -77,7 +147,7 @@
                 $total = $num;
               }
               echo'<p style="font-size:26px;margin-left:330px;"><b>'.$row['location'].'<b></p><br><br>
-                <p style="color:blue;font-size:24px;margin-left:295px;">'.$total.' connections</p>';
+                <button onclick="modalDisplay8()" style="color:blue;margin-top:125px;font-size:24px;margin-left:295px;background:#fff;border:none;">'.$total.' connections</button>';
             ?>
         </div>
     </div>
@@ -122,6 +192,7 @@
 
     ?>
 
+    
     
     <!-- Ingeneral popup for post -->
 
@@ -200,6 +271,10 @@
             </div>
         </div>
     </div>
+
+    
+
+
 
     <div class="onlyBox2" style="margin-left: 3%; margin-top:10px;box-shadow: 0 3px 7px rgba(0,0,0,0.3);">
         <h4 id="share" style="margin-top:25px;padding:20px;font-size:24px;"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> Share an article, photo, video or ideas</h4>
@@ -450,6 +525,9 @@
     }, 2000);
 
     //Modals
+    
+
+
     //Modal1-General Modal
     var modal = document.getElementById("myModal");
     modal.style.display = "none";
@@ -504,6 +582,25 @@
     window.onclick = function(event) {
         if (event.target == modal) {
             modal3.style.display = "none";
+        }
+    }
+
+
+    var modal8 = document.getElementById("myModal8");
+    modal8.style.display = "none";
+    var span = document.getElementsByClassName("close8")[0];
+
+    function modalDisplay8() {
+        modal8.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal8.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal8.style.display = "none";
         }
     }
     </script>
