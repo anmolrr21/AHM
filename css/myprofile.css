@@ -5,7 +5,7 @@ body{
 .name{
   height:250px;
   width:800px;
-  margin-left: 150px;
+  margin-left: 40px;
   margin-top: 200px;
   background-color: white;
   border-radius: 10px;
@@ -15,16 +15,16 @@ body{
 .sub-name{
   background-color:  #0e76a8;
   height:130px;
+  margin-top: -80px;
+  z-index: -1;
   
 }
 .user{
   height: 70px;
   width:70px;
-  margin-left: 450px;
+  margin-left: 330px;
   margin-top: -300px;
   border-radius: 50px;
-  
-  
 }
 p{
   position: absolute;
@@ -36,18 +36,15 @@ p{
   height:120px;
   width:800px;
   margin-top:240px;
-  margin-left: 150px;
+  margin-left: 40px;
   background-color: white;
   border-radius:10px;
   box-shadow: 0 3px 7px rgba(0,0,0,0.3);
 }
-
-
 .onlyBox2{
   height:130px;
   width:800px;
   margin-left:150px;
-  
   margin-top: -10px;
   border-radius:10px;
   border-radius: 10px;
@@ -93,7 +90,7 @@ font-size: clamp(10px,1vw,40px);
 .edit{
   width:310px;
   height:140px;
-  margin-left:1000px;
+  margin-left:900px;
   margin-top:-700px;
   border-radius: 10px;
   background-color: #fff;
@@ -102,10 +99,10 @@ font-size: clamp(10px,1vw,40px);
 .slider{
   width: 800px;
   height: 500px;
-  margin-left: 1000px;
+  margin-left: 150px;
   margin-top: 100px;
   border-radius: 10px;
-  overflow: hidden;
+  overflow-x: hidden;
   
 }
 
@@ -113,7 +110,6 @@ font-size: clamp(10px,1vw,40px);
   width: 500%;
   height: 500px;
   display: flex;
-  
 }
 
 .slides input{

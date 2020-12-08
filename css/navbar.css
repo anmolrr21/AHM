@@ -19,6 +19,7 @@ a.active{
     font-family: 'Bree Serif', serif;
     position: fixed;
     top: 0;
+    z-index: 1;
 }
 .homeNav img{
     width: clamp(60px, 6vw, 90px);

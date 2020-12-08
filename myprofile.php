@@ -201,8 +201,8 @@
         </div>
     </div>
 
-    <div class="onlyBox2">
-        <h4 style="margin-top:25px;padding:15px;font-size:24px;"> Share an article, photo, video or ideas</h4>
+    <div class="onlyBox2" style="margin-left: 3%; margin-top:10px;box-shadow: 0 3px 7px rgba(0,0,0,0.3);">
+        <h4 id="share" style="margin-top:25px;padding:20px;font-size:24px;"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> Share an article, photo, video or ideas</h4>
         <ul>
             <li><i class="fa fa-picture-o" aria-hidden="true" style="color:green"></i><button
                     onclick="modalDisplay2()">Picture</button></li>
@@ -228,7 +228,7 @@
         }
 
         echo '
-    <div class="exp">
+    <div class="exp" style="margin-left:3%;">
         <p style="margin-left:15px;font-size:24px;margin-top:10px;">Past Experiences</p><br><br>
         <p style="margin-left:45px;font-size:21px;margin-top:30px;color:#333333;"> '.$row["exp1"].'
         </p><br><br>
@@ -260,7 +260,7 @@
       
 
         echo '
-    <div class="intro" >
+    <div class="intro" style="margin-left:3%;">
         <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">Intro
             </p>
         <p style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;">"'.$row["intro"].'"</p>
@@ -268,170 +268,176 @@
         ?>
         </div>
 
-    <!-- <div class="about">
-        <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">Your Posts
-            </p> -->
-    </div>
-    <!-- <?php
-        $i=0;
-        $j=111111;
-        $k= "#commentForm".strval($i);
-        $l = "hideTobe".strval($j);
-        $sql = "SELECT * FROM `posts`";
-        $result = mysqli_query($conn,$sql);
-        while($row = mysqli_fetch_assoc($result)){
-            $id = $row['user_id'];
-            $sql1 = "SELECT * FROM `users` where `user_id`='$id'";
-            $result1 = mysqli_query($conn,$sql1);
-            $row1 = mysqli_fetch_assoc($result1);
-            $sql2 = "SELECT * FROM `user_profile` where `userid`='$id'";
-            $result2 = mysqli_query($conn,$sql2);
-            $row2 = mysqli_fetch_assoc($result2);
-            $nextid = $row['post_id'];
-            $sql4 = "SELECT * FROM `comments` where `post_id`='$nextid'";
-            $result4 = mysqli_query($conn,$sql4);
-            $num = mysqli_num_rows($result4);
-            echo'<div id="'.$row['post_id'].'" class="share onlyPost">
-                    <div class="topNamePic">
-                        <img src="images/user.png">
-                        <div class="nameDetail">
-                            <h5>'.$row1['name'].'</h5>';
-                            if($row2!=Null){
-                            echo '<p>'.$row2['bio'].'</p>';
-                        }
-                            echo '<p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
-                        </div>
-                    </div>';
-                    if($row['article']!=NULL){
-                        echo'<div class="postImage">
-                        <h4>'.$row['article'].'</h4>
-                    </div>';
-                    }
-                    if($row['image_posted']!=NULL){
-                    echo'<div class="postImage">
-                        <img src="images/'.$row['image_posted'].'"/>
-                    </div>';}
-                    if($row['video_posted']!=NULL){
-                    echo'<div class="postImage" style="margin-left:-380px">
-                        <video id="myVideo" width="440" height="240" style="margin-left: 400px;" controls>
-                            <source src="videos/'.$row['video_posted'].'" type="video/'.$row['videoExt'].'">
-                                Your browser does not support the video tag.
-                        </video>
-                    </div>';}
-                    echo'<div class="countL">
-                        <h6 id="'.$j.'"><i class="fa fa-thumbs-up" aria-hidden="true"></i> '.$row['likes_count'].' Likes</h6>
-                        <h6><i class="fa fa-comments" aria-hidden="true"></i> '.$row['comments_count'].' comments</h6>
-                    </div>
-                    <hr>
-                    <div class="likeButton">
-                        <a class="like" onclick="updateLike('.$j.')"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Like</a>
-                        <a type="button" onclick="myFunc('.$i.')"><i class="fa fa-comments-o" aria-hidden="true"></i>Comment</a>
-                        <hr>
-                    </div>
-                    <div id="'.$i.'" class="secComment" style="display: none;">
-                        <div class="area">
-                            <img src="images/user.png">
-                            <form method="POST" class="comment">  
-                                <input type="text" id="comment" name="comment" placeholder="  Leave your thoughts...">
-                                <button id="commentSubmit" type="submit"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i><br>POST</button>
-                            </form>
-                            
-                        </div>
-                        
-                        <div class="commentSection">
-                            <h4>Comments</h4>';
-                            if($num>0){
-                                while($row4 = mysqli_fetch_assoc($result4)){
-                                    echo'<div class="perComment">
-                                            <img src="images/user.png">
-                                            <div class="contentComment">
-                                                <h5>Hitesh Dhameja</h5>
-                                                <p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
-                                                <p>'.$row4['comment'].'</p>
-                                                <div class="likes">
-                                                    <a href="#">Like</a>
-                                                    <a href="#">Comment</a>
-                                                </div>
-                                            </div>
-                                        </div>';
-                                }
-                            }
-                            
-                            // else{
-                            //     echo'<div id="noComment" class="perComment '.$l.'">
-                            //             <div class="contentComment">
-                            //                 <h5>No Comments Yet! Be the first to comment</h5>
-                            //             </div>
-                            //         </div>';
-                            // }
-                            echo'<div id="'.$k.'" class="perComment" style="display:none;">
-                                    <img src="images/user.png">
-                                    <div class="contentComment">
-                                        <h5>Hitesh Dhameja</h5>
-                                        <p>1m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
-                                        <p class="'.$k.'">blank</p>
-                                        <div class="likes">
-                                            <a href="#">Like</a>
-                                            <a href="#">Comment</a>
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-                </div>';
-                
-            $i = $i + 1;
-            $j = $j + 1;
-            $k= "commentForm".strval($i); 
-            $l = "hideTobe".strval($j);
-        }
-        
-    ?> -->
+    <div style="display: flex;">
+        <div class="about" style="margin-top: 10px;height:60px">
+            <p style="font-size:24px;color:black;margin-left:20px; margin-top:20px;">Your Posts
+                </p> 
+        </div>
+        <div class="slider">
+            <div class="slides">
+                <!--radio buttons start-->
+                <input type="radio" name="radio-btn" id="radio1">
+                <input type="radio" name="radio-btn" id="radio2">
+                <input type="radio" name="radio-btn" id="radio3">
+                <input type="radio" name="radio-btn" id="radio4">
+                <!--radio buttons end-->
+                <!--slide images start-->
+                <div class="slide first">
+                    <img src="images/ahmq1.png" alt="">
+                </div>
+                <div class="slide">
+                    <img src="images/ahmq2.jpg" alt="">
+                </div>
+                <div class="slide">
+                    <img src="images/ahmq3.jpg" alt="">
+                </div>
 
+                <!--slide images end-->
+                <!--automatic navigation start-->
+                <div class="navigation-auto">
+                    <div class="auto-btn1"></div>
+                    <div class="auto-btn2"></div>
+                    <div class="auto-btn3"></div>
+                    <div class="auto-btn4"></div>
+                </div>
+                <!--automatic navigation end-->
+            </div>
+            <!--manual navigation start-->
+            <div class="navigation-manual">
+                <label for="radio1" class="manual-btn"></label>
+                <label for="radio2" class="manual-btn"></label>
+                <label for="radio3" class="manual-btn"></label>
+                <label for="radio4" class="manual-btn"></label>
+            </div>
+            <!--manual navigation end-->
+        </div> 
+    </div>
     <div class="edit">
-        <p style="font-size:21px;width:100%;margin-left:30px;margin-top:35px;">Want to edit your profile?</p>
+        <p style="font-size:21px;width:100%;margin-left:30px;margin-top:15px;">Want to edit your profile?</p>
         <a href="editmyprofile.php">
             <button
                 style="background-color:lightskyblue;color:black;padding:15px;width:80px; border-radius:10px;margin-top:75px;margin-left:110px;border:0px;">Edit</button>
     </div>
-    <div class="slider">
-        <div class="slides">
-            <!--radio buttons start-->
-            <input type="radio" name="radio-btn" id="radio1">
-            <input type="radio" name="radio-btn" id="radio2">
-            <input type="radio" name="radio-btn" id="radio3">
-            <input type="radio" name="radio-btn" id="radio4">
-            <!--radio buttons end-->
-            <!--slide images start-->
-            <div class="slide first">
-                <img src="images/ahmq1.png" alt="">
-            </div>
-            <div class="slide">
-                <img src="images/ahmq2.jpg" alt="">
-            </div>
-            <div class="slide">
-                <img src="images/ahmq3.jpg" alt="">
-            </div>
-
-            <!--slide images end-->
-            <!--automatic navigation start-->
-            <div class="navigation-auto">
-                <div class="auto-btn1"></div>
-                <div class="auto-btn2"></div>
-                <div class="auto-btn3"></div>
-                <div class="auto-btn4"></div>
-            </div>
-            <!--automatic navigation end-->
-        </div>
-        <!--manual navigation start-->
-        <div class="navigation-manual">
-            <label for="radio1" class="manual-btn"></label>
-            <label for="radio2" class="manual-btn"></label>
-            <label for="radio3" class="manual-btn"></label>
-            <label for="radio4" class="manual-btn"></label>
-        </div>
-        <!--manual navigation end-->
+    <div style="margin-top: 60px;">
+        <?php
+            $i=0;
+            $j=111111;
+            $k= "#commentForm".strval($i);
+            $l = "hideTobe".strval($j);
+            $sql = "SELECT * FROM `posts`";
+            $result = mysqli_query($conn,$sql);
+            while($row = mysqli_fetch_assoc($result)){
+                $id = $row['user_id'];
+                $sql1 = "SELECT * FROM `users` where `user_id`='$id'";
+                $result1 = mysqli_query($conn,$sql1);
+                $row1 = mysqli_fetch_assoc($result1);
+                $sql2 = "SELECT * FROM `user_profile` where `userid`='$id'";
+                $result2 = mysqli_query($conn,$sql2);
+                $row2 = mysqli_fetch_assoc($result2);
+                $nextid = $row['post_id'];
+                $sql4 = "SELECT * FROM `comments` where `post_id`='$nextid'";
+                $result4 = mysqli_query($conn,$sql4);
+                $num = mysqli_num_rows($result4);
+                echo'<div id="'.$row['post_id'].'" class="share onlyPost" style="margin-left:3%;width:500px;">
+                        <div class="topNamePic">
+                            <img src="images/user.png">
+                            <div class="nameDetail">
+                                <h5>'.$row1['name'].'</h5>';
+                                if($row2!=Null){
+                                echo '<p style="margin-left:-5px;">'.$row2['bio'].'</p>';
+                            }
+                                echo '<p style="margin-left:-5px;margin-top:1px;">22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
+                            </div>
+                        </div>';
+                        if($row['article']!=NULL){
+                            echo'<div class="postImage">
+                            <h4>'.$row['article'].'</h4>
+                        </div>';
+                        }
+                        if($row['image_posted']!=NULL){
+                        echo'<div class="postImage">
+                            <img src="images/'.$row['image_posted'].'"/>
+                        </div>';}
+                        if($row['video_posted']!=NULL){
+                        echo'<div class="postImage" style="margin-left:-380px">
+                            <video id="myVideo" width="440" height="240" style="margin-left: 400px;" controls>
+                                <source src="videos/'.$row['video_posted'].'" type="video/'.$row['videoExt'].'">
+                                    Your browser does not support the video tag.
+                            </video>
+                        </div>';}
+                        echo'<div class="countL">
+                            <h6 id="'.$j.'"><i class="fa fa-thumbs-up" aria-hidden="true"></i> '.$row['likes_count'].' Likes</h6>
+                            <h6><i class="fa fa-comments" aria-hidden="true"></i> '.$row['comments_count'].' comments</h6>
+                        </div>
+                        <hr>
+                        <div class="likeButton">
+                            <a class="like" onclick="updateLike('.$j.')"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Like</a>
+                            <a type="button" onclick="myFunc('.$i.')"><i class="fa fa-comments-o" aria-hidden="true"></i>Comment</a>
+                            <hr>
+                        </div>
+                        <div id="'.$i.'" class="secComment" style="display: none;">
+                            <div class="area">
+                                <img src="images/user.png">
+                                <form method="POST" class="comment">  
+                                    <input type="text" id="comment" name="comment" placeholder="  Leave your thoughts...">
+                                    <button id="commentSubmit" type="submit"><i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i><br>POST</button>
+                                </form>
+                                
+                            </div>
+                            
+                            <div class="commentSection">
+                                <h4>Comments</h4>';
+                                if($num>0){
+                                    while($row4 = mysqli_fetch_assoc($result4)){
+                                        echo'<div class="perComment">
+                                                <img src="images/user.png">
+                                                <div class="contentComment">
+                                                    <h5>Hitesh Dhameja</h5>
+                                                    <p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
+                                                    <p>'.$row4['comment'].'</p>
+                                                    <div class="likes">
+                                                        <a href="#">Like</a>
+                                                        <a href="#">Comment</a>
+                                                    </div>
+                                                </div>
+                                            </div>';
+                                    }
+                                }
+                                
+                                // else{
+                                //     echo'<div id="noComment" class="perComment '.$l.'">
+                                //             <div class="contentComment">
+                                //                 <h5>No Comments Yet! Be the first to comment</h5>
+                                //             </div>
+                                //         </div>';
+                                // }
+                                echo'<div id="'.$k.'" class="perComment" style="display:none;">
+                                        <img src="images/user.png">
+                                        <div class="contentComment">
+                                            <h5>Hitesh Dhameja</h5>
+                                            <p>1m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
+                                            <p class="'.$k.'">blank</p>
+                                            <div class="likes">
+                                                <a href="#">Like</a>
+                                                <a href="#">Comment</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>';
+                    
+                $i = $i + 1;
+                $j = $j + 1;
+                $k= "commentForm".strval($i); 
+                $l = "hideTobe".strval($j);
+            }
+            
+        ?> 
     </div>
+
+    
+    
 
     <script type="text/javascript">
     var counter = 1;
