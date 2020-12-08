@@ -128,7 +128,9 @@
                         <div class="part">
                             <h5>'.$row['name'].'</h5>
                             <p>'.$bio.'</p>
-                            <button>View Profile</button>
+                            <form method="post" action="/AHM/viewProfile.php?forName='.$id.'">
+                                <button type="submit">View Profile</button>
+                            </form>
                         </div>
                     </div>';
             }
@@ -163,7 +165,9 @@
                         <div class="part">
                             <h5>'.$row['name'].'</h5>
                             <p>'.$bio.'</p>
-                            <button>View Profile</button>
+                            <form method="post" action="/AHM/viewProfile.php?forName='.$id.'">
+                                <button type="submit">View Profile</button>
+                            </form>
                         </div>
                     </div>';
             }

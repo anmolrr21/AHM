@@ -269,7 +269,7 @@
         </div>
 
     <div style="display: flex;">
-        <div class="about" style="margin-top: 10px;height:60px">
+        <div class="about" style="margin-top: 10px;height:60px;">
             <p style="font-size:24px;color:black;margin-left:20px; margin-top:20px;">Your Posts
                 </p> 
         </div>

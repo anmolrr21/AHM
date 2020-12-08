@@ -338,10 +338,11 @@
                         <img src="images/user.png">
                         <div class="part">
                             <h5>'.$row['name'].'</h5>
-                            <p>'.$bio.'</p>
-                            <button>View Profile</button>
-                        </div>
-                        
+                            <p>'.$row['type'].'</p>
+                            <form method="POST" >
+                                <a href="#" class="profile2" id="'.$row['user_id'].'" style="z-index:1000;">View Profile</a>
+                            </form>
+                            </div>
                     </div>';
             }
         ?>
@@ -358,7 +359,6 @@
 
     <!-- Javascript -->
     <script>
-        
     // Displaying comment section 
     function myFunc(y) {
         if (document.getElementById(y).style.display == "none") {
@@ -459,6 +459,11 @@
         }
     });
     
+    $('profile2').on('click',function(event){
+        $(this).$(location).attr('href','http://www.goggle.com')
+        window.location.replace("http://stackoverflow.com");
+    })
+
     //Putting likes into db
     $('.like').on('click',function(event){
         event.preventDefault();
