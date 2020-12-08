@@ -193,7 +193,7 @@
                         <div class="part">
                             <h5>'.$row['name'].'</h5>
                             <p>'.$row['type'].'</p>
-                            <form method="POST" class="connect">
+                            <form method="get" class="connect">
                                 <button>View Profile</button>
                                 <input type="submit" id="'.$row['user_id'].'" value="Connect">
                             </form>
@@ -217,6 +217,7 @@
         </div>
         <hr>
         <?php
+            $name = $_SESSION["username"];
             $sql2 = "SELECT * FROM `users` where `name`<>'$name' ORDER BY RAND() LIMIT 3";
             $result2 = mysqli_query($conn,$sql2);
             while($row = mysqli_fetch_assoc($result2)){
@@ -227,18 +228,20 @@
                 if($row1==null){
                     $bio = $row['type'];
                 }
+                
                 echo'<div class="rightSuggest">
                         <img src="images/user.png">
                         <div class="part">
                             <h5>'.$row['name'].'</h5>
-                            <p>'.$bio.'</p>
-                            <button>View Profile</button>
-                        </div>
-                        
+                            <p>'.$row['type'].'</p>
+                            <form method="get" action="/AHM/viewProfile.php?id='.$id.'">
+                                <input id="'.$id.'" type="submit" value="View Profile">
+                            </form>
+                            </div>
                     </div>';
             }
         ?>
-        <a href="/AHM/recommendation.php">View More</a>
+        <a href="/AHM/recommendation.php" target="_self">View More</a>
     </div>
     
     <!-- <div class="rightBottom">

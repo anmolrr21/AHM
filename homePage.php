@@ -339,8 +339,8 @@
                         <div class="part">
                             <h5>'.$row['name'].'</h5>
                             <p>'.$row['type'].'</p>
-                            <form method="get" action="/AHM/">
-                                <input type="submit" value="View">
+                            <form method="get" action="/AHM/viewProfile.php?id='.$id.'">
+                                <input id="'.$id.'" type="submit" value="View Profile">
                             </form>
                             </div>
                     </div>';
@@ -359,6 +359,14 @@
 
     <!-- Javascript -->
     <script>
+    $('view').on('submit',function(){
+        var id = $(this).id;
+        url = "/AHM/viewProfile.php?id="+id;
+        window.location.replace(url)
+    })
+    function send(y){
+        window.location.href="/AHM/viewProfile.php?id="+y
+    }
     // Displaying comment section 
     function myFunc(y) {
         if (document.getElementById(y).style.display == "none") {

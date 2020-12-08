@@ -249,18 +249,20 @@
                 if($row1==null){
                     $bio = $row['type'];
                 }
+                
                 echo'<div class="rightSuggest">
                         <img src="images/user.png">
                         <div class="part">
                             <h5>'.$row['name'].'</h5>
-                            <p>'.$bio.'</p>
-                            <button>View Profile</button>
-                        </div>
-                        
+                            <p>'.$row['type'].'</p>
+                            <form method="get" action="/AHM/viewProfile.php?id='.$id.'">
+                                <input id="'.$id.'" type="submit" value="View Profile">
+                            </form>
+                            </div>
                     </div>';
             }
         ?>
-        <a href="/AHM/recommendation.php">View More</a>
+        <a href="/AHM/recommendation.php" target="_self">View More</a>
     </div>
 
     <!-- <div class="rightBottom">
