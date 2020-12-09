@@ -206,13 +206,13 @@
         $nameOfUser = $_SESSION["username"];
         $sql5 = "SELECT `user_id` FROM `users` where `name`='$nameOfUser'";
         $result5 = mysqli_query($conn,$sql5);
-        $row5 = mysqli_fetch_assoc($result);
-        $id5 = $row['user_id'];
-        $sql = "SELECT * FROM `posts`";
+        $row5 = mysqli_fetch_assoc($result5);
+        $id5 = $row5['user_id'];
+        $sql = "SELECT * FROM `posts` where `user_id`<>$id5";
         $result = mysqli_query($conn,$sql);
         while($row = mysqli_fetch_assoc($result)){
             $id = $row['user_id'];
-            $sql6 = "SELECT * FROM `connections` where ((`userid`='$id' and `connection_id`='$id5') and `requestStatus`=1) or ((`userid`='$id5' and `connection_id`='$id') and `requestStatus`=1)";
+            $sql6 = "SELECT * FROM `connections` where ((`userid`='$id' and `connection_id`='$id5' and `requestStatus`=1) or (`userid`='$id5' and `connection_id`='$id' and `requestStatus`=1))";
             $result6 = mysqli_query($conn,$sql6);
             $num6 = mysqli_num_rows($result6);
             if($num6>0){

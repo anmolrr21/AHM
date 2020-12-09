@@ -58,51 +58,33 @@
             <div class="modal-body" style="overflow-y: scroll;">
             <?php
                 $name = $_SESSION["username"];
+                $sql8 = "SELECT * FROM `users` where `name`='$name'";
+                $result8 = mysqli_query($conn,$sql8);
+                $row8 = mysqli_fetch_assoc($result8);
+                $id8 = $row8['user_id'];
                 $sql = "SELECT * FROM `users` where `name`<>'$name'";
                 $result = mysqli_query($conn,$sql);
                 $check=0;
                 while($row = mysqli_fetch_assoc($result)){
                     $id = $row['user_id'];
-                    $sql2 = "SELECT * FROM `connections` where (`userid`='$id' or `connection_id`='$id') and `requestStatus`=1";
+                    $sql2 = "SELECT * FROM `connections` where ((`userid`='$id' and `connection_id`='$id8' and `requestStatus`=1) or (`userid`='$id8' and `connection_id`='$id' and `requestStatus`=1))";
                     $result2 = mysqli_query($conn,$sql2);
-                    if($result2){
-                        
-                        $row1 = mysqli_fetch_assoc($result2);
-                        $newId = $row1['userid'];
-                        $newId1 = $row1['connection_id'];
-                        if($id==$newId){
-                            $check=1;
-                            $sql4 = "SELECT * FROM `users` where `user_id`='$newId1'";
-                            $result4 = mysqli_query($conn,$sql4);
-                            $row4 = mysqli_fetch_assoc($result4);
-                            echo'<div class="rightSuggest">
-                                <img src="images/user.png">
-                                <div class="part">
-                                    <h5>'.$row4['name'].'</h5>
-                                    <p>'.$row4['type'].'</p>
-                                    <form method="post" action="/AHM/viewProfile.php?forName='.$newId.'">
-                                        <button type="submit">View Profile</button>
-                                    </form>
-                                </div>
-                            </div>';
-                        }
-                        if($id==$newId1){
-                            $check=1;
-                            $sql4 = "SELECT * FROM `users` where `user_id`='$newId1'";
-                            $result4 = mysqli_query($conn,$sql4);
-                            $row4 = mysqli_fetch_assoc($result4);
-                            echo'<div class="rightSuggest">
-                                <img src="images/user.png">
-                                <div class="part">
-                                    <h5>'.$row4['name'].'</h5>
-                                    <p>'.$row4['type'].'</p>
-                                    <form method="post" action="/AHM/viewProfile.php?forName='.$newId.'">
-                                        <button type="submit">View Profile</button>
-                                    </form>
-                                </div>
-                            </div>';
-                        }
-                        
+                    $num2 = mysqli_num_rows($result2);
+                    if($num2>0){
+                        $check=1;
+                        $sql4 = "SELECT * FROM `users` where `user_id`='$id'";
+                        $result4 = mysqli_query($conn,$sql4);
+                        $row4 = mysqli_fetch_assoc($result4);
+                        echo'<div class="rightSuggest">
+                            <img src="images/user.png">
+                            <div class="part">
+                                <h5>'.$row4['name'].'</h5>
+                                <p style="margin-left:-1px;margin-top:-20px">'.$row4['type'].'</p>
+                                <form method="post" action="/AHM/viewProfile.php?forName='.$id.'">
+                                    <button type="submit">View Profile</button>
+                                </form>
+                            </div>
+                        </div>';
                     }
                 }
                 if($check==0){
@@ -389,18 +371,19 @@
     </div>
     <div style="margin-top: 60px;">
         <?php
+            $nameOfUser = $_SESSION["username"];
+            $sql9 = "SELECT * FROM `users` where `name`='$nameOfUser'";
+            $result9 = mysqli_query($conn,$sql9);
+            $row9 = mysqli_fetch_assoc($result9);
+            $id9 = $row9['user_id'];
             $i=0;
             $j=111111;
             $k= "#commentForm".strval($i);
             $l = "hideTobe".strval($j);
-            $sql = "SELECT * FROM `posts`";
+            $sql = "SELECT * FROM `posts` where `user_id`='$id'";
             $result = mysqli_query($conn,$sql);
             while($row = mysqli_fetch_assoc($result)){
-                $id = $row['user_id'];
-                $sql1 = "SELECT * FROM `users` where `user_id`='$id'";
-                $result1 = mysqli_query($conn,$sql1);
-                $row1 = mysqli_fetch_assoc($result1);
-                $sql2 = "SELECT * FROM `user_profile` where `userid`='$id'";
+                $sql2 = "SELECT * FROM `user_profile` where `userid`='$id9'";
                 $result2 = mysqli_query($conn,$sql2);
                 $row2 = mysqli_fetch_assoc($result2);
                 $nextid = $row['post_id'];
@@ -411,7 +394,7 @@
                         <div class="topNamePic">
                             <img src="images/user.png">
                             <div class="nameDetail">
-                                <h5>'.$row1['name'].'</h5>';
+                                <h5>'.$row9['name'].'</h5>';
                                 if($row2!=Null){
                                 echo '<p style="margin-left:-5px;">'.$row2['bio'].'</p>';
                             }
