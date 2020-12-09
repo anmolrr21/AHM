@@ -69,7 +69,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $sql4 = "INSERT INTO ind_interest (ind_id,interest) VALUES ($ind_id,'$selectedOption')";
         $result3 = mysqli_query($conn,$sql4);
     }
-    header("location:/AHM/homePage.php");
+    header("location:/AHM/login.php");
 }
 
     elseif(verifyEmail::validate($email)){ 

@@ -2,6 +2,9 @@
     if(!isset($_SESSION)){ 
         session_start(); 
     }
+    if(empty($_SESSION["username"])){
+        header("location:/AHM/login.php");
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,13 +44,17 @@
                 $result = mysqli_query($conn,$sql);
                 $row = mysqli_fetch_assoc($result);
                 $id = $row['user_id'];
-                $sql1 = "SELECT `bio` FROM `user_profile` where `userid`='$id'";
-                $result1 = mysqli_query($conn,$sql1);
-                $row1 = mysqli_fetch_assoc($result1);
-                if($row1 !=Null){
-                    echo $row1['bio'];
-                }
-                
+                if( $_SESSION["type"] == "Individual"){
+                    $sql9 = "SELECT * FROM `individual_users` where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+                    $result9 = mysqli_query($conn,$sql9);
+                    $row9 = mysqli_fetch_assoc($result9);
+                    echo $row9['intro'];
+                }else{
+                    $sql9 = "SELECT * FROM `org_users` where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+                    $result9 = mysqli_query($conn,$sql9);
+                    $row9 = mysqli_fetch_assoc($resul9);
+                    echo $row9['intro'];
+                } 
         ?></p>
         <hr>
         <h5 class="that">Your Connections</h5>

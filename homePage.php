@@ -46,13 +46,17 @@
                 $result = mysqli_query($conn,$sql);
                 $row = mysqli_fetch_assoc($result);
                 $id = $row['user_id'];
-                $sql1 = "SELECT `bio` FROM `user_profile` where `userid`='$id'";
-                $result1 = mysqli_query($conn,$sql1);
-                $row1 = mysqli_fetch_assoc($result1);
-                if($row1 !=Null){
-                    echo $row1['bio'];
-                }
-                
+                if( $_SESSION["type"] == "Individual"){
+                    $sql9 = "SELECT * FROM `individual_users` where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+                    $result9 = mysqli_query($conn,$sql9);
+                    $row9 = mysqli_fetch_assoc($result9);
+                    echo $row9['intro'];
+                }else{
+                    $sql9 = "SELECT * FROM `org_users` where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+                    $result9 = mysqli_query($conn,$sql9);
+                    $row9 = mysqli_fetch_assoc($resul9);
+                    echo $row9['intro'];
+                } 
         ?></p>
         <hr>
         <h5 class="that">Your Connections</h5>
@@ -213,12 +217,14 @@
         $id5 = $row5['user_id'];
         $sql = "SELECT * FROM `posts` where `user_id`<>$id5";
         $result = mysqli_query($conn,$sql);
+        $check = 1;
         while($row = mysqli_fetch_assoc($result)){
             $id = $row['user_id'];
             $sql6 = "SELECT * FROM `connections` where ((`userid`='$id' and `connection_id`='$id5' and `requestStatus`=1) or (`userid`='$id5' and `connection_id`='$id' and `requestStatus`=1))";
             $result6 = mysqli_query($conn,$sql6);
             $num6 = mysqli_num_rows($result6);
             if($num6>0){
+                $check =0;
                 $sql1 = "SELECT * FROM `users` where `user_id`='$id'";
                 $result1 = mysqli_query($conn,$sql1);
                 $row1 = mysqli_fetch_assoc($result1);
@@ -317,21 +323,21 @@
                             </div>
                         </div>
                     </div>';
-                } 
-                else{
-                    echo'<div class="notifyBox belowBox">
-                            <div class="noNotify">
-                                <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color:green"></i>
-                                <h4>No new Posts!</h4>
-                                <p>You will be shortly see new posts  as someone posts...</p>
-                            </div>
-                        </div>';
-                }   
+                }  
             $i = $i + 1;
             $j = $j + 1;
             $k= "commentForm".strval($i); 
             $l = "hideTobe".strval($j);
-        }  
+        } 
+        if($check==1){
+            echo'<div class="notifyBox belowBox">
+                    <div class="noNotify">
+                        <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color:green"></i>
+                        <h4>No new Posts!</h4>
+                        <p>You will be shortly see new posts  as someone posts...</p>
+                    </div>
+                </div>';
+        }   
     ?>
 
     <!--------------------Right section of home ----------------------------------->

@@ -2,6 +2,9 @@
     if(!isset($_SESSION)){ 
         session_start(); 
     }
+    if(empty($_SESSION["username"])){
+        header("location:/AHM/login.php");
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,13 +44,17 @@
                 $result = mysqli_query($conn,$sql);
                 $row = mysqli_fetch_assoc($result);
                 $id = $row['user_id'];
-                $sql1 = "SELECT `bio` FROM `user_profile` where `userid`='$id'";
-                $result1 = mysqli_query($conn,$sql1);
-                $row1 = mysqli_fetch_assoc($result1);
-                if($row1 !=Null){
-                    echo $row1['bio'];
-                }
-                
+                if( $_SESSION["type"] == "Individual"){
+                    $sql9 = "SELECT * FROM `individual_users` where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+                    $result9 = mysqli_query($conn,$sql9);
+                    $row9 = mysqli_fetch_assoc($result9);
+                    echo $row9['intro'];
+                }else{
+                    $sql9 = "SELECT * FROM `org_users` where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+                    $result9 = mysqli_query($conn,$sql9);
+                    $row9 = mysqli_fetch_assoc($resul9);
+                    echo $row9['intro'];
+                } 
         ?></p>
         <hr>
         <h5 class="that">Your Connections</h5>
@@ -112,35 +119,44 @@
         <hr>
         <?php
             $name = $_SESSION["username"];
-            $sql0 = "SELECT * FROM `users` where `name`<>'$name' and `type`='Individual'";
-            $result0 = mysqli_query($conn,$sql0);
-            $row0 = mysqli_fetch_assoc($result0);
-            $loc = $row0['location'];
-            $sql = "SELECT * FROM `users` where `location`='$loc'";
+            $sql10 = "SELECT `user_id`,`location` FROM `users` where `name`='$name'";
+            $result10 = mysqli_query($conn,$sql10);
+            $row10 = mysqli_fetch_assoc($result10);
+            $id10 = $row10['user_id'];
+            $loc = $row10['location'];
+            $sql11 = "SELECT * FROM `ind_interest` where `ind_id`='$id10'";
+            $result11 = mysqli_query($conn,$sql11);
+            $row11 = mysqli_fetch_assoc($result11);
+            $sql = "SELECT * FROM `users` where `location`='$loc'and `type`='Individual' and `user_id`<>'$id10'";
             $result = mysqli_query($conn,$sql);
             while($row = mysqli_fetch_assoc($result)){
                 $id = $row['user_id'];
-                $sql2 = "SELECT * FROM `connections` where `userid`=$id or `connection_id`=$id";
+                $sql2 = "SELECT * FROM `connections` where ((`userid`='$id' and `connection_id`='$id10' and `requestStatus`=1) or (`userid`='$id10' and `connection_id`='$id' and `requestStatus`=1))";
                 $result2 = mysqli_query($conn,$sql2);
                 $num2 = mysqli_num_rows($result2);
-                if(!$num2){ 
-                    $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
-                    $result1 = mysqli_query($conn,$sql1);
-                    $row1 = mysqli_num_rows($result1);
-                    $bio = '';
-                    if($row1==0){
-                        $bio = $row['type'];
+                if($num2==0){ 
+                    $sql12 = "SELECT * FROM `ind_interest` where `ind_id`='$id'";
+                    $result12 = mysqli_query($conn,$sql12);
+                    $row12 = mysqli_fetch_assoc($result12);
+                    if($row12['interest']==$row11['interest']){
+                        $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
+                        $result1 = mysqli_query($conn,$sql1);
+                        $row1 = mysqli_num_rows($result1);
+                        $bio = '';
+                        if($row1==0){
+                            $bio = $row['type'];
+                        }
+                        echo'<div class="rightSuggest">
+                                <img src="images/user.png">
+                                <div class="part">
+                                    <h5>'.$row['name'].'</h5>
+                                    <p>'.$bio.'</p>
+                                    <form method="post" action="/AHM/viewProfile.php?forName='.$id.'">
+                                        <button type="submit">View Profile</button>
+                                    </form>
+                                </div>
+                            </div>';
                     }
-                    echo'<div class="rightSuggest">
-                            <img src="images/user.png">
-                            <div class="part">
-                                <h5>'.$row['name'].'</h5>
-                                <p>'.$bio.'</p>
-                                <form method="post" action="/AHM/viewProfile.php?forName='.$id.'">
-                                    <button type="submit">View Profile</button>
-                                </form>
-                            </div>
-                        </div>';
                 }
             }
         ?>
@@ -154,34 +170,44 @@
         <hr>
         <?php
             $name = $_SESSION["username"];
-            $sql0 = "SELECT * FROM `users` where `name`<>'$name' and `type`='Individual'";
-            $result0 = mysqli_query($conn,$sql0);
-            $row0 = mysqli_fetch_assoc($result0);
-            $loc = $row0['location'];
-            $sql = "SELECT * FROM `users` where `location`='$loc'";
+            $sql10 = "SELECT `user_id`,`location` FROM `users` where `name`='$name'";
+            $result10 = mysqli_query($conn,$sql10);
+            $row10 = mysqli_fetch_assoc($result10);
+            $id10 = $row10['user_id'];
+            $loc = $row10['location'];
+            $sql11 = "SELECT * FROM `ind_interest` where `ind_id`='$id10'";
+            $result11 = mysqli_query($conn,$sql11);
+            $row11 = mysqli_fetch_assoc($result11);
+            $sql = "SELECT * FROM `users` where `location`='$loc'and `type`='Organization' and `user_id`<>'$id10'";
             $result = mysqli_query($conn,$sql);
             while($row = mysqli_fetch_assoc($result)){
                 $id = $row['user_id'];
-                $sql2 = "SELECT * FROM `connections` where `userid`=$id or `connection_id`=$id";
+                $sql2 = "SELECT * FROM `connections` where ((`userid`='$id' and `connection_id`='$id10' and `requestStatus`=1) or (`userid`='$id10' and `connection_id`='$id' and `requestStatus`=1))";
                 $result2 = mysqli_query($conn,$sql2);
                 $num2 = mysqli_num_rows($result2);
-                if(!$num2){ 
-                    $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
-                    $result1 = mysqli_query($conn,$sql1);
-                    $row1 = mysqli_fetch_assoc($result1);
-                    if($row1==null){
-                        $bio = $row['type'];
+                if($num2==0){ 
+                    $sql12 = "SELECT * FROM `org_domain` where `org_id`='$id'";
+                    $result12 = mysqli_query($conn,$sql12);
+                    $row12 = mysqli_fetch_assoc($result12);
+                    if($row12['domain']==$row11['interest']){
+                        $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
+                        $result1 = mysqli_query($conn,$sql1);
+                        $row1 = mysqli_num_rows($result1);
+                        $bio = '';
+                        if($row1==0){
+                            $bio = $row['type'];
+                        }
+                        echo'<div class="rightSuggest">
+                                <img src="images/user.png">
+                                <div class="part">
+                                    <h5>'.$row['name'].'</h5>
+                                    <p>'.$bio.'</p>
+                                    <form method="post" action="/AHM/viewProfile.php?forName='.$id.'">
+                                        <button type="submit">View Profile</button>
+                                    </form>
+                                </div>
+                            </div>';
                     }
-                    echo'<div class="rightSuggest">
-                            <img src="images/user.png">
-                            <div class="part">
-                                <h5>'.$row['name'].'</h5>
-                                <p>'.$bio.'</p>
-                                <form method="post" action="/AHM/viewProfile.php?forName='.$id.'">
-                                    <button type="submit">View Profile</button>
-                                </form>
-                            </div>
-                        </div>';
                 }
             }
         ?>
