@@ -40,6 +40,7 @@
     <a href="/AHM/connections.php"><i class="fa fa-users fa-lg" aria-hidden="true"></i>Connections</a>
     <a href="/AHM/recommendation.php"><i class="fa fa-lightbulb-o fa-lg" aria-hidden="true"></i>Recommendations</a>
     <a href="/AHM/notification.php"><i class="fa fa-bell fa-lg" aria-hidden="true"></i>Notifications</a>
+    <a href="contact.php"><i class="fa fa-university fa-lg" aria-hidden="true"></i>Complaint</a>
     <a href="contact.php"><i class="fa fa-cogs fa-lg" aria-hidden="true"></i>Contact/queries</a>
     <a href="logout.php"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>Logout</a>
 </div>
@@ -78,10 +79,10 @@ if (upperData.includes("homePage")) {
     }
 }
 if (window.innerWidth < 500) {
-    document.getElementById('thisOnee').style.marginLeft = "-40px";
+    document.getElementById('thisOnee').style.marginLeft = "-50px";
 }
-if (screen.availWidth > 500) {
-    document.getElementById('mySidenav').style.display = "none";
+if(window.innerWidth>501){
+    $('.sidenav').hide();
 }
 
 window.onclick = function(event) {
@@ -109,10 +110,12 @@ for (var i = 0; i < aTags.length; i++) {
 
 //For sidenav on small screens
 function openNav() {
+    $('.sidenav').show();
     document.getElementById("mySidenav").style.width = "100%";
 }
 
 function closeNav() {
+    $('.sidenav').hide();
     document.getElementById("mySidenav").style.width = "0";
 }
 </script>
