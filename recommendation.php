@@ -197,7 +197,7 @@
             $sql11 = "SELECT * FROM `ind_interest` where `ind_id`='$id10'";
             $result11 = mysqli_query($conn,$sql11);
             $row11 = mysqli_fetch_assoc($result11);
-            $sql = "SELECT * FROM `users` where `type`='Organization' or `location`='$loc' and `user_id`<>'$id10'";
+            $sql = "SELECT * FROM `users` where (`type`='Organization' or `location`='$loc') and `user_id`<>'$id10'";
             $result = mysqli_query($conn,$sql);
             if($result){
                 while($row = mysqli_fetch_assoc($result)){
