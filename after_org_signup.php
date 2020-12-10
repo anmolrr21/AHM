@@ -67,7 +67,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $sql7="UPDATE `org_users` SET `status` = '2' WHERE `org_users`.`Org_uid` = $user_id ";
     $result7=mysqli_query($conn, $sql7); 
     
-    header("location:/AHM/homePage.php");
+    header("location:/AHM/login.php");
     
       
  }

@@ -35,8 +35,6 @@
 
     <!--------------------- Left Section Of home--------------------------------------->
 
-    <!--------------------- Left Section Of home--------------------------------------->
-
     <div class="leftCorner">
         <div class="emptyFree"></div>
         <img src="images/user.png">
@@ -47,16 +45,27 @@
                 $result = mysqli_query($conn,$sql);
                 $row = mysqli_fetch_assoc($result);
                 $id = $row['user_id'];
+                $temp = "Your Intro";
                 if( $_SESSION["type"] == "Individual"){
                     $sql9 = "SELECT * FROM `individual_users` where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
                     $result9 = mysqli_query($conn,$sql9);
-                    $row9 = mysqli_fetch_assoc($result9);
-                    echo $row9['intro'];
+                    if(!$result9){
+                        echo $temp;
+                    }
+                    else{
+                        $row9 = mysqli_fetch_assoc($result9);
+                        echo $row9['intro'];
+                    }
                 }else{
                     $sql9 = "SELECT * FROM `org_users` where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
                     $result9 = mysqli_query($conn,$sql9);
-                    $row9 = mysqli_fetch_assoc($resul9);
-                    echo $row9['intro'];
+                    if(!$result9){
+                        echo $temp;
+                    }
+                    else{
+                        $row9 = mysqli_fetch_assoc($result9);
+                        echo $row9['intro'];
+                    } 
                 } 
         ?></p>
         <hr>
@@ -111,7 +120,6 @@
             <small>Copyright &#169; 2020 ConnecTTogether</small>
         </div>
     </div>
-
     <!------New Connection Requests Sections and People You may Know section----------------------------->
     <div class="notifyBox">
         <div class="notifyHeading">
