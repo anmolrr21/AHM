@@ -151,25 +151,29 @@
                     if($num2==0){ 
                         $sql12 = "SELECT * FROM `ind_interest` where `ind_id`='$id'";
                         $result12 = mysqli_query($conn,$sql12);
-                        $row12 = mysqli_fetch_assoc($result12);
-                        if($row12['interest']==$row11['interest']){
-                            $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
-                            $result1 = mysqli_query($conn,$sql1);
-                            $row1 = mysqli_num_rows($result1);
-                            $bio = '';
-                            if($row1==0){
-                                $bio = $row['type'];
+                        if($result12){
+                            $row12 = mysqli_fetch_assoc($result12);
+                            if($row12>0){
+                                if($row12['interest']==$row11['interest']){
+                                    $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
+                                    $result1 = mysqli_query($conn,$sql1);
+                                    $row1 = mysqli_num_rows($result1);
+                                    $bio = '';
+                                    if($row1==0){
+                                        $bio = $row['type'];
+                                    }
+                                    echo'<div class="rightSuggest">
+                                            <img src="images/user.png">
+                                            <div class="part">
+                                                <h5>'.$row['name'].'</h5>
+                                                <p>'.$bio.'</p>
+                                                <form method="post" action="/AHM/viewProfile.php?forName='.$id.'">
+                                                    <button type="submit">View Profile</button>
+                                                </form>
+                                            </div>
+                                        </div>';
+                                }
                             }
-                            echo'<div class="rightSuggest">
-                                    <img src="images/user.png">
-                                    <div class="part">
-                                        <h5>'.$row['name'].'</h5>
-                                        <p>'.$bio.'</p>
-                                        <form method="post" action="/AHM/viewProfile.php?forName='.$id.'">
-                                            <button type="submit">View Profile</button>
-                                        </form>
-                                    </div>
-                                </div>';
                         }
                     }
                 }
@@ -193,7 +197,7 @@
             $sql11 = "SELECT * FROM `ind_interest` where `ind_id`='$id10'";
             $result11 = mysqli_query($conn,$sql11);
             $row11 = mysqli_fetch_assoc($result11);
-            $sql = "SELECT * FROM `users` where `type`='Organization' or `location`='$loc' and `user_id`<>'$id10'";
+            $sql = "SELECT * FROM `users` where (`type`='Organization' or `location`='$loc') and `user_id`<>'$id10'";
             $result = mysqli_query($conn,$sql);
             if($result){
                 while($row = mysqli_fetch_assoc($result)){
@@ -204,25 +208,29 @@
                     if($num2==0){ 
                         $sql12 = "SELECT * FROM `org_domain` where `org_id`='$id'";
                         $result12 = mysqli_query($conn,$sql12);
-                        $row12 = mysqli_fetch_assoc($result12);
-                        if($row12['domain']==$row11['interest']){
-                            $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
-                            $result1 = mysqli_query($conn,$sql1);
-                            $row1 = mysqli_num_rows($result1);
-                            $bio = '';
-                            if($row1==0){
-                                $bio = $row['type'];
+                        if($result12){
+                            $row12 = mysqli_fetch_assoc($result12);
+                            if($row12>0){
+                                if($row12['domain']==$row11['interest']){
+                                    $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
+                                    $result1 = mysqli_query($conn,$sql1);
+                                    $row1 = mysqli_num_rows($result1);
+                                    $bio = '';
+                                    if($row1==0){
+                                        $bio = $row['type'];
+                                    }
+                                    echo'<div class="rightSuggest">
+                                            <img src="images/user.png">
+                                            <div class="part">
+                                                <h5>'.$row['name'].'</h5>
+                                                <p>'.$bio.'</p>
+                                                <form method="post" action="/AHM/viewProfile.php?forName='.$id.'">
+                                                    <button type="submit">View Profile</button>
+                                                </form>
+                                            </div>
+                                        </div>';
+                                }
                             }
-                            echo'<div class="rightSuggest">
-                                    <img src="images/user.png">
-                                    <div class="part">
-                                        <h5>'.$row['name'].'</h5>
-                                        <p>'.$bio.'</p>
-                                        <form method="post" action="/AHM/viewProfile.php?forName='.$id.'">
-                                            <button type="submit">View Profile</button>
-                                        </form>
-                                    </div>
-                                </div>';
                         }
                     }
                 }

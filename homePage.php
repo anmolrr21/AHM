@@ -240,9 +240,24 @@
                 $sql1 = "SELECT * FROM `users` where `user_id`='$id'";
                 $result1 = mysqli_query($conn,$sql1);
                 $row1 = mysqli_fetch_assoc($result1);
-                $sql2 = "SELECT * FROM `user_profile` where `userid`='$id'";
-                $result2 = mysqli_query($conn,$sql2);
-                $row2 = mysqli_fetch_assoc($result2);
+                $intro = "";
+                if( $_SESSION["type"] == "Individual"){
+                    $sql9 = "SELECT * FROM `individual_users` where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+                    $result9 = mysqli_query($conn,$sql9);
+                    $num = mysqli_num_rows($result9);
+                    if($result9 && $num==1){
+                        $row9 = mysqli_fetch_assoc($result9);
+                        $intro =  $row9['intro'];
+                    }
+                }
+                else{
+                    $sql9 = "SELECT * FROM `org_users` where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+                    $result9 = mysqli_query($conn,$sql9);
+                    if($result9 && $num<=1){
+                        $row9 = mysqli_fetch_assoc($result9);
+                        $intro = $row9['intro'];
+                    }  
+                }
                 $nextid = $row['post_id'];
                 $sql4 = "SELECT * FROM `comments` where `post_id`='$nextid'";
                 $result4 = mysqli_query($conn,$sql4);
@@ -251,11 +266,10 @@
                         <div class="topNamePic">
                             <img src="images/user.png">
                             <div class="nameDetail">
-                                <h5>'.$row1['name'].'</h5>';
-                                if($row2!=Null){
-                                    echo '<p>'.$row2['bio'].'</p>';
-                                }
-                                echo '<p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
+                                <h5>'.$row1['name'].'</h5>
+                                <p>'.$intro.'</p>';
+                                $timeT = strtotime($row['postedTime']);
+                                echo '<p>'.date("d/m/y h:i a",$timeT).' <i class="fa fa-globe" aria-hidden="true"></i></p>
                             </div>
                         </div>';
                         if($row['article']!=NULL){
@@ -305,8 +319,9 @@
                                             echo'<div class="perComment">
                                                     <img src="images/user.png">
                                                     <div class="contentComment">
-                                                        <h5>'.$row9['name'].'</h5>
-                                                        <p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
+                                                        <h5>'.$row9['name'].'</h5>';
+                                                        $timeT = strtotime($row['time']);
+                                                        echo '<p>'.date("d/m/y h:i a",$timeT).' <i class="fa fa-globe" aria-hidden="true"></i></p>
                                                         <p>'.$row4['comment'].'</p>
                                                     </div>
                                                 </div>';
@@ -323,8 +338,9 @@
                                     echo'<div id="'.$k.'" class="perComment" style="display:none;">
                                             <img src="images/user.png">
                                             <div class="contentComment">
-                                                <h5>'.$_SESSION["username"] .'</h5>
-                                                <p>1m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
+                                                <h5>'.$_SESSION["username"] .'</h5>';
+                                                $timeT = time();
+                                                echo '<p>'.date("d/m/y h:i a",$timeT).' <i class="fa fa-globe" aria-hidden="true"></i></p>
                                                 <p class="'.$k.'">blank</p>
                                             </div>
                                         </div>
