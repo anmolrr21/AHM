@@ -103,7 +103,7 @@
                     <span class="line2"></span><br>
                     <span class="line3"></span>
                 </div> 
-               <a href="org2.html"><button class="commonBtn">Join US</button></a>
+               <a href="org2.php"><button class="commonBtn">Join US</button></a>
             </div>
         </section>
 
