@@ -211,7 +211,11 @@
                         if($result12){
                             $row12 = mysqli_fetch_assoc($result12);
                             if($row12>0){
-                                if($row12['domain']==$row11['interest']){
+                                if($row12['domain']!=$row11['interest']){
+                                    echo 'hi';
+                                   
+                                }
+                                else{
                                     $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
                                     $result1 = mysqli_query($conn,$sql1);
                                     $row1 = mysqli_num_rows($result1);
@@ -229,6 +233,7 @@
                                                 </form>
                                             </div>
                                         </div>';
+
                                 }
                             }
                         }

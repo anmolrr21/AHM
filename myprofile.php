@@ -36,7 +36,6 @@
     .introBox{
         height:125px;
         width:800px;
-        margin-top:15px;
         background-color: white;
         border-radius:10px;
         box-shadow: 0 3px 3px rgba(0,0,0,0.3);
@@ -134,44 +133,33 @@
     <div class="user">
         <image src=images/user.png height="170px">
     </div>
-   
-    
     <?php
-        $nameOfUser = $_SESSION["username"];
+        // echo $_SESSION["username"];
 
         if( $_SESSION["type"] == "Individual"){
+            $nameOfUser = $_SESSION["username"];
             $sql = "SELECT * FROM `individual_users` where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
             $result = mysqli_query($conn,$sql);
             $row = mysqli_fetch_assoc($result);
-
-            echo '
-            <div class="about" style="margin-top:25px;">
-            <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">About
-               </p>
-            <p style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;">"'.$row["about"].'"
-               </p>
-            </div>
-           ';
-
         } else {
+            $nameOfUser = $_SESSION["username"];
             $sql = "SELECT * FROM `org_users` where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
             $result = mysqli_query($conn,$sql);
             $row = mysqli_fetch_assoc($result);
-
-            echo '
-            <div class="about">
-            <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">About
-               </p>
-            <p style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;">"'.$row["description"].'"
-               </p>
-            </div>
-           ';
-
         }
+      
 
-       
-
-    ?>
+        echo '
+    <div class="introBox">
+        <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">Intro
+            </p>
+        <p style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;">"'.$row["intro"].'"</p>
+        '
+        ?>
+        </div>
+   
+    
+    
 
     
     
@@ -254,20 +242,60 @@
     </div>
 
     
+    
+    <?php
+        $nameOfUser = $_SESSION["username"];
 
+        if( $_SESSION["type"] == "Individual"){
+            $sql = "SELECT * FROM `individual_users` where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+            $result = mysqli_query($conn,$sql);
+            $row = mysqli_fetch_assoc($result);
 
+            echo '
+            <div class="about" style="margin-top:25px;">
+            <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;font-weight:bold;">About
+               </p>
+               <div class="serve">
+               <h3>You want to serve as:</h3>
+               <p>'.$row["serve_as"].'</p>
+               </div><br>';
+               $sql1 = "SELECT * FROM `ind_interest` where `ind_id`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+                $result1 = mysqli_query($conn,$sql1);
+               echo '<div class="domain">
+               <h3>Your Domain of Interest:</h3>';
+                
+                echo '<div class="row">';
+            while($row1 = mysqli_fetch_array($result1)){
+                echo '<p style="margin-right:5px">'.$row1["interest"].',</p>';
+            }
+            echo '</div></div>';
 
-    <div class="postBox" style="margin-top:20px;box-shadow: 0 3px 7px rgba(0,0,0,0.3);">
-        <h4 id="sharetext" style="margin-top:25px;font-size:24px;"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> Share an article, photo, video or ideas</h4>
-        <ul>
-            <li><i class="fa fa-picture-o" aria-hidden="true" style="color:green"></i><button
-                    onclick="modalDisplay2()">Picture</button></li>
-            <li><i class="fa fa-video-camera" aria-hidden="true"></i><button onclick="modalDisplay3()">Video</button>
-            </li>
-            <li><i class="fa fa-pencil" aria-hidden="true" style="color:orange"></i><button
-                    onclick="modalDisplay()">Article</button></li>
-        </ul>
-    </div>
+            echo '<div class="desc"><h3>Description:</h3>
+            <p style="font-size:20px;font-weight:light;color:#333333;">"'.$row["about"].'"
+               </p>
+            </div></div>
+           ';
+
+        } else {
+            $sql = "SELECT * FROM `org_users` where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+            $result = mysqli_query($conn,$sql);
+            $row = mysqli_fetch_assoc($result);
+
+            echo '
+            <div class="about">
+            <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">About
+               </p>
+            <p style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;">"'.$row["description"].'"
+               </p>
+            </div>
+           ';
+
+        }
+
+       
+
+    ?>
+    
     <?php
         // echo $_SESSION["username"];
 
@@ -299,30 +327,18 @@
 
 
     </div>
-    <?php
-        // echo $_SESSION["username"];
-
-        if( $_SESSION["type"] == "Individual"){
-            $nameOfUser = $_SESSION["username"];
-            $sql = "SELECT * FROM `individual_users` where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
-            $result = mysqli_query($conn,$sql);
-            $row = mysqli_fetch_assoc($result);
-        } else {
-            $nameOfUser = $_SESSION["username"];
-            $sql = "SELECT * FROM `org_users` where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
-            $result = mysqli_query($conn,$sql);
-            $row = mysqli_fetch_assoc($result);
-        }
-      
-
-        echo '
-    <div class="introBox">
-        <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">Intro
-            </p>
-        <p style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;">"'.$row["intro"].'"</p>
-        '
-        ?>
-        </div>
+    <div class="postBox" style="margin-top:20px;box-shadow: 0 3px 7px rgba(0,0,0,0.3);">
+        <h4 id="sharetext" style="margin-top:25px;font-size:24px;"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> Share an article, photo, video or ideas</h4>
+        <ul>
+            <li><i class="fa fa-picture-o" aria-hidden="true" style="color:green"></i><button
+                    onclick="modalDisplay2()">Picture</button></li>
+            <li><i class="fa fa-video-camera" aria-hidden="true"></i><button onclick="modalDisplay3()">Video</button>
+            </li>
+            <li><i class="fa fa-pencil" aria-hidden="true" style="color:orange"></i><button
+                    onclick="modalDisplay()">Article</button></li>
+        </ul>
+    </div>
+    
 
    
         <div class="about" style="margin-top: 10px;height:60px;">

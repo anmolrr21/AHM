@@ -31,7 +31,7 @@
     .intro{
         height:125px;
         width:800px;
-        margin-top:15px;
+        margin-top:240px;
         margin-left: 150px;
         background-color: white;
         border-radius:10px;
@@ -66,13 +66,16 @@
       }
       .about{
         margin-left: 400px;
+        margin-top:-10px;
       }
       .exp{
-      margin-left: 400px;
-    }
+        margin-left: 400px;
+      }
     .intro{
       margin-left: 400px;
+      margin-top:250px;
       }
+      
       
 
     }
@@ -93,6 +96,18 @@
           $result = mysqli_query($conn,$sql);
           // header("Location: ./myprofile.php");
       }
+
+      if(isset($_POST["intro"])) {
+        $intro = $_REQUEST['introo'];
+        $nameOfUser = $_SESSION["username"];
+    
+        if( $_SESSION["type"] == "Individual"){
+          $sql = "UPDATE `individual_users` SET intro='$intro' where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+          $result = mysqli_query($conn,$sql);
+        } else {
+          $sql = "UPDATE `org_users` SET intro='$intro' where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+          $result = mysqli_query($conn,$sql);
+        }
 
       if(isset($_POST["aboutSubmit"])) {
         if( $_SESSION["type"] == "Individual"){
@@ -124,17 +139,7 @@
       // header("Location: ./myprofile.php");
   }
     
-  if(isset($_POST["intro"])) {
-    $intro = $_REQUEST['introo'];
-    $nameOfUser = $_SESSION["username"];
-
-    if( $_SESSION["type"] == "Individual"){
-      $sql = "UPDATE `individual_users` SET intro='$intro' where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
-      $result = mysqli_query($conn,$sql);
-    } else {
-      $sql = "UPDATE `org_users` SET intro='$intro' where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
-      $result = mysqli_query($conn,$sql);
-    }
+  
     
     // header("Location: ./myprofile.php");
 }
@@ -195,6 +200,22 @@
     <image src=images/user.png height="170px">
     </div>
 
+    
+    <?php
+
+    echo '
+     <div class="intro" style="margin-bottom:30px;">
+     <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">Intro
+        </p>
+        <form method="post">
+     <input name="introo" type="text" maxlength="30" style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;"></p>
+     <input type="submit" name="intro" class="Save-btn" value="Save">
+        </form>
+     </div>
+    
+    ';
+    ?>
+
     <div class="about">
       <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px; ">About<p>
     </div>
@@ -209,17 +230,7 @@
       ';
     ?>
    
-    <!-- <div class="onlyBox2">
-        <h4 style="padding:15px;font-size:24px;"> Share an article, photo, video or ideas</h4>
-        <ul>
-            <li><i class="fa fa-picture-o" aria-hidden="true" style="color:green"></i><button
-                    onclick="modalDisplay2()">Picture</button></li>
-            <li><i class="fa fa-video-camera" aria-hidden="true"></i><button onclick="modalDisplay3()">Video</button>
-            </li>
-            <li><i class="fa fa-pencil" aria-hidden="true" style="color:orange"></i><button
-                    onclick="modalDisplay()">Article</button></li>
-        </ul>
-    </div> -->
+    
     <div class="exp">
       <p style="margin-left:15px;font-size:24px;margin-top:10px;">Past Experiences</p><br><br>
       <?php
@@ -241,20 +252,6 @@
 
     </div>
 
-    <?php
-
-    echo '
-     <div class="intro" style="margin-bottom:30px;">
-     <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">Intro
-        </p>
-        <form method="post">
-     <input name="introo" type="text" maxlength="30" style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;"></p>
-     <input type="submit" name="intro" class="Save-btn" value="Save">
-        </form>
-     </div>
-    
-    ';
-    ?>
 
 
     <div class="edit">
