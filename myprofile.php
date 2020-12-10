@@ -426,7 +426,7 @@
                         </div>
                         <hr>
                         <div class="likeButton">
-                            <a class="like" onclick="updateLike('.$j.')"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Like</a>
+                            <a class="like" onclick="updateLike('.$j.')" style="margin-left:-50px"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Like</a>
                             <a type="button" onclick="myFunc('.$i.')"><i class="fa fa-comments-o" aria-hidden="true"></i>Comment</a>
                             <hr>
                         </div>
@@ -444,17 +444,17 @@
                                 <h4>Comments</h4>';
                                 if($num>0){
                                     while($row4 = mysqli_fetch_assoc($result4)){
+                                        $id9 = $row4['user_commented_id'];
+                                        $sql9 = "SELECT * FROM `users` where `user_id`='$id9'";
+                                        $result9 = mysqli_query($conn,$sql9);
+                                        $row9 = mysqli_fetch_assoc($result9);
                                         echo'<div class="perComment">
                                                 <img src="images/user.png">
                                                 <div class="contentComment">
-                                                    <h5>Hitesh Dhameja</h5>
-                                                    <p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
-                                                    <p>'.$row4['comment'].'</p>
-                                                    <div class="likes">
-                                                        <a href="#">Like</a>
-                                                        <a href="#">Comment</a>
-                                                    </div>
-                                                </div>
+                                                <h5>'.$row9['name'] .'</h5>
+                                                <p>1m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
+                                                <p class="'.$k.'">'.$row4['comment'].'</p>
+                                            </div>
                                             </div>';
                                     }
                                 }
@@ -469,13 +469,9 @@
                                 echo'<div id="'.$k.'" class="perComment" style="display:none;">
                                         <img src="images/user.png">
                                         <div class="contentComment">
-                                            <h5>Hitesh Dhameja</h5>
+                                            <h5>'.$_SESSION["username"] .'</h5>
                                             <p>1m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
                                             <p class="'.$k.'">blank</p>
-                                            <div class="likes">
-                                                <a href="#">Like</a>
-                                                <a href="#">Comment</a>
-                                            </div>
                                         </div>
                                     </div>
                             </div>
@@ -583,6 +579,81 @@
             modal8.style.display = "none";
         }
     }
+
+    // Displaying comment section 
+    function myFunc(y) {
+        if (document.getElementById(y).style.display == "none") {
+            document.getElementById(y).style.display = "block";
+        } else {
+            document.getElementById(y).style.display = "none";
+        }
+    }
+    //For comments
+    $('.comment').on('submit', function(event) {
+        event.preventDefault();
+        var comment = $(this).children('#comment').val();
+        var comment1 = comment;
+        var id12 = $(this).parents()[1]['childNodes'];
+        id12 = id12[3]['children'];
+        id12 = id12[id12.length - 1].id;
+        var id = $(this).parents()[2].id;
+        $.ajax({
+            url: "addComment.php",
+            method: "POST",
+            data: {
+                comment: comment,
+                id: id
+            },
+            dataType: "JSON",
+            success: function(data) {
+                if (data.error != '') {
+                    $('.comment').reset();
+                    $('.comment').html(data.error);
+                }
+            }
+        });
+        $(this).children('#comment').val('');
+        loadComment(id12, comment1);
+
+        function loadComment(x, y) {
+            document.getElementById(x).style.display = "flex";
+            document.getElementById(x).childNodes[3].children[2].innerHTML = y;
+            console.log(document.getElementById(x).childNodes[3].children[2].innerHTML)
+        }
+    });
+        
+    //Putting likes into db
+    $('.like').on('click', function(event) {
+        event.preventDefault();
+        var id = $(this).parents()[1].id;
+        $.ajax({
+            url: "likeUpdate.php",
+            method: "POST",
+            data: {
+                id: id
+            },
+            dataType: "JSON",
+            success: function(data) {
+                $(this).children('#comment').val() = "";
+                if (data.error != '') {
+                    $('#commentForm').reset();
+                    $('#comment').html(data.error);
+                }
+            }
+        });
+
+    });
+
+    //Updating likes on post
+    function updateLike(z) {
+        var count = document.getElementById(z).innerHTML
+        var numCount = count.substring(51, 53);
+        var sym = count.substring(0, 51);
+        var nextCount = Number(numCount) + 1;
+        document.getElementById(z).innerHTML = sym + nextCount + " Likes";
+    }
+
+    
     </script>
 
 </body>
