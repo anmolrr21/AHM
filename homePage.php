@@ -50,23 +50,24 @@
                 if( $_SESSION["type"] == "Individual"){
                     $sql9 = "SELECT * FROM `individual_users` where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
                     $result9 = mysqli_query($conn,$sql9);
-                    if(!$result9){
-                        echo $temp;
-                    }
-                    else{
+                    $num = mysqli_num_rows($result9);
+                    if($result9 && $num<=1){
                         $row9 = mysqli_fetch_assoc($result9);
                         echo $row9['intro'];
+                    }
+                    else{
+                        echo $temp; 
                     }
                 }else{
                     $sql9 = "SELECT * FROM `org_users` where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
                     $result9 = mysqli_query($conn,$sql9);
-                    if(!$result9){
-                        echo $temp;
-                    }
-                    else{
+                    if($result9 && $num<=1){
                         $row9 = mysqli_fetch_assoc($result9);
                         echo $row9['intro'];
-                    } 
+                    }
+                    else{
+                        echo $temp; 
+                    }
                 } 
         ?></p>
         <hr>
@@ -297,16 +298,16 @@
                                     <h4>Comments</h4>';
                                     if($num>0){
                                         while($row4 = mysqli_fetch_assoc($result4)){
+                                            $id9 = $row4['user_commented_id'];
+                                            $sql9 = "SELECT * FROM `users` where `user_id`='$id9'";
+                                            $result9 = mysqli_query($conn,$sql9);
+                                            $row9 = mysqli_fetch_assoc($result9);
                                             echo'<div class="perComment">
                                                     <img src="images/user.png">
                                                     <div class="contentComment">
-                                                        <h5>Hitesh Dhameja</h5>
+                                                        <h5>'.$row9['name'].'</h5>
                                                         <p>22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
                                                         <p>'.$row4['comment'].'</p>
-                                                        <div class="likes">
-                                                            <a href="#">Like</a>
-                                                            <a href="#">Comment</a>
-                                                        </div>
                                                     </div>
                                                 </div>';
                                         }
@@ -325,10 +326,6 @@
                                                 <h5>'.$_SESSION["username"] .'</h5>
                                                 <p>1m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
                                                 <p class="'.$k.'">blank</p>
-                                                <div class="likes">
-                                                    <a href="#">Like</a>
-                                                    <a href="#">Comment</a>
-                                                </div>
                                             </div>
                                         </div>
                             </div>
