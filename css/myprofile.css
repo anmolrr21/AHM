@@ -2,6 +2,7 @@
 body{
   background-color: aliceblue;
 }
+
 .name{
   height:250px;
   width:800px;
@@ -23,7 +24,7 @@ body{
   height: 70px;
   width:70px;
   margin-left: 330px;
-  margin-top: -300px;
+  margin-top: -380px;
   border-radius: 50px;
 }
 p{
@@ -35,43 +36,43 @@ p{
 .about{
   height:120px;
   width:800px;
-  margin-top:240px;
+  margin-top:330px;
   margin-left: 40px;
   background-color: white;
   border-radius:10px;
   box-shadow: 0 3px 7px rgba(0,0,0,0.3);
 }
-.onlyBox2{
+.postBox{
   height:130px;
   width:800px;
-  margin-left:150px;
-  margin-top: -10px;
+  margin-left:400px; 
+  margin-top: 25px;
   border-radius:10px;
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0 3px 7px rgba(0,0,0,0.3)
 }
-.onlyBox2 ul{
+.postBox ul{
 margin-top: -5px;
 display: flex;
 justify-content: space-evenly;
 }
-.onlyBox2 ul li{
+.postBox ul li{
 display: flex;
 justify-content: space-between;
 cursor: pointer;
 /* font-size: 10%; */
 }
-.onlyBox2 ul li button{
+.postBox ul li button{
 cursor: pointer;
 }
-.onlyBox2 ul li:nth-child(1){
+.postBox ul li:nth-child(1){
 margin-left: -20px;
 }
-.onlyBox2 ul li i{
+.postBox ul li i{
 padding-right: 3px;
 }
-.onlyBox2 ul li button{
+.postBox ul li button{
 border: none;
 outline: none;
 background-color: #fff;
@@ -130,6 +131,7 @@ font-size: clamp(10px,1vw,40px);
 
 
 
+
 #radio1:checked ~ .first{
   margin-left: 0;
 }
@@ -181,5 +183,60 @@ font-size: clamp(10px,1vw,40px);
 
 #radio4:checked ~ .navigation-auto .auto-btn4{
   background: #40D3DC;
+}
+
+@media screen and (min-width: 1522px) {
+  .name{
+    margin-left: 400px;
+  }
+  .user{
+    margin-left: 690px;
+
+  }
+  .about{
+    margin-left: 400px;
+  }
+  .postBox{
+    margin-left: 400px;
+  }
+  #sharetext{
+    border: 2px solid rgb(167, 167, 167);
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    height: 8%;
+    margin-left: 5px;
+    margin-top: 25px;
+    margin-right: 5px; 
+    font-size: 17px;   
+    padding: 15px;
+    padding-bottom: 23px;
+  }
+  .exp{
+    margin-left: 400px;
+  }
+  .introBox{
+    margin-left: 400px;
+  }
+  #mypost{
+    
+    margin-top: 60px;
+    margin-left:530px;
+  }
+  .edit-div{
+    margin-bottom: 20px;
+  }
+  .edit-btn{
+    background-color:lightskyblue;
+    color:black;
+    padding:15px;
+    width:795px; 
+    border-radius:10px;
+    border:0px;
+    margin-left: 400px;
+    margin-top: 20px;
+   
+  }
 }
      

@@ -47,6 +47,37 @@
           box-shadow: 0 3px 3px rgba(0,0,0,0.3);
         }
 
+        .Save-btn{
+        background-color: #0e76a8; 
+        width: 80px;
+        height: 40px;
+        color: #fff;
+        border: 1px solid;
+        border-radius: 5px;
+        outline: none;
+    }
+    @media screen and (min-width: 1522px) {
+      .name{
+        margin-left: 400px;
+      }
+      .user{
+        margin-left: 690px;
+
+      }
+      .about{
+        margin-left: 400px;
+      }
+      .exp{
+      margin-left: 400px;
+    }
+    .intro{
+      margin-left: 400px;
+      }
+      
+
+    }
+        
+
     </style>
     <title>My profile</title>
     </head>
@@ -130,13 +161,34 @@
           echo '
           </p><br><br><br>
           <form method="post">
-          <input type="text" name="location" style="margin-top:130px;margin-left:280px;"placeholder="Enter location" value="'.$row["location"].'">
-          <input type="submit" name="submit" value="Save">
+          <input type="text" name="location" style="width:190px;height:30px;margin-top:120px;margin-left:270px;"placeholder="Enter location" value="'.$row["location"].'">
+          
+          <input type="submit" class="Save-btn" name="submit" value="Save">
+      
+         
           </form>
          ';
          ?>
 <br><br>
-        <p style="color:blue;font-size:24px;margin-left:295px;margin-top:-25px; position:relative;">200 connections</p>
+<?php
+              $nameOfUser = $_SESSION["username"];
+              $sql = "SELECT * FROM `users` where `name`='$nameOfUser'";
+              $result = mysqli_query($conn,$sql);
+              $row = mysqli_fetch_assoc($result);
+              $id = $row['user_id'];
+              $sql1 = "SELECT * FROM `connections` where (`userid`='$id' or `connection_id`='$id') and `requestStatus`=1";
+              $result1 = mysqli_query($conn,$sql1);
+              $num = mysqli_num_rows($result1);
+              if(!$num){
+                $total = 0;
+              }
+              else{
+                $total = $num;
+              }
+             echo '
+                <p style="color:blue;font-size:24px;margin-left:295px;margin-top:-25px; position:relative">'.$total.' connections</p>';
+            ?>
+        
       </div>
     </div>
     <div class="user">
@@ -150,14 +202,14 @@
       echo '
         <div class="about2">
         <form method="post">
-        <input name="aboutData" style="font-size:24px;color:black;margin-left:180px; width:300px;padding:5px;" placeholder="Enter something About You">
-        <input type="submit" name="aboutSubmit" value="Save">
+        <input name="aboutData" style="font-size:24px;color:black;margin-left:450px; width:300px;padding:5px;" placeholder="Enter something About You">
+        <input type="submit" name="aboutSubmit" class="Save-btn" value="Save">
         </form>
         </div>
       ';
     ?>
    
-    <div class="onlyBox2">
+    <!-- <div class="onlyBox2">
         <h4 style="padding:15px;font-size:24px;"> Share an article, photo, video or ideas</h4>
         <ul>
             <li><i class="fa fa-picture-o" aria-hidden="true" style="color:green"></i><button
@@ -167,16 +219,16 @@
             <li><i class="fa fa-pencil" aria-hidden="true" style="color:orange"></i><button
                     onclick="modalDisplay()">Article</button></li>
         </ul>
-    </div>
+    </div> -->
     <div class="exp">
       <p style="margin-left:15px;font-size:24px;margin-top:10px;">Past Experiences</p><br><br>
       <?php
       echo '
       <form method="post">
-      <input name="exp1" style="height:80px;margin-left:45px;font-size:21px;margin-top:30px;color:#333333;" placeholder="Enter your past experiences of social welfare"></p><br><br>
+      <input name="exp1" style="width:450px;height:75px;margin-left:45px;font-size:21px;margin-top:30px;color:#333333;" placeholder="Enter your past experiences of social welfare"></p><br><br>
       <hr style="margin-left:40px; margin-top:20px; color:lightgrey;"><br><br>
-      <input name="exp2" style="height:80px;margin-left:45px;font-size:21px;margin-top:-20px;color:#333333;" placeholder="Enter your past experiences of social welfare"></p><br><br>
-      <input type="submit" style="margin-left:140px;" name="expp1" value="Save">
+      <input name="exp2" style="width:450px;height:75px;margin-left:45px;font-size:21px;margin-top:-20px;color:#333333;" placeholder="Enter your past experiences of social welfare"></p><br><br>
+      <input type="submit" style="margin-left:130px; margin-top:-28px;" class="Save-btn" name="expp1" value="Save">
       </form>
       ';
     ?>
@@ -192,12 +244,12 @@
     <?php
 
     echo '
-     <div class="intro" >
+     <div class="intro" style="margin-bottom:30px;">
      <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">Intro
         </p>
         <form method="post">
-     <input name="introo" type="text" maxlength="20" style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;"></p>
-     <input type="submit" name="intro" value="Save">
+     <input name="introo" type="text" maxlength="30" style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;"></p>
+     <input type="submit" name="intro" class="Save-btn" value="Save">
         </form>
      </div>
     
@@ -210,44 +262,7 @@
       <button style="background-color:lightskyblue;color:black;padding:15px;width:100px; border-radius:10px;margin-top:50px;margin-left:110px;border:0px;">Update<button>
       </a>
     </div>
-    <div class="slider">
-      <div class="slides">
-        <!--radio buttons start-->
-        <input type="radio" name="radio-btn" id="radio1">
-        <input type="radio" name="radio-btn" id="radio2">
-        <input type="radio" name="radio-btn" id="radio3">
-        <input type="radio" name="radio-btn" id="radio4">
-        <!--radio buttons end-->
-        <!--slide images start-->
-        <div class="slide first">
-          <img src="images/ahmq1.png" alt="">
-        </div>
-        <div class="slide">
-          <img src="images/ahmq2.jpg" alt="">
-        </div>
-        <div class="slide">
-          <img src="images/ahmq3.jpg" alt="">
-        </div>
-        
-        <!--slide images end-->
-        <!--automatic navigation start-->
-        <div class="navigation-auto">
-          <div class="auto-btn1"></div>
-          <div class="auto-btn2"></div>
-          <div class="auto-btn3"></div>
-          <div class="auto-btn4"></div>
-        </div>
-        <!--automatic navigation end-->
-      </div>
-      <!--manual navigation start-->
-      <div class="navigation-manual">
-        <label for="radio1" class="manual-btn"></label>
-        <label for="radio2" class="manual-btn"></label>
-        <label for="radio3" class="manual-btn"></label>
-        <label for="radio4" class="manual-btn"></label>
-      </div>
-      <!--manual navigation end-->
-    </div>
+    
 
     <script type="text/javascript">
     var counter = 1;

@@ -33,11 +33,10 @@
         margin-top: 70px;
 
     }
-    .intro{
+    .introBox{
         height:125px;
         width:800px;
         margin-top:15px;
-        margin-left: 150px;
         background-color: white;
         border-radius:10px;
         box-shadow: 0 3px 3px rgba(0,0,0,0.3);
@@ -130,9 +129,12 @@
             ?>
         </div>
     </div>
+    <div id="edit-div"><a href="/AHM/editmyprofile.php"><button class="edit-btn">Edit</button></a></div>
+    
     <div class="user">
         <image src=images/user.png height="170px">
     </div>
+   
     
     <?php
         $nameOfUser = $_SESSION["username"];
@@ -143,7 +145,7 @@
             $row = mysqli_fetch_assoc($result);
 
             echo '
-            <div class="about">
+            <div class="about" style="margin-top:25px;">
             <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">About
                </p>
             <p style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;">"'.$row["about"].'"
@@ -255,8 +257,8 @@
 
 
 
-    <div class="onlyBox2" style="margin-left: 3%; margin-top:10px;box-shadow: 0 3px 7px rgba(0,0,0,0.3);">
-        <h4 id="share" style="margin-top:25px;padding:20px;font-size:24px;"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> Share an article, photo, video or ideas</h4>
+    <div class="postBox" style="margin-top:20px;box-shadow: 0 3px 7px rgba(0,0,0,0.3);">
+        <h4 id="sharetext" style="margin-top:25px;font-size:24px;"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> Share an article, photo, video or ideas</h4>
         <ul>
             <li><i class="fa fa-picture-o" aria-hidden="true" style="color:green"></i><button
                     onclick="modalDisplay2()">Picture</button></li>
@@ -282,7 +284,7 @@
         }
 
         echo '
-    <div class="exp" style="margin-left:3%;">
+    <div class="exp">
         <p style="margin-left:15px;font-size:24px;margin-top:10px;">Past Experiences</p><br><br>
         <p style="margin-left:45px;font-size:21px;margin-top:30px;color:#333333;"> '.$row["exp1"].'
         </p><br><br>
@@ -314,7 +316,7 @@
       
 
         echo '
-    <div class="intro" style="margin-left:3%;">
+    <div class="introBox">
         <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">Intro
             </p>
         <p style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;">"'.$row["intro"].'"</p>
@@ -322,57 +324,13 @@
         ?>
         </div>
 
-    <div style="display: flex;">
+   
         <div class="about" style="margin-top: 10px;height:60px;">
             <p style="font-size:24px;color:black;margin-left:20px; margin-top:20px;">Your Posts
                 </p> 
         </div>
-        <div class="slider">
-            <div class="slides">
-                <!--radio buttons start-->
-                <input type="radio" name="radio-btn" id="radio1">
-                <input type="radio" name="radio-btn" id="radio2">
-                <input type="radio" name="radio-btn" id="radio3">
-                <input type="radio" name="radio-btn" id="radio4">
-                <!--radio buttons end-->
-                <!--slide images start-->
-                <div class="slide first">
-                    <img src="images/ahmq1.png" alt="">
-                </div>
-                <div class="slide">
-                    <img src="images/ahmq2.jpg" alt="">
-                </div>
-                <div class="slide">
-                    <img src="images/ahmq3.jpg" alt="">
-                </div>
-
-                <!--slide images end-->
-                <!--automatic navigation start-->
-                <div class="navigation-auto">
-                    <div class="auto-btn1"></div>
-                    <div class="auto-btn2"></div>
-                    <div class="auto-btn3"></div>
-                    <div class="auto-btn4"></div>
-                </div>
-                <!--automatic navigation end-->
-            </div>
-            <!--manual navigation start-->
-            <div class="navigation-manual">
-                <label for="radio1" class="manual-btn"></label>
-                <label for="radio2" class="manual-btn"></label>
-                <label for="radio3" class="manual-btn"></label>
-                <label for="radio4" class="manual-btn"></label>
-            </div>
-            <!--manual navigation end-->
-        </div> 
-    </div>
-    <div class="edit">
-        <p style="font-size:21px;width:100%;margin-left:30px;margin-top:15px;">Want to edit your profile?</p>
-        <a href="editmyprofile.php">
-            <button
-                style="background-color:lightskyblue;color:black;padding:15px;width:80px; border-radius:10px;margin-top:75px;margin-left:110px;border:0px;">Edit</button>
-    </div>
-    <div style="margin-top: 60px;">
+        
+    <div id="mypost">
         <?php
             $nameOfUser = $_SESSION["username"];
             $sql9 = "SELECT * FROM `users` where `name`='$nameOfUser'";
