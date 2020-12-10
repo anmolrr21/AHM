@@ -132,14 +132,15 @@
         <hr>
         <?php
             $name = $_SESSION["username"];
-            $sql10 = "SELECT `user_id` FROM `users` where `name`='$name'";
+            $sql10 = "SELECT `user_id`,`location` FROM `users` where `name`='$name'";
             $result10 = mysqli_query($conn,$sql10);
             $row10 = mysqli_fetch_assoc($result10);
             $id10 = $row10['user_id'];
+            $loc = $row10['location'];
             $sql11 = "SELECT * FROM `ind_interest` where `ind_id`='$id10'";
             $result11 = mysqli_query($conn,$sql11);
             $row11 = mysqli_fetch_assoc($result11);
-            $sql = "SELECT * FROM `users` where `type`='Individual' and `user_id`<>'$id10'";
+            $sql = "SELECT * FROM `users` where `type`='Individual' or `location`=$loc and `user_id`<>'$id10'";
             $result = mysqli_query($conn,$sql);
             while($row = mysqli_fetch_assoc($result)){
                 $id = $row['user_id'];
@@ -182,14 +183,15 @@
         <hr>
         <?php
             $name = $_SESSION["username"];
-            $sql10 = "SELECT `user_id` FROM `users` where `name`='$name'";
+            $sql10 = "SELECT `user_id`,`location` FROM `users` where `name`='$name'";
             $result10 = mysqli_query($conn,$sql10);
             $row10 = mysqli_fetch_assoc($result10);
             $id10 = $row10['user_id'];
+            $loc = $row10['location'];
             $sql11 = "SELECT * FROM `ind_interest` where `ind_id`='$id10'";
             $result11 = mysqli_query($conn,$sql11);
             $row11 = mysqli_fetch_assoc($result11);
-            $sql = "SELECT * FROM `users` where `type`='Organization' and `user_id`<>'$id10'";
+            $sql = "SELECT * FROM `users` where `type`='Organization' or `location`='$loc' and `user_id`<>'$id10'";
             $result = mysqli_query($conn,$sql);
             while($row = mysqli_fetch_assoc($result)){
                 $id = $row['user_id'];
