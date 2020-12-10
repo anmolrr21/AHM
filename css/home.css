@@ -629,6 +629,22 @@ a.active{
         margin-left: 39%;
     }
 }
+@media screen and (min-width: 1522px) {
+    .leftBottom{
+        margin-top: 33%;
+        width: 26%;
+    }
+    .notifyBox{
+        width:650px;
+        margin-left: 520px;
+    }
+    .rightCorner a{
+    
+        margin-bottom:30px;
+       
+    }
+}
+
 @media screen and (max-width: 500px) {
     .leftCorner,.rightCorner,.rightBottom,.leftBottom{
         display: none;
