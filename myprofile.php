@@ -284,12 +284,30 @@
             $row = mysqli_fetch_assoc($result);
 
             echo '
-            <div class="about">
-            <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">About
+            <div class="about" style="margin-top:25px;">
+            <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;font-weight:bold;">About
                </p>
-            <p style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;">"'.$row["description"].'"
+               <div class="serve">
+               <h3>Current Need for Us:</h3>
+               <p>'.$row["need"].'</p>
+               </div><br>';
+               $sql1 = "SELECT * FROM `org_domain` where `org_id`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+                $result1 = mysqli_query($conn,$sql1);
+               echo '<div class="domain">
+               <h3>Your Domain of Interest:</h3>';
+                
+                echo '<div class="row">';
+                $interest = "";
+            while($row1 = mysqli_fetch_array($result1)){
+                $interest = $interest.'   '.$row1["domain"];
+            }
+            echo '<p style="margin-right:5px">'.$interest.'</p>';
+            echo '</div></div>';
+
+            echo '<div class="desc"><h3>Description:</h3>
+            <p style="font-size:18px;font-weight:light;color:#333333;">"'.$row["description"].'"
                </p>
-            </div>
+            </div></div>
            ';
 
         }
