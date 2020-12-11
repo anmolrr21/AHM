@@ -265,9 +265,11 @@
                <h3>Your Domain of Interest:</h3>';
                 
                 echo '<div class="row">';
+                $interest = "";
             while($row1 = mysqli_fetch_array($result1)){
-                echo '<p style="margin-right:5px">'.$row1["interest"].',</p>';
+                $interest = $interest.'   '.$row1["interest"];
             }
+            echo '<p style="margin-right:5px">'.$interest.'</p>';
             echo '</div></div>';
 
             echo '<div class="desc"><h3>Description:</h3>
@@ -346,7 +348,7 @@
                 </p> 
         </div>
         
-    <div id="mypost">
+    <div id="mypost" style="margin-top:20px">
         <?php
             $nameOfUser = $_SESSION["username"];
             $sql9 = "SELECT * FROM `users` where `name`='$nameOfUser'";
@@ -382,7 +384,7 @@
                 $sql4 = "SELECT * FROM `comments` where `post_id`='$nextid'";
                 $result4 = mysqli_query($conn,$sql4);
                 $num = mysqli_num_rows($result4);
-                echo'<div id="'.$row['post_id'].'" class="share onlyPost" style="margin-left:-330px;margin-top:-30px;width:500px;">
+                echo'<div id="'.$row['post_id'].'" class="share onlyPost" style="margin-left:-330px;width:500px;">
                         <div class="topNamePic">
                             <img src="images/user.png">
                             <div class="nameDetail">
