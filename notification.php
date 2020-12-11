@@ -151,15 +151,34 @@
                     $sql2 = "SELECT * FROM `users` where `user_id`='$otherid'";
                     $result2 = mysqli_query($conn,$sql2);
                     $row2 = mysqli_fetch_assoc($result2);
-                    echo'<div class="rightSuggest">
-                            <img src="images/user.png">
-                            <div class="part">
-                                <h5>'.$row2['name'].'</h5>
-                                <p>Volunteer | Fund Raiser | Mind Blowing</p>
-                                <p>sent you a connection request.</p>
-                            </div>
-                        </div>';
-                }
+                    if($row2['type']=='Individual'){
+                        $sql7 = "SELECT * FROM `individual_users` where `ind_uid`='$otherid'";
+                        $result7 = mysqli_query($conn,$sql7);
+                        $row7 = mysqli_fetch_assoc($result7);
+                        echo'<div class="rightSuggest">
+                                <img src="images/user.png">
+                                <div class="part">
+                                    <h5>'.$row2['name'].'</h5>
+                                    <p>'.$row7['intro'].'</p>
+                                    <p>sent you a connection request.</p>
+                                </div>
+                            </div>';
+                    }
+                    else{
+                        $sql7 = "SELECT * FROM `org_users` where `Org_uid`='$otherid'";
+                        $result7 = mysqli_query($conn,$sql7);
+                        $row7 = mysqli_fetch_assoc($result7);
+                        echo'<div class="rightSuggest">
+                                <img src="images/user.png">
+                                <div class="part">
+                                    <h5>'.$row2['name'].'</h5>
+                                    <p>'.$row7['intro'].'</p>
+                                    <p>sent you a connection request.</p>
+                                </div>
+                            </div>';
+                    }
+                
+                }  
             }
             $sql2 = "SELECT * FROM `connections` where `userid`=$currentUserId and `requestStatus`=1 and `acceptedNoti`=1";
             $result2 = mysqli_query($conn,$sql2);
@@ -303,3 +322,4 @@
 </body>
 
 </html>
+

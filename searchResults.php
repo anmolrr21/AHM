@@ -122,6 +122,7 @@
     </div>
 
     
+    <!------------------------Display of search results--------------------------->
     <div class="notifyBox">
         <div class="notifyHeading">
             <h5>Search Results</h5>
