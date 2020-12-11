@@ -195,14 +195,32 @@
                     $sql3 = "SELECT * FROM `users` where `user_id`='$otherid'";
                     $result3 = mysqli_query($conn,$sql3);
                     $row3 = mysqli_fetch_assoc($result3);
-                    echo'<div class="rightSuggest">
-                            <img src="images/user.png">
-                            <div class="part">
-                                <h5>'.$row3['name'].'</h5>
-                                <p>Volunteer | Fund Raiser | Mind Blowing</p>
-                                <p>accepted your connection request.</p>
-                            </div>
-                        </div>';
+                    if($row3['type']=='Individual'){
+                        $sql7 = "SELECT * FROM `individual_users` where `ind_uid`='$otherid'";
+                        $result7 = mysqli_query($conn,$sql7);
+                        $row7 = mysqli_fetch_assoc($result7);
+                        echo'<div class="rightSuggest">
+                                <img src="images/user.png">
+                                <div class="part">
+                                    <h5>'.$row3['name'].'</h5>
+                                    <p>'.$row7['intro'].'</p>
+                                    <p>accepted your connection request.</p>
+                                </div>
+                            </div>';
+                    }
+                    else{
+                        $sql7 = "SELECT * FROM `org_users` where `Org_uid`='$otherid'";
+                        $result7 = mysqli_query($conn,$sql7);
+                        $row7 = mysqli_fetch_assoc($result7);
+                        echo'<div class="rightSuggest">
+                                <img src="images/user.png">
+                                <div class="part">
+                                    <h5>'.$row3['name'].'</h5>
+                                    <p>'.$row7['intro'].'</p>
+                                    <p>accepted your connection request.</p>
+                                </div>
+                            </div>'; 
+                    }
                 }
             }
         ?>
