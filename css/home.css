@@ -617,9 +617,10 @@ a.active{
         margin-left: 470px;
     }
     .rightCorner a{
-    
-        margin-bottom:30px;
-       
+        margin-bottom:30px;   
+    }
+    .viewUser{
+        margin-left: 200px;
     }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -692,6 +693,7 @@ a.active{
     .connect{
         margin-left: -12%;
     }
+    
 }
 
 

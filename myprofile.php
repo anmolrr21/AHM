@@ -295,12 +295,12 @@
                $sql1 = "SELECT * FROM `org_domain` where `org_id`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
                 $result1 = mysqli_query($conn,$sql1);
                echo '<div class="domain">
-               <h3>Your Domain of Interest:</h3>';
+               <h3>Domain you work on:</h3>';
                 
                 echo '<div class="row">';
                 $interest = "";
             while($row1 = mysqli_fetch_array($result1)){
-                $interest = $interest.'   '.$row1["domain"];
+                $interest = $interest.' , '.$row1["domain"];
             }
             $interest = substr($interest,2);
             echo '<p style="margin-right:5px">'.$interest.'</p>';
@@ -411,7 +411,7 @@
                                 <h5>'.$nameOfUser.'</h5>
                                 <p style="margin-left:-5px;font-weight:normal">'.$intro.'</p>';
                                 $timeT = strtotime($row['postedTime']);
-                                echo '<p style="margin-left:-5px;margin-top:1px;">'.date("d/m/y h:i a",$timeT).' <i class="fa fa-globe" aria-hidden="true"></i></p>
+                                echo '<p style="margin-left:-5px;margin-top:1px;font-weight:normal">'.date("d/m/y h:i a",$timeT).' <i class="fa fa-globe" aria-hidden="true"></i></p>
                             </div>
                         </div>';
                         if($row['article']!=NULL){

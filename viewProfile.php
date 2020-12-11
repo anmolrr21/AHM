@@ -145,7 +145,7 @@
     <div class="introBox">
         <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">Intro
             </p>
-        <p style="font-size:20px;font-weight:light;margin-left:20px; margin-top:50px;">"'.$row["intro"].'"</p>
+        <p style="font-size:20px;font-weight:normal;margin-left:20px; margin-top:50px;">"'.$row["intro"].'"</p>
         '
         ?>
         </div>
@@ -177,7 +177,7 @@
                 echo '<div class="row">';
                 $interest = "";
             while($row2 = mysqli_fetch_array($result2)){
-                $interest = $interest.'  '.$row2["interest"];
+                $interest = $interest.' , '.$row2["interest"];
             }
             $interest = substr($interest,2);
             echo '<p style="margin-right:5px">'.$interest.'</p>';
@@ -210,8 +210,9 @@
                 echo '<div class="row">';
                 $interest = "";
             while($row2 = mysqli_fetch_array($result2)){
-                $interest = $interest.'   '.$row2["domain"];
+                $interest = $interest.' , '.$row2["domain"];
             }
+            $interest = substr($interest,2);
             echo '<p style="margin-right:5px">'.$interest.'</p>';
             echo '</div></div>';
 
