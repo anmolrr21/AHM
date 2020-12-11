@@ -179,6 +179,7 @@
             while($row2 = mysqli_fetch_array($result2)){
                 $interest = $interest.'  '.$row2["interest"];
             }
+            $interest = substr($interest,2);
             echo '<p style="margin-right:5px">'.$interest.'</p>';
             echo '</div></div>';
 

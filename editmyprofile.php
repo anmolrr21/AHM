@@ -17,7 +17,11 @@
     <style>
     <?php include 'css/navbar.css';
 
-    ?>.header {
+    ?>
+    body{
+      overflow-x: hidden;
+    }
+    .header {
         background-color: #0e76a8;
         margin: -10px;
         margin-left: -10px;
@@ -116,21 +120,113 @@
           $result = mysqli_query($conn,$sql);
         }
       }
-
-      if(isset($_POST["aboutData"])) {
+      if(isset($_POST["serve1"])) {
+        $serve = $_REQUEST['serve2'];
+        $nameOfUser = $_SESSION["username"];
         if( $_SESSION["type"] == "Individual"){
-        $about = $_REQUEST['aboutData'];
-        $nameOfUser = $_SESSION["username"];
-        $sql = "UPDATE `individual_users` SET about='$about' where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
-        $result = mysqli_query($conn,$sql);
-      } else {
-        $about = $_REQUEST['aboutData'];
-        $nameOfUser = $_SESSION["username"];
-        $sql = "UPDATE `org_users` SET description='$about' where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
-        $result = mysqli_query($conn,$sql);
+          $sql = "UPDATE `individual_users` SET serve_as='$serve' where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+          $result = mysqli_query($conn,$sql);
+        }
       }
-        // header("Location: ./myprofile.php");
-    }
+      if(isset($_POST["domainAdd"])) {
+        $domainn = $_POST['domainT'];
+        if( $_SESSION["type"] == "Individual"){
+          $nameOfUser = $_SESSION["username"];
+          $sql2 = "Select user_id FROM `users` WHERE `name`='$nameOfUser'";
+          $result2 = mysqli_query($conn,$sql2);
+          $row2 = mysqli_fetch_assoc($result2);
+          $id = $row2['user_id'];
+          $sql = "INSERT INTO `ind_interest` (`ind_id`, `interest`) VALUES ('$id', '$domainn')";
+          $result = mysqli_query($conn,$sql);
+        }
+      }
+      if(isset($_POST["domainRemove"])) {
+        $domainn = $_REQUEST['domainT'];
+        if( $_SESSION["type"] == "Individual"){
+          $nameOfUser = $_SESSION["username"];
+          $sql2 = "Select user_id FROM `users` WHERE `name`='$nameOfUser'";
+          $result2 = mysqli_query($conn,$sql2);
+          $row2 = mysqli_fetch_assoc($result2);
+          $id = $row2['user_id'];
+          $sql = "DELETE FROM `ind_interest` WHERE `ind_interest`.`ind_id` = $id AND `ind_interest`.`interest` = '$domainn'";
+          $result = mysqli_query($conn,$sql);
+        }
+      }
+      if(isset($_POST["about"])) {
+        $about = $_REQUEST['about1'];
+        if( $_SESSION["type"] == "Individual"){
+          $nameOfUser = $_SESSION["username"];
+          $sql = "UPDATE `individual_users` SET about='$about' where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+          $result = mysqli_query($conn,$sql);
+        }
+      }
+
+      if(isset($_POST["need"])) {
+        $need = $_REQUEST['need3'];
+        $nameOfUser = $_SESSION["username"];
+        if( $_SESSION["type"] == "Organization"){
+          $sql = "UPDATE `org_users` SET need='$need' where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+          $result = mysqli_query($conn,$sql);
+        }
+      }
+      if(isset($_POST["domainOrg"])) {
+        $domainn = $_POST['domainThis'];
+        if( $_SESSION["type"] == "Organization"){
+          $nameOfUser = $_SESSION["username"];
+          $sql2 = "Select user_id FROM `users` WHERE `name`='$nameOfUser'";
+          $result2 = mysqli_query($conn,$sql2);
+          $row2 = mysqli_fetch_assoc($result2);
+          $id = $row2['user_id'];
+          $sql = "INSERT INTO `org_domain` (`org_id`, `domain`) VALUES ('$id', '$domainn')";
+          $result = mysqli_query($conn,$sql);
+          $sql2 = "SELECT * FROM `domains_available` where `domain`=$domainn";
+          $result2 = mysqli_query($conn,$sql2);
+          if($result2){
+            $row = mysqli_fetch_assoc($result2);
+            if($row<1){
+              $sql3 = "INSERT INTO `domains_available` (`sno`, `domain`) VALUES (NULL, '$domainn')";
+              $result3 = mysqli_query($conn,$sql3);
+            }
+          }
+        }
+      }
+      if(isset($_POST["domainRemoveOrg"])) {
+        $domainn = $_REQUEST['domainThis'];
+        if( $_SESSION["type"] == "Organization"){
+          $nameOfUser = $_SESSION["username"];
+          $sql2 = "Select user_id FROM `users` WHERE `name`='$nameOfUser'";
+          $result2 = mysqli_query($conn,$sql2);
+          $row2 = mysqli_fetch_assoc($result2);
+          $id = $row2['user_id'];
+          $sql = "DELETE FROM `org_domain` WHERE `org_domain`.`org_id` = $id AND `org_domain`.`domain` = $domainn";
+          $result = mysqli_query($conn,$sql);
+        }
+      }
+      if(isset($_POST["aboutOrgF"])) {
+        $about = $_REQUEST['aboutOrg'];
+        if( $_SESSION["type"] == "Individual"){
+          $nameOfUser = $_SESSION["username"];
+          $sql = "UPDATE `org_users` SET `description` ='$about' where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+          $result = mysqli_query($conn,$sql);
+        }
+      }
+
+
+
+    //   if(isset($_POST["aboutData"])) {
+    //     if( $_SESSION["type"] == "Individual"){
+    //     $about = $_REQUEST['aboutData'];
+    //     $nameOfUser = $_SESSION["username"];
+    //     $sql = "UPDATE `individual_users` SET about='$about' where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+    //     $result = mysqli_query($conn,$sql);
+    //   } else {
+    //     $about = $_REQUEST['aboutData'];
+    //     $nameOfUser = $_SESSION["username"];
+    //     $sql = "UPDATE `org_users` SET description='$about' where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+    //     $result = mysqli_query($conn,$sql);
+    //   }
+    //     // header("Location: ./myprofile.php");
+    // }
     if(isset($_POST["expp1"])) {
       $nameOfUser = $_SESSION["username"];
       $exp1 = $_REQUEST['exp1'];
@@ -153,8 +249,6 @@
             }
           }
         }
-        // $sql = "UPDATE `individual_users` SET exp1='$exp1',exp2='$exp2' where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
-        // $result = mysqli_query($conn,$sql);
       } else {
         if($exp1 && !$exp2){
           $sql = "UPDATE `org_users` SET exp1='$exp1' where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
@@ -246,8 +340,8 @@
      <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">Intro
         </p>
         <form method="post">
-     <input name="introo" type="text" maxlength="30" style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;"></p>
-     <input type="submit" name="intro" class="Save-btn" value="Save">
+     <input name="introo" type="text" placeholder="Enter your Intro/Bio" maxlength="30" style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;"></p>
+     <input type="submit" name="intro" class="Save-btn" placeholder="Enter your Intro/Bio" value="Save">
         </form>
      </div>
     
@@ -255,20 +349,71 @@
     ?>
 
     <div class="about">
-        <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px; ">About
-        <p>
-    </div>
-    <?php
-      echo '
-        <div class="about2" style="margin-left:-270px">
-        <form method="post">
-        <input name="aboutData" style="font-size:24px;color:black;margin-left:450px; width:300px;padding:5px;" placeholder="Enter something About You">
-        <input type="submit" name="aboutSubmit" class="Save-btn" value="Save">
-        </form>
-        </div>
-      ';
-    ?>
+      <?php
+      if($_SESSION["type"] == "Individual"){
+        echo'<p style="font-size:24px;color:black;margin-left:20px; margin-top:10px; ">Serve As
+        </p><br><br><br>';
+        echo'<form method="post">
+                  <select id="serve" name="serve2" style="font-size:20px;font-weight:light;color:#333333;margin-left:20px;">
+                    <option value="Volunteers">Volunteers</option>
+                    <option value="Donors">Donors</option>
+                    <option value="Volunteers and Donors">Volunteers and Donors</option>
+                  </select>
+                <input type="submit" style="margin-left:130px; margin-top:-28px;" class="Save-btn" name="serve1" value="Save">
+              </form>';
 
+        echo'<p style="font-size:24px;color:black;margin-left:20px; margin-top:10px; ">Domain
+        </p><br><br><br>';
+        $sql3 = "SELECT * FROM `domains_available`";
+        $result3 = mysqli_query($conn,$sql3);
+        echo'<form method="post">
+        <select id="serve" name="domainT" style="font-size:20px;font-weight:light;color:#333333;margin-left:20px;">';
+            while($row3 = mysqli_fetch_assoc($result3)){
+              echo'<option value="'.$row3['domain'].'">'.$row3['domain'].'</option>';}
+                  echo'</select>
+                <input type="submit" style="margin-left:190px; margin-top:-28px;" class="Save-btn" name="domainAdd" value="Save">
+                <input type="submit" style="margin-left:30px; margin-top:-28px;" class="Save-btn" name="domainRemove" value="Remove">
+              </form>';
+
+        echo'<p style="font-size:24px;color:black;margin-left:20px; margin-top:10px; ">Your Description
+        </p><br><br><br>';
+        echo'<form method="post">
+        <input name="about1" type="text" placeholder="Enter your description" maxlength="250" style="font-size:20px;font-weight:light;color:#333333;margin-left:20px;"></p>
+                <input type="submit" style="margin-left:110px; margin-top:-28px;" class="Save-btn" name="about" value="Save">
+              </form>';
+      }
+
+      else{
+        echo'<p style="font-size:24px;color:black;margin-left:20px; margin-top:10px; ">Need
+        </p><br><br><br>';
+        echo'<form method="post">
+                  <select id="serve" name="need3" style="font-size:20px;font-weight:light;color:#333333;margin-left:20px;">
+                    <option value="Volunteers">Volunteers</option>
+                    <option value="Donors">Donors</option>
+                    <option value="Volunteers and Donors">Volunteers and Donors</option>
+                  </select>
+                <input type="submit" style="margin-left:130px; margin-top:-28px;" class="Save-btn" name="need" value="Save">
+              </form>';
+
+        echo'<p style="font-size:24px;color:black;margin-left:20px; margin-top:10px; ">Domain
+        </p><br><br><br>';
+        echo'<form method="post">
+        <input name="domainThis" type="text" placeholder="Enter your domain" maxlength="250" style="font-size:20px;font-weight:light;color:#333333;margin-left:20px;"></p>
+                <input type="submit" style="margin-left:110px; margin-top:-28px;" class="Save-btn" name="domainOrg" value="Save">
+                <input type="submit" style="margin-left:30px; margin-top:-28px;" class="Save-btn" name="domainRemoveOrg" value="Remove">
+              </form>';
+
+        echo'<p style="font-size:24px;color:black;margin-left:20px; margin-top:10px; ">Your Description
+        </p><br><br><br>';
+        echo'<form method="post">
+        <input name="aboutOrg" type="text" placeholder="Enter your description" maxlength="250" style="font-size:20px;font-weight:light;color:#333333;margin-left:20px;"></p>
+                <input type="submit" style="margin-left:110px; margin-top:-28px;" class="Save-btn" name="aboutOrgF" value="Save">
+              </form>';
+      }
+      ?>
+        
+
+</div>
 
     <div class="exp">
         <p style="margin-left:15px;font-size:24px;margin-top:10px;">Past Experiences</p><br><br>
@@ -299,18 +444,6 @@
                 style="background-color:lightskyblue;color:black;padding:15px;width:100px; border-radius:10px;margin-top:50px;margin-left:110px;border:0px;">Update<button>
         </a>
     </div>
-
-
-    <script type="text/javascript">
-    var counter = 1;
-    setInterval(function() {
-        document.getElementById('radio' + counter).checked = true;
-        counter++;
-        if (counter > 3) {
-            counter = 1;
-        }
-    }, 2000);
-    </script>
 
 </body>
 

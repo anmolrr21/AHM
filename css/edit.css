@@ -33,10 +33,9 @@ p{
     font-size: 40px;
 }
 .about{
-    height:120px;
+    height:300px;
     width:800px;
     margin-top:24px;
-    margin-bottom:-50px;
     margin-left: 150px;
     background-color: white;
     border-radius:10px;
