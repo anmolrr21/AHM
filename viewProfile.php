@@ -51,7 +51,7 @@
     }
 
     </style>
-    <title>My profile</title>
+    <title>Profile</title>
 </head>
 
 <body>
@@ -107,12 +107,12 @@
         $result3 = mysqli_query($conn,$sql3);
         $num3 = mysqli_num_rows($result3);
         if($num==1){ 
-            echo'<div style="margin-top: 300px; margin-bottom: -200px;margin-left:200px">
+            echo'<div style="margin-top: 300px; margin-bottom: -300px;margin-left:200px">
                     <input type="button" class="viewUser" id="'.$forthisPage.'" value="Connected">
             </div>';}
         else{
             if($num3==1){
-                echo'<div style="margin-top: 300px; margin-bottom: -200px;margin-left:200px">
+                echo'<div style="margin-top: 300px; margin-bottom: -300px;margin-left:200px">
                     <input type="button" class="viewUser1" id="'.$forthisPage.'" value="Pending">
             </div>';
             }
@@ -131,12 +131,10 @@
         $row = mysqli_fetch_assoc($result);
         $type = $row['type'];
         if( $type == "Individual"){
-            $nameOfUser = $_SESSION["username"];
             $sql = "SELECT * FROM `individual_users` where `ind_uid`=$forthisPage";
             $result = mysqli_query($conn,$sql);
             $row = mysqli_fetch_assoc($result);
         } else {
-            $nameOfUser = $_SESSION["username"];
             $sql = "SELECT * FROM `org_users` where `Org_uid`=$forthisPage";
             $result = mysqli_query($conn,$sql);
             $row = mysqli_fetch_assoc($result);
@@ -155,6 +153,74 @@
     
     <?php
         $forthisPage = $_GET['forName'];
+        $sql = "SELECT * FROM `users` where `user_id`='$forthisPage'";
+        $result = mysqli_query($conn,$sql);
+        $row = mysqli_fetch_assoc($result);
+        if( $row["type"] == "Individual"){
+            $sql1 = "SELECT * FROM `individual_users` where `ind_uid`=$forthisPage";
+            $result1 = mysqli_query($conn,$sql1);
+            $row1 = mysqli_fetch_assoc($result1);
+
+            echo '
+            <div class="about" style="margin-top:25px;">
+            <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;font-weight:bold;">About
+               </p>
+               <div class="serve">
+               <h3>You want to serve as:</h3>
+               <p>'.$row1["serve_as"].'</p>
+               </div><br>';
+               $sql2 = "SELECT * FROM `ind_interest` where `ind_id`=$forthisPage";
+                $result2 = mysqli_query($conn,$sql2);
+               echo '<div class="domain">
+               <h3>Your Domain of Interest:</h3>';
+                
+                echo '<div class="row">';
+                $interest = "";
+            while($row2 = mysqli_fetch_array($result2)){
+                $interest = $interest.'  '.$row2["interest"];
+            }
+            echo '<p style="margin-right:5px">'.$interest.'</p>';
+            echo '</div></div>';
+
+            echo '<div class="desc"><h3>Description:</h3>
+            <p style="font-size:18px;font-weight:light;color:#333333;">"'.$row1["about"].'"
+               </p>
+            </div></div>
+           ';
+
+        } else {
+            $sql1 = "SELECT * FROM `org_users` where `Org_uid`=$forthisPage";
+            $result1 = mysqli_query($conn,$sql1);
+            $row1 = mysqli_fetch_assoc($result1);
+
+            echo '
+            <div class="about" style="margin-top:25px;">
+            <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;font-weight:bold;">About
+               </p>
+               <div class="serve">
+               <h3>Current Need for Us:</h3>
+               <p>'.$row1["need"].'</p>
+               </div><br>';
+               $sql2 = "SELECT * FROM `org_domain` where `org_id`=$forthisPage";
+                $result2 = mysqli_query($conn,$sql2);
+               echo '<div class="domain">
+               <h3>Your Domain of Interest:</h3>';
+                
+                echo '<div class="row">';
+                $interest = "";
+            while($row2 = mysqli_fetch_array($result2)){
+                $interest = $interest.'   '.$row2["domain"];
+            }
+            echo '<p style="margin-right:5px">'.$interest.'</p>';
+            echo '</div></div>';
+
+            echo '<div class="desc"><h3>Description:</h3>
+            <p style="font-size:18px;font-weight:light;color:#333333;">"'.$row1["description"].'"
+               </p>
+            </div></div>
+           ';
+
+        }
         $sql = "SELECT * FROM `users` where `user_id`='$forthisPage'";
         $result = mysqli_query($conn,$sql);
         $row = mysqli_fetch_assoc($result);

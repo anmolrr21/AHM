@@ -267,7 +267,7 @@
                 echo '<div class="row">';
                 $interest = "";
             while($row1 = mysqli_fetch_array($result1)){
-                $interest = $interest.'   '.$row1["interest"];
+                $interest = $interest.'  '.$row1["interest"];
             }
             echo '<p style="margin-right:5px">'.$interest.'</p>';
             echo '</div></div>';
