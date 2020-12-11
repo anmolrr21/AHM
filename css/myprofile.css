@@ -6,7 +6,7 @@ body{
 .name{
   height:250px;
   width:800px;
-  margin-left: 40px;
+  margin-left: 200px;
   margin-top: 200px;
   background-color: white;
   border-radius: 10px;
@@ -23,7 +23,7 @@ body{
 .user{
   height: 70px;
   width:70px;
-  margin-left: 330px;
+  margin-left: 490px;
   margin-top: -380px;
   border-radius: 50px;
 }
@@ -36,7 +36,7 @@ p{
 .about{
   height:fit-content;
   width:800px;
-  margin-left: 40px;
+  margin-left: 200px;
   background-color: white;
   margin-top: 20px;
   border-radius:10px;
@@ -45,16 +45,17 @@ p{
 }
 .introBox{
   margin-top:330px;
+  margin-left: 200px;
 }
 .postBox{
   height:130px;
   width:800px;
-  margin-left:400px; 
+  margin-left:200px; 
   margin-top: 25px;
   border-radius:10px;
   border-radius: 10px;
   background-color: #fff;
-  box-shadow: 0 3px 7px rgba(0,0,0,0.3)
+  box-shadow: 0 3px 7px rgba(0,0,0,0.3);
 }
 .postBox ul{
 margin-top: -5px;
@@ -86,7 +87,7 @@ font-size: clamp(10px,1vw,40px);
   height:250px;
   width:800px;
   margin-top:15px;
-  margin-left: 150px;
+  margin-left: 200px;
   background-color: white;
   border-radius:10px;
   box-shadow: 0 3px 3px rgba(0,0,0,0.3);
@@ -189,6 +190,93 @@ font-size: clamp(10px,1vw,40px);
   background: #40D3DC;
 }
 
+#sharetext{
+  border: 2px solid rgb(167, 167, 167);
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  height: 8%;
+  margin-left: 5px;
+  margin-top: 25px;
+  margin-right: 5px; 
+  font-size: 17px;   
+  padding: 15px;
+  padding-bottom: 23px;
+}
+#mypost{
+  margin-top: 60px;
+  margin-left:530px;
+}
+.edit-div{
+  margin-bottom: 20px;
+}
+.edit-btn{
+  background-color:lightskyblue;
+  color:black;
+  padding:15px;
+  width:795px; 
+  border-radius:10px;
+  border:0px;
+  margin-left: 200px;
+  margin-top: 20px;
+ 
+}
+.likeButton i{
+  margin-left: 90px;   
+}
+
+.about .serve,.about .domain{
+  display: inline-flex;
+  
+}
+.about h3{
+  font-size: 19px;
+  font-weight: normal; 
+  margin-left: 30px;
+}
+.about p{
+  font-size: 19px;
+  font-weight: normal; 
+
+}
+.about .serve h3{
+  margin-top: 45px;
+  margin-left: 30px;
+   
+}
+.about .serve p{
+  margin-top: 45px;
+  margin-left: 200px;
+}
+
+
+
+.about .domain h3{
+  margin-top: 2px;
+  margin-left: 30px;
+   
+}
+.about .domain p:first-child{
+  margin-left: 10px;
+
+}
+.about .domain p{
+  margin-top: 2px;
+  padding-left: 5px;
+
+ 
+  
+} 
+
+.about .desc h3{
+  margin-top: 2px;
+}
+.about .desc p{
+  margin-top: 2px;
+ margin-left: 35px;
+} 
+
 @media screen and (min-width: 1522px) {
   .name{
     margin-left: 400px;
@@ -224,7 +312,6 @@ font-size: clamp(10px,1vw,40px);
     margin-left: 400px;
   }
   #mypost{
-    
     margin-top: 60px;
     margin-left:530px;
   }
@@ -254,7 +341,6 @@ font-size: clamp(10px,1vw,40px);
     font-size: 19px;
     font-weight: normal; 
     margin-left: 30px;
-
   }
   .about p{
     font-size: 19px;

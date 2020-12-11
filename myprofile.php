@@ -327,8 +327,8 @@
 
 
     </div>
-    <div class="postBox" style="margin-top:20px;box-shadow: 0 3px 7px rgba(0,0,0,0.3);">
-        <h4 id="sharetext" style="margin-top:25px;font-size:24px;"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> Share an article, photo, video or ideas</h4>
+    <div class="postBox">
+        <h4 id="sharetext" style="margin-top:35px;font-size:24px;"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> Share an article, photo, video or ideas</h4>
         <ul>
             <li><i class="fa fa-picture-o" aria-hidden="true" style="color:green"></i><button
                     onclick="modalDisplay2()">Picture</button></li>
@@ -341,7 +341,7 @@
     
 
    
-        <div class="about" style="margin-top: 10px;height:60px;">
+        <div class="about" style="margin-top: 20px;height:60px;">
             <p style="font-size:24px;color:black;margin-left:20px; margin-top:20px;">Your Posts
                 </p> 
         </div>
@@ -360,22 +360,36 @@
             $sql = "SELECT * FROM `posts` where `user_id`='$id'";
             $result = mysqli_query($conn,$sql);
             while($row = mysqli_fetch_assoc($result)){
-                $sql2 = "SELECT * FROM `user_profile` where `userid`='$id9'";
-                $result2 = mysqli_query($conn,$sql2);
-                $row2 = mysqli_fetch_assoc($result2);
+                $intro = "";
+                if( $_SESSION["type"] == "Individual"){
+                    $sql9 = "SELECT * FROM `individual_users` where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+                    $result9 = mysqli_query($conn,$sql9);
+                    $num = mysqli_num_rows($result9);
+                    if($result9 && $num==1){
+                        $row9 = mysqli_fetch_assoc($result9);
+                        $intro =  $row9['intro'];
+                    }
+                }
+                else{
+                    $sql9 = "SELECT * FROM `org_users` where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+                    $result9 = mysqli_query($conn,$sql9);
+                    if($result9 && $num<=1){
+                        $row9 = mysqli_fetch_assoc($result9);
+                        $intro = $row9['intro'];
+                    }  
+                }
                 $nextid = $row['post_id'];
                 $sql4 = "SELECT * FROM `comments` where `post_id`='$nextid'";
                 $result4 = mysqli_query($conn,$sql4);
                 $num = mysqli_num_rows($result4);
-                echo'<div id="'.$row['post_id'].'" class="share onlyPost" style="margin-left:3%;width:500px;">
+                echo'<div id="'.$row['post_id'].'" class="share onlyPost" style="margin-left:-330px;margin-top:-30px;width:500px;">
                         <div class="topNamePic">
                             <img src="images/user.png">
                             <div class="nameDetail">
-                                <h5>'.$row9['name'].'</h5>';
-                                if($row2!=Null){
-                                echo '<p style="margin-left:-5px;">'.$row2['bio'].'</p>';
-                            }
-                                echo '<p style="margin-left:-5px;margin-top:1px;">22m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
+                                <h5>'.$nameOfUser.'</h5>
+                                <p style="margin-left:-5px;">'.$intro.'</p>';
+                                $timeT = strtotime($row['postedTime']);
+                                echo '<p style="margin-left:-5px;margin-top:1px;">'.date("d/m/y h:i a",$timeT).' <i class="fa fa-globe" aria-hidden="true"></i></p>
                             </div>
                         </div>';
                         if($row['article']!=NULL){
@@ -425,10 +439,11 @@
                                         echo'<div class="perComment">
                                                 <img src="images/user.png">
                                                 <div class="contentComment">
-                                                <h5>'.$row9['name'] .'</h5>
-                                                <p>1m ago. <i class="fa fa-globe" aria-hidden="true"></i></p>
-                                                <p class="'.$k.'">'.$row4['comment'].'</p>
-                                            </div>
+                                                <h5>'.$row9['name'] .'</h5>';
+                                                $timeT1 = strtotime($row4['time']);
+                                                echo '<p style="margin-top:-35px">'.date("d/m/y h:i a",$timeT1).' <i class="fa fa-globe" aria-hidden="true"></i></p>
+                                                <p>'.$row4['comment'].'</p>
+                                                </div>
                                             </div>';
                                     }
                                 }
@@ -465,14 +480,14 @@
     
 
     <script type="text/javascript">
-    var counter = 1;
-    setInterval(function() {
-        document.getElementById('radio' + counter).checked = true;
-        counter++;
-        if (counter > 3) {
-            counter = 1;
-        }
-    }, 2000);
+    // var counter = 1;
+    // setInterval(function() {
+    //     document.getElementById('radio' + counter).checked = true;
+    //     counter++;
+    //     if (counter > 3) {
+    //         counter = 1;
+    //     }
+    // }, 2000);
 
     //Modals
     
