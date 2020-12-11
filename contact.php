@@ -33,14 +33,14 @@
        include 'commonNavbar.php';  
        include 'common/_dbconnect.php';
     ?>
-    <?php $status=$_GET['status'];
+    <?php $status=$_GET['sent'];
     
-    if($status=='success'){
+    if($status=='true'){
        echo'<div class="msg msg-success">
         <b>Success!</b> Your complaint has been noted.
       </div>';
     }
-    else if($status=='fail'){
+    else if($status=='false'){
         echo' <div class="msg msg-fail">
         <b>Failed!</b> Wrong credentials.
       </div>';
@@ -54,7 +54,7 @@
         <p>Got some queries or having some suggestions for us. Drop your message here.  Will catch you soon.</p>
     </div>
         <div id="details2-form" class="details2-form">
-            <form class="form" method="post" action="complaint_insertion.php">
+            <form class="form" method="post" action="contact_mail.php">
                 <div class="form-item">
                         <label for="username">Your Name:</label>
                         <input type="text" name="username" placeholder="Enter your name">
@@ -67,7 +67,7 @@
         <div class="form-item">
             <div class="desc">
                 <label for="desc">Message:</label>
-                 <textarea rows="10" cols="54" name="complaint" id="textarea_desc" placeholder="Enter your suggestion / query here"></textarea>   
+                 <textarea rows="10" cols="54" name="query" id="textarea_desc" placeholder="Enter your suggestion / query here"></textarea>   
             </div>         
         </div>
         

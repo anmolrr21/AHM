@@ -43,7 +43,7 @@
         <p>Find citizens,connect with them to make earth a better place !</p>
     </div>
     
-        <div id="details2-form" class="details2-form">
+        <div id="details2-form" class="details2-form" style="height:600px;margin-top:350px;">
             <form action="org_users.php" class="form" method="POST" enctype="multipart/form-data">
                 <div class="form-item">
                     <div class="personal-details">
@@ -55,7 +55,7 @@
                         <input type="tel" name="phone" placeholder="Contact">
                         <label for="myfile">Add a proof of your organization:</label><br>
                         <input type="file"  name="file" accept="image/*" ><br><br>
-                        <input type="submit" value="submit" name="submitt" class="button" id="submit_btn"  >
+                        <input type="submit" value="Submit" name="submitt" class="button" style="margin-bottom:-50px;" id="submit_btn"  >
     
                     </div>
                 </div>

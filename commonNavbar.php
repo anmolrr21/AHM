@@ -21,7 +21,7 @@
         <button class="dropbtn"><i class="fa fa-caret-down" aria-hidden="true"></i></button>
         <div id="myDropdown" class="dropdown-content">
             <a href="myprofile.php">View Profile</a>
-            <a href="contact.php">Contact/queries</a>
+            <!-- <a href="contact.php">Contact/queries</a> -->
             <a href="complaint.php?status=nothing">Complaint</a>
             <a href="logout.php">Logout</a>
         </div>

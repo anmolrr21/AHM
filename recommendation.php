@@ -212,7 +212,7 @@
                             $row12 = mysqli_fetch_assoc($result12);
                             if($row12>0){
                                 if($row12['domain']!=$row11['interest']){
-                                    echo 'hi';
+                                   
                                    
                                 }
                                 else{

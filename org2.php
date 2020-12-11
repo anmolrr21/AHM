@@ -6,17 +6,18 @@
         <script src="js_files/org2.js"></script>
     </head>
     <body>
-        <?php
-         include 'common/_dbconnect.php';
-        ?>
-        <div class="header" style="background-color:#0e76a8">
-    </div>
+    <!-- <div class="header"> -->
+
     <div class="logo">
-    <img src="images/logo.png" style="margin-left:-10px;margin-top:40px;margin:-10px;"width="90px">
+    <img src="images/logo.png" style="margin-left:-10px;margin:-10px;"width="90px">
     </div>
     <div class="head">
         <p style="margin-left:80px;margin-top:-60px;font-size:25px;color:white;"><b>ConnecTTogether<b></p>
     </div>
+        <?php
+         include 'common/_dbconnect.php';
+        ?>
+    
         
         <div class="headings">
         <h1>ConnecTTogether</h1>

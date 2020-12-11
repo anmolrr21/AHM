@@ -3,6 +3,18 @@
     background: #f3f7f7;
 }
 
+.header{
+   background-color:  #0e76a8;
+   
+   height:120px;
+   
+
+}
+.logo{
+  
+   
+}
+
 
 .headings{
    margin-top: 70px;
@@ -49,7 +61,7 @@
    left: 50%;
    transform: translate(-50%,-50%);
    width: 490px;
-   height: 610px;
+   height: 630px;
    padding: 80px 40px;
    box-sizing: border-box;
    background: #ffffff;

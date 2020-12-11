@@ -38,10 +38,10 @@
             <div class="headerText">
                 <h1>Purpose to enhance the environment <br>by the people,for the people</h1>
                 <span class="square"></span>
-                <p> <b>Welcome to the world of ConnecTTogether ! </b><br>Are you are an Organization and want to enhance the society? here you can focus on dedicated public. or Are you willing to inculcate your help? Join Us at @ConnecTTogether </p>
+                <p id="join1"> <b>Welcome to the world of ConnecTTogether ! </b><br>Are you are an Organization and want to enhance the society? here you can focus on dedicated public. or Are you willing to inculcate your help? Join Us at @ConnecTTogether </p>
                <a href="org_signUp.php?status=false"><button class="commonBtn">For NGO's</button></a> 
                 <a href="individual_signup.php?status=false"><button class="commonBtn">For Users</button></a>
-                <h3 class="new">Join US!</h3>
+                <h3 class="new" >Join US!</h3>
                 <div class="line">
                     <span class="line1"></span><br>
                     <span class="line2"></span><br>
@@ -103,7 +103,7 @@
                     <span class="line2"></span><br>
                     <span class="line3"></span>
                 </div> 
-               <a href="org2.php"><button class="commonBtn">Join US</button></a>
+               <a href="#join1"><button class="commonBtn">Join US</button></a>
             </div>
         </section>
 
@@ -115,7 +115,7 @@
                     <form>
                         <input type="text" placeholder="Enter Name">
                         <input type="email" placeholder="Enter Email">
-                        <input type="password" placeholder="Enter Password">
+                        <input type="password" placeholder="Enter Query">
                         <div class="btnBox">
                             <button type="submit" class="commonBtn"><span><i class="fa fa-envelope" style="color:#1c86ee" aria-hidden="true"></i></span> SEND EMAIL</button>
                         </div>
