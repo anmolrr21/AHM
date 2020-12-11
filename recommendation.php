@@ -145,7 +145,7 @@
             if($result){
                 while($row = mysqli_fetch_assoc($result)){
                     $id = $row['user_id'];
-                    $sql2 = "SELECT * FROM `connections` where ((`userid`='$id' and `connection_id`='$id10' and `requestStatus`=1) or (`userid`='$id10' and `connection_id`='$id' and `requestStatus`=1))";
+                    $sql2 = "SELECT * FROM `connections` where ((`userid`='$id' and `connection_id`='$id10') and `requestStatus`=1) or (`userid`='$id10' and `connection_id`='$id') and `requestStatus`=1))";
                     $result2 = mysqli_query($conn,$sql2);
                     $num2 = mysqli_num_rows($result2);
                     if($num2==0){ 
