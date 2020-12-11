@@ -5,50 +5,53 @@
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content ="width=device-width, initial scale=1.0"/>
-    <link rel="stylesheet" href="css/edit.css"/>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial scale=1.0" />
+    <link rel="stylesheet" href="css/edit.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://use.fontawesome.com/0cf079388a.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <style>
-    
-    <?php
-             include 'css/navbar.css';
-    ?> 
-      .header{
-      background-color:  #0e76a8;
-      margin:-10px;
-      margin-left:-10px;
-      height:90px;
+    <?php include 'css/navbar.css';
 
-      }
-      .logo{
-      margin-top:-70px;
-   
+    ?>.header {
+        background-color: #0e76a8;
+        margin: -10px;
+        margin-left: -10px;
+        height: 90px;
+
     }
-    .intro{
-        height:125px;
-        width:800px;
-        margin-top:240px;
+
+    .logo {
+        margin-top: -70px;
+
+    }
+
+    .intro {
+        height: 125px;
+        width: 800px;
+        margin-top: 240px;
         margin-left: 150px;
         background-color: white;
-        border-radius:10px;
-        box-shadow: 0 3px 3px rgba(0,0,0,0.3);
-        }
-        .exp{
-          height:350px;
-          width:800px;
-          margin-top:15px;
-          margin-left: 150px;
-          background-color: white;
-          border-radius:10px;
-          box-shadow: 0 3px 3px rgba(0,0,0,0.3);
-        }
+        border-radius: 10px;
+        box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+    }
 
-        .Save-btn{
-        background-color: #0e76a8; 
+    .exp {
+        height: 350px;
+        width: 800px;
+        margin-top: 15px;
+        margin-left: 150px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .Save-btn {
+        background-color: #0e76a8;
         width: 80px;
         height: 40px;
         color: #fff;
@@ -56,35 +59,39 @@
         border-radius: 5px;
         outline: none;
     }
-    @media screen and (min-width: 1522px) {
-      .name{
-        margin-left: 400px;
-      }
-      .user{
-        margin-left: 690px;
 
-      }
-      .about{
-        margin-left: 400px;
-        margin-top:-10px;
-      }
-      .exp{
-        margin-left: 400px;
-      }
-    .intro{
-      margin-left: 400px;
-      margin-top:250px;
-      }
-      
-      
+    @media screen and (min-width: 1522px) {
+        .name {
+            margin-left: 400px;
+        }
+
+        .user {
+            margin-left: 690px;
+
+        }
+
+        .about {
+            margin-left: 400px;
+            margin-top: -10px;
+        }
+
+        .exp {
+            margin-left: 400px;
+        }
+
+        .intro {
+            margin-left: 400px;
+            margin-top: 250px;
+        }
+
+
 
     }
-        
-
     </style>
     <title>My profile</title>
-    </head>
-    <body>
+</head>
+
+<body>
     <?php include 'common/_dbconnect.php';
           include 'commonNavbar.php';
     ?>
@@ -108,8 +115,9 @@
           $sql = "UPDATE `org_users` SET intro='$intro' where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
           $result = mysqli_query($conn,$sql);
         }
+      }
 
-      if(isset($_POST["aboutSubmit"])) {
+      if(isset($_POST["aboutData"])) {
         if( $_SESSION["type"] == "Individual"){
         $about = $_REQUEST['aboutData'];
         $nameOfUser = $_SESSION["username"];
@@ -129,11 +137,41 @@
       $exp2 = $_REQUEST['exp2'];
 
       if( $_SESSION["type"] == "Individual"){
-        $sql = "UPDATE `individual_users` SET exp1='$exp1',exp2='$exp2' where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
-        $result = mysqli_query($conn,$sql);
+        if($exp1 && !$exp2){
+          $sql = "UPDATE `individual_users` SET exp1='$exp1' where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+          $result = mysqli_query($conn,$sql);
+        }
+        else{
+          if($exp2 && !$exp1){
+            $sql = "UPDATE `individual_users` SET exp2='$exp2' where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+            $result = mysqli_query($conn,$sql);
+          }
+          else{
+            if($exp1 && $exp2){
+              $sql = "UPDATE `individual_users` SET exp1='$exp1',exp2='$exp2' where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+              $result = mysqli_query($conn,$sql);
+            }
+          }
+        }
+        // $sql = "UPDATE `individual_users` SET exp1='$exp1',exp2='$exp2' where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+        // $result = mysqli_query($conn,$sql);
       } else {
-        $sql = "UPDATE `org_users` SET exp1='$exp1',exp2='$exp2' where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
-        $result = mysqli_query($conn,$sql);
+        if($exp1 && !$exp2){
+          $sql = "UPDATE `org_users` SET exp1='$exp1' where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+          $result = mysqli_query($conn,$sql);
+        }
+        else{
+          if($exp2 && !$exp1){
+            $sql = "UPDATE `org_users` SET exp2='$exp2' where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+            $result = mysqli_query($conn,$sql);
+          }
+          else{
+            if($exp1 && $exp2){
+              $sql = "UPDATE `org_users` SET exp1='$exp1',exp2='$exp2' where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+              $result = mysqli_query($conn,$sql);
+            }
+          }
+        }
       }
       
       // header("Location: ./myprofile.php");
@@ -142,7 +180,7 @@
   
     
     // header("Location: ./myprofile.php");
-}
+
     ?>
     <!-- <div class="header" >
     </div>
@@ -152,11 +190,11 @@
     <div class="head">
         <p style="margin-left:80px;margin-top:-60px;font-size:25px;color:white;"><b>ConnecTTogether<b></p>
     </div> -->
-   
+
     <div class="name">
-      <div class="sub-name">
-        <p> 
-         <?php
+        <div class="sub-name">
+            <p>
+                <?php
           echo $_SESSION["username"];
           $nameOfUser = $_SESSION["username"];
           $sql = "SELECT * FROM `users` where `name`='$nameOfUser'";
@@ -174,8 +212,8 @@
           </form>
          ';
          ?>
-<br><br>
-<?php
+                <br><br>
+                <?php
               $nameOfUser = $_SESSION["username"];
               $sql = "SELECT * FROM `users` where `name`='$nameOfUser'";
               $result = mysqli_query($conn,$sql);
@@ -193,14 +231,14 @@
              echo '
                 <p style="color:blue;font-size:24px;margin-left:295px;margin-top:-25px; position:relative">'.$total.' connections</p>';
             ?>
-        
-      </div>
+
+        </div>
     </div>
     <div class="user">
-    <image src=images/user.png height="170px">
+        <image src=images/user.png height="170px">
     </div>
 
-    
+
     <?php
 
     echo '
@@ -217,11 +255,12 @@
     ?>
 
     <div class="about">
-      <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px; ">About<p>
+        <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px; ">About
+        <p>
     </div>
     <?php
       echo '
-        <div class="about2">
+        <div class="about2" style="margin-left:-270px">
         <form method="post">
         <input name="aboutData" style="font-size:24px;color:black;margin-left:450px; width:300px;padding:5px;" placeholder="Enter something About You">
         <input type="submit" name="aboutSubmit" class="Save-btn" value="Save">
@@ -229,11 +268,11 @@
         </div>
       ';
     ?>
-   
-    
+
+
     <div class="exp">
-      <p style="margin-left:15px;font-size:24px;margin-top:10px;">Past Experiences</p><br><br>
-      <?php
+        <p style="margin-left:15px;font-size:24px;margin-top:10px;">Past Experiences</p><br><br>
+        <?php
       echo '
       <form method="post">
       <input name="exp1" style="width:450px;height:75px;margin-left:45px;font-size:21px;margin-top:30px;color:#333333;" placeholder="Enter your past experiences of social welfare"></p><br><br>
@@ -243,9 +282,9 @@
       </form>
       ';
     ?>
-     
-      
-      <!-- <p style="margin-left:65px;font-size:19px;margin-top:30px;color:#595959;"> * At muskan foundation on 21st august</p><br><br>
+
+
+        <!-- <p style="margin-left:65px;font-size:19px;margin-top:30px;color:#595959;"> * At muskan foundation on 21st august</p><br><br>
       <hr style="margin-left:40px; margin-top:30px; color:lightgrey;"><br><br>
       <p style="margin-left:45px;font-size:21px;margin-top:-30px;color:#333333;">Donater for an orphanage</p><br><br>
       <p style="margin-left:65px;font-size:19px;margin-top:-30px;color:#595959;" onlick="/#"> * At milaap NGO on 1st december</p><br><br> -->
@@ -255,22 +294,24 @@
 
 
     <div class="edit">
-      <a href=myprofile.php>
-      <button style="background-color:lightskyblue;color:black;padding:15px;width:100px; border-radius:10px;margin-top:50px;margin-left:110px;border:0px;">Update<button>
-      </a>
+        <a href=myprofile.php>
+            <button
+                style="background-color:lightskyblue;color:black;padding:15px;width:100px; border-radius:10px;margin-top:50px;margin-left:110px;border:0px;">Update<button>
+        </a>
     </div>
-    
+
 
     <script type="text/javascript">
     var counter = 1;
-    setInterval(function(){
-      document.getElementById('radio' + counter).checked = true;
-      counter++;
-      if(counter > 3){
-        counter = 1;
-      }
+    setInterval(function() {
+        document.getElementById('radio' + counter).checked = true;
+        counter++;
+        if (counter > 3) {
+            counter = 1;
+        }
     }, 2000);
     </script>
-    
-    </body>
+
+</body>
+
 </html>
