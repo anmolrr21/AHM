@@ -273,7 +273,7 @@
             echo '</div></div>';
 
             echo '<div class="desc"><h3>Description:</h3>
-            <p style="font-size:20px;font-weight:light;color:#333333;">"'.$row["about"].'"
+            <p style="font-size:18px;font-weight:light;color:#333333;">"'.$row["about"].'"
                </p>
             </div></div>
            ';
