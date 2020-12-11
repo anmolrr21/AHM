@@ -321,8 +321,8 @@
                                                     <img src="images/user.png">
                                                     <div class="contentComment">
                                                         <h5>'.$row9['name'].'</h5>';
-                                                        $timeT = strtotime($row['time']);
-                                                        echo '<p>'.date("d/m/y h:i a",$timeT).' <i class="fa fa-globe" aria-hidden="true"></i></p>
+                                                        $timeT1 = strtotime($row['time']);
+                                                        echo '<p>'.date("d/m/y h:i a",$timeT1).' <i class="fa fa-globe" aria-hidden="true"></i></p>
                                                         <p>'.$row4['comment'].'</p>
                                                     </div>
                                                 </div>';
