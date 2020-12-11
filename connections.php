@@ -120,6 +120,7 @@
             <small>Copyright &#169; 2020 ConnecTTogether</small>
         </div>
     </div>
+
     <!------New Connection Requests Sections and People You may Know section----------------------------->
     <div class="notifyBox">
         <div class="notifyHeading">
@@ -147,11 +148,15 @@
                     $sql2 = "SELECT * FROM `users` where `user_id`='$otherid'";
                     $result2 = mysqli_query($conn,$sql2);
                     $row2 = mysqli_fetch_assoc($result2);
-                    echo'<div class="rightSuggest">
+                    if($row2['type']=='Individual'){
+                        $sql7 = "SELECT * FROM `individual_users` where `ind_uid`='$otherid'";
+                        $result7 = mysqli_query($conn,$sql7);
+                        $row7 = mysqli_fetch_assoc($result7);
+                        echo'<div class="rightSuggest">
                             <img src="images/user.png">
                             <div class="part">
                                 <h5>'.$row2['name'].'</h5>
-                                <p>Volunteer | Fund Raiser | Mind Blowing</p>
+                                <p>'.$row7['intro'].'</p>
                                 <form method="POST" action="/AHM/updateRequest.php">
                                     <input type="text" value="'.$otherid.'" name="done" style="display:none">
                                     <input type="submit" name="accept" value="Accept">
@@ -159,6 +164,25 @@
                                 </form>
                             </div>
                         </div>';
+                    }
+                    else{
+                        $sql7 = "SELECT * FROM `org_users` where `Org_uid`='$otherid'";
+                        $result7 = mysqli_query($conn,$sql7);
+                        $row7 = mysqli_fetch_assoc($result7);
+                        echo'<div class="rightSuggest">
+                            <img src="images/user.png">
+                            <div class="part">
+                                <h5>'.$row2['name'].'</h5>
+                                <p>'.$row7['intro'].'</p>
+                                <form method="POST" action="/AHM/updateRequest.php">
+                                    <input type="text" value="'.$otherid.'" name="done" style="display:none">
+                                    <input type="submit" name="accept" value="Accept">
+                                    <input type="submit" name="reject" value="Reject"> 
+                                </form>
+                            </div>
+                        </div>';
+                    }
+                    
                 }
             }
         ?>

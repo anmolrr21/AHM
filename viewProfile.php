@@ -100,13 +100,13 @@
         $result = mysqli_query($conn,$sql);
         $row = mysqli_fetch_assoc($result);
         $id = $row['user_id'];
-        $sql2 = "SELECT * FROM `connections` where (`userid`='$id' and `connection_id`='$forthisPage') or (`userid`='$forthisPage' and `connection_id`='$id') and `requestStatus`=1";
+        $sql2 = "SELECT * FROM `connections` where ((`userid`='$id' and `connection_id`='$forthisPage') or (`userid`='$forthisPage' and `connection_id`='$id')) and `requestStatus`=1";
         $result2 = mysqli_query($conn,$sql2);
         $num2 = mysqli_num_rows($result2);
-        $sql3 = "SELECT * FROM `connections` where (`userid`='$id' and `connection_id`='$forthisPage') or (`userid`='$forthisPage' and `connection_id`='$id') and `requestStatus`=0";
+        $sql3 = "SELECT * FROM `connections` where ((`userid`='$id' and `connection_id`='$forthisPage') or (`userid`='$forthisPage' and `connection_id`='$id')) and `requestStatus`=0";
         $result3 = mysqli_query($conn,$sql3);
         $num3 = mysqli_num_rows($result3);
-        if($num==1){ 
+        if($num2==1){ 
             echo'<div style="margin-top: 300px; margin-bottom: -300px;margin-left:200px">
                     <input type="button" class="viewUser" id="'.$forthisPage.'" value="Connected">
             </div>';}
@@ -166,13 +166,13 @@
             <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;font-weight:bold;">About
                </p>
                <div class="serve">
-               <h3>You want to serve as:</h3>
+               <h3>Want to serve as:</h3>
                <p>'.$row1["serve_as"].'</p>
                </div><br>';
                $sql2 = "SELECT * FROM `ind_interest` where `ind_id`=$forthisPage";
                 $result2 = mysqli_query($conn,$sql2);
                echo '<div class="domain">
-               <h3>Your Domain of Interest:</h3>';
+               <h3>Domain of Interest:</h3>';
                 
                 echo '<div class="row">';
                 $interest = "";
@@ -270,6 +270,9 @@
     <div id="mypost" style="margin-top:20px">
         <?php
             $forthisPage = $_GET['forName'];
+            $sql7 = "SELECT * FROM `users` where `user_id`='$forthisPage'";
+            $result7 = mysqli_query($conn,$sql7);
+            $row7 = mysqli_fetch_assoc($result7);
             $i=0;
             $j=111111;
             $k= "#commentForm".strval($i);
@@ -305,7 +308,7 @@
                             <div class="topNamePic">
                                 <img src="images/user.png">
                                 <div class="nameDetail">
-                                    <h5>'.$nameOfUser.'</h5>
+                                    <h5>'.$row7['name'].'</h5>
                                     <p style="margin-left:-5px;font-weight:normal;">'.$intro.'</p>';
                                     $timeT = strtotime($row['postedTime']);
                                     echo '<p style="margin-left:-5px;margin-top:1px;font-weight:normal;">'.date("d/m/y h:i a",$timeT).' <i class="fa fa-globe" aria-hidden="true"></i></p>
