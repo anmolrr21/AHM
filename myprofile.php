@@ -306,7 +306,7 @@
             echo '</div></div>';
 
             echo '<div class="desc"><h3>Description:</h3>
-            <p style="font-size:18px;font-weight:light;">"'.$row["description"].'"
+            <p style="font-size:18px;font-weight:normal;">"'.$row["description"].'"
                </p>
             </div></div>
            ';
@@ -410,7 +410,7 @@
                                 <h5>'.$nameOfUser.'</h5>
                                 <p style="margin-left:-5px;font-weight:normal">'.$intro.'</p>';
                                 $timeT = strtotime($row['postedTime']);
-                                echo '<p style="margin-left:-5px;margin-top:1px;">'.date("d/m/y h:i a",$timeT).' <i class="fa fa-globe" aria-hidden="true"></i></p>
+                                echo '<p style="margin-left:-5px;margin-top:1px;font-weight:normal;">'.date("d/m/y h:i a",$timeT).' <i class="fa fa-globe" aria-hidden="true"></i></p>
                             </div>
                         </div>';
                         if($row['article']!=NULL){
@@ -462,7 +462,7 @@
                                                 <div class="contentComment">
                                                 <h5>'.$row9['name'] .'</h5>';
                                                 $timeT1 = strtotime($row4['time']);
-                                                echo '<p style="margin-top:-35px">'.date("d/m/y h:i a",$timeT1).' <i class="fa fa-globe" aria-hidden="true"></i></p>
+                                                echo '<p style="margin-top:-35px;font-weight:normal;">'.date("d/m/y h:i a",$timeT1).' <i class="fa fa-globe" aria-hidden="true"></i></p>
                                                 <p>'.$row4['comment'].'</p>
                                                 </div>
                                             </div>';
