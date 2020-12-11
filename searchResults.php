@@ -23,13 +23,15 @@
 </head>
 
 <body>
-    <!-- Including common files -->
-    <!-- alter table users add FULLTEXT(`name`) -->
+    <!---------------------- Including common files ----------------------------------->
+
     <?php
         include 'commonNavbar.php';
         include 'common/_dbconnect.php';
     ?>
-    <!-- Left Section Of home -->
+
+
+    <!--------------------- Left Section Of home--------------------------------------->
 
     <div class="leftCorner">
         <div class="emptyFree"></div>
@@ -41,13 +43,30 @@
                 $result = mysqli_query($conn,$sql);
                 $row = mysqli_fetch_assoc($result);
                 $id = $row['user_id'];
-                $sql1 = "SELECT `bio` FROM `user_profile` where `userid`='$id'";
-                $result1 = mysqli_query($conn,$sql1);
-                $row1 = mysqli_fetch_assoc($result1);
-                if($row1 !=Null){
-                    echo $row1['bio'];
-                }
-                
+                $temp = "Your Intro";
+                if( $_SESSION["type"] == "Individual"){
+                    $sql9 = "SELECT * FROM `individual_users` where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+                    $result9 = mysqli_query($conn,$sql9);
+                    $num = mysqli_num_rows($result9);
+                    if($result9 && $num<=1){
+                        $row9 = mysqli_fetch_assoc($result9);
+                        echo $row9['intro'];
+                    }
+                    else{
+                        echo $temp; 
+                    }
+                }else{
+                    $sql9 = "SELECT * FROM `org_users` where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+                    $result9 = mysqli_query($conn,$sql9);
+                    $num = mysqli_num_rows($result9);
+                    if($result9 && $num<=1){
+                        $row9 = mysqli_fetch_assoc($result9);
+                        echo $row9['intro'];
+                    }
+                    else{
+                        echo $temp; 
+                    }
+                } 
         ?></p>
         <hr>
         <h5 class="that">Your Connections</h5>
@@ -57,10 +76,11 @@
             $result = mysqli_query($conn,$sql);
             $row = mysqli_fetch_assoc($result);
             $id = $row['user_id'];
-            $sql1 = "SELECT * FROM `connections` where `userid`='$id' or `connection_id`='$id' and `requestStatus`=1";
+            $sql1 = "SELECT * FROM `connections` where (`userid`='$id' or `connection_id`='$id') and `requestStatus`=1";
             $result1 = mysqli_query($conn,$sql1);
             if(!$result1){
                 echo'<p class="these">0</p>';}
+            
             else{
                 $num = mysqli_num_rows($result1);
                 if($num<10){
@@ -75,6 +95,7 @@
         <hr>
         <a href="/AHM/myprofile.php">View Profile</a>
     </div>
+
     <div class="leftBottom">
         <div class="footer">
             <div class="linkTitle">
@@ -82,7 +103,7 @@
                 <small>Request Demo</small><br>
                 <small>FAQs</small>
             </div>
-            
+
             <div class="linkTitle">
                 <h4>Support</h4>
                 <small>Features</small><br>
@@ -99,7 +120,8 @@
             <small>Copyright &#169; 2020 ConnecTTogether</small>
         </div>
     </div>
-    
+
+    <!------------------------Display of search results--------------------------->
     <div class="notifyBox">
         <div class="notifyHeading">
             <h5>Search Results</h5>
@@ -143,15 +165,16 @@
 
 
 
-    <!-- Right section of home -->
+    <!--------------------Right section of home ----------------------------------->
 
     <div class="rightCorner">
         <div class="rightFirst">
-            <h5>Add to your Feed</h5>
+            <h5>Recommendations</h5>
             <p><i class="fa fa-lightbulb-o fa-lg" aria-hidden="true" style="color:black"></i></p>
         </div>
         <hr>
         <?php
+            $name = $_SESSION["username"];
             $sql2 = "SELECT * FROM `users` where `name`<>'$name' ORDER BY RAND() LIMIT 3";
             $result2 = mysqli_query($conn,$sql2);
             while($row = mysqli_fetch_assoc($result2)){
@@ -166,24 +189,17 @@
                         <img src="images/user.png">
                         <div class="part">
                             <h5>'.$row['name'].'</h5>
-                            <p>'.$bio.'</p>
-                            <button>View Profile</button>
-                            <button>Connect</button>
-                        </div>
-                        
+                            <p>'.$row['type'].'</p>
+                            <form method="post" action="/AHM/viewProfile.php?forName='.$row['user_id'].'">
+                                <input id="'.$row['user_id'].'" type="submit" value="View Profile">
+                            </form>
+                            </div>
                     </div>';
             }
         ?>
-        <a href="/AHM/recommendation.php">View More</a>
+        <a href="/AHM/recommendation.php" target="_self" style="margin-left:150px">View More</a>
     </div>
 
-    <div class="rightBottom">
-        <h5>Raise Funds</h5>
-        <p><em>"Having something extra is always great because you are with the opportuinity to grab the blessings
-                by donating."</em></p>
-        <button>DONATE <i class="fa fa-check-circle" aria-hidden="true"></i></button>
-        <h6>Donate for cause, donate for change</h6>
-    </div>
 </body>
 
 </html>
