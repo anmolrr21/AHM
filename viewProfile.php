@@ -285,7 +285,7 @@
                 while($row = mysqli_fetch_assoc($result)){
                     $intro = "";
                     if( $_SESSION["type"] == "Individual"){
-                        $sql9 = "SELECT * FROM `individual_users` where `ind_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+                        $sql9 = "SELECT * FROM `individual_users` where `ind_uid`=$forthisPage";
                         $result9 = mysqli_query($conn,$sql9);
                         $num = mysqli_num_rows($result9);
                         if($result9 && $num==1){
@@ -294,7 +294,7 @@
                         }
                     }
                     else{
-                        $sql9 = "SELECT * FROM `org_users` where `Org_uid`=(Select user_id FROM `users` WHERE `name`='$nameOfUser')";
+                        $sql9 = "SELECT * FROM `org_users` where `Org_uid`=$forthisPage";
                         $result9 = mysqli_query($conn,$sql9);
                         if($result9 && $num<=1){
                             $row9 = mysqli_fetch_assoc($result9);
