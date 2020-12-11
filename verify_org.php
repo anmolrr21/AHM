@@ -54,6 +54,9 @@
         $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
         
         $send_mail=mail($to, $subject, $message, $headers);
+
+        $sql2="DELETE FROM `users` WHERE `users`.`user_id` = $userid";
+        $result2=mysqli_query($conn, $sql2);
         
         
     }

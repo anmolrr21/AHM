@@ -117,7 +117,7 @@
             </div>';
             }
             else{
-                echo'<div style="margin-top: 300px; margin-bottom: -300px;margin-left:200px">
+                echo'<div id="connect-btn">
                 <input type="button" class="viewUser2" id="'.$forthisPage.'" value="Connect">
         </div>'; 
             }
@@ -145,7 +145,7 @@
     <div class="introBox">
         <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">Intro
             </p>
-        <p style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;">"'.$row["intro"].'"</p>
+        <p style="font-size:20px;font-weight:light;margin-left:20px; margin-top:50px;">"'.$row["intro"].'"</p>
         '
         ?>
         </div>
@@ -184,7 +184,7 @@
             echo '</div></div>';
 
             echo '<div class="desc"><h3>Description:</h3>
-            <p style="font-size:18px;font-weight:light;color:#333333;">"'.$row1["about"].'"
+            <p style="font-size:18px;font-weight:light;">"'.$row1["about"].'"
                </p>
             </div></div>
            ';
@@ -216,84 +216,13 @@
             echo '</div></div>';
 
             echo '<div class="desc"><h3>Description:</h3>
-            <p style="font-size:18px;font-weight:light;color:#333333;">"'.$row1["description"].'"
+            <p style="font-size:18px;font-weight:light;">"'.$row1["description"].'"
                </p>
             </div></div>
            ';
 
         }
-        $sql = "SELECT * FROM `users` where `user_id`='$forthisPage'";
-        $result = mysqli_query($conn,$sql);
-        $row = mysqli_fetch_assoc($result);
-        $type = $row['type'];
-        if( $type == "Individual"){
-            $sql = "SELECT * FROM `individual_users` where `ind_uid`=$forthisPage";
-            $result = mysqli_query($conn,$sql);
-            $row = mysqli_fetch_assoc($result);
-
-            echo '
-            <div class="about" style="margin-top:25px;">
-            <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;font-weight:bold;">About
-               </p>
-               <div class="serve">
-               <h3>You want to serve as:</h3>
-               <p>'.$row["serve_as"].'</p>
-               </div><br>';
-               $sql1 = "SELECT * FROM `ind_interest` where `ind_id`=$forthisPage";
-                $result1 = mysqli_query($conn,$sql1);
-               echo '<div class="domain">
-               <h3>Your Domain of Interest:</h3>';
-                
-                echo '<div class="row">';
-                $interest = "";
-            while($row1 = mysqli_fetch_array($result1)){
-                $interest = $interest.'   '.$row1["interest"];
-            }
-            echo '<p style="margin-right:5px">'.$interest.'</p>';
-            echo '</div></div>';
-
-            echo '<div class="desc"><h3>Description:</h3>
-            <p style="font-size:18px;font-weight:light;color:#333333;">"'.$row["about"].'"
-               </p>
-            </div></div>
-           ';
-
-        } else {
-            $sql = "SELECT * FROM `org_users` where `Org_uid`=$forthisPage";
-            $result = mysqli_query($conn,$sql);
-            $row = mysqli_fetch_assoc($result);
-
-            echo '
-            <div class="about" style="margin-top:25px;">
-            <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;font-weight:bold;">About
-               </p>
-               <div class="serve">
-               <h3>Current Need for Us:</h3>
-               <p>'.$row["need"].'</p>
-               </div><br>';
-               $sql1 = "SELECT * FROM `org_domain` where `org_id`=$forthisPage";
-                $result1 = mysqli_query($conn,$sql1);
-               echo '<div class="domain">
-               <h3>Your Domain of Interest:</h3>';
-                
-                echo '<div class="row">';
-                $interest = "";
-            while($row1 = mysqli_fetch_array($result1)){
-                $interest = $interest.'   '.$row1["domain"];
-            }
-            echo '<p style="margin-right:5px">'.$interest.'</p>';
-            echo '</div></div>';
-
-            echo '<div class="desc"><h3>Description:</h3>
-            <p style="font-size:18px;font-weight:light;color:#333333;">"'.$row["description"].'"
-               </p>
-            </div></div>
-           ';
-
-        }
-
-       
-
+        
     ?>
     
     <?php
@@ -317,12 +246,12 @@
         echo '
     <div class="exp">
         <p style="margin-left:15px;font-size:24px;margin-top:10px;">Past Experiences</p><br><br>
-        <p style="margin-left:45px;font-size:21px;margin-top:30px;color:#333333;"> '.$row["exp1"].'
+        <p style="margin-left:45px;font-size:21px;margin-top:30px;"> '.$row["exp1"].'
         </p><br><br>
         <!-- <p style="margin-left:65px;font-size:19px;margin-top:30px;color:#595959;"> * At muskan foundation on 21st august
         </p><br><br> -->
         <hr style="margin-left:40px; margin-top:30px; color:lightgrey;"><br><br>
-        <p style="margin-left:45px;font-size:21px;margin-top:-30px;color:#333333;">'.$row["exp2"].'</p><br><br>
+        <p style="margin-left:45px;font-size:21px;margin-top:-30px;">'.$row["exp2"].'</p><br><br>
         <!-- <p style="margin-left:65px;font-size:19px;margin-top:-30px;color:#595959;" onlick="/#"> * At milaap NGO on 1st
            december</p><br><br> -->
             '
@@ -372,14 +301,14 @@
                     $sql4 = "SELECT * FROM `comments` where `post_id`='$nextid'";
                     $result4 = mysqli_query($conn,$sql4);
                     $num = mysqli_num_rows($result4);
-                    echo'<div id="'.$row['post_id'].'" class="share onlyPost" style="margin-left:-330px;width:500px;">
+                    echo'<div id="'.$row['post_id'].'" class="onlyPost">
                             <div class="topNamePic">
                                 <img src="images/user.png">
                                 <div class="nameDetail">
                                     <h5>'.$nameOfUser.'</h5>
-                                    <p style="margin-left:-5px;">'.$intro.'</p>';
+                                    <p style="margin-left:-5px;font-weight:normal;">'.$intro.'</p>';
                                     $timeT = strtotime($row['postedTime']);
-                                    echo '<p style="margin-left:-5px;margin-top:1px;">'.date("d/m/y h:i a",$timeT).' <i class="fa fa-globe" aria-hidden="true"></i></p>
+                                    echo '<p style="margin-left:-5px;margin-top:1px;font-weight:normal;">'.date("d/m/y h:i a",$timeT).' <i class="fa fa-globe" aria-hidden="true"></i></p>
                                 </div>
                             </div>';
                             if($row['article']!=NULL){

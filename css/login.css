@@ -8,6 +8,22 @@ body {
   height: 100vh;
   
 }
+.msg {
+  position: relative;
+  padding: .75rem 1.25rem;
+  /* margin-bottom: 1rem; */
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  background-color: #f8d7da;
+   border-color: #f5c6cb;
+}
+
+.msg-empty{
+  
+   color: white;
+   background-color:  #87CEFA ;
+   border-color:  #87CEFA;
+}
 
 a {
   color: #0e76a8 ;

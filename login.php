@@ -6,6 +6,15 @@
         <script src="https://use.fontawesome.com/0cf079388a.js"></script>
         
     </head>
+    <?php $status=$_GET['status'];
+    
+        if($status=='fail'){
+           echo' <div class="msg msg-empty">
+            <b>Failed!</b> Wrong Credentials.
+          </div>';
+        }
+        
+    ?>
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
@@ -26,9 +35,9 @@
     </form>
 
     <!-- Remind Passowrd -->
-    <div id="formFooter">
+    <!-- <div id="formFooter">
       <a class="underlineHover" href="#">Forgot Password?</a>
-    </div>
+    </div> -->
 
   </div>
 </div>

@@ -123,7 +123,7 @@
               else{
                 $total = $num;
               }
-              echo'<p style="font-size:26px;margin-left:330px;"><b>'.$row['location'].'<b></p><br><br>
+              echo'<p style="font-size:26px;margin-left:330px;font-weight:normal;"><b>'.$row['location'].'<b></p><br><br>
                 <button onclick="modalDisplay8()" style="color:blue;margin-top:125px;font-size:24px;margin-left:295px;background:#fff;border:none;">'.$total.' connections</button>';
             ?>
         </div>
@@ -153,7 +153,7 @@
     <div class="introBox">
         <p style="font-size:24px;color:black;margin-left:20px; margin-top:10px;">Intro
             </p>
-        <p style="font-size:20px;font-weight:light;color:#333333;margin-left:20px; margin-top:50px;">"'.$row["intro"].'"</p>
+        <p style="font-size:20px;font-weight:normal;margin-left:20px; margin-top:50px;">"'.$row["intro"].'"</p>
         '
         ?>
         </div>
@@ -274,7 +274,7 @@
             echo '</div></div>';
 
             echo '<div class="desc"><h3>Description:</h3>
-            <p style="font-size:18px;font-weight:light;color:#333333;">"'.$row["about"].'"
+            <p style="font-size:18px;font-weight:light;">"'.$row["about"].'"
                </p>
             </div></div>
            ';
@@ -306,7 +306,7 @@
             echo '</div></div>';
 
             echo '<div class="desc"><h3>Description:</h3>
-            <p style="font-size:18px;font-weight:light;color:#333333;">"'.$row["description"].'"
+            <p style="font-size:18px;font-weight:light;">"'.$row["description"].'"
                </p>
             </div></div>
            ';
@@ -335,12 +335,12 @@
         echo '
     <div class="exp">
         <p style="margin-left:15px;font-size:24px;margin-top:10px;">Past Experiences</p><br><br>
-        <p style="margin-left:45px;font-size:21px;margin-top:30px;color:#333333;"> '.$row["exp1"].'
+        <p style="margin-left:45px;font-size:21px;margin-top:30px;font-weight:normal;"> '.$row["exp1"].'
         </p><br><br>
         <!-- <p style="margin-left:65px;font-size:19px;margin-top:30px;color:#595959;"> * At muskan foundation on 21st august
         </p><br><br> -->
         <hr style="margin-left:40px; margin-top:30px; color:lightgrey;"><br><br>
-        <p style="margin-left:45px;font-size:21px;margin-top:-30px;color:#333333;">'.$row["exp2"].'</p><br><br>
+        <p style="margin-left:45px;font-size:21px;margin-top:-30px;font-weight:normal;">'.$row["exp2"].'</p><br><br>
         <!-- <p style="margin-left:65px;font-size:19px;margin-top:-30px;color:#595959;" onlick="/#"> * At milaap NGO on 1st
            december</p><br><br> -->
             '
@@ -403,12 +403,12 @@
                 $sql4 = "SELECT * FROM `comments` where `post_id`='$nextid'";
                 $result4 = mysqli_query($conn,$sql4);
                 $num = mysqli_num_rows($result4);
-                echo'<div id="'.$row['post_id'].'" class="share onlyPost" style="margin-left:-330px;width:500px;">
+                echo'<div id="'.$row['post_id'].'" class="onlyPost">
                         <div class="topNamePic">
                             <img src="images/user.png">
                             <div class="nameDetail">
                                 <h5>'.$nameOfUser.'</h5>
-                                <p style="margin-left:-5px;">'.$intro.'</p>';
+                                <p style="margin-left:-5px;font-weight:normal">'.$intro.'</p>';
                                 $timeT = strtotime($row['postedTime']);
                                 echo '<p style="margin-left:-5px;margin-top:1px;">'.date("d/m/y h:i a",$timeT).' <i class="fa fa-globe" aria-hidden="true"></i></p>
                             </div>

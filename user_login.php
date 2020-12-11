@@ -36,11 +36,11 @@
                header("location:/AHM/homePage.php");
             }
             else {
-               header("location:/AHM/error.php");
+               header("location:/AHM/login.php?status=fail");
             }
          }
          else {
-            echo "Not a valid user or password or username does not match";
+            header("location:/AHM/login.php?status=fail");
          }
       }
    }

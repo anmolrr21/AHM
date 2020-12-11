@@ -609,6 +609,9 @@ a.active{
         margin-left: 31%;
         margin-top: -1px;
     }
+    .leftCorner p{
+        margin-left: 28%;
+    }
     .notifyBox{
         width:580px;
         margin-left: 470px;

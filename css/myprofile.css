@@ -19,6 +19,7 @@ body{
   margin-top: -80px;
   z-index: -1;
   
+  
 }
 .user{
   height: 70px;
@@ -82,6 +83,10 @@ border: none;
 outline: none;
 background-color: #fff;
 font-size: clamp(10px,1vw,40px);
+}
+.onlyPost{
+  margin-left:-330px;
+  width:500px;
 }
 .exp{
   height:250px;
@@ -264,9 +269,6 @@ font-size: clamp(10px,1vw,40px);
 .about .domain p{
   margin-top: 2px;
   padding-left: 5px;
-
- 
-  
 } 
 
 .about .desc h3{
@@ -276,6 +278,13 @@ font-size: clamp(10px,1vw,40px);
   margin-top: 2px;
  margin-left: 35px;
 } 
+
+#connect-btn{
+  margin-top: 280px; 
+  margin-bottom: -300px;
+  margin-left:180px;
+
+}
 
 @media screen and (min-width: 1522px) {
   .name{
@@ -370,10 +379,7 @@ font-size: clamp(10px,1vw,40px);
   }
   .about .domain p{
     margin-top: 2px;
-    padding-left: 5px;
-  
-   
-    
+    padding-left: 5px;   
   } 
   
   .about .desc h3{
@@ -383,6 +389,15 @@ font-size: clamp(10px,1vw,40px);
     margin-top: 2px;
    margin-left: 35px;
   } 
+
+  .onlyPost{
+    margin-left: 30px;
+    background-color: #fff;
+  }
+
+  #connect-btn{
+    margin-left:400px;
+  }
 }
 
      

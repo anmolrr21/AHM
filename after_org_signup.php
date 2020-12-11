@@ -33,6 +33,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     for($i=0; $i<$count; $i++){
         echo $_POST['select_domain'][$i] .'<br>';
         $selectedOption=$_POST['select_domain'][$i] ;
+        if($selectedOption=="Food"){
+            $selectedOption="Food Distribution";
+        }
+        elseif($selectedOption=="Women"){
+            $selectedOption="Women Safety";
+        }
+        
         $sql_domain="INSERT INTO `org_domain` (`org_id`, `domain`) VALUES ($user_id, '$selectedOption')";
        $result_domain = mysqli_query($conn,$sql_domain);
         
@@ -67,7 +74,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $sql7="UPDATE `org_users` SET `status` = '2' WHERE `org_users`.`Org_uid` = $user_id ";
     $result7=mysqli_query($conn, $sql7); 
     
-    header("location:/AHM/login.php");
+    header("location:/AHM/homePage.php");
     
       
  }
