@@ -356,10 +356,10 @@
         } 
         if($check==1){
             echo'<div class="notifyBox belowBox">
-                    <div class="noNotify">
+                    <div class="noNotify" style="margin-left:200px">
                         <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color:green"></i>
-                        <h4>No new Posts!</h4>
-                        <p>You will be shortly see new posts  as someone posts...</p>
+                        <h4 >No new Posts!</h4>
+                        <p style="margin-left:-100px">You will be shortly see new posts  as someone posts...</p>
                     </div>
                 </div>';
         }   
