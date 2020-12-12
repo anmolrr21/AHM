@@ -285,7 +285,7 @@
                     </div>';
             }
         ?>
-        <a href="/AHM/recommendation.php" target="_self" style="margin-left:150px">View More</a>
+        <!-- <a href="/AHM/recommendation.php" target="_self" style="margin-left:150px">View More</a> -->
     </div>
     
     <!-- <div class="rightBottom">

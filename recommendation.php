@@ -204,11 +204,11 @@
                         if($result12){
                             $row12 = mysqli_fetch_assoc($result12);
                             if($row12>0){
-                                if($row12['domain']!=$row11['interest']){
+                                // if($row12['domain']==$row11['interest']){
                                    
-                                   
-                                }
-                                else{
+
+                                // }
+                                // else{
                                     echo'<div class="rightSuggest">
                                             <img src="images/user.png">
                                             <div class="part">
@@ -220,7 +220,7 @@
                                             </div>
                                         </div>';
 
-                                }
+                                //}
                             }
                         }
                     }
@@ -255,7 +255,7 @@
                     </div>';
             }
         ?>
-        <a href="/AHM/recommendation.php" target="_self" style="margin-left:150px">View More</a>
+        <!-- <a href="/AHM/recommendation.php" target="_self" style="margin-left:150px">View More</a> -->
     </div>
     <!-- <div class="rightBottom">
         <h5>Raise Funds</h5>

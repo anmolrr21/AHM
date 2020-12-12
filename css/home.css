@@ -624,7 +624,7 @@ a.active{
         margin-left: 28%;
     }
     .notifyBox{
-        width:580px;
+        /* width:580px; */
         margin-left: 470px;
     }
     .rightCorner a{
