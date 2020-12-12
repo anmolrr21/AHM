@@ -77,10 +77,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             $sql = "UPDATE org_users set proof='$imgContent' where Org_uid=$current_user_id ";
             $resullt = mysqli_query($conn,$sql);
             header("location:/AHM/message.php?verify=process");
-        }
+         }
         
-        
-       
         }
 
         }elseif(verifyEmail::validate($email)){ 
