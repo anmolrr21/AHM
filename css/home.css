@@ -584,6 +584,7 @@ a.active{
 }
 .belowBox{
     margin-top: 10px;
+    /* margin-left: 10px; */
 }
 .notifyBox .notifyHeading{
     display: flex;
@@ -598,10 +599,13 @@ a.active{
 }
 .notifyBox .noNotify i{
     margin-top: 10px;
-    margin-left: 200px;
+    /* margin-left: 200px; */
 }
 .notifyBox .noNotify h4{
-    margin-left: 150px;
+    margin-left: -30px; 
+}
+.noNotify{
+    margin-left: -200px;
 }
 .notifyBox .noNotify p{
     margin-left: 95px;

@@ -145,7 +145,7 @@
             if($result){
                 while($row = mysqli_fetch_assoc($result)){
                     $id = $row['user_id'];
-                    $sql2 = "SELECT * FROM `connections` where ((`userid`='$id' and `connection_id`='$id10') and `requestStatus`=1) or (`userid`='$id10' and `connection_id`='$id') and `requestStatus`=1))";
+                    $sql2 = "SELECT * FROM `connections` where ((`userid`='$id' and `connection_id`='$id10') and `requestStatus`=1)) or ((`userid`='$id10' and `connection_id`='$id') and `requestStatus`=1))";
                     $result2 = mysqli_query($conn,$sql2);
                     $num2 = mysqli_num_rows($result2);
                     if($num2==0){ 
@@ -155,18 +155,11 @@
                             $row12 = mysqli_fetch_assoc($result12);
                             if($row12>0){
                                 if($row12['interest']==$row11['interest']){
-                                    $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
-                                    $result1 = mysqli_query($conn,$sql1);
-                                    $row1 = mysqli_num_rows($result1);
-                                    $bio = '';
-                                    if($row1==0){
-                                        $bio = $row['type'];
-                                    }
                                     echo'<div class="rightSuggest">
                                             <img src="images/user.png">
                                             <div class="part">
                                                 <h5>'.$row['name'].'</h5>
-                                                <p>'.$bio.'</p>
+                                                <p>'.$row['type'].'</p>
                                                 <form method="post" action="/AHM/viewProfile.php?forName='.$id.'">
                                                     <button type="submit">View Profile</button>
                                                 </form>
@@ -216,18 +209,11 @@
                                    
                                 }
                                 else{
-                                    $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
-                                    $result1 = mysqli_query($conn,$sql1);
-                                    $row1 = mysqli_num_rows($result1);
-                                    $bio = '';
-                                    if($row1==0){
-                                        $bio = $row['type'];
-                                    }
                                     echo'<div class="rightSuggest">
                                             <img src="images/user.png">
                                             <div class="part">
                                                 <h5>'.$row['name'].'</h5>
-                                                <p>'.$bio.'</p>
+                                                <p>'.$row['type'].'</p>
                                                 <form method="post" action="/AHM/viewProfile.php?forName='.$id.'">
                                                     <button type="submit">View Profile</button>
                                                 </form>

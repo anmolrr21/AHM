@@ -222,16 +222,20 @@
         <hr>
         <?php
             $name = $_SESSION["username"];
+            $sql8 = "SELECT * FROM `users` where `name`='$name'";
+            $result8 = mysqli_query($conn,$sql8);
+            $row8 = mysqli_fetch_assoc($result8);
+            $id8 = $row8['user_id'];
             $sql = "SELECT * FROM `users` where `name`<>'$name'";
             $result = mysqli_query($conn,$sql);
             $i = 0;
             $j = "pending".strval($i) ;
             while($row = mysqli_fetch_assoc($result)){
                 $id = $row['user_id'];
-                $sql2 = "SELECT * FROM `connections` where `userid`=$id or `connection_id`=$id";
+                $sql2 = "SELECT * FROM `connections` where ((`userid`='$id' and `connection_id`='$id8' and `requestStatus`=1) or (`userid`='$id8' and `connection_id`='$id' and `requestStatus`=1))";
                 $result2 = mysqli_query($conn,$sql2);
                 $num2 = mysqli_num_rows($result2);
-                if(!$num2){ 
+                if($num2<1){ 
                     echo'<div class="rightSuggest">
                             <img src="images/user.png">
                             <div class="part">

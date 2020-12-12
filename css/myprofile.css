@@ -276,7 +276,10 @@ font-size: clamp(10px,1vw,40px);
 }
 .about .desc p{
   margin-top: 2px;
- margin-left: 35px;
+  margin-bottom: 2px;
+  margin-left: 35px;
+  word-wrap: break-word;
+  margin-right: 200px;
 } 
 
 #connect-btn{
