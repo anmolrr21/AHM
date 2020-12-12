@@ -325,7 +325,7 @@
                                 <img src="images/'.$row['image_posted'].'"/>
                             </div>';}
                             if($row['video_posted']!=NULL){
-                            echo'<div class="postImage" style="margin-left:-380px">
+                            echo'<div class="postImage" style="margin-left:-380px;margin-top:35px">
                                 <video id="myVideo" width="440" height="240" style="margin-left: 400px;" controls>
                                     <source src="videos/'.$row['video_posted'].'" type="video/'.$row['videoExt'].'">
                                         Your browser does not support the video tag.

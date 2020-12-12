@@ -379,12 +379,6 @@
             $result2 = mysqli_query($conn,$sql2);
             while($row = mysqli_fetch_assoc($result2)){
                 $id = $row['user_id'];
-                $sql1 = "SELECT * FROM `user_profile` where `userid`='$id'";
-                $result1 = mysqli_query($conn,$sql1);
-                $row1 = mysqli_fetch_assoc($result1);
-                if($row1==null){
-                    $bio = $row['type'];
-                }
                 echo'<div class="rightSuggest">
                         <img src="images/user.png">
                         <div class="part">
