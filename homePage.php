@@ -274,8 +274,8 @@
                             </div>
                         </div>';
                         if($row['article']!=NULL){
-                            echo'<div class="postImage">
-                                    <h4>'.$row['article'].'</h4>
+                            echo'<div class="postImage artis">
+                                    <p>'.$row['article'].'</p>
                                 </div>';
                         }
                         if($row['image_posted']!=NULL){

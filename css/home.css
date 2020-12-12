@@ -104,6 +104,7 @@ a.active{
     margin-left: 27%;
     margin-top: -1px;
 }
+
 .leftCorner p{
     margin-left: 28%;
     margin-top: -8px;
@@ -317,6 +318,12 @@ a.active{
 .onlyPost .postImage img{
     width: 80%; 
     height: 10%;
+}
+.onlyPost .postImage p{
+    word-wrap: break-word;
+}
+.onlyPost .artis{
+    margin-right: 1%;
 }
 .countL{
     display: flex;

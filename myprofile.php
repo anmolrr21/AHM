@@ -415,7 +415,7 @@
                             </div>
                         </div>';
                         if($row['article']!=NULL){
-                            echo'<div class="postImage">
+                            echo'<div class="postImage artis">
                             <h4>'.$row['article'].'</h4>
                         </div>';
                         }

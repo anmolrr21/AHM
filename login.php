@@ -6,13 +6,16 @@
         <script src="https://use.fontawesome.com/0cf079388a.js"></script>
         
     </head>
-    <?php $status=$_GET['status'];
+    <?php
+    if(isset($_GET['status'])){
+       $status=$_GET['status'];
     
         if($status=='fail'){
            echo' <div class="msg msg-empty">
             <b>Failed!</b> Wrong Credentials.
           </div>';
         }
+      }
         
     ?>
 <div class="wrapper fadeInDown">
