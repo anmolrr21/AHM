@@ -367,94 +367,56 @@
 
     <!--------------------Right section of home ----------------------------------->
 
-    <!-- <div class="rightCorner">
-        <div class="rightFirst">
-            <h5>Recommendations</h5>
-            <p><i class="fa fa-lightbulb-o fa-lg" aria-hidden="true" style="color:black"></i></p>
-        </div>
-        <hr>
-        <?php
-            // $name = $_SESSION["username"];
-            // $sql2 = "SELECT * FROM `users` where `name`<>'$name' ORDER BY RAND() LIMIT 3";
-            // $result2 = mysqli_query($conn,$sql2);
-            // while($row = mysqli_fetch_assoc($result2)){
-            //     $id = $row['user_id'];
-            //     echo'<div class="rightSuggest">
-            //             <img src="images/user.png">
-            //             <div class="part">
-            //                 <h5>'.$row['name'].'</h5>
-            //                 <p>'.$row['type'].'</p>
-            //                 <form method="post" action="/AHM/viewProfile.php?forName='.$row['user_id'].'">
-            //                     <input id="'.$row['user_id'].'" type="submit" value="View Profile">
-            //                 </form>
-            //                 </div>
-            //         </div>';
-            // }
-        ?>
-         <a href="/AHM/recommendation.php" target="_self" style="margin-left:150px">View More</a>
-    </div> -->
-
-    <!-- <div class="rightBottom">
-        <h5>Raise Funds</h5>
-        <p><em>"Having something extra is always great because you are with the opportuinity to grab the blessings by
-                donating."</em></p>
-        <button>DONATE <i class="fa fa-check-circle" aria-hidden="true"></i></button>
-        <h6>Donate for cause, donate for change</h6>
-    </div> -->
     <div class="rightCorner">
-    <div class="slideshow-container">
-
-        <div class="mySlides fade">
-            <img src="images/c1.jpg" style="width:350px;height:520px">
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <img src="images/c1.jpg" style="width:350px;height:520px">
+            </div>
+            <div class="mySlides fade">
+                <img src="images/c2.jpg" style="width:350px;height:520px">
+            </div>
+            <div class="mySlides fade">
+                <img src="images/c3.jpg" style="width:350px;height:520px">
+            </div>
+            <div class="mySlides fade">
+                <img src="images/c4.jpg" style="width:350px;height:520px">
+            </div>
         </div>
-
-        <div class="mySlides fade">
-            <img src="images/c2.jpg" style="width:350px;height:520px">
-        </div>
-
-        <div class="mySlides fade">
-            <img src="images/c3.jpg" style="width:350px;height:520px">
-        </div>
-
-        <div class="mySlides fade">
-            <img src="images/c4.jpg" style="width:350px;height:520px">
-        </div>
-
-    </div>
-    <br>
-    
-
+        <br>
     </div>
     <div class="rightBottom">
-    <div class="dotsStay" style="text-align:center">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
+        <div class="dotsStay" style="text-align:center">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
     </div>
-    </div>
-    
+
 
     <!------------------------ Javascript-------------------------------------------->
     <script>
+    //For slider
     var slideIndex = 0;
     showSlides();
 
     function showSlides() {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
-    }
-    slideIndex++;
-    if (slideIndex > slides.length) {slideIndex = 1}    
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[slideIndex-1].style.display = "block";  
-    dots[slideIndex-1].className += " active";
-    setTimeout(showSlides, 2000); // Change image every 2 seconds
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+            slideIndex = 1
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" dactive", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " dactive";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
     }
 
     // Displaying comment section 
