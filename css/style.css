@@ -145,10 +145,10 @@ p{
 .menuIcon {
     display: inline-block;
     cursor: pointer;
-    margin-left: 400px;
+    margin-left: 300px;
   }
   .menuIcon .bar1{
-    margin-top: -80px;
+    margin-top: -50px;
   }
   
   .bar1, .bar2, .bar3 {
@@ -460,9 +460,7 @@ hr{
 }
 
 @media screen and (max-width: 500px) {
-    ul.topnav li:nth-child(3),ul.topnav li:nth-child(4),ul.topnav li:nth-child(5),
-    ul.topnav li:nth-child(6),
-    ul.topnav li:nth-child(7){
+    .bigs{
         display: none;
     }
     .bar1,.bar2,.bar3{

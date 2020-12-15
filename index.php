@@ -15,10 +15,10 @@
             <ul id="top" class="topnav">
                 <li><img src="images/logo.png" width="90px"></li>
                 <li style="font-size:24px;"><a href="index.html"><b>ConnecTTogether<b></a></li>
-                <li><a class="nav1 active" href="#" >HOME</a></li>
-                <li><a class="nav1" href="#about">ABOUT US</a></li>
-                <li><a class="nav1" href="#features">WHY US?</a></li>
-                <li><a class="nav1" href="#contact">CONTACT US</a></li>
+                <li class="bigs"><a class="nav1 active" href="#" >HOME</a></li>
+                <li class="bigs"><a class="nav1" href="#about">ABOUT US</a></li>
+                <li class="bigs"><a class="nav1" href="#features">WHY US?</a></li>
+                <li class="bigs"><a class="nav1" href="#contact">CONTACT US</a></li>
                 <li class="right nav1"><a href="login.php?status=none">LOGIN</a></li>
                 <div class="menuIcon" onclick="display()">
                     <div class="bar1"></div>
