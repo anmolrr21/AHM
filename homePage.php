@@ -367,32 +367,32 @@
 
     <!--------------------Right section of home ----------------------------------->
 
-    <div class="rightCorner">
+    <!-- <div class="rightCorner">
         <div class="rightFirst">
             <h5>Recommendations</h5>
             <p><i class="fa fa-lightbulb-o fa-lg" aria-hidden="true" style="color:black"></i></p>
         </div>
         <hr>
         <?php
-            $name = $_SESSION["username"];
-            $sql2 = "SELECT * FROM `users` where `name`<>'$name' ORDER BY RAND() LIMIT 3";
-            $result2 = mysqli_query($conn,$sql2);
-            while($row = mysqli_fetch_assoc($result2)){
-                $id = $row['user_id'];
-                echo'<div class="rightSuggest">
-                        <img src="images/user.png">
-                        <div class="part">
-                            <h5>'.$row['name'].'</h5>
-                            <p>'.$row['type'].'</p>
-                            <form method="post" action="/AHM/viewProfile.php?forName='.$row['user_id'].'">
-                                <input id="'.$row['user_id'].'" type="submit" value="View Profile">
-                            </form>
-                            </div>
-                    </div>';
-            }
+            // $name = $_SESSION["username"];
+            // $sql2 = "SELECT * FROM `users` where `name`<>'$name' ORDER BY RAND() LIMIT 3";
+            // $result2 = mysqli_query($conn,$sql2);
+            // while($row = mysqli_fetch_assoc($result2)){
+            //     $id = $row['user_id'];
+            //     echo'<div class="rightSuggest">
+            //             <img src="images/user.png">
+            //             <div class="part">
+            //                 <h5>'.$row['name'].'</h5>
+            //                 <p>'.$row['type'].'</p>
+            //                 <form method="post" action="/AHM/viewProfile.php?forName='.$row['user_id'].'">
+            //                     <input id="'.$row['user_id'].'" type="submit" value="View Profile">
+            //                 </form>
+            //                 </div>
+            //         </div>';
+            // }
         ?>
-        <!-- <a href="/AHM/recommendation.php" target="_self" style="margin-left:150px">View More</a> -->
-    </div>
+         <a href="/AHM/recommendation.php" target="_self" style="margin-left:150px">View More</a>
+    </div> -->
 
     <!-- <div class="rightBottom">
         <h5>Raise Funds</h5>
@@ -401,123 +401,176 @@
         <button>DONATE <i class="fa fa-check-circle" aria-hidden="true"></i></button>
         <h6>Donate for cause, donate for change</h6>
     </div> -->
+    <div class="rightCorner">
+    <div class="slideshow-container">
+
+        <div class="mySlides fade">
+            <img src="images/c1.jpg" style="width:350px;height:520px">
+        </div>
+
+        <div class="mySlides fade">
+            <img src="images/c2.jpg" style="width:350px;height:520px">
+        </div>
+
+        <div class="mySlides fade">
+            <img src="images/c3.jpg" style="width:350px;height:520px">
+        </div>
+
+        <div class="mySlides fade">
+            <img src="images/c4.jpg" style="width:350px;height:520px">
+        </div>
+
+    </div>
+    <br>
+    
+
+    </div>
+    <div class="rightBottom">
+    <div class="dotsStay" style="text-align:center">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+    </div>
+    
 
     <!------------------------ Javascript-------------------------------------------->
     <script>
-        // Displaying comment section 
-        function myFunc(y) {
-            if (document.getElementById(y).style.display == "none") {
-                document.getElementById(y).style.display = "block";
-            } else {
-                document.getElementById(y).style.display = "none";
-            }
-        }
+    var slideIndex = 0;
+    showSlides();
 
-        //Modals
-        //Modal1-General Modal
-        var modal = document.getElementById("myModal");
+    function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";  
+    dots[slideIndex-1].className += " active";
+    setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+
+    // Displaying comment section 
+    function myFunc(y) {
+        if (document.getElementById(y).style.display == "none") {
+            document.getElementById(y).style.display = "block";
+        } else {
+            document.getElementById(y).style.display = "none";
+        }
+    }
+
+    //Modals
+    //Modal1-General Modal
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+    var span = document.getElementsByClassName("close")[0];
+
+    function modalDisplay() {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
         modal.style.display = "none";
-        var span = document.getElementsByClassName("close")[0];
+    }
 
-        function modalDisplay() {
-            modal.style.display = "block";
-        }
+    //Modal2-Image+content
+    var modal2 = document.getElementById("myModal1");
+    modal2.style.display = "none";
+    var span = document.getElementsByClassName("close1")[0];
 
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
+    function modalDisplay2() {
+        modal2.style.display = "block";
+    }
 
-        //Modal2-Image+content
-        var modal2 = document.getElementById("myModal1");
+    span.onclick = function() {
         modal2.style.display = "none";
-        var span = document.getElementsByClassName("close1")[0];
-
-        function modalDisplay2() {
-            modal2.style.display = "block";
-        }
-
-        span.onclick = function() {
-            modal2.style.display = "none";
-        }
+    }
 
 
-        //Modal3-Video+content
-        var modal3 = document.getElementById("myModal2");
+    //Modal3-Video+content
+    var modal3 = document.getElementById("myModal2");
+    modal3.style.display = "none";
+    var span = document.getElementsByClassName("close2")[0];
+
+    function modalDisplay3() {
+        modal3.style.display = "block";
+    }
+
+    span.onclick = function() {
         modal3.style.display = "none";
-        var span = document.getElementsByClassName("close2")[0];
+    }
 
-        function modalDisplay3() {
-            modal3.style.display = "block";
-        }
-
-        span.onclick = function() {
-            modal3.style.display = "none";
-        }
-
-        //For comments
-        $('.comment').on('submit', function(event) {
-            event.preventDefault();
-            var comment = $(this).children('#comment').val();
-            var comment1 = comment;
-            var id12 = $(this).parents()[1]['childNodes'];
-            id12 = id12[3]['children'];
-            id12 = id12[id12.length - 1].id;
-            var id = $(this).parents()[2].id;
-            $.ajax({
-                url: "addComment.php",
-                method: "POST",
-                data: {
-                    comment: comment,
-                    id: id
-                },
-                dataType: "JSON",
-                success: function(data) {
-                    if (data.error != '') {
-                        $('.comment').reset();
-                        $('.comment').html(data.error);
-                    }
+    //For comments
+    $('.comment').on('submit', function(event) {
+        event.preventDefault();
+        var comment = $(this).children('#comment').val();
+        var comment1 = comment;
+        var id12 = $(this).parents()[1]['childNodes'];
+        id12 = id12[3]['children'];
+        id12 = id12[id12.length - 1].id;
+        var id = $(this).parents()[2].id;
+        $.ajax({
+            url: "addComment.php",
+            method: "POST",
+            data: {
+                comment: comment,
+                id: id
+            },
+            dataType: "JSON",
+            success: function(data) {
+                if (data.error != '') {
+                    $('.comment').reset();
+                    $('.comment').html(data.error);
                 }
-            });
-            $(this).children('#comment').val('');
-            loadComment(id12, comment1);
-
-            function loadComment(x, y) {
-                document.getElementById(x).style.display = "flex";
-                document.getElementById(x).childNodes[3].children[2].innerHTML = y;
-                console.log(document.getElementById(x).childNodes[3].children[2].innerHTML)
             }
         });
-        
-        //Putting likes into db
-        $('.like').on('click', function(event) {
-            event.preventDefault();
-            var id = $(this).parents()[1].id;
-            $.ajax({
-                url: "likeUpdate.php",
-                method: "POST",
-                data: {
-                    id: id
-                },
-                dataType: "JSON",
-                success: function(data) {
-                    $(this).children('#comment').val() = "";
-                    if (data.error != '') {
-                        $('#commentForm').reset();
-                        $('#comment').html(data.error);
-                    }
-                }
-            });
+        $(this).children('#comment').val('');
+        loadComment(id12, comment1);
 
+        function loadComment(x, y) {
+            document.getElementById(x).style.display = "flex";
+            document.getElementById(x).childNodes[3].children[2].innerHTML = y;
+            console.log(document.getElementById(x).childNodes[3].children[2].innerHTML)
+        }
+    });
+
+    //Putting likes into db
+    $('.like').on('click', function(event) {
+        event.preventDefault();
+        var id = $(this).parents()[1].id;
+        $.ajax({
+            url: "likeUpdate.php",
+            method: "POST",
+            data: {
+                id: id
+            },
+            dataType: "JSON",
+            success: function(data) {
+                $(this).children('#comment').val() = "";
+                if (data.error != '') {
+                    $('#commentForm').reset();
+                    $('#comment').html(data.error);
+                }
+            }
         });
 
-        //Updating likes on post
-        function updateLike(z) {
-            var count = document.getElementById(z).innerHTML
-            var numCount = count.substring(51, 53);
-            var sym = count.substring(0, 51);
-            var nextCount = Number(numCount) + 1;
-            document.getElementById(z).innerHTML = sym + nextCount + " Likes";
-        }
+    });
+
+    //Updating likes on post
+    function updateLike(z) {
+        var count = document.getElementById(z).innerHTML
+        var numCount = count.substring(51, 53);
+        var sym = count.substring(0, 51);
+        var nextCount = Number(numCount) + 1;
+        document.getElementById(z).innerHTML = sym + nextCount + " Likes";
+    }
     </script>
 </body>
 

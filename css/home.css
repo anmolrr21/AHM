@@ -4,6 +4,56 @@ body{
     margin: 0px;
     background-color: #ebeaea;
 }
+.mySlides {display: none;}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  /* max-width: 1000px; */
+  position: fixed;
+  /* margin-left: 71%;
+  margin-top: -21%; */
+}
+
+
+/* The dots/bullets/indicators */
+.dotsStay{
+    margin-left: 10px;
+}
+.dot {
+  height: 15px;
+  width: 15px;
+  margin-left: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+/* .active {
+  background-color: #717171;
+} */
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+
+
 a{
     text-decoration: none;
     color: #000000;
@@ -164,14 +214,14 @@ a.active{
 .rightCorner{
     width: 27%;
     /* border: 1px solid #000; */
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
     margin-left: 70%;
     margin-top: 8%;
     border-radius: 10px;
     position: fixed;
     top: 0;
     display: block;
-    background-color: #fff;
+    /* background-color: #fff; */
     z-index: -1;
 }
 .rightCorner .rightFirst{
@@ -245,15 +295,15 @@ a.active{
 } */
 .rightBottom{
     width: 27%;
-    border: 1px solid #000;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* border: 1px solid #000; */
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
     margin-left: 70%;
-    margin-top: 40%;
+    margin-top: 50%;
     border-radius: 10px;
     position: fixed;
     top: 0;
     display: block;
-    background-color: #fff;
+    /* background-color: #fff; */
    
    
 }
